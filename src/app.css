@@ -2,6 +2,64 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+	font-family: 'Open Source Sans';
+	font-style: normal;
+	font-weight: 400;
+	src: url('/fonts/sourcesans.ttf');
+}
+
+@font-face {
+	font-family: 'Open Source Sans';
+	font-style: italic;
+	font-weight: 400;
+	src: url('/fonts/sourcesans-italic.ttf');
+}
+
+@font-face {
+	font-family: 'Babas Neue';
+	font-style: normal;
+	font-weight: 400;
+	src: url('/fonts/babas-neue.ttf');
+}
+
 .overhuset {
 	background: url('https://www.overhuset.no/images/overhuset_logo.svg');
+}
+
+.about-company-header {
+	@apply border-black border-b-2 w-3/4 pb-2;
+}
+
+.font-source {
+	font-family: 'Open Source Sans';
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	@apply font-source;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: 'Babas Neue';
+}
+
+.header-decoration:after {
+	@apply inline-block border-b-2 md:border-b-[3px] border-b-current w-20 ml-2;
+	content: '';
+}
+
+.half-o {
+	background: #e97a58 url(https://www.overhuset.no/images/half-o.svg);
+	background-position: 95% bottom;
+	background-repeat: no-repeat;
+	background-size: contain;
 }
