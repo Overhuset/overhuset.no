@@ -1,11 +1,22 @@
-<div class="company-info-overlay hidden" id="company-jpro">
-	<div class="cross">×</div>
-	<a href="http://www.jpro.no/" target="_blank"><img src="/images/companies/logo_jpro.png" /></a>
+<script lang="ts">
+	import type { ModalProps } from '@skeletonlabs/skeleton/dist/utilities/Modal/Modal.svelte';
+	import CompanyHeader from './CompanyHeader.svelte';
+
+	export let parent: ModalProps;
+	export let imgSrc: string;
+	export let href: string;
+
+	function handleClose() {
+		if (parent?.onClose) parent.onClose();
+	}
+</script>
+
+<div class="prose">
+	<CompanyHeader {handleClose} {href} {imgSrc} />
 	<p>
-		_________________________________________________________________<br /><br />JProfessionals - av
-		og for utviklere!<br /><br />JProfessionals AS er et konsulentselskap med 50 svært dyktige
-		konsulenter. I gjennomsnitt har konsulentene våre over 18 års erfaring. Vi elsker teknologi og
-		koding - og spesialiserer oss på å levere dyktige konsulenter til utviklings- og
+		JProfessionals - av og for utviklere!<br /><br />JProfessionals AS er et konsulentselskap med 50
+		svært dyktige konsulenter. I gjennomsnitt har konsulentene våre over 18 års erfaring. Vi elsker
+		teknologi og koding - og spesialiserer oss på å levere dyktige konsulenter til utviklings- og
 		arkitekturoppgaver hos våre kunder.<br /><br />JPro er en fullstack-tjenesteleverandør som
 		leverer tjenester på både frontend og backend. Våre konsulenter har lang fartstid i bransjen og
 		en sterk CV, med god kjennskap til nye teknologier og erfaringen som trengs for å finne de beste

@@ -1,14 +1,26 @@
-<div class="company-info-overlay hidden" id="company-zenior">
-	<div class="cross">×</div>
-	<a href="http://zenior.no/" target="_blank"><img src="/images/companies/logo_zenior.png" /></a>
+<script lang="ts">
+	import type { ModalProps } from '@skeletonlabs/skeleton/dist/utilities/Modal/Modal.svelte';
+	import CompanyHeader from './CompanyHeader.svelte';
+
+	export let parent: ModalProps;
+	export let imgSrc: string;
+	export let href: string;
+
+	function handleClose() {
+		if (parent?.onClose) parent.onClose();
+	}
+</script>
+
+<div class="prose">
+	<CompanyHeader {handleClose} {href} {imgSrc} />
+
 	<p>
-		_________________________________________________________________<br /><br />Zenior er en
-		etablert leverandør av tjenester innen systemutvikling og -arkitektur. Vi bistår våre kunder i å
-		utvikle komplekse, skreddersydde IT-løsninger som krever dyp innsikt i både teknologi og
-		metodikk.<br /><br />Alle våre konsulenter kombinerer lang erfaring med evnen til å være ledende
-		i bruk av ny teknologi.<br /><br />
+		Zenior er en etablert leverandør av tjenester innen systemutvikling og -arkitektur. Vi bistår
+		våre kunder i å utvikle komplekse, skreddersydde IT-løsninger som krever dyp innsikt i både
+		teknologi og metodikk.<br /><br />Alle våre konsulenter kombinerer lang erfaring med evnen til å
+		være ledende i bruk av ny teknologi.<br /><br />
 	</p>
-	<h3>Fagområder</h3>
+	<h4>Fagområder</h4>
 	<p>
 		<strong>
 			Utvikling av virksomhetskritiske IT-systemer, Teknologi- og arkitekturvalg, Tilpasning og

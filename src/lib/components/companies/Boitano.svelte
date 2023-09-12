@@ -1,10 +1,21 @@
-<div class="company-info-overlay hidden" id="company-boitano">
-	<div class="cross">×</div>
-	<a href="https://boitano.no/" target="_blank"><img src="/images/companies/logo_boitano.png" /></a>
+<script lang="ts">
+	import type { ModalProps } from '@skeletonlabs/skeleton/dist/utilities/Modal/Modal.svelte';
+	import CompanyHeader from './CompanyHeader.svelte';
+
+	export let parent: ModalProps;
+	export let imgSrc: string;
+	export let href: string;
+
+	function handleClose() {
+		if (parent?.onClose) parent.onClose();
+	}
+</script>
+
+<div class="prose">
+	<CompanyHeader {handleClose} {href} {imgSrc} />
 	<p>
-		_________________________________________________________________<br /><br />Boitano er et
-		partnerskap med 45 erfarne teknologer og forretningsutviklere som jobber i prosjekter hos noen
-		av Norges største selskap.<br /><br />
+		Boitano er et partnerskap med 45 erfarne teknologer og forretningsutviklere som jobber i
+		prosjekter hos noen av Norges største selskap.<br /><br />
 	</p>
 	<h3>Fagområder</h3>
 	<p>

@@ -1,19 +1,29 @@
-<div class="company-info-overlay hidden" id="company-kodemaker">
-	<div class="cross">×</div>
-	<a href="https://www.kodemaker.no/" target="_blank"
-		><img src="/images/companies/logo_kodemaker.png" /></a
-	>
+<script lang="ts">
+	import type { ModalProps } from '@skeletonlabs/skeleton/dist/utilities/Modal/Modal.svelte';
+	import CompanyHeader from './CompanyHeader.svelte';
+
+	export let parent: ModalProps;
+	export let imgSrc: string;
+	export let href: string;
+
+	function handleClose() {
+		if (parent?.onClose) parent.onClose();
+	}
+</script>
+
+<div class="prose">
+	<CompanyHeader {handleClose} {href} {imgSrc} />
 	<p>
-		_________________________________________________________________<br /><br />Kodemaker leverer
-		meget høy kompetanse innen systemutvikling. Vi har kun erfarne konsulenter med oss, som liker å
-		bryne seg på vanskelig oppgaver. Vi er en entusiastisk gjeng med lidenskap for faget. Vi bruker
-		hverandre aktivt som sparringpartnere på tvers av oppdrag, og det kommer våre kunder til gode.<br
-		/><br />Våre gode kommunikasjonsevner, evne til å samarbeide, samt at vi har et våkent øye for
-		bedre løsninger, gjør oss til viktige støttespillere for kundene. Svært mange av våre
-		konsulenter får forlenget kontraktene igjen og igjen, og det gjerne med riktig så hyggelige
-		tilbakemeldinger fra kunden.<br /><br />Teknologisk sett har vi vår tyngde rundt systemutvikling
-		på åpne plattformer. Vi kan dekke alle roller fra teknisk prosjektleder, rådgiver, arkitekt og
-		sylskarp utvikler. Se liste til høyre for ytterligere detaljer.<br /><br />
+		Kodemaker leverer meget høy kompetanse innen systemutvikling. Vi har kun erfarne konsulenter med
+		oss, som liker å bryne seg på vanskelig oppgaver. Vi er en entusiastisk gjeng med lidenskap for
+		faget. Vi bruker hverandre aktivt som sparringpartnere på tvers av oppdrag, og det kommer våre
+		kunder til gode.<br /><br />Våre gode kommunikasjonsevner, evne til å samarbeide, samt at vi har
+		et våkent øye for bedre løsninger, gjør oss til viktige støttespillere for kundene. Svært mange
+		av våre konsulenter får forlenget kontraktene igjen og igjen, og det gjerne med riktig så
+		hyggelige tilbakemeldinger fra kunden.<br /><br />Teknologisk sett har vi vår tyngde rundt
+		systemutvikling på åpne plattformer. Vi kan dekke alle roller fra teknisk prosjektleder,
+		rådgiver, arkitekt og sylskarp utvikler. Se liste til høyre for ytterligere detaljer.<br /><br
+		/>
 	</p>
 	<h3>Fagområder</h3>
 	<p>

@@ -1,11 +1,22 @@
-<div class="company-info-overlay hidden" id="company-miles">
-	<div class="cross">×</div>
-	<a href="https://www.miles.no" target="_blank"><img src="/images/companies/logo_miles.png" /></a>
+<script lang="ts">
+	import type { ModalProps } from '@skeletonlabs/skeleton/dist/utilities/Modal/Modal.svelte';
+	import CompanyHeader from './CompanyHeader.svelte';
+
+	export let parent: ModalProps;
+	export let imgSrc: string;
+	export let href: string;
+
+	function handleClose() {
+		if (parent?.onClose) parent.onClose();
+	}
+</script>
+
+<div class="prose">
+	<CompanyHeader {handleClose} {href} {imgSrc} />
 	<p>
-		_________________________________________________________________<br /><br />Miles er et
-		IT-konsulentselskap med kontorer i Oslo, Bergen, Stavanger, Trondheim og Vilnius. Vi startet i
-		2005 av og for konsulenter med en visjon om å være en fremragende arbeidsplass basert på
-		verdiene faglig autoritet og varme.<br /><br />Våre konsulenter er kjent for å holde et høyt
+		Miles er et IT-konsulentselskap med kontorer i Oslo, Bergen, Stavanger, Trondheim og Vilnius. Vi
+		startet i 2005 av og for konsulenter med en visjon om å være en fremragende arbeidsplass basert
+		på verdiene faglig autoritet og varme.<br /><br />Våre konsulenter er kjent for å holde et høyt
 		faglig nivå med gode mellommenneskelige egenskaper. Ved hjelp av flat struktur, tillit og
 		verdiene våre har vi skapt en unik formel som funker. Vi er primært et fagmiljø med
 		seniorkonsulenter og leverer spisskompetanse fremfor volum.<br /><br />I Miles praktiserer vi
