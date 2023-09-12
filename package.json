@@ -29,5 +29,10 @@
 		"vite": "^4.4.2",
 		"vitest": "^0.34.0"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"@sanity/client": "^6.4.11",
+		"groq": "^3.16.4",
+		"sanity": "^3.16.4"
+	}
 }
