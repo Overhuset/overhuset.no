@@ -1,0 +1,17 @@
+<div class="company-info-overlay hidden" id="company-arktekk">
+	<div class="cross">×</div>
+	<a href="https://www.arktekk.no" target="_blank"
+		><img src="/images/companies/logo_arktekk.png" /></a
+	>
+	<p>
+		_________________________________________________________________<br /><br />Arktekk er
+		"Scala-sjappa" i Norge. Hos oss finner du eksperter på Scala og funksjonell programmering. Vårt
+		fokus er fag. Vi dyrker et fagmiljø som alltid vil være med på lasset inn til alle våre kunder.<br
+		/><br />Hvert år arrangerer vi den internasjonalt anerkjente konferansen flatpMap(Oslo), som
+		gjester entusiaster for funksjonell programmering fra hele verden.<br /><br />
+	</p>
+	<h3>Fagområder</h3>
+	<p>
+		<strong> Scala og funksjonell programmering. </strong>
+	</p>
+</div>
