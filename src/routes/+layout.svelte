@@ -8,5 +8,5 @@
 </script>
 
 <Header />
-<slot />
+<main class="flex flex-col items-stretch"><slot /></main>
 <Footer />

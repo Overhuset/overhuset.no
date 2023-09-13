@@ -5,11 +5,11 @@
 		type ModalComponent,
 		type ModalSettings
 	} from '@skeletonlabs/skeleton';
-	import { companies, type Company } from './companies';
+	import { companies, type CompanyWithComponent } from './companies';
 
 	const modalStore = getModalStore();
 
-	const selectCompany = (company: Company) => {
+	const selectCompany = (company: CompanyWithComponent) => {
 		const modal: ModalSettings = {
 			type: 'component',
 			component: company.name,
@@ -29,8 +29,6 @@
 		};
 		return acc;
 	}, {});
-
-	console.log(modalComponentRegistry);
 </script>
 
 <div class="grid sm:grid-cols-3 md:grid-cols-4 md:gap-32 my-12 md:my-24">

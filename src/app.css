@@ -4,22 +4,17 @@
 
 @font-face {
 	font-family: 'Open Source Sans';
-	font-style: normal;
-	font-weight: 400;
 	src: url('/fonts/sourcesans.ttf');
 }
 
 @font-face {
 	font-family: 'Open Source Sans';
 	font-style: italic;
-	font-weight: 400;
 	src: url('/fonts/sourcesans-italic.ttf');
 }
 
 @font-face {
 	font-family: 'Babas Neue';
-	font-style: normal;
-	font-weight: 400;
 	src: url('/fonts/babas-neue.ttf');
 }
 
@@ -57,9 +52,18 @@ h6 {
 	content: '';
 }
 
+.big-o {
+	background: #fff url(https://www.overhuset.no/images/big-o.svg) no-repeat 117% -150px;
+	background-size: 40%;
+}
+
 .half-o {
 	background: #e97a58 url(https://www.overhuset.no/images/half-o.svg);
 	background-position: 95% bottom;
 	background-repeat: no-repeat;
 	background-size: contain;
+}
+
+.page-section {
+	@apply flex mx-auto my-12 md:my-24 max-w-8xl px-12;
 }

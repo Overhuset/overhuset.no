@@ -1,12 +1,12 @@
 <header
-	class="flex md:flex-row flex-col justify-between items-center md:items-end md:m-16 max-w-7xl"
+	class="flex md:flex-row flex-col justify-between items-center gap-6 md:items-end mx-auto my-16 md:my-24 mx-auto max-w-8xl"
 >
 	<a href="/">
 		<!-- TODO: Replace with local asset -->
-		<img src="https://www.overhuset.no/images/overhuset_logo.svg" class="w-44" alt="" />
+		<img src="https://www.overhuset.no/images/overhuset_logo.svg" class="w-60" alt="" />
 	</a>
 	<nav>
-		<ul class="flex gap-4 md:items-end text-sm">
+		<ul class="flex gap-4 md:items-end text-sm md:text-lg font-light">
 			<li><a href="/">Hjem</a></li>
 			<li><a href="/#selskapene">Selskapene</a></li>
 			<li><a href="/#om_oss">Om oss</a></li>
