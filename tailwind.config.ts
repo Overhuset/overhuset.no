@@ -11,7 +11,21 @@ const config = {
 		join(require.resolve('@skeletonlabs/skeleton'), '../**/*.{html,js,svelte,ts}')
 	],
 	theme: {
-		extend: {}
+		extend: {
+			minHeight: {
+				dh: '100dvh'
+			},
+			minWidth: {
+				dw: '100dvw'
+			},
+			maxWidth: {
+				'8xl': '1440px'
+			},
+			screens: {
+				dw: '100dvw',
+				dh: '100dvh'
+			}
+		}
 	},
 	plugins: [typography, skeleton]
 } satisfies Config;
