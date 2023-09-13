@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import { parse } from 'papaparse';
+import Papa from 'papaparse';
 
 export async function load({ params }) {
 	const events = await getEventsFromSheet();
@@ -21,7 +21,7 @@ async function getEventsFromSheet() {
 		`https://docs.google.com/spreadsheets/d/e/${sheet_id}/pub?gid=257492918&single=true&output=csv`
 	);
 	const csv = await response.text();
-	const json = parse(csv, {
+	const json = Papa.parse(csv, {
 		header: true
 	});
 	return json.data;
