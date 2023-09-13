@@ -39,7 +39,7 @@ export const companies: CompanyWithComponent[] = [
 	{
 		href: 'https://www.edisys.no/',
 		imgSrc: 'https://www.overhuset.no/images/companies/logo_edisys_consulting.png',
-		name: 'Edisys Consulting',
+		name: 'Edisys',
 		component: Edisys
 	},
 	{
@@ -85,3 +85,7 @@ export const companies: CompanyWithComponent[] = [
 		component: Zenior
 	}
 ];
+
+export const getLogoFromCompanyName = (companyName: string) =>
+	companies.find(({ name }) => name === companyName)?.imgSrc ||
+	'https://www.overhuset.no/images/overhuset_logo.svg';
