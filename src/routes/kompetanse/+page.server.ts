@@ -32,4 +32,4 @@ export const config = dev
 				expiration: 60
 			}
 	  };
-export const prerender = !dev;
+//export const prerender = !dev;
