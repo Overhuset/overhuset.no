@@ -4,12 +4,13 @@ import Papa from 'papaparse';
 
 import { SHEET_ID } from '$env/static/private';
 import { dev } from '$app/environment';
-import { transformDates } from '$lib/transformEvents';
+import type { Event } from '$lib/types';
+import { isEventInThePast, sortEvent, transformDates } from '$lib/transformEvents';
 
 export async function load() {
 	const events = await getEventsFromSheet();
 	return {
-		events
+		...events
 	};
 }
 
@@ -18,15 +19,32 @@ async function getEventsFromSheet() {
 		`https://docs.google.com/spreadsheets/d/e/${SHEET_ID}/pub?gid=257492918&single=true&output=csv`
 	);
 	const csv = await response.text();
-	const events = Papa.parse(csv, {
+	const json = Papa.parse(csv, {
 		header: true
 	});
 
-	if (events?.data) {
-		return transformDates(events.data);
+	if (json?.data) {
+		const events = json?.data as Event[];
+		const pastEvents = events
+			.filter((event: Event) => isEventInThePast(event.date, event.time))
+			.sort((a, b) => sortEvent(a, b, true));
+		const futureEvents = events
+			.filter((event: Event) => !isEventInThePast(event.date, event.time))
+			.sort(sortEvent);
+
+		const pastEventsWithTransformedDates = transformDates(pastEvents);
+		const futureEventsWithTransformedDates = transformDates(futureEvents);
+
+		return {
+			pastEvents: pastEventsWithTransformedDates,
+			futureEvents: futureEventsWithTransformedDates
+		};
 	}
 
-	return [];
+	return {
+		pastEvents: [],
+		futureEvents: []
+	};
 }
 
 export const config = dev

@@ -4,8 +4,8 @@
 
 	export let data;
 	let tabSet = 0;
-	const pastEvents = data.events.slice(0, 10);
-	const futureEvents = data.events.slice(9, -1);
+	const pastEvents = data.pastEvents;
+	const futureEvents = data.futureEvents;
 </script>
 
 <section class="max-w-8xl mx-auto">
