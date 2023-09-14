@@ -4,8 +4,9 @@ import Papa from 'papaparse';
 
 import { SHEET_ID } from '$env/static/private';
 import { dev } from '$app/environment';
+import { transformDates } from '$lib/transformEvents';
 
-export async function load({ params }) {
+export async function load() {
 	const events = await getEventsFromSheet();
 	return {
 		events
@@ -21,8 +22,11 @@ async function getEventsFromSheet() {
 		header: true
 	});
 
-	console.log({ dev });
-	return events.data;
+	if (events?.data) {
+		return transformDates(events.data);
+	}
+
+	return [];
 }
 
 export const config = dev
