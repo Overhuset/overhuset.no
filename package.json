@@ -38,6 +38,7 @@
   },
   "type": "module",
   "dependencies": {
+    "bun-types": "^1.0.1",
     "luxon": "^3.4.3",
     "papaparse": "^5.4.1"
   }
