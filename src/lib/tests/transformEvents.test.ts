@@ -6,7 +6,8 @@ const dummyEvent: Event = {
 	title: 'Dummy',
 	description: 'Event',
 	location: 'Oslo',
-	date: '2023-10-11T17:30:00',
+	date: '2023-10-11',
+	time: '17:30',
 	registrationLink: '',
 	presentationLink: '',
 	company: 'NoPro'
@@ -14,14 +15,16 @@ const dummyEvent: Event = {
 
 describe('Transforms date in event correctly', () => {
 	it('should return corect with a given date', () => {
-		const input = '2023-10-11T17:30:00';
-		const expected = 'Tir, okt 11 2023 - 17:30';
+		const date = '2023-10-11';
+		const time = '17:45';
+		const expected = 'Ons. okt 11, 2023 - 17:45';
 
 		expect(
 			transformDate({
 				...dummyEvent,
-				date: input
+				date,
+				time
 			})
-		).toEqual({ ...dummyEvent, date: expected });
+		).toEqual({ ...dummyEvent, date: expected, time });
 	});
 });

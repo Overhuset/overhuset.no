@@ -1,9 +1,25 @@
 import type { Event } from '$lib/types';
-export const transformDate = ({ date, ...restOfEvent }: Event): Event => {
-	const newDate = date;
+import { DateTime } from 'luxon';
+export const transformDate = ({ date, time, ...restOfEvent }: Event): Event => {
+	const locale = 'nb';
+	const timeZoneName = Intl.DateTimeFormat(locale, {
+		timeZoneName: 'short',
+		timeZone: 'Europe/Oslo'
+	})
+		.formatToParts()
+		.find(({ type }) => type === 'timeZoneName')?.value;
+	console.log(timeZoneName);
+	let formattedDate = DateTime.fromISO(`${date}T${time}`)
+		.setLocale('nb-NO')
+		.toFormat('ccc LLL dd, yyyy - HH:mm');
+
+	formattedDate = formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
 
 	return {
-		date: newDate,
+		date: formattedDate,
+		time,
 		...restOfEvent
 	};
 };
+
+export const transformDates = (events: Event[]) => events.map(transformDate);
