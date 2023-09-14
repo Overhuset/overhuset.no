@@ -5,7 +5,7 @@
 <section class="page-section flex-col-reverse md:flex-row items-center gap-6">
 	<img src="https://www.overhuset.no/images/image-slogan-test.png" alt="" class="md:w-1/2" />
 	<h2
-		class="text-3xl md:text-6xl font-bold text-center text-stone-600 md:w-1/2 font-source md:px-16"
+		class="text-3xl md:text-4xl lg:text-6xl font-bold text-center text-stone-600 md:w-1/2 font-source md:px-16"
 	>
 		350 AV DE RÅESTE KONSULENTENE I MARKEDET UNDER SAMME TAK
 	</h2>
@@ -24,7 +24,7 @@
 </section>
 
 <section class="page-section flex-col">
-	<p class="font-normal max-w-5xl text-2xl font-light">
+	<p class="max-w-5xl text-2xl font-light">
 		Overhuset leverer spisskompetanse innenfor et bredt spekter av fagområder. Tjenestene leveres
 		gjennom våre partnerselskaper som alle har spesialisert seg på å være ledende fagmiljøer med
 		spiss- og seniorkompetanse innenfor sine respektive fagfelt. Se på de enkelte selskapene for
@@ -73,7 +73,7 @@
 
 <section class="page-section flex-col md:flex-row">
 	<img src="https://www.overhuset.no/images/heading-test.jpg" class="md:w-1/2" alt="" />
-	<div class="md:pl-12 flex flex-col justify-evenly my-16">
+	<div class="md:pl-12 flex flex-col justify-evenly mt-16">
 		<h3 class="text-4xl font-source font-bold text-[#729089]">Kunnskapsdeling</h3>
 		<p
 			class="mt-6 pr-6 text-right border-r-[3px] border-[#729089] max-w-2xl mx-auto text-2xl font-light"
@@ -84,7 +84,7 @@
 	</div>
 </section>
 <section class="page-section flex-col md:flex-row gap-12">
-	<div class="flex flex-col gap-6 justify-evenly items-end my-16">
+	<div class="flex flex-col gap-6 justify-evenly items-end md:my-16">
 		<h3 class="text-3xl md:text-4xl font-source font-bold text-[#E97A58] md:text-right">
 			Spesialistene på ett sted
 		</h3>
