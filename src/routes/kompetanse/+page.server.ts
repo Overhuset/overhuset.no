@@ -1,6 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import Papa from 'papaparse';
+
 import { SHEET_ID } from '$env/static/private';
 import { dev } from '$app/environment';
 
@@ -20,6 +21,7 @@ async function getEventsFromSheet() {
 		header: true
 	});
 
+	console.log({ dev });
 	return events.data;
 }
 
@@ -30,4 +32,4 @@ export const config = dev
 				expiration: 60
 			}
 	  };
-export const prerender = true;
+export const prerender = !dev;

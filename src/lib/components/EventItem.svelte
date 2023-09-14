@@ -6,7 +6,6 @@
 
 	export let isInThePast = false;
 	const logo = getLogoFromCompanyName(event.company);
-	console.log(logo);
 </script>
 
 <Accordion>
