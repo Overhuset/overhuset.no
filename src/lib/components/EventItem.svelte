@@ -8,9 +8,9 @@
 	const logo = getLogoFromCompanyName(event.company);
 </script>
 
-<AccordionItem class="bg-stone-100 rounded-xl w-full max-w-sm">
+<AccordionItem class="border-2 rounded-md w-full max-w-sm">
 	<svelte:fragment slot="summary">
-		<div class="flex items-center w-full">
+		<div class="flex items-center w-full h-28">
 			<img src={logo} alt="" class="w-20" />
 			<div class="flex flex-col pl-4 py-4 font-source">
 				<span class="font-light text-sm">{event?.date ?? 'TBA'}</span>
