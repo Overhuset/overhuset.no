@@ -1,6 +1,6 @@
 <footer id="kontakt" class="bg-[#A6C4BC] p-12 md:p-20 mt-auto">
 	<div class="max-w-8xl mx-auto">
-		<h2 class="text-6xl mb-6 text-white header-decoration">KONTAKT</h2>
+		<h2 class="text-6xl mb-6 text-white">KONTAKT</h2>
 		<a href="/">
 			<!-- TODO: Replace with local asset -->
 			<img src="/companies/overhuset_logo.svg" class="w-44 mb-4" alt="" />

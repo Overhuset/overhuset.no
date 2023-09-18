@@ -27,7 +27,14 @@ const config = {
 			}
 		}
 	},
-	plugins: [typography, skeleton]
+	plugins: [
+		typography,
+		skeleton({
+			themes: {
+				preset: ['skeleton', 'wintry']
+			}
+		})
+	]
 } satisfies Config;
 
 export default config;

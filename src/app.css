@@ -22,16 +22,14 @@
 	background: url('/companies/overhuset_logo.svg');
 }
 
-.about-company-header {
-	@apply border-black border-b-2 w-3/4 pb-2;
-}
-
 .font-source {
 	font-family: 'Open Source Sans';
 }
 
 html {
-	scroll-behavior: smooth;
+	width: 100dvw;
+	overflow-y: scroll;
+	overflow-x: hidden;
 }
 
 body {
@@ -47,21 +45,16 @@ h6 {
 	font-family: 'Babas Neue';
 }
 
-.header-decoration:after {
-	@apply inline-block border-b-2 md:border-b-[3px] border-b-current w-20 ml-2;
-	content: '';
-}
-
 .big-o {
 	background: #fff url(/assets/big-o.svg) no-repeat 117% -150px;
 	background-size: 40%;
 }
 
 .half-o {
-	background: #e97a58 url(/assets/half-o.svg);
-	background-position: 95% bottom;
+	background: #bd4d2b url(/assets/half-o.svg);
+	background-position: 135% bottom;
 	background-repeat: no-repeat;
-	background-size: contain;
+	background-size: 50%;
 }
 
 .page-section {
