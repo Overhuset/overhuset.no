@@ -2,6 +2,13 @@
 	import CompanyList from '$lib/components/CompanyList.svelte';
 </script>
 
+<svelte:head>
+	<title>Overhuset</title>
+	<meta
+		name="description"
+		content="Overhuset leverer spisskompetanse innenfor et bredt spekter av fagområder. Tjenestene leveres gjennom våre partnerselskaper som alle har spesialisert seg på å være ledende fagmiljøer med spiss- og seniorkompetanse innenfor sine respektive fagfeltOverhuset leverer spisskompetanse innenfor et bredt spekter av fagområder. Tjenestene leveres gjennom våre partnerselskaper som alle har spesialisert seg på å være ledende fagmiljøer med spiss- og seniorkompetanse innenfor sine respektive fagfelt."
+	/>
+</svelte:head>
 <section class="page-section flex-col-reverse md:flex-row items-center gap-6">
 	<img src="/assets/slogan.png" alt="" class="md:w-1/2" />
 	<h2

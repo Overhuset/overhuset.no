@@ -8,6 +8,6 @@
 	const companyComponent = get<CompanyWithComponent>(companiesAsObject, data.company);
 </script>
 
-<div class="flex flex-col items-center gap-y-12">
+<div class="flex flex-col items-center gap-y-12 mb-16 md:mb-24">
 	<svelte:component this={companyComponent.component} {...companyComponent} />
 </div>

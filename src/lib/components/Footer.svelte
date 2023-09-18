@@ -1,11 +1,11 @@
-<footer id="kontakt" class="bg-[#A6C4BC] p-12 md:p-20 mt-auto">
-	<div class="max-w-8xl mx-auto">
-		<h2 class="text-6xl mb-6 text-white">KONTAKT</h2>
-		<a href="/">
+<footer id="kontakt" class="bg-[#6e9a8f] p-12 md:p-20 mt-auto">
+	<div class="max-w-8xl mx-auto flex flex-col gap-8">
+		<h2 class="text-6xl text-white" style="text-shadow: black 1px 1px">KONTAKT</h2>
+		<a href="/" title="Hjem">
 			<!-- TODO: Replace with local asset -->
-			<img src="/companies/overhuset_logo.svg" class="w-44 mb-4" alt="" />
+			<img src="/companies/overhuset_logo.svg" class="w-44" alt="" />
 		</a>
-		<span class="flex flex-col">
+		<span class="flex flex-col gap-2">
 			<a
 				href="https://www.google.no/maps/place/Munkedamsveien+3B,+0161+Oslo/@59.9144348,10.7292813,17z/data=!3m1!4b1!4m5!3m4!1s0x46416e7e111e7bb7:0x33191f0728977b46!8m2!3d59.9144348!4d10.7314753"
 				target="map"

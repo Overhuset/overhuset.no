@@ -1,7 +1,7 @@
 <header
 	class="flex md:flex-row flex-col justify-between items-center gap-6 md:items-end mx-auto my-16 md:my-24 mx-auto max-w-8xl"
 >
-	<a href="/">
+	<a href="/" title="Hjem">
 		<!-- TODO: Replace with local asset -->
 		<img src="/companies/overhuset_logo.svg" class="w-60" alt="" />
 	</a>
