@@ -1,11 +1,17 @@
 import type { Event } from '$lib/types';
 import { DateTime } from 'luxon';
 export const transformDate = ({ date, time, ...restOfEvent }: Event): Event => {
-	let formattedDate = DateTime.fromISO(`${date}T${time}`)
-		.setLocale('nb-NO')
-		.toFormat('ccc LLL dd, yyyy - HH:mm');
+	let formattedDate = 'TBA';
 
-	formattedDate = formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
+	const parsedDate = DateTime.fromISO(`${date}T${time}`).setLocale('nb-NO');
+	if (parsedDate.isValid) {
+		formattedDate = parsedDate.toFormat('ccc LLL dd, yyyy - HH:mm');
+		formattedDate = formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
+	} else {
+		console.error(
+			`Date and time provided ${date} - ${time} for event ${restOfEvent.title} did not result in a valid datetime. Defaulting to "TBA"`
+		);
+	}
 
 	return {
 		date: formattedDate,
