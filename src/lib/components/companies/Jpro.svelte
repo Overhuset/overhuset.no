@@ -1,18 +1,12 @@
 <script lang="ts">
-	import type { ModalProps } from '@skeletonlabs/skeleton/dist/utilities/Modal/Modal.svelte';
 	import CompanyHeader from './CompanyHeader.svelte';
 
-	export let parent: ModalProps;
 	export let imgSrc: string;
 	export let href: string;
-
-	function handleClose() {
-		if (parent?.onClose) parent.onClose();
-	}
 </script>
 
 <div class="prose">
-	<CompanyHeader {handleClose} {href} {imgSrc} />
+	<CompanyHeader {href} {imgSrc} />
 	<p>
 		JProfessionals - av og for utviklere!<br /><br />JProfessionals AS er et konsulentselskap med 50
 		svært dyktige konsulenter. I gjennomsnitt har konsulentene våre over 18 års erfaring. Vi elsker

@@ -1,18 +1,12 @@
 <script lang="ts">
-	import type { ModalProps } from '@skeletonlabs/skeleton/dist/utilities/Modal/Modal.svelte';
 	import CompanyHeader from './CompanyHeader.svelte';
 
-	export let parent: ModalProps;
 	export let imgSrc: string;
 	export let href: string;
-
-	function handleClose() {
-		if (parent?.onClose) parent.onClose();
-	}
 </script>
 
 <div class="prose">
-	<CompanyHeader {handleClose} {href} {imgSrc} />
+	<CompanyHeader {href} {imgSrc} />
 	<p>
 		Hos Fink finner du en gjeng nerder som elsker det de gjør. Fink er laget av de ansatte, for de
 		ansatte, eid av de ansatte. <br /><br />Fink ønsker å være kontrast til det som noen ganger kan

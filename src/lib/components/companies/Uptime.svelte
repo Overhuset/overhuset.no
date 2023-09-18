@@ -1,18 +1,12 @@
 <script lang="ts">
-	import type { ModalProps } from '@skeletonlabs/skeleton/dist/utilities/Modal/Modal.svelte';
 	import CompanyHeader from './CompanyHeader.svelte';
 
-	export let parent: ModalProps;
 	export let imgSrc: string;
 	export let href: string;
-
-	function handleClose() {
-		if (parent?.onClose) parent.onClose();
-	}
 </script>
 
 <div class="prose">
-	<CompanyHeader {handleClose} {href} {imgSrc} />
+	<CompanyHeader {href} {imgSrc} />
 	<p>
 		Uptime Comperio ble etablert i Norge i 2004, og har hele tiden representert et fagmiljø av
 		utviklere og arkitekter som har vært spesielt erfarne på søketeknologi – være seg i

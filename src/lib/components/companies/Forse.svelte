@@ -1,18 +1,12 @@
 <script lang="ts">
-	import type { ModalProps } from '@skeletonlabs/skeleton/dist/utilities/Modal/Modal.svelte';
 	import CompanyHeader from './CompanyHeader.svelte';
 
-	export let parent: ModalProps;
 	export let imgSrc: string;
 	export let href: string;
-
-	function handleClose() {
-		if (parent?.onClose) parent.onClose();
-	}
 </script>
 
 <div class="prose">
-	<CompanyHeader {handleClose} {href} {imgSrc} />
+	<CompanyHeader {href} {imgSrc} />
 	<p>
 		Forse er et norsk konsulentselskap. Vår spesialkompetanse er Microsoft .NET og mobilutvikling.
 		Vi er et selskap som verdsetter mennesker, kunnskap og det sosiale, ved siden av et absolutt

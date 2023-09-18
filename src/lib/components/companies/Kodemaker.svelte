@@ -1,18 +1,12 @@
 <script lang="ts">
-	import type { ModalProps } from '@skeletonlabs/skeleton/dist/utilities/Modal/Modal.svelte';
 	import CompanyHeader from './CompanyHeader.svelte';
 
-	export let parent: ModalProps;
 	export let imgSrc: string;
 	export let href: string;
-
-	function handleClose() {
-		if (parent?.onClose) parent.onClose();
-	}
 </script>
 
 <div class="prose">
-	<CompanyHeader {handleClose} {href} {imgSrc} />
+	<CompanyHeader {href} {imgSrc} />
 	<p>
 		Kodemaker leverer meget høy kompetanse innen systemutvikling. Vi har kun erfarne konsulenter med
 		oss, som liker å bryne seg på vanskelig oppgaver. Vi er en entusiastisk gjeng med lidenskap for
