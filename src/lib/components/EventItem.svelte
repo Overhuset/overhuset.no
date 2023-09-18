@@ -14,7 +14,7 @@
 			<img src={logo} alt="" class="w-20" />
 			<div class="flex flex-col pl-4 py-4 font-source">
 				<span class="font-light text-sm">{event?.date ?? 'TBA'}</span>
-				<span class="font-bold whitespace-nowrap">{event?.title ?? 'Sveltekit fagdag'}</span>
+				<span class="font-bold">{event?.title ?? 'Sveltekit fagdag'}</span>
 				<span class="font-light text-sm">
 					{event?.company && event?.location
 						? `${event?.company}, ${event?.location}`
