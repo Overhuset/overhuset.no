@@ -3,7 +3,7 @@
 >
 	<a href="/">
 		<!-- TODO: Replace with local asset -->
-		<img src="https://www.overhuset.no/images/overhuset_logo.svg" class="w-60" alt="" />
+		<img src="/companies/overhuset_logo.svg" class="w-60" alt="" />
 	</a>
 	<nav>
 		<ul class="flex gap-4 md:items-end text-sm md:text-lg font-light">

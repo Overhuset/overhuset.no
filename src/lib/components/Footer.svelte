@@ -3,7 +3,7 @@
 		<h2 class="text-6xl mb-6 text-white header-decoration">KONTAKT</h2>
 		<a href="/">
 			<!-- TODO: Replace with local asset -->
-			<img src="https://www.overhuset.no/images/overhuset_logo.svg" class="w-44 mb-4" alt="" />
+			<img src="/companies/overhuset_logo.svg" class="w-44 mb-4" alt="" />
 		</a>
 		<span class="flex flex-col">
 			<a

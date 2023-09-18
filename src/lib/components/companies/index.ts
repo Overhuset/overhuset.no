@@ -19,43 +19,43 @@ export type CompanyWithComponent = {
 export const companies: CompanyWithComponent[] = [
 	{
 		href: 'https://www.arktekk.no',
-		imgSrc: 'https://www.overhuset.no/images/companies/logo_arktekk.png',
+		imgSrc: '/companies/arktekk_logo.png',
 		name: 'Arktekk',
 		component: Arktekk
 	},
 	{
 		href: 'https://boitano.no',
-		imgSrc: 'https://www.overhuset.no/images/companies/logo_boitano.png',
+		imgSrc: '/companies/boitano_logo.png',
 		name: 'Boitano',
 		component: Boitano
 	},
 	{
 		href: 'https://www.edisys.no/',
-		imgSrc: 'https://www.overhuset.no/images/companies/logo_edisys_consulting.png',
+		imgSrc: '/companies/edisys_logo.png',
 		name: 'Edisys',
 		component: Edisys
 	},
 	{
 		href: 'https://www.fink.no/',
-		imgSrc: 'https://www.overhuset.no/images/companies/logo_fink.png',
+		imgSrc: '/companies/fink_logo.png',
 		name: 'Fink',
 		component: Fink
 	},
 	{
 		href: 'https://www.forse.no/',
-		imgSrc: 'https://www.overhuset.no/images/companies/forse-2.svg',
+		imgSrc: '/companies/forse_logo.svg',
 		name: 'Forse',
 		component: Forse
 	},
 	{
 		href: 'https://www.jpro.no/',
-		imgSrc: 'https://www.overhuset.no/images/companies/logo_jpro.png',
+		imgSrc: '/companies/jpro_logo.png',
 		name: 'Jpro',
 		component: Jpro
 	},
 	{
 		href: 'https://www.kodemaker.no/',
-		imgSrc: 'https://www.overhuset.no/images/companies/logo_kodemaker.png',
+		imgSrc: '/companies/kodemaker_logo.png',
 		name: 'Kodemaker',
 		component: Kodemaker
 	},
@@ -67,18 +67,17 @@ export const companies: CompanyWithComponent[] = [
 	},
 	{
 		href: 'https://www.uptime.no/',
-		imgSrc: 'https://www.overhuset.no/images/companies/logo_uptime_consulting.png',
+		imgSrc: '/companies/uptime_logo.png',
 		name: 'Uptime',
 		component: Uptime
 	},
 	{
 		href: 'https://www.zenior.no/',
-		imgSrc: 'https://www.overhuset.no/images/companies/logo_zenior.png',
+		imgSrc: '/companies/zenior_logo.png',
 		name: 'Zenior',
 		component: Zenior
 	}
 ];
 
 export const getLogoFromCompanyName = (companyName: string) =>
-	companies.find(({ name }) => name === companyName)?.imgSrc ||
-	'https://www.overhuset.no/images/overhuset_logo.svg';
+	companies.find(({ name }) => name === companyName)?.imgSrc || '/companies/overhuset_logo.svg';

@@ -19,7 +19,7 @@
 }
 
 .overhuset {
-	background: url('https://www.overhuset.no/images/overhuset_logo.svg');
+	background: url('/companies/overhuset_logo.svg');
 }
 
 .about-company-header {
@@ -53,12 +53,12 @@ h6 {
 }
 
 .big-o {
-	background: #fff url(https://www.overhuset.no/images/big-o.svg) no-repeat 117% -150px;
+	background: #fff url(/assets/big-o.svg) no-repeat 117% -150px;
 	background-size: 40%;
 }
 
 .half-o {
-	background: #e97a58 url(https://www.overhuset.no/images/half-o.svg);
+	background: #e97a58 url(/assets/half-o.svg);
 	background-position: 95% bottom;
 	background-repeat: no-repeat;
 	background-size: contain;

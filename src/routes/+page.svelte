@@ -3,7 +3,7 @@
 </script>
 
 <section class="page-section flex-col-reverse md:flex-row items-center gap-6">
-	<img src="https://www.overhuset.no/images/image-slogan-test.png" alt="" class="md:w-1/2" />
+	<img src="/assets/slogan.png" alt="" class="md:w-1/2" />
 	<h2
 		class="text-3xl md:text-4xl lg:text-6xl font-bold text-center text-stone-600 md:w-1/2 font-source md:px-16"
 	>
@@ -20,7 +20,7 @@
 	<h2 class="text-[#E97A58] font-bold text-4xl md:text-7xl md:header-decoration md:w-1/2">
 		SELSKAPENE
 	</h2>
-	<img src="https://www.overhuset.no/images/selskapene-deco.jpg" alt="" class="md:w-1/2" />
+	<img src="/assets/companies-deco.jpg" alt="" class="md:w-1/2" />
 </section>
 
 <section class="page-section flex-col">
@@ -72,7 +72,7 @@
 </section>
 
 <section class="page-section flex-col md:flex-row">
-	<img src="https://www.overhuset.no/images/heading-test.jpg" class="md:w-1/2" alt="" />
+	<img src="/assets/knowledge-sharing.jpg" class="md:w-1/2" alt="" />
 	<div class="md:pl-12 flex flex-col justify-evenly mt-16">
 		<h3 class="text-4xl font-source font-bold text-[#729089]">Kunnskapsdeling</h3>
 		<p
@@ -93,5 +93,5 @@
 			grener. Tilgang til eksperter på mange fagområder. Uten omveier.
 		</p>
 	</div>
-	<img src="https://www.overhuset.no/images/quote-working.jpg" class="md:w-96" alt="" />
+	<img src="/assets/cyclists.jpg" class="md:w-96" alt="" />
 </section>
