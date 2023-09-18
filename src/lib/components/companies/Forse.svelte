@@ -16,8 +16,9 @@
 		grunnverdi. Vår forse er kunnskap. De ansatte hos oss får frihet til å jobbe med sin styrke, og
 		med å utvikle seg innen sitt spesialfelt. Vi ansetter kun de beste. På denne måten blir vi de
 		beste innen vårt felt.<br /> <br />Forse har lokaler på Lysaker og jobber primært med spennende
-		kunder i det sentrale Østlandsområdet.<br /><br />
+		kunder i det sentrale Østlandsområdet.
 	</p>
+	<p>Les mer om oss her: <a {href}>{href}</a></p>
 	<h3>Fagområder</h3>
 	<p>
 		<strong> .Net og mobilutvikling </strong>

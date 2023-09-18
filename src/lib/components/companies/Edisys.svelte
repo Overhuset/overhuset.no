@@ -20,9 +20,9 @@
 		både å legge premissene for, og å implementere, standardiserte løsninger.<br /><br />Vi
 		kombinerer evnen til å lede prosjekter og prosesser med evnen til å formidle kunnskap og idéer
 		til våre oppdragsgivere. Det er viktig for oss å dele erfaring og kunnskap med våre kunder, slik
-		at kjøp av våre tjenester også er et bidrag til å bygge kunnskap i egen organisasjon.<br /><br
-		/>
+		at kjøp av våre tjenester også er et bidrag til å bygge kunnskap i egen organisasjon.
 	</p>
+	<p>Les mer om oss her: <a {href}>{href}</a></p>
 	<h3>Fagområder</h3>
 	<p>
 		<strong>

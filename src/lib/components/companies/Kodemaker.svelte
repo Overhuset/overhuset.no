@@ -16,9 +16,9 @@
 		av våre konsulenter får forlenget kontraktene igjen og igjen, og det gjerne med riktig så
 		hyggelige tilbakemeldinger fra kunden.<br /><br />Teknologisk sett har vi vår tyngde rundt
 		systemutvikling på åpne plattformer. Vi kan dekke alle roller fra teknisk prosjektleder,
-		rådgiver, arkitekt og sylskarp utvikler. Se liste til høyre for ytterligere detaljer.<br /><br
-		/>
+		rådgiver, arkitekt og sylskarp utvikler. Se liste til høyre for ytterligere detaljer.
 	</p>
+	<p>Les mer om oss her: <a {href}>{href}</a></p>
 	<h3>Fagområder</h3>
 	<p>
 		<strong>

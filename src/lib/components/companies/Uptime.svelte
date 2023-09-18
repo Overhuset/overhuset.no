@@ -21,8 +21,9 @@
 		gjensidig nytte for alle parter<br /><br />De hovedområdene vi leverer på i dag er rådgivning,
 		utvikling og forvaltning av løsninger. Vi verdsetter lange kundeforhold; en kunde av Uptime
 		Comperio skal oppleve å bli ivaretatt både under og etter prosjektet for å sikre en god
-		forvaltning av løsningen.<br /><br />
+		forvaltning av løsningen.
 	</p>
+	<p>Les mer om oss her: <a {href}>{href}</a></p>
 	<h4>Fagområder</h4>
 	<p>
 		<strong>

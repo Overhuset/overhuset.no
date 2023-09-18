@@ -35,8 +35,8 @@
 
 <section class="half-o" id="om_oss">
 	<div class="page-section text-white flex-col gap-12">
-		<h3 class="text-4xl header-decoration">OM OSS</h3>
-		<p class="max-w-4xl mx-auto">
+		<h3 class="text-4xl md:text-6xl">OM OSS</h3>
+		<p class="max-w-4xl mx-auto text-lg md:text-2xl font-light">
 			Overhuset er et samarbeid mellom små og mellomstore konsulentselskaper. Sammen tilbyr vi vår
 			spisskompetanse direkte til større kunder. Disse kundene opererer ofte med rammeavtaler, hvor
 			små selskaper kan være diskvalifisert i utgangspunktet. Kundene var svært godt fornøyd med
@@ -44,8 +44,8 @@
 			fornøyde ved å sørge for at våre kunder kan ha avtaler direkte med oss. Da får de den
 			spisskompetansen de er ute etter. Uten bortkastet mellomledd.
 		</p>
-		<h3 class="text-4xl header-decoration">VÅR KVALITETSPOLITIKK</h3>
-		<p class="max-w-4xl mx-auto">
+		<h3 class="text-4xl md:text-6xl">VÅR KVALITETSPOLITIKK</h3>
+		<p class="max-w-4xl mx-auto text-lg md:text-2xl font-light">
 			Vår kvalitetspolitikk skal bidra til å sikre høy kvalitet i våre tjenesteleveranser, og at vi
 			forvalter våre oppgaver overfor eiere, partnere, kunder, samarbeidspartnere på en profesjonell
 			og tillitsvekkende måte.<br /><br />

@@ -12,8 +12,9 @@
 		Zenior er en etablert leverandør av tjenester innen systemutvikling og -arkitektur. Vi bistår
 		våre kunder i å utvikle komplekse, skreddersydde IT-løsninger som krever dyp innsikt i både
 		teknologi og metodikk.<br /><br />Alle våre konsulenter kombinerer lang erfaring med evnen til å
-		være ledende i bruk av ny teknologi.<br /><br />
+		være ledende i bruk av ny teknologi.
 	</p>
+	<p>Les mer om oss her: <a {href}>{href}</a></p>
 	<h4>Fagområder</h4>
 	<p>
 		<strong>

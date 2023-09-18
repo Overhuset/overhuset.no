@@ -10,9 +10,9 @@
 	<p>
 		Hos Fink finner du en gjeng nerder som elsker det de gjør. Fink er laget av de ansatte, for de
 		ansatte, eid av de ansatte. <br /><br />Fink ønsker å være kontrast til det som noen ganger kan
-		oppfattes som en kald konsulentverden. Kjerneverdier er inkluderende, varme og nysgjerrig.<br
-		/><br />
+		oppfattes som en kald konsulentverden. Kjerneverdier er inkluderende, varme og nysgjerrig.
 	</p>
+	<p>Les mer om oss her: <a {href}>{href}</a></p>
 	<h3>Fagområder</h3>
 	<p>
 		<strong>

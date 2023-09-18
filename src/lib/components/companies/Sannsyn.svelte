@@ -15,6 +15,7 @@
 		slik bør det ikke være.<br /><br /> Ved å hjelpe private og offentlige virksomheter å jobbe mer datadrevet,
 		ønsker vi å forbedre situasjonen og hjelpe våre oppdragsgivere å skape konkurransefortrinn.
 	</p>
+	<p>Les mer om oss her: <a {href}>{href}</a></p>
 	<h3>Fagområder</h3>
 	<p>
 		<strong>

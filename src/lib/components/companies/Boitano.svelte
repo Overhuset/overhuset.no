@@ -9,8 +9,9 @@
 	<CompanyHeader {href} {imgSrc} />
 	<p>
 		Boitano er et partnerskap med 45 erfarne teknologer og forretningsutviklere som jobber i
-		prosjekter hos noen av Norges største selskap.<br /><br />
+		prosjekter hos noen av Norges største selskap.
 	</p>
+	<p>Les mer om oss her: <a {href}>{href}</a></p>
 	<h3>Fagområder</h3>
 	<p>
 		<strong>

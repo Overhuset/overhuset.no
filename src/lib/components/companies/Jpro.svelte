@@ -15,9 +15,9 @@
 		leverer tjenester på både frontend og backend. Våre konsulenter har lang fartstid i bransjen og
 		en sterk CV, med god kjennskap til nye teknologier og erfaringen som trengs for å finne de beste
 		løsningene på dine utfordringer. <br /><br />Med oss får du en leverandør som har knalltro på
-		synergien mellom fornøyde ansatte, gode tekniske løsninger og fornøyde kunder. Les mer om oss på
-		<a href="http://www.jpro.no">www.jpro.no</a> <br /><br /><br />
+		synergien mellom fornøyde ansatte, gode tekniske løsninger og fornøyde kunder.
 	</p>
+	<p>Les mer om oss her: <a {href}>{href}</a></p>
 	<h3>Fagområder</h3>
 	<p>
 		<strong>
