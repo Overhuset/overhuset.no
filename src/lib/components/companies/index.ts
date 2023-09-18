@@ -1,13 +1,12 @@
 import type { ComponentType, SvelteComponent } from 'svelte';
 import Arktekk from '$lib/components/companies/Arktekk.svelte';
 import Boitano from '$lib/components/companies/Boitano.svelte';
-import DeepInsight from '$lib/components/companies/DeepInsight.svelte';
+import Sannsyn from '$lib/components/companies/Sannsyn.svelte';
 import Edisys from '$lib/components/companies/Edisys.svelte';
 import Fink from '$lib/components/companies/Fink.svelte';
 import Forse from '$lib/components/companies/Forse.svelte';
 import Jpro from '$lib/components/companies/Jpro.svelte';
 import Kodemaker from '$lib/components/companies/Kodemaker.svelte';
-import Miles from '$lib/components/companies/Miles.svelte';
 import Uptime from '$lib/components/companies/Uptime.svelte';
 import Zenior from '$lib/components/companies/Zenior.svelte';
 
@@ -29,12 +28,6 @@ export const companies: CompanyWithComponent[] = [
 		imgSrc: 'https://www.overhuset.no/images/companies/logo_boitano.png',
 		name: 'Boitano',
 		component: Boitano
-	},
-	{
-		href: 'https://www.deepinsight.no/',
-		imgSrc: 'https://www.overhuset.no/images/companies/logo_deepinsight.png',
-		name: 'Deepinsight',
-		component: DeepInsight
 	},
 	{
 		href: 'https://www.edisys.no/',
@@ -61,16 +54,16 @@ export const companies: CompanyWithComponent[] = [
 		component: Jpro
 	},
 	{
-		href: 'https://www.miles.no/',
-		imgSrc: 'https://www.overhuset.no/images/companies/logo_miles.png',
-		name: 'Miles',
-		component: Miles
-	},
-	{
 		href: 'https://www.kodemaker.no/',
 		imgSrc: 'https://www.overhuset.no/images/companies/logo_kodemaker.png',
 		name: 'Kodemaker',
 		component: Kodemaker
+	},
+	{
+		href: 'https://www.sannsyn.com/no',
+		imgSrc: '/companies/sannsyn_logo.png',
+		name: 'Sannsyn',
+		component: Sannsyn
 	},
 	{
 		href: 'https://www.uptime.no/',
