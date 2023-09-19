@@ -1,5 +1,6 @@
 <script>
 	import CompanyList from '$lib/components/CompanyList.svelte';
+	import { overhuset } from '$lib/config/constellations';
 </script>
 
 <svelte:head>
@@ -35,7 +36,7 @@
 		spiss- og seniorkompetanse innenfor sine respektive fagfelt. Se på de enkelte selskapene for
 		detaljer.
 	</p>
-	<CompanyList />
+	<CompanyList companyNames={overhuset} />
 </section>
 
 <section class="half-o" id="om_oss">
