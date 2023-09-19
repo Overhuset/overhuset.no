@@ -29,7 +29,7 @@
 	<img src="/assets/companies-deco.png" alt="" class="w-full md:w-1/2 aspect-[4/3] min-h-[200px]" />
 </section>
 
-<section class="page-section flex-col max-w-6xl">
+<section class="page-section flex-col max-w-6xl gap-24">
 	<p class="max-w-5xl text-2xl font-light">
 		Overhuset leverer spisskompetanse innenfor et bredt spekter av fagområder. Tjenestene leveres
 		gjennom våre partnerselskaper som alle har spesialisert seg på å være ledende fagmiljøer med

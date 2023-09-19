@@ -5,7 +5,7 @@
 	const companies = getConstellation(companyNames);
 </script>
 
-<div class="grid sm:grid-cols-3 md:grid-cols-4 md:gap-12 my-12 md:my-24">
+<div class="grid sm:grid-cols-3 md:grid-cols-4 md:gap-12">
 	{#each companies as company}
 		<a
 			href={`/company/${company.slug}`}
