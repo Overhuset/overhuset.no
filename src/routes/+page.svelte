@@ -24,7 +24,7 @@
 >
 	<!-- class="flex flex-col md:flex-row mx-auto my-12 md:my-24 max-w-8xl md:items-end justify-between md:gap-16 gap-6 px-12" -->
 
-	<h2 class="text-[#E97A58] font-bold text-4xl md:text-7xl md:w-1/2 text-center">SELSKAPENE</h2>
+	<h2 class="text-[#E97A58] font-bold text-5xl md:text-7xl md:w-1/2">SELSKAPENE</h2>
 	<img src="/assets/companies-deco.png" alt="" class="w-full md:w-1/2 aspect-[4/3] min-h-[200px]" />
 </section>
 
