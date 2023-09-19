@@ -3,7 +3,7 @@ import { dev } from '$app/environment';
 import { getEventsFromSheet } from '$lib/getEventsFromSheet';
 
 export async function load() {
-	const events = await getEventsFromSheet(SHEET_ID);
+	const events = await getEventsFromSheet(SHEET_ID, 'overhuset');
 	return {
 		...events
 	};
