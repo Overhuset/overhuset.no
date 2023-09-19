@@ -25,10 +25,11 @@
 	</svelte:fragment>
 	<svelte:fragment slot="content">
 		<div class="px-4 pb-2 space-y-8">
-			<p class="prose">
-				{event?.description ??
-					'Nå er det på tide med enda en lorem ipsum sim dum ting tar lang tid'}
-			</p>
+			{#if event?.description}
+				<p class="prose whitespace-pre">
+					{event.description}
+				</p>
+			{/if}
 			<!-- If event is in the past, and there exists a presentation link, show it. Otherwise show registration link if it exists -->
 			{#if (!isInThePast && event?.registrationLink) || (isInThePast && event?.presentationLink)}
 				<p class="flex justify-end gap-2">
