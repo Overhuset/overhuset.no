@@ -1,9 +1,9 @@
 import { error } from '@sveltejs/kit';
 import type { PageLoad } from './$types';
-import { companiesAsObject } from '$lib/components/companies';
+import { companies } from '$lib/components/companies';
 
 export const load: PageLoad = ({ params }) => {
-	if (params.slug in companiesAsObject) {
+	if (params.slug in companies) {
 		return {
 			company: params.slug
 		};

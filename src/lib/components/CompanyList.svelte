@@ -1,5 +1,8 @@
 <script lang="ts">
-	import { companies } from './companies';
+	import { getConstellation } from './companies';
+
+	export let companyNames: string[];
+	const companies = getConstellation(companyNames);
 </script>
 
 <div class="grid sm:grid-cols-3 md:grid-cols-4 md:gap-12 my-12 md:my-24">
