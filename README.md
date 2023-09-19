@@ -1,38 +1,74 @@
-# create-svelte
+# Overhuset landing page
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+This is a SvelteKit project is a landing page for Overhuset. It's written in TypeScript and styled with TailwindCSS. The app is hosted on Vercel and meetups are managed through a shared Google Sheet.
 
-## Creating a project
+## Features
 
-If you're seeing this, you've probably already done this step. Congrats!
+- Built with **SvelteKit** and **TypeScript** for modern, reactive, and type-safe components.
+- **Bun** as runtime and package manager.
+- Styled using **TailwindCSS** for rapid UI development.
+- Component library: **Skeleton** for simple and reusable components.
+- Meetup management with a shared **Google Sheet**. (should probably be )
+- Company-specific components allow companies to personalize their own subpage.
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+## Pages
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+- **/kompetanse**: This page showcases events. Data for the events come from the shared Google Sheet. Events include fields like title, description, location, company, date, time, links to presentations, and registration.
+- **/company/[name]**: Each company has its dedicated component that they can freely edit. This provides a personalized space for companies to showcase themselves.
 
-## Developing
+## Setup
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+### Prerequisites
 
-```bash
-npm run dev
+- Ensure you have Node.js and bun installed.
+- A `.env` file with the secret "SHEET_ID" is required for the /kompetanse pages to access its data in the Google Sheet. If you need this for local development, please ask for this.
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+### Local Development
 
-## Building
-
-To create a production version of your app:
+1. Clone the repository:
 
 ```bash
-npm run build
+   git clone [repo-url] overhuset
+   cd overhuset
 ```
 
-You can preview the production build with `npm run preview`.
+2. Install dependencies:
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+```bash
+   bun install
+```
+
+3. Run the application:
+
+```bash
+   bun dev
+```
+
+The app should now be running on `http://localhost:5173`.
+
+4. Build the application locally:
+
+```bash
+  bun run build
+```
+
+5. Preview build locally:
+
+```bash
+  bun preview
+
+```
+
+The production-worthy app should now be running on `http://localhost:4173`.
+
+## Deployment
+
+The application is hosted on **Vercel**. Any merges into the main branch will trigger a deployment to the live environment.
+
+## Contributing
+
+If you're a company and wish to update your component, navigate to `/src/lib/components/companies/[your-company-name].svelte` and edit the corresponding Svelte file.
+
+## Support
+
+For any questions or issues, please open an issue on this repository or contact the maintainers.
