@@ -3,13 +3,19 @@
 	import { Tab, TabGroup } from '@skeletonlabs/skeleton';
 
 	export let data;
-	let tabSet = 0;
+	let tabSet = 1;
 	const pastEvents = data.pastEvents;
 	const futureEvents = data.futureEvents;
 </script>
 
 <section class="max-w-8xl mx-auto">
-	<TabGroup class="w-full" justify="justify-around" active="bg-stone-100 !rounded-t-lg">
+	<TabGroup
+		class="w-full"
+		padding="pt-2 pb-1 px-4"
+		rounded="rounded-t-lg"
+		justify="justify-around"
+		active="bg-[#3a2417] text-white"
+	>
 		<Tab bind:group={tabSet} name="past" value={0} class="w-1/2">
 			<svelte:fragment slot="lead">Tidligere samlinger</svelte:fragment>
 		</Tab>

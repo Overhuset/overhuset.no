@@ -10,7 +10,7 @@
 	/>
 </svelte:head>
 <section class="page-section flex-col-reverse md:flex-row items-center gap-6">
-	<img src="/assets/slogan.png" alt="" class="md:w-1/2" />
+	<img src="/assets/slogan.png" alt="" class="md:w-1/2 aspect-[4/3]" />
 	<h2
 		class="text-3xl md:text-4xl lg:text-6xl font-bold text-center text-stone-600 md:w-1/2 font-source md:px-16"
 	>
@@ -24,8 +24,8 @@
 >
 	<!-- class="flex flex-col md:flex-row mx-auto my-12 md:my-24 max-w-8xl md:items-end justify-between md:gap-16 gap-6 px-12" -->
 
-	<h2 class="text-[#E97A58] font-bold text-4xl md:text-7xl md:w-1/2">SELSKAPENE</h2>
-	<img src="/assets/companies-deco.jpg" alt="" class="md:w-1/2" />
+	<h2 class="text-[#E97A58] font-bold text-4xl md:text-6xl md:w-1/2">SELSKAPENE</h2>
+	<img src="/assets/companies-deco.png" alt="" class="w-full md:w-1/2 aspect-[4/3] min-h-[200px]" />
 </section>
 
 <section class="page-section flex-col">
@@ -77,7 +77,7 @@
 </section>
 
 <section class="page-section flex-col md:flex-row">
-	<img src="/assets/knowledge-sharing.jpg" class="md:w-1/2" alt="" />
+	<img src="/assets/knowledge-sharing.jpg" class="md:w-1/2 aspect-[16/10]" alt="" />
 	<div class="md:pl-12 flex flex-col justify-evenly mt-16">
 		<h3 class="text-4xl font-source font-bold text-[#729089]">Kunnskapsdeling</h3>
 		<p
@@ -98,5 +98,5 @@
 			grener. Tilgang til eksperter på mange fagområder. Uten omveier.
 		</p>
 	</div>
-	<img src="/assets/cyclists.jpg" class="md:w-96" alt="" />
+	<img src="/assets/cyclists.jpg" class="md:w-96 aspect-square bg-slate-100" alt="" />
 </section>
