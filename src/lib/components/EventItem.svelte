@@ -20,13 +20,18 @@
 						? `${event?.company}, ${event?.location}`
 						: 'Oslo @ Rebel'}
 				</span>
+				{#if event?.openFor}
+					<span class="font-light text-sm">
+						Åpen for eksterne: <strong>{event.openFor === 'external' ? '✅' : 'Nei'}</strong>
+					</span>
+				{/if}
 			</div>
 		</div>
 	</svelte:fragment>
 	<svelte:fragment slot="content">
 		<div class="px-4 pb-2 space-y-8">
 			{#if event?.description}
-				<p class="prose whitespace-pre">
+				<p class="prose whitespace-break-spaces">
 					{event.description}
 				</p>
 			{/if}

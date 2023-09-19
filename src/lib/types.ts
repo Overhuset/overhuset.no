@@ -7,4 +7,5 @@ export type Event = {
 	presentationLink: string;
 	registrationLink: string;
 	location: string;
+	openFor: 'internal' | 'external';
 };
