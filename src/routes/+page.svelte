@@ -19,16 +19,16 @@
 </section>
 
 <section
-	class="page-section flex-col md:flex-row md:items-end justify-between gap-6 md:gap-16"
+	class="page-section w-full flex-col md:flex-row md:items-end justify-between gap-6 md:gap-16"
 	id="selskapene"
 >
 	<!-- class="flex flex-col md:flex-row mx-auto my-12 md:my-24 max-w-8xl md:items-end justify-between md:gap-16 gap-6 px-12" -->
 
-	<h2 class="text-[#E97A58] font-bold text-4xl md:text-6xl md:w-1/2">SELSKAPENE</h2>
+	<h2 class="text-[#E97A58] font-bold text-4xl md:text-7xl md:w-1/2 text-center">SELSKAPENE</h2>
 	<img src="/assets/companies-deco.png" alt="" class="w-full md:w-1/2 aspect-[4/3] min-h-[200px]" />
 </section>
 
-<section class="page-section flex-col">
+<section class="page-section flex-col max-w-6xl">
 	<p class="max-w-5xl text-2xl font-light">
 		Overhuset leverer spisskompetanse innenfor et bredt spekter av fagområder. Tjenestene leveres
 		gjennom våre partnerselskaper som alle har spesialisert seg på å være ledende fagmiljøer med

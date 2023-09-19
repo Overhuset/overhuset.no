@@ -58,5 +58,5 @@ h6 {
 }
 
 .page-section {
-	@apply flex mx-auto my-12 md:my-24 max-w-8xl px-12;
+	@apply flex mx-auto my-12 md:my-24 max-w-8xl px-12 lg:px-0;
 }
