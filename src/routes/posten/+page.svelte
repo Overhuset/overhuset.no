@@ -1,11 +1,6 @@
 <script>
 	import CompanyList from '$lib/components/CompanyList.svelte';
-	import Events from '$lib/components/Events.svelte';
 	import { posten } from '$lib/config/constellations';
-
-	export let data;
-	const pastEvents = data.pastEvents;
-	const futureEvents = data.futureEvents;
 </script>
 
 <svelte:head>
@@ -40,6 +35,14 @@
 	<CompanyList companyNames={posten} />
 </section>
 
-<section class="max-w-5xl mx-auto mb-8 -mt-16">
-	<Events {futureEvents} {pastEvents} />
+<section class="page-section flex-col md:flex-row !mt-0">
+	<div class="md:pl-12 flex flex-col justify-evenly mt-16">
+		<h3 class="text-4xl font-source font-bold text-[#729089]">Kunnskapsdeling</h3>
+		<p class="mt-6 pr-6 border-r-[3px] border-[#729089] max-w-2xl mx-auto text-2xl font-light">
+			Overhuset har sterk tro på deling av kunnskap. Ingen blir bedre av å ruge på egen viten.
+			Gjennom rammeavtalen vi har med dere i Posten vil vi gjerne invitere dere med på noen av våre
+			arrangementer. <a href="/posten/kompetanse" class="font-normal underline">Trykk her</a>
+		</p>
+		<p />
+	</div>
 </section>
