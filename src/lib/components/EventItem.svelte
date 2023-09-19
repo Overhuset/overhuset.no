@@ -29,16 +29,19 @@
 				{event?.description ??
 					'Nå er det på tide med enda en lorem ipsum sim dum ting tar lang tid'}
 			</p>
-			<p class="flex justify-end gap-2">
-				{isInThePast ? 'Se presentasjon her:' : 'Påmelding:'}
-				<a
-					href={(isInThePast ? event?.presentationLink : event?.registrationLink) ??
-						'https://vg.no/'}
-					class="underline font-bold"
-				>
-					Trykk her
-				</a>
-			</p>
+			<!-- If event is in the past, and there exists a presentation link, show it. Otherwise show registration link if it exists -->
+			{#if (!isInThePast && event?.registrationLink) || (isInThePast && event?.presentationLink)}
+				<p class="flex justify-end gap-2">
+					{isInThePast ? 'Se presentasjon her:' : 'Påmelding:'}
+					<a
+						href={(isInThePast ? event?.presentationLink : event?.registrationLink) ??
+							'https://vg.no/'}
+						class="underline font-bold"
+					>
+						Trykk her
+					</a>
+				</p>
+			{/if}
 		</div>
 	</svelte:fragment>
 </AccordionItem>
