@@ -4,21 +4,10 @@ import Papa from 'papaparse';
 
 import type { Event } from '$lib/types';
 import { isEventInThePast, sortEvent, transformDates } from '$lib/transformEvents';
-import { get } from 'radash';
 
-// These two ids are hardly public data, should be fine to keep here. Unlinke the actual sheet id that's hosted in env-vars.
-const sheetMap = {
-	overhuset: '257492918',
-	posten: '790847600'
-};
-
-export async function getEventsFromSheet(sheetId: string, sheetName: 'posten' | 'overhuset') {
+export async function getEventsFromSheet(sheetId: string, sheetGid: string) {
 	const response = await fetch(
-		`https://docs.google.com/spreadsheets/d/e/${sheetId}/pub?single=true&output=csv&gid=${get(
-			sheetMap,
-			sheetName,
-			sheetMap.overhuset
-		)}`
+		`https://docs.google.com/spreadsheets/d/e/${sheetId}/pub?single=true&output=csv&gid=${sheetGid}`
 	);
 	const csv = await response.text();
 	const json = Papa.parse(csv, {
