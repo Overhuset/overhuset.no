@@ -18,9 +18,9 @@
 				<span class="font-light text-sm">
 					{[event?.company, event?.location].filter(Boolean).join(', ')}
 				</span>
-				{#if event?.openFor}
+				{#if event?.type}
 					<span class="font-light text-sm">
-						Åpen for eksterne: <strong>{event.openFor === 'external' ? '✅' : 'Nei'}</strong>
+						Åpen for eksterne: <strong>{event.type === 'Åpent' ? '✅' : 'Nei'}</strong>
 					</span>
 				{/if}
 			</div>

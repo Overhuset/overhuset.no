@@ -11,4 +11,11 @@ export const overhuset = [
 	'zenior'
 ];
 
-export const posten = [...overhuset, 'afry', 'techfolk', 'advansia', 'variant', 'redpill'].sort();
+export const posten = [
+	...overhuset.filter((name) => name !== 'kodemaker'),
+	'afry',
+	'techfolk',
+	'advansia',
+	'variant',
+	'redpill'
+].sort();
