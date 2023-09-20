@@ -9,7 +9,7 @@
 </script>
 
 <TabGroup
-	class="w-full"
+	class="w-full max-w-5xl mx-auto"
 	padding="pt-2 pb-1 px-4"
 	rounded="rounded-t-lg"
 	justify="justify-around"
