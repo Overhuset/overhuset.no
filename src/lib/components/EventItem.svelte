@@ -8,7 +8,7 @@
 	const logo = getLogoFromCompanyName(event.company);
 </script>
 
-<AccordionItem class="border-2 rounded-md w-full max-w-sm">
+<AccordionItem class="border-2 rounded-md w-full">
 	<svelte:fragment slot="summary">
 		<div class="flex items-center w-full h-28">
 			<img src={logo} alt="" class="w-20" />

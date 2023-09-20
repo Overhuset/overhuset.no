@@ -8,7 +8,7 @@
 </script>
 
 <Accordion>
-	<ul class="grid md:grid-cols-2 gap-4 mx-4 md:mx-0 justify-center items-start mb-12">
+	<ul class="grid md:grid-cols-2 gap-4 mx-4 md:mx-0 items-start mb-12">
 		{#each events as event}
 			<EventItem {event} {isInThePast} />
 		{/each}
