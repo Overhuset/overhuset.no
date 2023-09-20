@@ -6,7 +6,7 @@
 	const futureEvents = data.futureEvents;
 </script>
 
-<section class="max-w-8xl mx-auto">
+<section class="max-w-8xl mx-auto w-4/5">
 	<div class="prose mb-16 mt-8 mx-4">
 		<h1>Fagarrangement</h1>
 		<p>
