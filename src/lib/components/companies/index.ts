@@ -50,7 +50,7 @@ export const companies: Record<string, CompanyWithComponent> = {
 	},
 	boitano: {
 		href: 'https://boitano.no',
-		imgSrc: '/companies/boitano_logo.png',
+		imgSrc: '/companies/boitano_logo.svg',
 		name: 'Boitano',
 		slug: 'boitano',
 		component: Boitano
