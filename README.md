@@ -1,6 +1,6 @@
 # Overhuset landing page
 
-This is a SvelteKit project is a landing page for Overhuset. It's written in TypeScript and styled with TailwindCSS. The app is hosted on Vercel and meetups are managed through a shared Google Sheet.
+Overhuset's official landing page to showcase our services, partners, and events. This project, built using SvelteKit, is styled with TailwindCSS, and hosted on Vercel. We manage our meetups through a shared Google Sheet.
 
 ## Features
 
@@ -8,8 +8,11 @@ This is a SvelteKit project is a landing page for Overhuset. It's written in Typ
 - **Bun** as runtime and package manager.
 - Styled using **TailwindCSS** for rapid UI development.
 - Component library: **Skeleton** for simple and reusable components.
-- Meetup management with a shared **Google Sheet**. (should probably be )
+- Meetup management with a shared **Google Sheet**[^1].
 - Company-specific components allow companies to personalize their own subpage.
+- Support for building custom constellation based pages for "rammeavtaler"
+
+[^1]: This should probably be expanded into a separate service if we want to scale this service.
 
 ## Pages
 
@@ -21,7 +24,16 @@ This is a SvelteKit project is a landing page for Overhuset. It's written in Typ
 ### Prerequisites
 
 - Ensure you have Node.js and bun installed.
-- A `.env` file with the secret "SHEET_ID" is required for the /kompetanse pages to access its data in the Google Sheet. If you need this for local development, please ask for this.
+- A `.env` file with the following secrets required for the /kompetanse pages to access its data in the Google Sheet.
+
+```env
+POSTEN_SHEET_ID=<long id>
+POSTEN_SHEET_TAB_GID=<not as long id>
+OVERHUSET_SHEET_ID=<long id>
+OVERHUSET_SHEET_TAB_GID=<not as long id>
+```
+
+If you intend to work on the kompetanse pages locally, please ask for these ids. Otherwise, you shouldn't need them.
 
 ### Local Development
 
@@ -67,7 +79,11 @@ The application is hosted on **Vercel**. Any merges into the main branch will tr
 
 ## Contributing
 
+If you have any suggestions for improving the web page, please open an issue. Then fork this repository, make your changes and open a pull request.
+
 If you're a company and wish to update your component, navigate to `/src/lib/components/companies/[your-company-name].svelte` and edit the corresponding Svelte file.
+
+In `/src/lib/components/companies/index.ts` there is a map of all the companies and their corresponding logoUrl (placed in /static/companies/), webpage url and more.
 
 ## Support
 
