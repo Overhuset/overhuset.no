@@ -10,7 +10,7 @@
 		content="Overhuset leverer spisskompetanse innenfor et bredt spekter av fagområder. Tjenestene leveres gjennom våre partnerselskaper som alle har spesialisert seg på å være ledende fagmiljøer med spiss- og seniorkompetanse innenfor sine respektive fagfeltOverhuset leverer spisskompetanse innenfor et bredt spekter av fagområder. Tjenestene leveres gjennom våre partnerselskaper som alle har spesialisert seg på å være ledende fagmiljøer med spiss- og seniorkompetanse innenfor sine respektive fagfelt."
 	/>
 </svelte:head>
-<section class="page-section flex-col-reverse md:flex-row items-center gap-6">
+<section class="page-section flex-col-reverse md:flex-row items-center gap-6 !max-w-5xl">
 	<img src="/assets/posten_logo.png" alt="" class="md:w-2/5" />
 	<span class="text-7xl pt-14 hidden md:block">+</span>
 	<img src="/companies/overhuset_logo.svg" alt="" class="md:w-2/5 hidden md:block" />
