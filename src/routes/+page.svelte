@@ -15,7 +15,7 @@
 	<h2
 		class="text-3xl md:text-4xl lg:text-6xl font-bold text-center text-stone-600 md:w-1/2 font-source md:px-16"
 	>
-		350 AV DE RÅESTE KONSULENTENE I MARKEDET UNDER SAMME TAK
+		320 AV DE RÅESTE KONSULENTENE I MARKEDET UNDER SAMME TAK
 	</h2>
 </section>
 
