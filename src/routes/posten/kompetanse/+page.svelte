@@ -7,7 +7,7 @@
 </script>
 
 <section class="max-w-4xl mx-auto mb-8 md:w-4/5">
-	<button on:click={() => window.history.back()}>&larr; Tilbake</button>
+	<a href="/posten">&larr; Tilbake</a>
 	<div class="prose mb-16 mt-8 mx-4">
 		<h1>Fagarrangement for:</h1>
 		<img src="/assets/posten_logo.png" alt="" class="md:w-2/5" />
