@@ -20,7 +20,7 @@
 				</span>
 				{#if event?.type}
 					<span class="font-light text-sm">
-						Åpen for eksterne: <strong>{event.type === 'Åpent' ? '✅' : 'Nei'}</strong>
+						Åpen for eksterne: <strong>{event.type === 'Internt' ? 'Nei' : '✅'}</strong>
 					</span>
 				{/if}
 			</div>

@@ -4,6 +4,7 @@
 	export let data;
 	const pastEvents = data.pastEvents;
 	const futureEvents = data.futureEvents;
+	const onlineCourses = data.onlineCourses;
 </script>
 
 <section class="max-w-4xl mx-auto mb-8 md:w-4/5">
@@ -18,5 +19,5 @@
 		</p>
 		<p>Ta en titt og se hva som skjer hos oss!</p>
 	</div>
-	<Events {futureEvents} {pastEvents} />
+	<Events {futureEvents} {pastEvents} {onlineCourses} />
 </section>

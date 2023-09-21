@@ -2,10 +2,11 @@
 	import { Tab, TabGroup } from '@skeletonlabs/skeleton';
 	import EventItemList from '$lib/components/EventItemList.svelte';
 	import type { Event } from '$lib/types';
-	let tabSet = 1;
+	let tabSet = 2;
 
 	export let pastEvents: Event[];
 	export let futureEvents: Event[];
+	export let onlineCourses: Event[];
 </script>
 
 <TabGroup
@@ -15,15 +16,20 @@
 	justify="justify-around"
 	active="bg-[#3a2417] text-white"
 >
-	<Tab bind:group={tabSet} name="past" value={0} class="w-1/2">
+	<Tab bind:group={tabSet} name="past" value={0} class="w-1/3">
 		<svelte:fragment slot="lead">Tidligere samlinger</svelte:fragment>
 	</Tab>
-	<Tab bind:group={tabSet} name="future" value={1} class="w-1/2">
+	<Tab bind:group={tabSet} name="onlineCourses" value={1} class="w-1/3">
+		<svelte:fragment slot="lead">Online kurs</svelte:fragment>
+	</Tab>
+	<Tab bind:group={tabSet} name="future" value={2} class="w-1/3">
 		<svelte:fragment slot="lead">Framtidige samlinger</svelte:fragment>
 	</Tab>
 	<svelte:fragment slot="panel">
 		{#if tabSet === 0}
 			<EventItemList events={pastEvents} isInThePast={true} />
+		{:else if tabSet === 1}
+			<EventItemList events={onlineCourses} />
 		{:else}
 			<EventItemList events={futureEvents} />
 		{/if}

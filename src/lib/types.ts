@@ -7,5 +7,5 @@ export type Event = {
 	presentationLink: string;
 	registrationLink: string;
 	location: string;
-	type: 'Åpent' | 'Internt';
+	type: 'Åpent' | 'Internt' | 'Online kurs';
 };

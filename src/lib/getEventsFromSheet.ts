@@ -17,19 +17,29 @@ export async function getEventsFromSheet(sheetId: string, sheetGid: string) {
 	try {
 		if (json?.data) {
 			const events = json?.data as Event[];
+
 			const pastEvents = events
+				.filter((event) => event.type !== 'Online kurs')
 				.filter((event: Event) => isEventInThePast(event.date, event.time))
 				.sort((a, b) => sortEvent(a, b, true));
 			const futureEvents = events
+				.filter((event) => event.type !== 'Online kurs')
 				.filter((event: Event) => !isEventInThePast(event.date, event.time))
 				.sort(sortEvent);
+
+			const onlineCourses = events
+				.filter((event: Event) => event.type === 'Online kurs')
+				.sort(sortEvent);
+
+			console.log(onlineCourses);
 
 			const pastEventsWithTransformedDates = transformDates(pastEvents);
 			const futureEventsWithTransformedDates = transformDates(futureEvents);
 
 			return {
 				pastEvents: pastEventsWithTransformedDates,
-				futureEvents: futureEventsWithTransformedDates
+				futureEvents: futureEventsWithTransformedDates,
+				onlineCourses
 			};
 		}
 	} catch (e) {
@@ -38,6 +48,7 @@ export async function getEventsFromSheet(sheetId: string, sheetGid: string) {
 
 	return {
 		pastEvents: [],
-		futureEvents: []
+		futureEvents: [],
+		onlineCourses: []
 	};
 }
