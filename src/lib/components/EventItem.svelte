@@ -34,16 +34,16 @@
 				</p>
 			{/if}
 			<!-- If event is in the past, and there exists a presentation link, show it. Otherwise show registration link if it exists -->
-			{#if (!isInThePast && event?.registrationLink) || (isInThePast && event?.presentationLink)}
+			{#if event?.registrationLink && !isInThePast}
 				<p class="flex justify-end gap-2">
-					{isInThePast ? 'Se presentasjon her:' : 'Påmelding:'}
-					<a
-						href={(isInThePast ? event?.presentationLink : event?.registrationLink) ??
-							'https://vg.no/'}
-						class="underline font-bold"
-					>
-						Trykk her
-					</a>
+					Påmelding:
+					<a href={event?.registrationLink} class="underline font-bold"> Trykk her </a>
+				</p>
+			{/if}
+			{#if event?.presentationLink}
+				<p class="flex justify-end gap-2">
+					Se presentasjon her:
+					<a href={event?.presentationLink} class="underline font-bold"> Trykk her </a>
 				</p>
 			{/if}
 		</div>
