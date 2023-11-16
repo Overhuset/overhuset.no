@@ -7,6 +7,8 @@
 	initializeStores();
 </script>
 
-<Header />
-<main class="flex flex-col items-stretch"><slot /></main>
-<Footer />
+<div data-theme="skeleton">
+	<Header />
+	<main class="flex flex-col items-stretch"><slot /></main>
+	<Footer />
+</div>
