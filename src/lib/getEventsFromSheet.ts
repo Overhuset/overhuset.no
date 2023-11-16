@@ -31,8 +31,6 @@ export async function getEventsFromSheet(sheetId: string, sheetGid: string) {
 				.filter((event: Event) => event.type === 'Online kurs')
 				.sort(sortEvent);
 
-			console.log(onlineCourses);
-
 			const pastEventsWithTransformedDates = transformDates(pastEvents);
 			const futureEventsWithTransformedDates = transformDates(futureEvents);
 
