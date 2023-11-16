@@ -31,7 +31,7 @@ const config = {
 		typography,
 		skeleton({
 			themes: {
-				preset: ['skeleton', 'wintry']
+				preset: ['skeleton', 'wintry', 'vintage']
 			}
 		})
 	]
