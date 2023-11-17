@@ -12,15 +12,22 @@
 	});
 </script>
 
-<AppBar
-	gridColumns="grid-cols-3 "
-	slotLead="text-4xl"
-	slotDefault="place-self-center"
-	slotTrail="place-content-end"
->
+<AppBar slotLead="text-2xl">
 	<svelte:fragment slot="lead">
-		<button on:click={() => drawerStore.open(drawerSettings)}>🍔</button>
+		<div class="flex gap-4">
+			<button on:click={() => drawerStore.open(drawerSettings)}>🍔</button>
+			<p class="text-white">Overhusets Intranett</p>
+		</div>
 	</svelte:fragment>
-	Overhusets Intranett
-	<svelte:fragment slot="trail">Logg inn</svelte:fragment>
+	<svelte:fragment slot="trail">
+		<div class="flex text-white gap-4 text-2xl">
+			{#each tree as item}
+				{#if isLinkItem(item)}
+					<a href={item.slug}>{item.title}</a>
+				{:else}
+					{item.title} ⬇️
+				{/if}
+			{/each}
+		</div>
+	</svelte:fragment>
 </AppBar>
