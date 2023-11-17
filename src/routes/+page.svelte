@@ -46,7 +46,7 @@
 			Overhuset er et samarbeid mellom små og mellomstore konsulentselskaper. Sammen tilbyr vi vår
 			spisskompetanse direkte til større kunder. Disse kundene opererer ofte med rammeavtaler, hvor
 			små selskaper kan være diskvalifisert i utgangspunktet. Kundene var svært godt fornøyd med
-			våre konsulenter, da de ble leid inn via større konsulentselskaper. Vil vil gjøre dem enda mer
+			våre konsulenter, da de ble leid inn via større konsulentselskaper. Vi vil gjøre dem enda mer
 			fornøyde ved å sørge for at våre kunder kan ha avtaler direkte med oss. Da får de den
 			spisskompetansen de er ute etter. Uten bortkastet mellomledd.
 		</p>
