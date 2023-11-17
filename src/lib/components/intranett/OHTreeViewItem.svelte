@@ -1,11 +1,17 @@
 <script lang="ts">
-	import type { IntranettItem } from '$lib/config/intranettItems';
-	import { TreeViewItem } from '@skeletonlabs/skeleton';
-	export let items: IntranettItem[];
+	import type { TreeItem } from '$lib/config/intranettNavigation';
+	import { isGroupItem } from '$lib/config/intranettNavigation';
+	import { TreeViewItem, getDrawerStore } from '@skeletonlabs/skeleton';
+	export let items: TreeItem[];
+	const drawerStore = getDrawerStore();
+
+	function handleLinkClick() {
+		drawerStore.close();
+	}
 </script>
 
 {#each items as item}
-	{#if item.children}
+	{#if isGroupItem(item)}
 		<TreeViewItem>
 			{item.title}
 			<svelte:fragment slot="children">
@@ -14,7 +20,7 @@
 		</TreeViewItem>
 	{:else}
 		<TreeViewItem>
-			<a href={'/intranett/' + item.slug}>{item.title}</a>
+			<a on:click={handleLinkClick} href={'/intranett/' + item.slug}>{item.title}</a>
 		</TreeViewItem>
 	{/if}
 {/each}
