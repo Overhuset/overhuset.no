@@ -4,8 +4,6 @@
 	export let data: PageData;
 </script>
 
-Intranett!
-
 <div class="prose prose-xl mx-auto">
 	<SvelteMarkdown source={data.content} />
 </div>
