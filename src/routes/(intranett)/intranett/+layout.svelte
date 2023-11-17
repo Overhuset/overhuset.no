@@ -1,18 +1,16 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import '../../../app.css';
-	import { AppShell, Drawer, getDrawerStore, initializeStores } from '@skeletonlabs/skeleton';
+	import { AppShell, Drawer, initializeStores } from '@skeletonlabs/skeleton';
 	import Sidebar from '$lib/components/intranett/Sidebar.svelte';
 	import IntranettHeader from '$lib/components/intranett/IntranettHeader.svelte';
-	import { drawerSettings } from '$lib/config/drawerSettings';
+	import { onMount } from 'svelte';
 
 	initializeStores();
 
-	const drawerStore = getDrawerStore();
-
-	// onMount(() => {
-	// 	drawerStore.open(drawerSettings);
-	// });
+	onMount(() => {
+		document.body.setAttribute('data-theme', 'vintage');
+		document.body.setAttribute('class', 'dark');
+	});
 </script>
 
 <Drawer>
@@ -20,6 +18,8 @@
 </Drawer>
 
 <AppShell>
-	<svelte:fragment slot="header"><IntranettHeader /></svelte:fragment>
+	<svelte:fragment slot="header">
+		<IntranettHeader />
+	</svelte:fragment>
 	<slot />
 </AppShell>
