@@ -1,7 +1,15 @@
 <script lang="ts">
 	import { AppBar, getDrawerStore } from '@skeletonlabs/skeleton';
 	import { drawerSettings } from '$lib/config/drawerSettings';
+	import { getTree, isLinkItem, type TreeItem } from '$lib/config/intranettNavigation';
+	import { dev } from '$app/environment';
+	import { onMount } from 'svelte';
 	const drawerStore = getDrawerStore();
+
+	let tree: TreeItem[] = [];
+	onMount(() => {
+		tree = getTree(!dev);
+	});
 </script>
 
 <AppBar
