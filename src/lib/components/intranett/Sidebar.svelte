@@ -12,10 +12,7 @@
 </script>
 
 <TreeView class="text-2xl">
-	<div class="pt-8">
-		<h1 class="text-4xl pl-8">Meny</h1>
-		<hr />
-		<a href="/intranett" class="mt-8 pl-4 block underline">Hjem</a>
-	</div>
+	<h1 class="text-4xl pt-8 pl-8">Meny</h1>
+	<hr class="border-[2px] border-white divider" />
 	<OhTreeViewItem items={tree} />
 </TreeView>
