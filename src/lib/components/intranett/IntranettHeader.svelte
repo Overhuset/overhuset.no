@@ -15,12 +15,12 @@
 <AppBar slotLead="text-2xl">
 	<svelte:fragment slot="lead">
 		<div class="flex gap-4">
-			<button on:click={() => drawerStore.open(drawerSettings)}>🍔</button>
+			<button class="md:hidden" on:click={() => drawerStore.open(drawerSettings)}>🍔</button>
 			<p class="text-white">Overhusets Intranett</p>
 		</div>
 	</svelte:fragment>
 	<svelte:fragment slot="trail">
-		<div class="flex text-white gap-4 text-2xl">
+		<div class="hidden md:flex text-white gap-4 text-xl">
 			{#each tree as item}
 				{#if isLinkItem(item)}
 					<a href={item.slug}>{item.title}</a>
