@@ -9,8 +9,8 @@ const tree: TreeItem[] = [
 	},
 	{
 		title: 'Kvalitetssystemer',
-		slug: 'vare-kunder',
-		markdown: 'quality-systems.md',
+		slug: 'kvalitetssystemer',
+		markdown: 'kvalitetssystemer.md',
 		status: 'draft'
 	},
 	{
