@@ -23,7 +23,7 @@
 		<div class="hidden md:flex text-white gap-4 text-xl">
 			{#each tree as item}
 				{#if isLinkItem(item)}
-					<a href={item.slug}>{item.title}</a>
+					<a href={`/intranett/${item.slug}`}>{item.title}</a>
 				{:else}
 					{item.title} ⬇️
 				{/if}
