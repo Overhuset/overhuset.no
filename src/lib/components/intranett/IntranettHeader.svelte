@@ -16,7 +16,7 @@
 	<svelte:fragment slot="lead">
 		<div class="flex gap-4">
 			<button class="md:hidden" on:click={() => drawerStore.open(drawerSettings)}>🍔</button>
-			<p class="text-white">Overhusets Intranett</p>
+			<a href="/intranett" class="text-white">Overhusets Intranett</a>
 		</div>
 	</svelte:fragment>
 	<svelte:fragment slot="trail">
