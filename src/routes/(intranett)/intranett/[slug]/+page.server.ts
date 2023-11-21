@@ -8,11 +8,9 @@ const isProd = MODE === 'production';
 export const load: PageServerLoad = async ({ fetch, params }) => {
 	const item = getLinkItemBySlug(params.slug, isProd);
 
-	console.log(item, params.slug);
-
 	if (!item || (isProd && item.status !== 'published')) {
 		throw error(404, {
-			message: 'Denne siden er ikke publisert.'
+			message: 'Vi fant ikke denne siden.'
 		});
 	}
 
@@ -20,7 +18,7 @@ export const load: PageServerLoad = async ({ fetch, params }) => {
 
 	if (post.status === 404) {
 		throw error(404, {
-			message: 'Vi fant ikke denne artikkelen.'
+			message: 'Vi fant ikke denne siden.'
 		});
 	}
 	const content = await post.text();
