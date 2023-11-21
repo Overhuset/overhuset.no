@@ -7,15 +7,18 @@
 	const drawerStore = getDrawerStore();
 
 	let tree: TreeItem[] = [];
+	export let loggedIn: boolean = false;
 	onMount(() => {
-		tree = getTree(!dev);
+		if (loggedIn) tree = getTree(!dev);
 	});
 </script>
 
 <AppBar slotLead="text-2xl">
 	<svelte:fragment slot="lead">
 		<div class="flex gap-4">
-			<button class="md:hidden" on:click={() => drawerStore.open(drawerSettings)}>🍔</button>
+			{#if loggedIn}
+				<button class="md:hidden" on:click={() => drawerStore.open(drawerSettings)}>🍔</button>
+			{/if}
 			<a href="/intranett" class="text-white">Overhusets Intranett</a>
 		</div>
 	</svelte:fragment>

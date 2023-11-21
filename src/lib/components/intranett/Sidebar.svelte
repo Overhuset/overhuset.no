@@ -1,13 +1,15 @@
 <script lang="ts">
 	import { TreeView } from '@skeletonlabs/skeleton';
 	import OhTreeViewItem from './OHTreeViewItem.svelte';
-	import { getTree } from '$lib/config/intranettNavigation';
+	import { getTree, type TreeItem } from '$lib/config/intranettNavigation';
+	import { dev } from '$app/environment';
 	import { onMount } from 'svelte';
-	import type { TreeItem } from '$lib/config/intranettItems';
 
 	let tree: TreeItem[] = [];
+
+	export let loggedIn: boolean = false;
 	onMount(() => {
-		tree = getTree(false);
+		if (loggedIn) tree = getTree(!dev);
 	});
 </script>
 
