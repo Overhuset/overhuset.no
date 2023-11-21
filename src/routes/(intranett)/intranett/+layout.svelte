@@ -4,8 +4,11 @@
 	import Sidebar from '$lib/components/intranett/Sidebar.svelte';
 	import IntranettHeader from '$lib/components/intranett/IntranettHeader.svelte';
 	import { onMount } from 'svelte';
+	import type { LayoutData } from './$types';
 
 	initializeStores();
+
+	export let data: LayoutData;
 
 	onMount(() => {
 		document.body.setAttribute('data-theme', 'vintage');
@@ -19,7 +22,7 @@
 
 <AppShell>
 	<svelte:fragment slot="header">
-		<IntranettHeader />
+		<IntranettHeader loggedIn={data.isLoggedIn} />
 	</svelte:fragment>
 	<slot />
 </AppShell>
