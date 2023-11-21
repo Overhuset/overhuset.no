@@ -38,6 +38,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@lucia-auth/adapter-postgresql": "^2.0.2",
     "@lucia-auth/oauth": "^3.5.0",
     "@types/luxon": "^3.3.4",
     "@vercel/postgres": "^0.5.1",
