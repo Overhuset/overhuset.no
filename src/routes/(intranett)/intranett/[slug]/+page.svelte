@@ -5,6 +5,6 @@
 	export let data: PageData;
 </script>
 
-<div class="prose mx-auto pt-20">
+<div class="prose mx-auto py-20">
 	<SvelteMarkdown source={data.content} />
 </div>
