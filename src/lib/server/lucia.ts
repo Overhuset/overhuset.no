@@ -3,8 +3,13 @@ import { lucia } from 'lucia';
 import { sveltekit } from 'lucia/middleware';
 import { dev } from '$app/environment';
 
-import { github } from '@lucia-auth/oauth/providers';
-import { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET } from '$env/static/private';
+import { github, google } from '@lucia-auth/oauth/providers';
+import {
+	GITHUB_CLIENT_ID,
+	GITHUB_CLIENT_SECRET,
+	GOOGLE_CLIENT_ID,
+	GOOGLE_CLIENT_SECRET
+} from '$env/static/private';
 import { pg } from '@lucia-auth/adapter-postgresql';
 import { db } from '@vercel/postgres';
 
@@ -16,9 +21,14 @@ export const auth = lucia({
 	middleware: sveltekit(),
 	getUserAttributes: (data) => {
 		return {
-			githubUsername: data.username
+			username: data.username
 		};
 	}
+});
+export const googleAuth = google(auth, {
+	clientId: GOOGLE_CLIENT_ID,
+	clientSecret: GOOGLE_CLIENT_SECRET,
+	redirectUri: 'http://localhost:5173/intranett/login/google/callback'
 });
 
 export const githubAuth = github(auth, {
