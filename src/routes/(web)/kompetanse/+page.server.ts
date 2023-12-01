@@ -1,11 +1,13 @@
 import { OVERHUSET_SHEET_ID, OVERHUSET_SHEET_TAB_GID } from '$env/static/private';
 import { dev } from '$app/environment';
 import { getEventsFromSheet } from '$lib/getEventsFromSheet';
+import { vercel_url } from '$lib/server/lucia';
 
 export async function load() {
 	const events = await getEventsFromSheet(OVERHUSET_SHEET_ID, OVERHUSET_SHEET_TAB_GID);
 	return {
-		...events
+		...events,
+		vercel_url
 	};
 }
 

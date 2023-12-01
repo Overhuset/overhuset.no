@@ -10,6 +10,8 @@ import { db } from '@vercel/postgres';
 
 const dbConfig = { user: 'auth_user', session: 'user_session', key: 'user_key' };
 
+export const vercel_url = process.env.VERCEL_URL;
+
 export const auth = lucia({
 	adapter: pg(db, dbConfig),
 	env: dev ? 'DEV' : 'PROD',
