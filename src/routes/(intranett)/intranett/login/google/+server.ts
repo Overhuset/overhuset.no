@@ -12,8 +12,6 @@ export const GET: RequestHandler = async ({ cookies }) => {
 		path: '/',
 		maxAge: 60 * 60
 	});
-	console.log(url);
-	console.log(state);
 	return new Response(null, {
 		status: 302,
 		headers: {
