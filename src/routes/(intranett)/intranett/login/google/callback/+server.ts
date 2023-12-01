@@ -2,8 +2,9 @@
 import { overhuset } from '$lib/config/constellations.js';
 import { auth, googleAuth } from '$lib/server/lucia.js';
 import { OAuthRequestError } from '@lucia-auth/oauth';
+import type { RequestHandler } from '@sveltejs/kit';
 
-export const GET = async ({ url, cookies, locals }) => {
+export const GET: RequestHandler = async ({ url, cookies, locals }) => {
 	const storedState = cookies.get('google_oauth_state');
 	const state = url.searchParams.get('state');
 	const code = url.searchParams.get('code');
@@ -47,7 +48,7 @@ export const GET = async ({ url, cookies, locals }) => {
 		return new Response(null, {
 			status: 302,
 			headers: {
-				Location: '/'
+				Location: '/intranett'
 			}
 		});
 	} catch (e) {
