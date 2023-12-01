@@ -2,7 +2,6 @@
 	import Events from '$lib/components/Events.svelte';
 
 	export let data;
-	console.log(data);
 	const pastEvents = data.pastEvents;
 	const futureEvents = data.futureEvents;
 	const onlineCourses = data.onlineCourses;
