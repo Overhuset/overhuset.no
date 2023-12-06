@@ -1,7 +1,9 @@
 import { createPool } from '@vercel/postgres';
 import { sql } from '@vercel/postgres';
 
-async function seed() {
+// Function that shows how to create the tables required for authentication.
+
+async function createAuthTables() {
 	const createUserTable = await sql`
     CREATE TABLE IF NOT EXISTS auth_user (
       id TEXT NOT NULL PRIMARY KEY,
@@ -32,34 +34,17 @@ async function seed() {
 
 	console.log(`Created "auth_user" table`);
 
-	const auth_user = await Promise.all([
-		sql`
-          INSERT INTO auth_user (id, name, email, image)
-          VALUES ('darth-v', 'Darth Vader', 'darth@overhuset.no', 'https://static.wikia.nocookie.net/888f4245-6374-444d-b156-401bf676d894/scale-to-width/755')
-          ON CONFLICT (email) DO NOTHING;
-      `,
-		sql`
-          INSERT INTO auth_user (id, name, email, image)
-          VALUES ('emp-pal', 'Emperor Palpatine', 'force-gutten@jpro.no', 'https://oyster.ignimgs.com/mediawiki/apis.ign.com/star-wars-episode-7/0/02/Palpatine_1.jpg?width=640')
-          ON CONFLICT (email) DO NOTHING;
-      `,
-		sql`
-          INSERT INTO auth_user (id, name, email, image)
-          VALUES ('luke-sky', 'Luke Skywalker', 'milkDrinker@ferde.no', 'https://oyster.ignimgs.com/mediawiki/apis.ign.com/star-wars-episode-7/2/2d/Luke.jpg')
-          ON CONFLICT (email) DO NOTHING;
-      `
-	]);
-	console.log(`Seeded ${auth_user.length} auth_user`);
-
 	return {
 		createUserTable,
 		createKeyTable,
-		createSessionTable,
-		auth_user
+		createSessionTable
 	};
 }
 
-export async function load() {
+// this function should only be used in case you want to test the db connection to vercel postgres.
+// Lucia has a provider that handles everything we would need in these databases, but I'm keeping
+// this file to show how to instansiate the database required, in case something happens.
+export async function fetchAuthUser() {
 	const db = createPool();
 	const startTime = Date.now();
 
@@ -72,9 +57,9 @@ export async function load() {
 		};
 	} catch (error) {
 		if (error?.message === `relation "auth_user" does not exist`) {
-			console.log('Table does not exist, creating and seeding it with dummy data now...');
+			console.log('Tables do not exist, creating them now...');
 			// Table is not created yet
-			await seed();
+			await createAuthTables();
 			const { rows: auth_user } = await db.query('SELECT * FROM auth_user');
 			const duration = Date.now() - startTime;
 			return {
