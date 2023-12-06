@@ -1,13 +1,13 @@
-// routes/login/github/callback/+server.ts
-import { auth, githubAuth } from '$lib/server/lucia.js';
+// routes/login/google/callback/+server.ts
+import { overhuset } from '$lib/config/constellations.js';
+import { auth, googleAuth } from '$lib/server/lucia.js';
 import { OAuthRequestError } from '@lucia-auth/oauth';
+import type { RequestHandler } from '@sveltejs/kit';
 
-export const GET = async ({ url, cookies, locals }) => {
-	console.log('inside callback yo');
-	const storedState = cookies.get('github_oauth_state');
+export const GET: RequestHandler = async ({ url, cookies, locals }) => {
+	const storedState = cookies.get('google_oauth_state');
 	const state = url.searchParams.get('state');
 	const code = url.searchParams.get('code');
-	console.log({ storedState, state, code });
 	// validate state
 	if (!storedState || !state || storedState !== state || !code) {
 		return new Response(null, {
@@ -15,30 +15,40 @@ export const GET = async ({ url, cookies, locals }) => {
 		});
 	}
 	try {
-		const { getExistingUser, githubUser, createUser } = await githubAuth.validateCallback(code);
+		const { getExistingUser, googleUser, createUser } = await googleAuth.validateCallback(code);
+
+		const emailsignature = googleUser.hd?.split('.')[0];
+
+		if (!emailsignature || !overhuset.includes(emailsignature)) {
+			// do something more meaningfull
+			return new Response(null, {
+				status: 400
+			});
+		}
 
 		const getUser = async () => {
 			const existingUser = await getExistingUser();
+
 			if (existingUser) return existingUser;
 			const user = await createUser({
 				attributes: {
-					username: githubUser.login
+					username: googleUser.name
 				}
 			});
 			return user;
 		};
 
 		const user = await getUser();
-		console.log('found user', user.githubUsername);
 		const session = await auth.createSession({
 			userId: user.userId,
 			attributes: {}
 		});
+
 		locals.auth.setSession(session);
 		return new Response(null, {
 			status: 302,
 			headers: {
-				Location: '/'
+				Location: '/intranett'
 			}
 		});
 	} catch (e) {

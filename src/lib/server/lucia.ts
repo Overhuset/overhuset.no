@@ -3,8 +3,8 @@ import { lucia } from 'lucia';
 import { sveltekit } from 'lucia/middleware';
 import { dev } from '$app/environment';
 
-import { github } from '@lucia-auth/oauth/providers';
-import { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET } from '$env/static/private';
+import { google } from '@lucia-auth/oauth/providers';
+import { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } from '$env/static/private';
 import { pg } from '@lucia-auth/adapter-postgresql';
 import { db } from '@vercel/postgres';
 
@@ -16,14 +16,20 @@ export const auth = lucia({
 	middleware: sveltekit(),
 	getUserAttributes: (data) => {
 		return {
-			githubUsername: data.username
+			username: data.username
 		};
 	}
 });
 
-export const githubAuth = github(auth, {
-	clientId: GITHUB_CLIENT_ID,
-	clientSecret: GITHUB_CLIENT_SECRET
+// Get full path to web app anywhere it is. If it's not on Vercel, default to local host
+const vercel_url = process.env.VERCEL_URL;
+const redirectUriBase = vercel_url ? `https://${vercel_url}` : 'http://localhost:5173';
+
+export const googleAuth = google(auth, {
+	clientId: GOOGLE_CLIENT_ID,
+	clientSecret: GOOGLE_CLIENT_SECRET,
+	redirectUri: `${redirectUriBase}/intranett/login/google/callback`,
+	scope: ['email']
 });
 
 export type Auth = typeof auth;
