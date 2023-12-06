@@ -24,7 +24,7 @@
 </script>
 
 <Drawer>
-	<Sidebar />
+	<Sidebar loggedIn={data.isLoggedIn} />
 </Drawer>
 
 <AppShell>
