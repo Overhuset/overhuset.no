@@ -4,12 +4,14 @@
 	import { getTree, isLinkItem, type TreeItem } from '$lib/config/intranettNavigation';
 	import { dev } from '$app/environment';
 	import { onMount } from 'svelte';
+	import { enhance } from '$app/forms';
 	const drawerStore = getDrawerStore();
 
 	let tree: TreeItem[] = [];
 	export let loggedIn: boolean = false;
 	onMount(() => {
 		if (loggedIn) tree = getTree(!dev);
+		else tree = [];
 	});
 </script>
 
@@ -22,15 +24,20 @@
 			<a href="/intranett" class="text-white">Overhusets Intranett</a>
 		</div>
 	</svelte:fragment>
+	<div class="hidden md:flex text-white gap-4 text-xl justify-end">
+		{#each tree as item}
+			{#if isLinkItem(item)}
+				<a href={`/intranett/${item.slug}`}>{item.title}</a>
+			{:else}
+				{item.title} ⬇️
+			{/if}
+		{/each}
+	</div>
 	<svelte:fragment slot="trail">
-		<div class="hidden md:flex text-white gap-4 text-xl">
-			{#each tree as item}
-				{#if isLinkItem(item)}
-					<a href={`/intranett/${item.slug}`}>{item.title}</a>
-				{:else}
-					{item.title} ⬇️
-				{/if}
-			{/each}
-		</div>
+		{#if loggedIn}
+			<form method="post" action="/intranett?/logout" use:enhance>
+				<input type="submit" value="Logg ut" class="cursor-pointer rounded-lg bg-white px-2 py-1" />
+			</form>
+		{/if}
 	</svelte:fragment>
 </AppBar>
