@@ -4,8 +4,7 @@
 
 Overhuset er en ISO-9001 sertifisert organisasjon, og alle konsulenter som jobber på prosjekter gjennom Overhuset er forpliktet til å sette seg inn i noe informasjon om kvalitetssystemet.
 
-Informasjon knyttet til kvalitetssystemet ligger <a href="/intranett/kvalitetssystem>her</a>
-
+Informasjon knyttet til kvalitetssystemet ligger [her](/intranett/kvalitetssystem)
 ### 
 
 This is another paragraph.
