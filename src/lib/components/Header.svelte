@@ -2,7 +2,6 @@
 	class="flex md:flex-row flex-col justify-between items-center gap-6 md:items-end mt-16 md:mt-24 mb-12 mx-auto max-w-8xl w-full md:px-12"
 >
 	<a href="/" title="Hjem">
-		<!-- TODO: Replace with local asset -->
 		<img src="/companies/overhuset_logo.svg" class="w-60" alt="" />
 	</a>
 	<nav>
