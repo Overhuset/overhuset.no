@@ -1,10 +1,12 @@
-# H1 - Hey there Overhuset champion!
+# Overhuset Intranett
 
-## H2 looks like this
+### Kvalitetssystem 
 
-This is a paragraph. Lorem Ipsum Dim sum Him Hum duriduruda.
+Overhuset er en ISO-9001 sertifisert organisasjon, og alle konsulenter som jobber på prosjekter gjennom Overhuset er forpliktet til å sette seg inn i noe informasjon om kvalitetssystemet.
 
-### H3 looks like this
+Informasjon knyttet til kvalitetssystemet ligger <a href="/intranett/kvalitetssystem>her</a>
+
+### 
 
 This is another paragraph.
 
