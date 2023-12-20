@@ -9,7 +9,7 @@
 			<li><a href="/">Hjem</a></li>
 			<li><a href="/#selskapene">Selskapene</a></li>
 			<li><a href="/#om_oss">Om oss</a></li>
-			<li><a href="/kompetanse">Kompetanse</a></li>
+			<li><a href="/kurs_og_seminarer">Kurs og Kompetanse</a></li>
 			<li><a href="/#kontakt">Kontakt</a></li>
 		</ul>
 	</nav>

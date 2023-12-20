@@ -10,7 +10,8 @@ const dummyEvent: Event = {
 	time: '17:30',
 	registrationLink: '',
 	presentationLink: '',
-	company: 'NoPro'
+	company: 'NoPro',
+	type: 'Internt'
 };
 
 describe('Transforms date in event correctly', () => {

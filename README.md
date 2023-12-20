@@ -20,10 +20,10 @@ scale this service.
 
 ## Pages
 
-- **/kompetanse**: This page showcases events. Data for the events come from the
+- **/kurs_og_seminarer**: This page showcases events. Data for the events come from the
   shared Google Sheet. Events include fields like title, description, location,
   company, date, time, links to presentations, and registration.
-- **/company/[name]**: Each company has its dedicated component that they can
+- **/konsulentselskap/[name]**: Each company has its dedicated component that they can
   freely edit. This provides a personalized space for companies to showcase
   themselves.
 - /intranett: Separate route for everything related to Overhuset's intranet.

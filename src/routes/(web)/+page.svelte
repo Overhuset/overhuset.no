@@ -1,22 +1,37 @@
 <script>
 	import CompanyList from '$lib/components/CompanyList.svelte';
 	import { overhuset } from '$lib/config/constellations';
+	import { MetaTags } from 'svelte-meta-tags';
 </script>
 
 <svelte:head>
 	<title>Overhuset</title>
-	<meta
-		name="description"
-		content="Overhuset leverer spisskompetanse innenfor et bredt spekter av fagområder. Tjenestene leveres gjennom våre partnerselskaper som alle har spesialisert seg på å være ledende fagmiljøer med spiss- og seniorkompetanse innenfor sine respektive fagfeltOverhuset leverer spisskompetanse innenfor et bredt spekter av fagområder. Tjenestene leveres gjennom våre partnerselskaper som alle har spesialisert seg på å være ledende fagmiljøer med spiss- og seniorkompetanse innenfor sine respektive fagfelt."
-	/>
+	<MetaTags
+	title='Overhuset – de råeste konsulentene i IT-bransjen'
+	description='Overhuset er et samarbeid mellom 10 ledende konsulentselskaper. Sammen tilbyr vi IT-tjenester til store
+prosjekter – i full bredde, på høyeste nivå.'
+/>
 </svelte:head>
 <section class="page-section flex-col-reverse md:flex-row items-center gap-6">
 	<img src="/assets/slogan.png" alt="" class="md:w-1/2 aspect-[4/3]" />
 	<h2
 		class="text-3xl md:text-4xl lg:text-6xl font-bold text-center text-stone-600 md:w-1/2 font-source md:px-16"
 	>
-		320 AV DE RÅESTE KONSULENTENE I MARKEDET UNDER SAMME TAK
+		320 AV DE RÅESTE IT-KONSULENTENE I MARKEDET UNDER SAMME TAK
 	</h2>
+</section>
+
+<section class="half-o mt-12" id="kurs_og_kompetanse">
+	<div class="page-section text-white flex-col gap-12">
+		<h3 class="text-4xl md:text-6xl">ER DU LIKE GLAD I UTVIKLING SOM OSS?</h3>
+			<p class="max-w-4xl mx-auto text-lg md:text-2xl font-light">
+			Som et av IT-bransjens mest fremoverlente fagnettverk, sitter vi på mye kompetanse og erfaring. Det
+			er vi opptatte av å kunne dele, inspirere og engasjere med – både internt og eksternt. Derfor
+			gjennomfører vi flere spennende arrangementer og aktiviteter i løpet av året.
+		</p>
+		<a class='underline underline-offset-1' href='/kurs_og_seminarer'>Se hva som skjer på huset hos oss!</a>
+		
+	</div>
 </section>
 
 <section
@@ -25,17 +40,22 @@
 >
 	<!-- class="flex flex-col md:flex-row mx-auto my-12 md:my-24 max-w-8xl md:items-end justify-between md:gap-16 gap-6 px-12" -->
 
-	<h2 class="text-[#E97A58] font-bold text-5xl md:text-7xl md:w-1/2">SELSKAPENE</h2>
+	<h2 class="text-[#E97A58] font-bold text-5xl md:text-7xl md:w-1/2">TI KONSULENTSELSKAPER - ETT FELLESSKAP</h2>
 	<img src="/assets/companies-deco.png" alt="" class="w-full md:w-1/2 aspect-[4/3] min-h-[200px]" />
 </section>
 
 <section class="page-section flex-col max-w-6xl gap-24">
 	<p class="max-w-5xl text-2xl font-light">
-		Overhuset leverer spisskompetanse innenfor et bredt spekter av fagområder. Tjenestene leveres
-		gjennom våre partnerselskaper som alle har spesialisert seg på å være ledende fagmiljøer med
-		spiss- og seniorkompetanse innenfor sine respektive fagfelt. Se på de enkelte selskapene for
-		detaljer.
+		Overhuset består av Norges ti ledende konsulentselskaper, som samarbeider om større IT-
+		utviklingsprosjekter i offentlig og privat sektor. Hvert selskap er spesialisert innenfor sine
+		fagfelt, og er nøye satt sammen for å berike og komplettere hverandre på best mulig vis.
+		Sammen utgjør vi bransjens mest fremoverlente og kompetente fagmiljø.
+	<br>
+	<br>
+	Vi kan alt fra mobil- og systemutvikling, til data-infrastruktur og KI, for å nevne noe.
+		Nysgjerrig på hva hvert selskap er spesialisert innenfor? Klikk på logoene for å lese mer!
 	</p>
+
 	<CompanyList companyNames={overhuset} />
 </section>
 
