@@ -1,5 +1,6 @@
 <script lang="ts">
 	import CompanyHeader from './CompanyHeader.svelte';
+	import { MetaTags } from 'svelte-meta-tags';
 
 	export let imgSrc: string;
 	export let href: string;
