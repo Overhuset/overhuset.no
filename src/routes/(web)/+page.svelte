@@ -21,6 +21,19 @@ prosjekter – i full bredde, på høyeste nivå.'
 	</h2>
 </section>
 
+<section class="half-o mt-12" id="kurs_og_kompetanse">
+	<div class="page-section text-white flex-col gap-12">
+		<h3 class="text-4xl md:text-6xl">ER DU LIKE GLAD I UTVIKLING SOM OSS?</h3>
+			<p class="max-w-4xl mx-auto text-lg md:text-2xl font-light">
+			Som et av IT-bransjens mest fremoverlente fagnettverk, sitter vi på mye kompetanse og erfaring. Det
+			er vi opptatte av å kunne dele, inspirere og engasjere med – både internt og eksternt. Derfor
+			gjennomfører vi flere spennende arrangementer og aktiviteter i løpet av året.
+		</p>
+		<a class='underline underline-offset-1' href='/kurs_og_seminarer'>Se hva som skjer på huset hos oss!</a>
+		
+	</div>
+</section>
+
 <section
 	class="page-section w-full flex-col md:flex-row md:items-end justify-between gap-6 md:gap-16"
 	id="selskapene"
