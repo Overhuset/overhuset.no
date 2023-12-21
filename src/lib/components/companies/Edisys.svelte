@@ -1,5 +1,6 @@
 <script lang="ts">
 	import CompanyHeader from './CompanyHeader.svelte';
+	import { MetaTags } from 'svelte-meta-tags';
 
 	export let imgSrc: string;
 	export let href: string;
@@ -7,27 +8,34 @@
 
 <div class="prose">
 	<CompanyHeader {href} {imgSrc} />
+	  <MetaTags
+		title='Edisys - en del av konsulentselskapet Overhuset'
+		description='Edisys er 1 av 10 partnere i konsulentselskapet Overhuset. Her er de beste samlet under ett
+		tak. Sammen leverer de tjenester i full bredde, på høyeste nivå.'
+    />
+	<h1>Ledende fagmiljø på elektronisk samhandling</h1>
+	<p class='font-bold'>
+		Edisys Consulting ser på digitalisering som en lagidrett, og tilbyr erfarne rådgivere til alle deler av
+		en implementeringsprosess – fra strategiske avklaringer og valg av løsning, til analyse og design.</p>
 	<p>
-		Edisys Consulting er et av Norges ledende fagmiljøer innen elektronisk samhandling. Vi tilbyr
-		rådgivning og tjenester innen prosjekt- og testledelse, prosessmodellering,
-		spesifikasjonsutvikling og arkitektur. Våre erfarne rådgivere kan bidra i alle deler av en
-		implementerings-prosess, fra strategiske avklaringer og valg av løsning, til analyse, design og
-		implementering.<br /><br />Vi i Edisys Consulting har kunnskap om såvel prosesser, som løsninger
-		og standarder som finnes i markedet, og vi deltar aktivt både nasjonalt og internasjonalt for å
-		fremme og utvikle standarder på området. Våre rådgivere har erfaring fra en rekke bransjer og
-		virksomheter innen både privat og offentlig sektor, og vi har opp gjennom årene deltatt i store
-		EDI-prosjekter blant annet innen varehandel, kraft- og transportbransjen. Her har vi vært med på
-		både å legge premissene for, og å implementere, standardiserte løsninger.<br /><br />Vi
-		kombinerer evnen til å lede prosjekter og prosesser med evnen til å formidle kunnskap og idéer
-		til våre oppdragsgivere. Det er viktig for oss å dele erfaring og kunnskap med våre kunder, slik
-		at kjøp av våre tjenester også er et bidrag til å bygge kunnskap i egen organisasjon.
+		Konsulentselskapet har erfaring fra en rekke bransjer og virksomheter innen både privat og offentlig sektor, og har
+		deltatt i store EDI-prosjekter blant annet innen varehandel, kraft- og transportbransjen. EDI står for Electronic Data
+		Interchange, og dreier seg om nettopp utveksling av elektronisk informasjon. På dette feltet har Edisys Consulting
+		vært en viktig premissgiver i flere år.
 	</p>
-	<p>Les mer om oss her: <a {href}>{href}</a></p>
-	<h3>Fagområder</h3>
-	<p>
-		<strong>
-			Elektronisk samhandling, Prosjekt- og prosessledelse, Testledelse, Prosess- og
-			informasjonsmodellering, Kravspesifisering
-		</strong>
+
+	<h2>Støtter og løfter IT-prosjekter</h2>
+	<p>Edisys-konsulentene brenner for datadeling, samarbeid og standardisering på tvers av digitale økosystemer. Med
+		sterk kompetanse og lang erfaring, støtter og løfter de prosjekter og team på kundesiden. Målet er å bidra til de
+		beste løsningene – nå og for fremtiden. Du finner dem i roller som for eksempel arkitekt, prosjekt- eller teamleder.
 	</p>
+	<h2>Digitalisering og opplæring</h2>
+	<p>Selskapet har markert seg på nasjonalt og internasjonalt nivå, og deltar aktivt for å fremme og utvikle standarder
+		som finnes i markedet. Konsulentene herfra ser stor verdi i opplæring og kunnskapsdeling, for å sikre at tjenestene
+		de tilbyr alene og gjennom Overhuset lander godt hos kundene. Opplæring er en viktig del av leveransen, og en
+		god måte for våre kunder å bygge kunnskap i egen organisasjon.
+	</p>
+
+	<p>Vil du vite mer? <a {href}>Besøk nettsiden til Edisys Consulting. </a></p>
+
 </div>

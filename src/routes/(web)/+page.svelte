@@ -62,14 +62,16 @@ prosjekter – i full bredde, på høyeste nivå.'
 <section class="half-o" id="om_oss">
 	<div class="page-section text-white flex-col gap-12">
 		<h3 class="text-4xl md:text-6xl">OM OSS</h3>
+			<p class="max-w-4xl mx-auto text-lg md:text-2xl font-semibold">
+				Ved å forene bransjens beste konsulentselskaper, er ambisjonene om kvalitet tilsvarende høye. Vi
+				lykkes der andre feiler, fordi vi har samarbeid og kompetanseoverføring i vårt DNA.
+			</p>
 		<p class="max-w-4xl mx-auto text-lg md:text-2xl font-light">
-			Overhuset er et samarbeid mellom små og mellomstore konsulentselskaper. Sammen tilbyr vi vår
-			spisskompetanse direkte til større kunder. Disse kundene opererer ofte med rammeavtaler, hvor
-			små selskaper kan være diskvalifisert i utgangspunktet. Kundene var svært godt fornøyd med
-			våre konsulenter, da de ble leid inn via større konsulentselskaper. Vi vil gjøre dem enda mer
-			fornøyde ved å sørge for at våre kunder kan ha avtaler direkte med oss. Da får de den
-			spisskompetansen de er ute etter. Uten bortkastet mellomledd.
+			Overhusets konsulenter er stødige, ambisiøse og pålitelige fagfolk, som legger mye stolthet i å levere tjenester i
+			topp-klassen. For å få til det, følger vi kvalitetssystemet NS-EN ISO 9001, og har definert noen retningslinjer basert
+			på det.
 		</p>
+		<a href="/om_oss" class="underline font-semibold px-8">Les mer</a>
 		<h3 class="text-4xl md:text-6xl">VÅR KVALITETSPOLITIKK</h3>
 		<p class="max-w-4xl mx-auto text-lg md:text-2xl font-light">
 			Vår kvalitetspolitikk skal bidra til å sikre høy kvalitet i våre tjenesteleveranser, og at vi

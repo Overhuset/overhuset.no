@@ -27,11 +27,11 @@
 	</Tab>
 	<svelte:fragment slot="panel">
 		{#if tabSet === 0}
-			<EventItemList events={pastEvents} isInThePast={true} />
+			<EventItemList events={pastEvents} isInThePast={true} eventType='past' />
 		{:else if tabSet === 1}
-			<EventItemList events={onlineCourses} />
+			<EventItemList events={onlineCourses} eventType='online'/>
 		{:else}
-			<EventItemList events={futureEvents} />
+			<EventItemList events={futureEvents} eventType='future'/>
 		{/if}
 	</svelte:fragment>
 </TabGroup>

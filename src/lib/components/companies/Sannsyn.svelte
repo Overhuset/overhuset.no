@@ -1,41 +1,52 @@
 <script lang="ts">
 	import CompanyHeader from './CompanyHeader.svelte';
+	import { MetaTags } from 'svelte-meta-tags';
 
 	export let imgSrc: string;
 	export let href: string;
 </script>
 
 <div class="prose">
+		  <MetaTags
+		title='Sannsyn - en del av konsulentselskapet Overhuset'
+		description='Sannsyn er 1 av 10 partnere i konsulentselskapet Overhuset. Her er de beste samlet under ett
+			tak. Sammen leverer de tjenester i full bredde, på høyeste nivå.'
+    />
 	<CompanyHeader {href} {imgSrc} />
+	<h1>Ledende fagmiljø innen KI og maskinlæring</h1>
+	<p class='font-bold'>
+		Visste du at rundt 73 prosent tilgjengelig data ikke blir brukt på en strategisk måte? Sannsyn er et av
+		landets fremste konsulentselskaper, som vet hvordan gjøre nettopp det.</p>
 	<p>
-		Sannsyn er et av Norges ledende fagmiljøer innen data science og maskinlæring. Vi har siden
-		starten i 2012 hjulpet en rekke virksomheter å skape konkurransekraft med egne data.
+		Konsulentselskapet Sannsyn har spisskompetanse på data science og maskinlæring, og hjelper kunder med å skape verdi
+		av dataene de har tilgang på – for eksempel i form av innsikt, automatisering og relevans. På denne måten, har de styrket
+		konkurransekraften til en rekke private og offentlige virksomheter siden selskapets oppstart i 2012.
+	</p>
+	<h2>Potensialet i dataanalyse</h2>
+	<p>
+		Sannsyns dyktige dataanalytikere, matematikere og utviklere har bred erfaring med alt fra å analysere data med fokus på
+		hvordan selskapet kan dra nytte av den, til å utvikle maskinlæringsmodeller og etablere arkitektur arkitektur som
+		understøtter best mulig innsikt.
+	</p>
+	<h2>Data science-prosjekter</h2>
+	<p>
+		Et vellykket data science-prosjekt krever en kombinasjon av solid forretningsforståelse, tung matematisk/statistisk
+		kompetanse og dyktige utviklere. Denne kombinasjonen kan være vanskelig å få tak i, men Sannsyn leverer sterkt på alle
+		felt her. Konsulentenes fagområder brer seg over alt fra maskinlæring, KI og stordata, til skyløsninger, datastrategi og -
+		infrastruktur, for å nevne noen.
 	</p>
 	<p>
-		Vi har bred erfaring med alt fra å analysere data med fokus på å finne hvordan virksomheten kan
-		kommersialisere dataenes potensiale, til utvikling av maskinlæringsmodeller og etablering av
-		arkitektur som understøtter best mulig innsikt.
+		Konsulentselskapet var tidlig ute i det norske markedet, og regnes derfor som et av bransjens mest erfarne på feltet.
+		Dette gjenspeiles i deres leveranser til egne og felles kunder i regi av Overhuset.
 	</p>
-	<p>
-		Et vellykket data science prosjekt krever en kombinasjon av solid forretningsforståelse, tung
-		matematisk/statistisk kompetanse og dyktige utviklere. Dette er en kombinasjon som er vanskelig
-		å få tak i, men som vi kan levere. Vi var tidlig ute i det norske markedet med fokus på data
-		science og maskinlæring, og har derfor rukket å få lang erfaring fra de fleste bransjer på dette
-		området.
+		<p><a href='/om_oss'>Les om vår kvalitetspolitikk her</a></p>
+	<h2>Kollektiv kompetanse</h2>
+	<p>I tillegg til å brenne for maskinlæring og stordata, er Sannsyn sitt ansvar bevisst når det gjelder å bidra til økt kollektiv
+		kompetanse. Ved å jobbe systematisk med kompetansedeling, spiller de både hverandre og kundene gode. Det skaper
+		trygge konsulenter, godt samarbeidsklima og bedre sluttresultat.
 	</p>
-	<p>
-		I tillegg til å brenne for maskinlæring og stordata, så er vi opptatt av å at alle våre kunder
-		skal kunne dra nytte av vår kollektive kompetanse. Det gjør vi ved å jobbe systematisk med
-		kompetansedeling og ved å jobbe aktivt for å spille hverandre gode. Dette skaper trygge
-		konsulenter, godt samarbeidsklima og bedre sluttresultat.
-	</p>
-	<p>Les mer om oss her: <a {href}>{href}</a></p>
-	<h3>Fagområder</h3>
-	<p>
-		<strong>
-			Maskinlæring, AI, store data / big data, Python, C#, Java, Kotlin, Spark, data-strategi,
-			data-infrastruktur, skyløsninger (AWS, Azure, GCP), Solr, søk / semantisk søk, tekstforståelse
-			/ entiteter i tekst
-		</strong>
-	</p>
+
+
+	<p>Vil du vite mer?<a {href}> Ta en tur innom Sannsyns nettsider.</a></p>
+
 </div>
