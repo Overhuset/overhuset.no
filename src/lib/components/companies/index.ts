@@ -124,7 +124,7 @@ export const companies: Record<string, CompanyWithComponent> = {
 		component: Techfolk
 	},
 	uptime: {
-		href: 'https://www.uptime.no/',
+		href: 'https://www.uptimeconsulting.no/',
 		imgSrc: '/companies/uptime_logo.png',
 		name: 'Uptime',
 		companyName: 'Uptime Consulting AS',

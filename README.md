@@ -76,13 +76,26 @@ This is a paragraph
 
 - Ensure you have Node.js and bun installed.
 - A `.env` file with the following secrets required for the /kompetanse pages to
-  access its data in the Google Sheet.
+  access its data in the Google Sheet, and login to work
 
 ```env
 POSTEN_SHEET_ID=<long id>
 POSTEN_SHEET_TAB_GID=<not as long id>
 OVERHUSET_SHEET_ID=<long id>
 OVERHUSET_SHEET_TAB_GID=<not as long id>
+
+GOOGLE_CLIENT_ID
+GOOGLE_CLIENT_SECRET
+
+POSTGRES_URL
+POSTGRES_PRISMA_URL
+POSTGRES_URL_NON_POOLING
+POSTGRES_USER
+POSTGRES_HOST
+POSTGRES_PASSWORD
+POSTGRES_DATABASE
+
+
 ```
 
 If you intend to work on the kompetanse pages locally, please ask for these ids.
