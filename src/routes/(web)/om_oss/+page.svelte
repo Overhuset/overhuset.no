@@ -3,9 +3,9 @@ import { MetaTags } from 'svelte-meta-tags';
 </script>
 <section class="max-w-6xl mx-auto md:w-4/5">
     <MetaTags
-	title='Arktekk - en del av konsulentselskapet Overhuset'
-	description='Arktekk er 1 av 10 partnere i konsulentselskapet Overhuset. Her er de beste samlet under ett
-                 tak. Sammen leverer vi tjenester i full bredde, på høyeste nivå.'
+	title='Konsulentselskapet Overhuset – dette er oss!'
+	description='Overhuset ble etablert i 2009, som svar på bransjens behov for fullservice-selskaper til større IT-prosjekter.
+        I dag er vi 10 ledende selskaper samlet under ett.'
     />
 	<div class="prose mb-16 mt-8 mx-4">
 		<h1>OM OSS</h1>
