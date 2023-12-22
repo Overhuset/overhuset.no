@@ -72,30 +72,18 @@ prosjekter – i full bredde, på høyeste nivå.'
 			på det.
 		</p>
 		<a href="/om_oss" class="underline font-semibold px-8">Les mer</a>
-		<h3 class="text-4xl md:text-6xl">VÅR KVALITETSPOLITIKK</h3>
-		<p class="max-w-4xl mx-auto text-lg md:text-2xl font-light">
-			Vår kvalitetspolitikk skal bidra til å sikre høy kvalitet i våre tjenesteleveranser, og at vi
-			forvalter våre oppgaver overfor eiere, partnere, kunder, samarbeidspartnere på en profesjonell
-			og tillitsvekkende måte.<br /><br />
-			Overhuset skal tilby de beste konsulentene i markedet til våre kunder, og levere tjenester med
-			en kvalitet som tilfredsstiller krav og forventninger fra kunder og samarbeidspartnere.
-			<br />
-			<br />
-			For å få dette til skal vi:<br />
-			• Utføre våre oppdrag i henhold til kundens krav og betingelser<br />
-			• Levere de tjenester våre kunder ønsker<br />
-			• Følge lover, forskrifter og etiske retningslinjer<br />
-			• Lære av våre feil<br />
-			• Involvere partnere og samarbeidspartnere på en måte som sikrer forståelse for, identifisering
-			og gjennomføring av vårt kvalitetsarbeid<br />
-			• Dokumentere vårt arbeid med kvalitet; ha kvalitetsarbeid på dagsorden, samt ha fokus på kvalitetsmål
-			i alle ledd i selskapet<br />
-			• Ha et kvalitetssystem som tilfredsstiller kravene i NS-EN ISO 9001:2015
-			<br />
-			<br />
-			Dette skal vi oppnå ved kontinuerlig forbedring av alle prosesser og rutiner som er etablert i
-			Overhuset.<br />
+		<h3 class="text-4xl md:text-6xl">Å VÆRE BEST FORPLIKTER</h3>
+		<p class="max-w-4xl mx-auto text-lg md:text-2xl font-bold">
+			Ved å forene bransjens beste konsulentselskaper, er ambisjonene om kvalitet tilsvarende høye. Vi
+			lykkes der andre feiler, fordi vi har samarbeid og kompetanseoverføring i vårt DNA.
 		</p>
+		<p class="max-w-4xl mx-auto text-lg md:text-2xl font-light">
+			Overhusets konsulenter er stødige, ambisiøse og pålitelige fagfolk, som legger mye stolthet i å levere tjenester i
+			topp-klassen. For å få til det, følger vi kvalitetssystemet NS-EN ISO 9001, og har definert noen retningslinjer basert
+			på det.
+			
+		</p>
+			<a href="/kvalitet_i_alle_ledd" class="underline font-semibold px-8">Les mer</a>
 	</div>
 </section>
 
