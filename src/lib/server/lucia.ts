@@ -22,6 +22,8 @@ export const auth = lucia({
 });
 
 // Get full path to web app anywhere it is. If it's not on Vercel, default to local host
+const vercel_url = process.env.VERCEL_URL;
+const redirectUriBase = vercel_url ? `https://${vercel_url}` : 'http://localhost:5173';
 
 export const googleAuth = google(auth, {
 	clientId: GOOGLE_CLIENT_ID,
@@ -34,7 +36,8 @@ export const azureADAuth = azureAD(auth, {
 	clientId: AZURE_CLIENT_ID,
 	clientSecret: AZURE_CLIENT_SECRET,
 	tenant: AZURE_TENANT,
-	redirectUri: AZURE_REDIRECT_URI,
+	// redirectUri: AZURE_REDIRECT_URI,
+	redirectUri: `${redirectUriBase}/intranett/login/microsoft/callback`,
 	scope: ['email']
 });
 
