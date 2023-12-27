@@ -22,7 +22,7 @@
 			class="w-6 h-6"
 			src="https://www.svgrepo.com/show/448239/microsoft.svg"
 			loading="lazy"
-			alt="google logo"
+			alt="ms logo"
 		/>
 		<span>Logg inn med Microsoft</span>
 	</a>
