@@ -1,5 +1,5 @@
 // routes/login/microsoft/callback/+server.ts
-import { overhuset } from '$lib/config/constellations.js';
+import { overhusetDomains } from '$lib/config/constellations.js';
 import { auth, azureADAuth } from '$lib/server/lucia.js';
 import { OAuthRequestError } from '@lucia-auth/oauth';
 import type { RequestHandler } from '@sveltejs/kit';
@@ -18,18 +18,14 @@ export const GET: RequestHandler = async ({ url, cookies, locals }) => {
 	}
 	try {
 		const {getExistingUser, azureADUser, azureADTokens, createUser } = await azureADAuth.validateCallback(code, storedCodeVerifier);
-
-		console.log(azureADUser)
-		console.log(azureADTokens)
 		const emailsignature = azureADUser.email?.match("(?<=@)[^.]+(?=\\.).*")[0];
-
 		if (!emailsignature) {
 			return new Response('Kunne ikke logge inn - epost mangler', {
 				status: 403
 			});
 		}
 
-		if (!overhuset.includes(emailsignature)) {
+		if (!overhusetDomains.includes(emailsignature)) {
 			return new Response('Kunne ikke logge inn - epost er ikke godkjent - ' + emailsignature, {
 				status: 403
 			});
@@ -41,7 +37,8 @@ export const GET: RequestHandler = async ({ url, cookies, locals }) => {
 			if (existingUser) return existingUser;
 			const user = await createUser({
 				attributes: {
-					username: azureADUser.name
+					username: azureADUser.name,
+					email: azureADUser.email
 				}
 			});
 			return user;
