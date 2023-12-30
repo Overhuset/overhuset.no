@@ -31,7 +31,7 @@
 		og/eller saksbehandlere. Hva vil fungere best for dem, og hvordan bygge en robust løsning som er levedyktig i
 		flere år fremover?
 	</p>
-		<p><a href='/om_oss'>Les om vår kvalitetspolitikk her</a></p>
+		<p><a href='/kvalitet_i_alle_ledd'>Les om vår kvalitetspolitikk her</a></p>
 	<h2>Fleksible og tilpasningsdyktige utviklere</h2>
 	<p>
 		Med høye krav til resultat og kvalitet på sine leveranser, er Uptime-konsulentene likevel stødige og

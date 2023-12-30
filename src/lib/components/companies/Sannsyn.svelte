@@ -39,7 +39,7 @@
 		Konsulentselskapet var tidlig ute i det norske markedet, og regnes derfor som et av bransjens mest erfarne på feltet.
 		Dette gjenspeiles i deres leveranser til egne og felles kunder i regi av Overhuset.
 	</p>
-		<p><a href='/om_oss'>Les om vår kvalitetspolitikk her</a></p>
+		<p><a href='/kvalitet_i_alle_ledd'>Les om vår kvalitetspolitikk her</a></p>
 	<h2>Kollektiv kompetanse</h2>
 	<p>I tillegg til å brenne for maskinlæring og stordata, er Sannsyn sitt ansvar bevisst når det gjelder å bidra til økt kollektiv
 		kompetanse. Ved å jobbe systematisk med kompetansedeling, spiller de både hverandre og kundene gode. Det skaper
