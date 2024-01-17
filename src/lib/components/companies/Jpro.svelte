@@ -25,7 +25,7 @@
 		utviklings- og arkitekturleveranser til våre kunder. De er en fullstack-leverandør med tro på synergien mellom
 		fornøyde ansatte, gode tekniske løsninger og fornøyde kunder.
 	</p>
-		<p class='underline'>Les mer om oss her: <a href='/om_oss'>Les om vår kvalitetspolitikk her</a></p>
+		<p class='underline'>Les mer om oss her: <a href='/kvalitet_i_alle_ledd'>Les om vår kvalitetspolitikk her</a></p>
 	<h2>Digitalisering og omstilling</h2>
 	<p>
 		Med en eller flere JPro-konsulenter på laget, kan du være trygg på at selv store og omfattende

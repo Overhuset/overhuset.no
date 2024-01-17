@@ -25,7 +25,7 @@
 	<h2>Smarte digitale løsninger</h2>
 	<p>Boitano tilbyr systemutviklere til krevende og forretningskritiske utfordringer, og prosjektene ligger
 		langt fremme i bruk av teknologi. Samtidig er de opptatte av at de riktige løsningene blir valgt og
-		gjennomført, i tråd med <a href="/om_oss">våre retningslinjer for kvalitet.</a>
+		gjennomført, i tråd med <a href="/kvalitet_i_alle_ledd">våre retningslinjer for kvalitet.</a>
 	 </p>
 
 	 <p class='py-4'>
