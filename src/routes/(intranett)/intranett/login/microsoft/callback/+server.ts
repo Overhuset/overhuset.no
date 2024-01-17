@@ -1,11 +1,13 @@
-// routes/login/google/callback/+server.ts
+// routes/login/microsoft/callback/+server.ts
 import { overhusetDomains } from '$lib/config/constellations.js';
-import { auth, googleAuth } from '$lib/server/lucia.js';
+import { auth, azureADAuth } from '$lib/server/lucia.js';
 import { OAuthRequestError } from '@lucia-auth/oauth';
 import type { RequestHandler } from '@sveltejs/kit';
 
+
 export const GET: RequestHandler = async ({ url, cookies, locals }) => {
-	const storedState = cookies.get('google_oauth_state');
+	const storedState = cookies.get('microsoft_oauth_state');
+	const storedCodeVerifier = cookies.get('microsoft_oauth_codeVerifier');
 	const state = url.searchParams.get('state');
 	const code = url.searchParams.get('code');
 	// validate state
@@ -15,9 +17,8 @@ export const GET: RequestHandler = async ({ url, cookies, locals }) => {
 		});
 	}
 	try {
-		const { getExistingUser, googleUser, createUser } = await googleAuth.validateCallback(code);
-
-		const emailsignature = googleUser.email?.match("(?<=@)[^.]+(?=\\.).*")[0];
+		const {getExistingUser, azureADUser, azureADTokens, createUser } = await azureADAuth.validateCallback(code, storedCodeVerifier);
+		const emailsignature = azureADUser.email?.match("(?<=@)[^.]+(?=\\.).*")[0];
 		if (!emailsignature) {
 			return new Response('Kunne ikke logge inn, epost mangler', {
 				status: 403
@@ -36,8 +37,8 @@ export const GET: RequestHandler = async ({ url, cookies, locals }) => {
 			if (existingUser) return existingUser;
 			const user = await createUser({
 				attributes: {
-					username: googleUser.name,
-					email: googleUser.email
+					username: azureADUser.name,
+					email: azureADUser.email
 				}
 			});
 			return user;
