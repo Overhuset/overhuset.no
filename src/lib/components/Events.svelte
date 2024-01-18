@@ -2,11 +2,12 @@
 	import { Tab, TabGroup } from '@skeletonlabs/skeleton';
 	import EventItemList from '$lib/components/EventItemList.svelte';
 	import type { Event } from '$lib/types';
-	let tabSet = 2;
 
 	export let pastEvents: Event[];
 	export let futureEvents: Event[];
 	export let onlineCourses: Event[];
+
+	let tabSet = futureEvents?.length>0 ? 2:0;
 </script>
 
 <TabGroup
