@@ -26,7 +26,7 @@ export const GET: RequestHandler = async ({ url, cookies, locals }) => {
 		}
 
 		if (!overhusetDomains.includes(emailsignature)) {
-			return new Response(`Kunne ikke logge inn, domenet er ikke godkjent [${emailsignature}]`, {
+			return new Response(`Kunne ikke logge inn, domenet [${emailsignature}] er ikke godkjent`, {
 				status: 403
 			});
 		}
