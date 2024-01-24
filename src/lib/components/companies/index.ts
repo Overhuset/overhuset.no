@@ -95,7 +95,7 @@ export const companies: Record<string, CompanyWithComponent> = {
 		href: 'https://www.kodemaker.no/',
 		imgSrc: '/companies/kodemaker_logo.png',
 		name: 'Kodemaker',
-		companyName: 'Kodemaker AS',
+		companyName: 'Kodemaker Systemutvikling AS',
 		slug: 'kodemaker',
 		component: Kodemaker
 	},
