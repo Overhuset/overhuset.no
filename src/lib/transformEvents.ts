@@ -3,9 +3,13 @@ import { DateTime } from 'luxon';
 export const transformDate = ({ date, time, ...restOfEvent }: Event): Event => {
 	let formattedDate = 'TBA';
 
-	const parsedDate = DateTime.fromISO(`${date}T${time}`).setLocale('nb-NO');
-	if (parsedDate.isValid) {
-		formattedDate = parsedDate.toFormat('ccc LLL dd, yyyy - HH:mm');
+	const parsedDateAndTime = DateTime.fromISO(`${date}T${time}`).setLocale('nb-NO');
+	const parsedDateOnly = DateTime.fromISO(`${date}T12:00`).setLocale('nb-NO');
+	if (parsedDateAndTime.isValid) {
+		formattedDate = parsedDateAndTime.toFormat('ccc LLL dd, yyyy - HH:mm');
+		formattedDate = formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
+	} else if (parsedDateOnly.isValid) {
+		formattedDate = parsedDateOnly.toFormat('ccc LLL dd, yyyy');
 		formattedDate = formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
 	} else {
 		console.error(
