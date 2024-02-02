@@ -3,7 +3,7 @@ import Kino from '$lib/components/web/Kino.svelte';
 </script>
 
 <Kino
-	bestillingsLink="https://www.example.com/bestill-billetter"
+	bestillingsLink="https://www.imdb.com/title/tt15239678/"
 	utgivelsesdato="10. oktober 2023"
 	regissor="Denis Villeneuve"
 	stjerner="Timothée Chalamet, Zendaya, Oscar Isaac"
