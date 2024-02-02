@@ -33,9 +33,9 @@
 <!-- Rendering av komponenten -->
 <div class="flex flex-col items-center justify-center h-screen">
 	<!-- Hele div-en, inkludert både øvre og nedre halvdel, vil ha bakgrunnen -->
-	<div class="w-3/5 h-full" style="background-image: url('/assets/dune.png'); background-size: cover; background-position: center;">
+	<div class="w-3/5 h-full" style="background-image: url('/assets/dune.png'); background-size: cover; background-position: center; height: 100vh;">
 		<div class="flex justify-between w-full h-3/4"></div> <!-- Tom øvre halvdel -->
-		<div class="flex justify-between w-full h-1/4 p-8" style="background-color: rgba(255, 255, 255, 0);">
+		<div class="flex justify-around h-1/4 p-8" style="background-color: rgba(255, 255, 255, 0);">
 			<!-- Venstre side for tekst og lenker -->
 			<div class="info-text">
 				<!-- Setter inn prop for tittel -->
