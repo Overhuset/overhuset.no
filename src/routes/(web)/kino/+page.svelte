@@ -4,8 +4,8 @@ import Kino from '$lib/components/web/Kino.svelte';
 
 <Kino
 	bestillingsLink="https://www.imdb.com/title/tt15239678/"
-	utgivelsesdato="10. oktober 2023"
+	utgivelsesdato="28. februar 2024"
 	regissor="Denis Villeneuve"
-	stjerner="Timothée Chalamet, Zendaya, Oscar Isaac"
+	stjerner="Austin Butler, Timothée Chalamet, Florence Pugh, Zendaya"
 	tittel="Dune: Part Two"
 />

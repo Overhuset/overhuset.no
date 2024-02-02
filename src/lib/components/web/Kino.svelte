@@ -33,11 +33,11 @@
 <!-- Rendering av komponenten -->
 <div class="flex flex-col items-center justify-center h-screen">
 	<!-- Hele div-en, inkludert både øvre og nedre halvdel, vil ha bakgrunnen -->
-	<div class="w-3/5 h-full" style="background-image: url('/assets/dune2.jpeg'); background-size: cover; background-position: center; height: 100vh;">
+	<div class="w-full h-full" style="background-image: url('/assets/dune2.jpeg'); background-size: cover; background-position: center; height: 100vh;">
 		<div class="flex justify-between w-full h-3/4"></div> <!-- Tom øvre halvdel -->
-		<div class="flex justify-around h-1/4 p-8" style="background-color: rgba(255, 255, 255, 0);">
+		<div class="lg:flex lg:justify-between p-8" style="background-color: rgba(255, 255, 255, 0);">
 			<!-- Venstre side for tekst og lenker -->
-			<div class="info-text">
+			<div class="info-text lg:w-1/2 lg:mr-4">
 				<!-- Setter inn prop for tittel -->
 				<h2 class="text-xl font-bold text-white">{tittel}</h2>
 				<!-- Setter inn props for utgivelsesdato, regissør og stjerner -->
@@ -51,7 +51,7 @@
 				<!-- Legg til andre lenker ved behov -->
 			</div>
 			<!-- Høyre side for QR-kode -->
-			<div class="qr-code">
+			<div class="qr-code md:w-1/4 md:ml-4 md:mt-4">
 				<!-- Viser QR-kode hvis qrCodeURL er satt -->
 				{#if qrCodeURL}
 					<img src={qrCodeURL} alt="QR-kode for bestillingslenke" />
