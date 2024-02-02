@@ -30,30 +30,25 @@
 <!-- Setter meta-tags for siden med tittel som prop -->
 <MetaTags title={tittel} />
 
-<!-- Render komponenten -->
+<!-- Rendering av komponenten -->
 <div class="flex flex-col items-center justify-center h-screen">
 	<!-- Hele div-en, inkludert både øvre og nedre halvdel, vil ha bakgrunnen -->
-	<div
-		class="w-3/5 h-full"
-		style="background-image: url('/assets/dune.png'); background-size: cover; background-position: center;"
-	>
-		<div class="flex justify-between w-full h-1/2"></div>
-		<!-- Tom øvre halvdel -->
-		<div class="flex justify-between w-full h-1/2 p-8 bg-gray-200 border-t-2 border-gray-400">
+	<div class="w-3/5 h-full" style="background-image: url('/assets/dune.png'); background-size: cover; background-position: center;">
+		<div class="flex justify-between w-full h-3/4"></div> <!-- Tom øvre halvdel -->
+		<div class="flex justify-between w-full h-1/4 p-8" style="background-color: rgba(255, 255, 255, 0);">
 			<!-- Venstre side for tekst og lenker -->
 			<div class="info-text">
 				<!-- Setter inn prop for tittel -->
-				<h2 class="text-xl font-bold">{tittel}</h2>
+				<h2 class="text-xl font-bold text-white">{tittel}</h2>
 				<!-- Setter inn props for utgivelsesdato, regissør og stjerner -->
-				<p class="mb-2">Utgivelsesdato: {utgivelsesdato}</p>
-				<p class="mb-2">Regissør: {regissor}</p>
-				<p class="mb-2">Stjerner: {stjerner}</p>
+				<p class="mb-2 text-white">Utgivelsesdato: {utgivelsesdato}</p>
+				<p class="mb-2 text-white">Regissør: {regissor}</p>
+				<p class="mb-2 text-white">Stjerner: {stjerner}</p>
 				<!-- Legg til andre lenker ved behov -->
 				{#if bestillingsLink}
-					<a href={bestillingsLink} class="text-blue-500 hover:underline"
-						>Foreløpig link til {tittel}</a
-					>
+					<a href={bestillingsLink} class="text-blue-500 hover:underline">Link: {tittel}</a>
 				{/if}
+				<!-- Legg til andre lenker ved behov -->
 			</div>
 			<!-- Høyre side for QR-kode -->
 			<div class="qr-code">
@@ -62,7 +57,7 @@
 					<img src={qrCodeURL} alt="QR-kode for bestillingslenke" />
 				{:else}
 					<!-- Viser melding om QR-kode genereres -->
-					<p>Genererer QR-kode...</p>
+					<p class="text-white">Genererer QR-kode...</p>
 				{/if}
 			</div>
 		</div>
