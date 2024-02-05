@@ -37,9 +37,9 @@ I tillegg til dette trenger dere også å vite om kvalitetspolitikken vår, som 
 Det finner du på internett siden vår [her](https://www.overhuset.no/kvalitet_i_alle_ledd/)
 
 Dersom du har noen spørsmål still de til kvalitetsansvarlig i Overhuset.<br>
-<b>Steinar Hansen<br>
-steinar@jpro.no<br>
-mob: 90683146</b>
+*Steinar Hansen</br>
+[steinar@jpro.no](mailto:steinar@jpro.no)</br>
+mob: 90683146*
 
 ## Spørreundersøkelser
 En annen del av kvalitetssystemet er at vi skal gjennomføre spørreundersøkelser årlig hos kunder, og  for alle som avslutter et oppdrag for Overhuset. Tilbakemeldinger fra kunder deles med den enkelte konsulent.

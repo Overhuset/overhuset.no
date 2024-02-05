@@ -21,7 +21,7 @@ Styret i Konsulentselskapet Overhuset plikter å inngå Partneravtale med alle m
 Utlysninger av potensielt interessante avtaler kommer med ujevne mellomrom. 
 
 Utlysninger partnerne ønsker vurdert sendes så snart som mulig pr mail til alle. 
-Mailinglisten *alle@overhuset.no* skal benyttes. Der minimum 1/3 av partnerne er positive til å levere tilbud kan vedtak om å levere fattes. 
+Mailinglisten [alle@overhuset.no](mailto:alle@overhuset.no) skal benyttes. Der minimum 1/3 av partnerne er positive til å levere tilbud kan vedtak om å levere fattes. 
 Der utlysningen kommer slik at behandling og vurdering kan gjøres i møte i Arbeidsutvalget, taes beslutningen her. Dersom behandlingen er kjent før møtet kan partnerne tilkjennegi sin stemme på annen måte dersom de ikke deltar i møtet.  
 Der tidsperspektivet på innlevering tilsier at beslutning ikke bør vente til førstkommede møte i Arbeidsutvalget, kan beslutning fattes pr mail. 
 Der det er minimum 3 ukers svarfrist etter førstkommende AU-møte, gjøres beslutningen om å levere på førstkommende AU-møte. 
