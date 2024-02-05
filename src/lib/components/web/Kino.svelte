@@ -55,8 +55,7 @@
 			<p class="mb-4 md:text-2xl lg:text-3xl text-white">Stjerner: {stjerner}</p>
 			<!-- Legg til andre lenker ved behov -->
 			{#if link}
-				<a href={link} class="text-blue-500 md:text-2xl lg:text-3xl hover:underline"
-					 style="background-color: rgba(255, 255, 255, 0.3);">
+				<a href={link} class="text-blue-500 md:text-2xl lg:text-3xl hover:underline">
 					Link: {tittel}
 				</a>
 			{/if}
