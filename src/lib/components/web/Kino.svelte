@@ -3,7 +3,6 @@
 	import { MetaTags } from 'svelte-meta-tags';
 	import QRCode from 'qrcode';
 
-	// Definerer props for bestillingslenke, utgivelsesdato, regissør, stjerner og tittel
 	export let introduksjonsTekst; // Typen antas å være en streng
 	export let tittel; // Typen antas å være en streng
 	export let regissor; // Typen antas å være en streng
@@ -11,7 +10,6 @@
 	export let utgivelsesdato; // Typen antas å være en streng
 	export let link; // Typen er en streng (URL)
 
-	// Oppretter en variabel for QR-kode URL
 	let qrCodeURL = '';
 	let qrCodeSize = 'w-32 md:w-48 lg:w-64'; // Juster størrelsen etter behov
 
@@ -58,7 +56,6 @@
 					Link: {tittel}
 				</a>
 			{/if}
-			<!-- Legg til andre lenker ved behov -->
 		</div>
 		<!-- Høyre side for QR-kode -->
 		<div id="qr-code" class="flex justify-center items-center m-6 md:w-1/3">
@@ -66,7 +63,7 @@
 			{#if qrCodeURL}
 				<img class="block md:ml-0 md:mb-0 {qrCodeSize}" src={qrCodeURL} alt="QR-kode for bestillingslenke" />
 			{:else}
-				<!-- Viser melding om QR-kode genereres -->
+				<!-- Kan vise melding her mens QR-kode genereres (eller om den feiler) -->
 				<p class="text-white"></p>
 			{/if}
 		</div>
