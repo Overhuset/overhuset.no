@@ -46,7 +46,7 @@
 	<div id="info"
 			 class="flex flex-col h-5/6 md:flex-row md:justify-between md:p-8 w-full md:h-1/3 mt-auto md:bg-transparent">
 		<!-- Venstre side for tekst og lenker -->
-		<div id="info-text" class="text-center md:w-2/3 md:text-left mb-8 md:mb-0">
+		<div id="info-text" class="text-center m-2 md:w-2/3 md:text-left mb-8 md:mb-0">
 			<!-- Setter inn prop for tittel -->
 			<h2 class="text-2xl mb-2 md:mb-6 md:text-3xl lg:text-4xl font-bold text-white">{tittel}</h2>
 			<!-- Setter inn props for utgivelsesdato, regissør og stjerner -->
