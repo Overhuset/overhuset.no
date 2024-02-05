@@ -11,7 +11,7 @@
 			<li><a href="/#om_oss">Om oss</a></li>
 			<li><a href="/kurs_og_seminarer">Kurs og Kompetanse</a></li>
 			<li><a href="/#kontakt">Kontakt</a></li>
-<!--			<li><a href="/intranett">Intranett</a></li>-->
+			<li><a href="/intranett">Intranett</a></li>
 		</ul>
 	</nav>
 </header>
