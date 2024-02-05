@@ -9,4 +9,5 @@ import Kino from '$lib/components/web/Kino.svelte';
 	stjerner="Austin Butler, Timothée Chalamet, Florence Pugh, Zendaya"
 	utgivelsesdato="28. februar 2024"
 	link="https://www.imdb.com/title/tt15239678/"
+	bakgrunnsBilde="/assets/dune2.jpeg"
 />
