@@ -21,7 +21,7 @@ Styret i Konsulentselskapet Overhuset plikter å inngå Partneravtale med alle m
 Utlysninger av potensielt interessante avtaler kommer med ujevne mellomrom. 
 
 Utlysninger partnerne ønsker vurdert sendes så snart som mulig pr mail til alle. 
-Mailinglisten <ins>alle@overhuset.no</ins> skal benyttes. Der minimum 1/3 av partnerne er positive til å levere tilbud kan vedtak om å levere fattes. 
+Mailinglisten <u>alle@overhuset.no</u> skal benyttes. Der minimum 1/3 av partnerne er positive til å levere tilbud kan vedtak om å levere fattes. 
 Der utlysningen kommer slik at behandling og vurdering kan gjøres i møte i Arbeidsutvalget, taes beslutningen her. Dersom behandlingen er kjent før møtet kan partnerne tilkjennegi sin stemme på annen måte dersom de ikke deltar i møtet.  
 Der tidsperspektivet på innlevering tilsier at beslutning ikke bør vente til førstkommede møte i Arbeidsutvalget, kan beslutning fattes pr mail. 
 Der det er minimum 3 ukers svarfrist etter førstkommende AU-møte, gjøres beslutningen om å levere på førstkommende AU-møte. 
@@ -83,13 +83,13 @@ Daglig leder skal på vegne av Arbeidsutvalget (AU) signere og godkjenne endring
 
 #### Arbeidsinstruks for Arbeidsutvalget (AU)
 
-<ins>Om arbeidsutvalget</ins>
+<u>Om arbeidsutvalget</u>
 
 Arbeidsutvalget (AU) består av minimum 1 representant fra hver partner. Hver partner kan likevel stille flere representanter dersom det er behov for dette, dog slik at hver partner har maksimalt 1 stemme ved avgjørelser som krever avstemming. 
  
 Daglig leder leder og organiserer arbeidet i AU, og skal herunder også sørge for innkalling og referat fra møtene.
 
-<ins>Agenda</ins>
+<u>Agenda</u>
 
 Arbeidsutvalgets møter skal minimum ha følgende saken på agendaen til hvert møte:  
 •	Gjennomgang av rammeavtaler<br/>
@@ -100,7 +100,7 @@ I tillegg skal følgende taes inn på agendaen minimum en gang pr kvartal:<br/>
 •	Regnskap og økonomi med gjennomgang av resultat og balanse<br/>
 •	Oppdragsfordeling mellom partnerne<br/>
 
-<ins>Møteplan</ins>
+<u>Møteplan</u>
 
 Arbeidsutvalget har møter i følgende perioder:<br/> 
 •	Vårsemester:	Uke 2 til uke 24<br/> 
@@ -115,19 +115,19 @@ Eventuelle oppsatte møter i vinterferie (uke 8), påskeuken, høstferien (uke 4
  
 Daglig leder kan på eget eller andres initiativ foreslå å avlyse et planlagt møte i arbeidsutvalget. Dog skal møtet likevel avholdes dersom minst 2 partnere ber om det. 
 
-<ins>Oppgaver</ins>
+<u>Oppgaver</u>
 
 Arbeidsutvalget skal ta beslutninger om følgende:<br/>  
  •	organisering av BID-team med mål om å levere på en utlysning<br/>
 •	planlegging av aktiviteter knyttet til markedsføring av Overhuset, herunder både interne (for Partnere) og eksterne (for Partnere med kunder/forbindelser)<br/>
 
-<ins>Fullmakt</ins>
+<u>Fullmakt</u>
 
 Arbeidsutvalget tar med simpelt flertall alle beslutninger om aktiviteter i Overhuset sin regi. AU sin beslutning kan overprøves av daglig leder dersom hensyn til selskapets økonomi tilsier det. Selskapets styre vil ved uenighet mellom AU og daglig leder avgjøre spørsmålet endelig. 
 
 #### Arbeidsinstruks for BID-Team
 
-<ins>Organisering av BID-teamet</ins>
+<u>Organisering av BID-teamet</u>
 
 Ved beslutning om å levere et tilbud nedsettes det et BID-team. Et BID-team bør ha minimum 3 deltagere.  
 
@@ -139,13 +139,13 @@ Leder av BID-team velges normalt til Key Account Manager (KAM) på avtalen, med 
 
 BID-teamet rapporterer til Arbeidsutvalget, og står ansvarlig for egen ressursbruk. 
 
-<ins>Arbeidsplan for utarbeidelse av tilbud</ins>
+<u>Arbeidsplan for utarbeidelse av tilbud</u>
 
 BID-teamet har selv ansvaret for å utarbeide en fremdriftsplan knyttet til tilbudsarbeidet. Denne planene skal kommuniseres til arbeidsutvalget.  
  
 BID-teamet skal legge en plan for arbeidet som gir rom og tid for kvalitetssikring av tilbudet. 
  
-<ins>Registrering av medgått tid på arbeidet</ins>
+<u>Registrering av medgått tid på arbeidet</u>
 
 Det opprettes en salgsaktivitet i Overhuset sin Tripletex ved oppstart av arbeidet. Timer som skal belastes tilbudet føres fortløpende av BID-teamets medlemmer. Timeføring skal koordineres av leder av BID-teamet, og teamet skal enes om hva som skal belastes av tid relatert til møter, samlinger etc. 
 
@@ -153,7 +153,7 @@ Hver timeføring skal ledsages av en kommentar om hva som er gjort.
 
 Faktura for arbeidet skal sendes månedlig.
 
-<ins>Fullmakt</ins>
+<u>Fullmakt</u>
 
 BID-teamet har fullmakt til å:<br/>
 •	beslutte hvorvidt endelig tilbud skal leveres, herunder om nødvendig å avslutte arbeidet underveis i tilbudsprosessen.<br/> 
@@ -163,17 +163,17 @@ BID-teamet har fullmakt til å:<br/>
 
 #### Arbeidsinstruks for Key Account Manager (KAM)
 
-<ins>Arbeidsoppgaver og ansvar</ins>
+<u>Arbeidsoppgaver og ansvar</u>
 
 Det er KAM sin oppgave å følge opp alle avtaler med kunden, med tanke på utløp, fornyelse og andre avtaleaspekter. 
 
-<ins>Fullmakt</ins>
+<u>Fullmakt</u>
 
 Key Account Manager har fullmakt til å forhandle med kunden på vegne av de konsulenter for tilbys på oppdraget.  
  
 Fullmakten gir ikke KAM mulighet til å forhandle nye priser på avtalen ut over årlige justeringer iht avtalen (KPI-justeringer etc). Slike forhandlinger skal avstemmes med AU, som selv kan ta avgjørelsen, eller avstemmer med det opprinnelige BID-teamet. 
 
-<ins>Representasjon</ins>
+<u>Representasjon</u>
 
 Representasjon mot kunden skal alltid avstemmes med KAM. 
  
