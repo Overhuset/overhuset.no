@@ -14,6 +14,12 @@ const tree: TreeItem[] = [
 		status: 'published'
 	},
 	{
+		title: 'Rammeavtaler',
+		slug: 'rammeavtaler',
+		markdown: 'rammeavtaler.md',
+		status: 'published'
+	},
+	{
 		title: 'Våre kunder',
 		slug: 'vare-kunder',
 		markdown: 'vare-kunder.md',
@@ -23,7 +29,7 @@ const tree: TreeItem[] = [
 		title: 'Retningslinjer',
 		slug: 'retningslinjer',
 		markdown: 'retningslinjer.md',
-		status: 'draft'
+		status: 'published'
 	},
 	{
 		title: 'Sosialt 🥳',
