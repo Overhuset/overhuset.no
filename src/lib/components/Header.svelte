@@ -1,3 +1,8 @@
+<script lang="ts">
+	import { page } from "$app/stores";
+</script>
+
+{#if $page?.url?.pathname !== "/kino"}
 <header
 	class="flex md:flex-row flex-col justify-between items-center gap-6 md:items-end mt-16 md:mt-24 mb-12 mx-auto max-w-8xl w-full md:px-12"
 >
@@ -15,3 +20,4 @@
 		</ul>
 	</nav>
 </header>
+{/if}
