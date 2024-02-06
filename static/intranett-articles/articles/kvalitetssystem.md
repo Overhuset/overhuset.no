@@ -6,7 +6,7 @@ Et hovedtrekk med det er at vi skal være en lærende organisasjon, og at vi ska
 Det er også et krav at de som jobber på prosjekter gjennom Overhuset skal sette seg inn i noe informasjon om kvalitetssystemet. 
 
 ## Hvor finner vi informasjon om kvalitetssystemet?
-Alle filene finner du [her](kvalitetssystem.overhuset.no)
+Alle filene finner du [her](https://kvalitetssystem.overhuset.no)
 
 De mest sentrale filene å kjenne til er:
 - [Kvalitetshåndboken](https://drive.google.com/drive/u/3/folders/1cO0v987ULtzm3I4dxnIIXpROz27U-YfT)
