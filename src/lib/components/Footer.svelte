@@ -1,3 +1,8 @@
+<script lang="ts">
+	import { page } from "$app/stores";
+</script>
+
+{#if $page?.url?.pathname !== "/kino"}
 <footer id="kontakt" class="bg-[#6e9a8f] p-12 md:p-20 mt-auto">
 	<div class="max-w-8xl mx-auto flex flex-col gap-8">
 		<h2 class="text-6xl text-white" style="text-shadow: black 1px 1px">KONTAKT</h2>
@@ -23,3 +28,5 @@
 		</p>
 	</div>
 </footer>
+{/if}
+
