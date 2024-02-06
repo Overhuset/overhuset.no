@@ -56,7 +56,7 @@
 			<!-- Legg til andre lenker ved behov -->
 			{#if link}
 				<a href={link} class="text-blue-500 md:text-2xl lg:text-3xl hover:underline">
-					Link: {tittel}
+					Bestill billetter her
 				</a>
 			{/if}
 		</div>
