@@ -1,5 +1,6 @@
 <script>
 	import { MetaTags } from 'svelte-meta-tags';
+	import Link from '$lib/components/web/Link.svelte';
 
 	export let introduksjonsTekst; // Typen antas å være en streng
 	export let tittel; // Typen antas å være en streng
@@ -11,50 +12,26 @@
 	export let tekst2; // Typen antas å være en streng
 	export let link2; // Typen er en streng (URL)
 	export let bakgrunnsBilde; // Prop for bakgrunnsbilde
-
-
 </script>
 
-<!-- Setter meta-tags for siden med tittel som prop -->
 <MetaTags title={tittel} />
 
-<!-- Rendering av komponenten -->
-<div id="kino" class="flex flex-col items-center justify-center min-h-screen bg-no-repeat bg-current bg-contain bg-top md:bg-center"
+<div id="kino"
+		 class="flex flex-col items-center justify-center min-h-screen bg-no-repeat bg-current bg-contain bg-top md:bg-center"
 		 style="background-image: url({bakgrunnsBilde});">
-	<!-- Hele div-en, inkludert både øvre og nedre halvdel, vil ha bakgrunnen -->
-	<!-- Innholdet vil bli sentrert vertikalt og horisontalt -->
 
-	<!-- Delen for introduksjonstekst -->
-	<div id="intro" class="flex items-center h-1/3">
-		<h1 class="text-4xl md:text-6xl lg:text-8xl text-white text-center">{introduksjonsTekst}</h1>
-	</div>
+		<h1 class="flex items-center h-1/3 text-4xl md:text-6xl lg:text-8xl text-white text-center">{introduksjonsTekst}</h1>
 
-	<!-- Delen for informasjonstekst og QR-kode -->
 	<div id="info"
-			 class="flex flex-col h-5/6 md:flex-row md:justify-between md:p-8 w-full md:h-1/3 mt-auto md:bg-transparent">
-		<!-- Venstre side for tekst og lenker -->
+			 class="flex flex-col h-5/6 md:flex-row md:p-8 w-full md:h-1/3 mt-auto"
+	>
 		<div id="info-text" class="text-center m-2 md:w-2/3 md:text-left mb-8 md:mb-0">
-			<!-- Setter inn prop for tittel -->
 			<h2 class="text-2xl mb-2 md:mb-6 md:text-3xl lg:text-4xl font-bold text-white">{tittel}</h2>
-			<!-- Setter inn props for utgivelsesdato, regissør og stjerner -->
 			<p class="mb-4 md:text-2xl lg:text-3xl text-white">Utgivelsesdato: {utgivelsesdato}</p>
 			<p class="mb-4 md:text-2xl lg:text-3xl text-white">Regissør: {regissor}</p>
 			<p class="mb-4 md:text-2xl lg:text-3xl text-white">Stjerner: {stjerner}</p>
-			<!-- Legg til andre lenker ved behov -->
-			{#if link1}
-				<p class="py-3 mb-4 md:text-2xl lg:text-3xl">
-					<a href={link1} target="_blank" rel="noopener noreferrer" class="text-blue-500 bg-gray-100 px-2 py-1 rounded-3xl md:text-2xl lg:text-3xl hover:underline">
-						{tekst1} - Bestill
-					</a>
-				</p>
-			{/if}
-			{#if link2}
-				<p class="py-3 mb-4 md:text-2xl lg:text-3xl">
-					<a href={link2} target="_blank" rel="noopener noreferrer" class="text-blue-500 bg-gray-100 px-2 py-1 rounded-3xl md:text-2xl lg:text-3xl hover:underline">
-						{tekst2} - Bestill
-					</a>
-				</p>
-			{/if}
+			{#if link1 && tekst1}<Link tekst={tekst1} to={link1} />{/if}
+			{#if link2 && tekst2}<Link tekst={tekst2} to={link2} />{/if}
 		</div>
 	</div>
 </div>
