@@ -31,3 +31,7 @@ Informasjon knyttet til kvalitetssystemet ligger [her](/intranett/kvalitetssyste
 ## Styrende dokumenter
 
 Retningslinjer for drift av Overhuset ligger [her](/intranett/retningslinjer).
+
+## Referat strategisamlinger
+
+[Strategisamling 24.11.2023 Referat](/Referat_strat_24112023.pdf)
