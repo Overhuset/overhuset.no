@@ -40,15 +40,15 @@
 			<p class="mb-4 md:text-2xl lg:text-3xl text-white">Stjerner: {stjerner}</p>
 			<!-- Legg til andre lenker ved behov -->
 			{#if link1}
-				<p class="mb-4 md:text-2xl lg:text-3xl text-white">
-					<a href={link1} class="text-blue-500 md:text-2xl lg:text-3xl hover:underline">
+				<p class="mb-4 md:text-2xl lg:text-3xl">
+					<a href={link1} class="text-blue-500 bg-gray-100 px-2 py-1 rounded-3xl md:text-2xl lg:text-3xl hover:underline">
 						Bestill første forestilling her
 					</a>
 				</p>
 			{/if}
 			{#if link2}
-				<p class="mb-4 md:text-2xl lg:text-3xl text-white">
-					<a href={link2} class="text-blue-500 md:text-2xl lg:text-3xl hover:underline">
+				<p class="mb-4 md:text-2xl lg:text-3xl">
+					<a href={link2} class="text-blue-500 bg-gray-100 px-2 py-1 rounded-3xl md:text-2xl lg:text-3xl hover:underline">
 						Bestill andre forestilling her
 					</a>
 				</p>
