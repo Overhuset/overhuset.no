@@ -35,3 +35,9 @@ Retningslinjer for drift av Overhuset ligger [her](/intranett/retningslinjer).
 ## Referat strategisamlinger
 
 [Strategisamling 24.11.2023 Referat](/Referat_strat_24112023.pdf)
+
+[Statistikk - vedlegg til referat](/Statistikk_vedlegg_til_referat.pdf)
+
+[Markedsanalyse - vedlegg til referat](/Overhuset_markedsanalyse_vedlegg_til_referat.pdf)
+
+[Kvalitetssystem - vedlegg til referat](/Overhuset_kvalitetssystem_vedlegg_til_referat.pdf)
