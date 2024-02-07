@@ -1,31 +1,16 @@
 <script>
-	import { onMount } from 'svelte';
 	import { MetaTags } from 'svelte-meta-tags';
-	import QRCode from 'qrcode';
 
 	export let introduksjonsTekst; // Typen antas å være en streng
 	export let tittel; // Typen antas å være en streng
 	export let regissor; // Typen antas å være en streng
 	export let stjerner; // Typen antas å være en streng
 	export let utgivelsesdato; // Typen antas å være en streng
-	export let link; // Typen er en streng (URL)
+	export let link1; // Typen er en streng (URL)
+	export let link2; // Typen er en streng (URL)
 	export let bakgrunnsBilde; // Prop for bakgrunnsbilde
 
-	let qrCodeURL = '';
-	let qrCodeSize = 'w-32 md:w-48 lg:w-64'; // Juster størrelsen etter behov
 
-	// Funksjon for å generere QR-kode basert på bestillingslenken
-	async function generateQRCode() {
-		try {
-			qrCodeURL = await QRCode.toDataURL(link);
-		} catch (error) {
-			console.error('Feil ved generering av QR-kode:', error);
-		}
-	}
-
-	onMount(() => {
-		generateQRCode();
-	});
 </script>
 
 <!-- Setter meta-tags for siden med tittel som prop -->
@@ -54,20 +39,19 @@
 			<p class="mb-4 md:text-2xl lg:text-3xl text-white">Regissør: {regissor}</p>
 			<p class="mb-4 md:text-2xl lg:text-3xl text-white">Stjerner: {stjerner}</p>
 			<!-- Legg til andre lenker ved behov -->
-			{#if link}
-				<a href={link} class="text-blue-500 md:text-2xl lg:text-3xl hover:underline">
-					Bestill billetter her
-				</a>
+			{#if link1}
+				<p class="mb-4 md:text-2xl lg:text-3xl">
+					<a href={link1} class="text-blue-500 bg-gray-100 px-2 py-1 rounded-3xl md:text-2xl lg:text-3xl hover:underline">
+						Bestill første forestilling her
+					</a>
+				</p>
 			{/if}
-		</div>
-		<!-- Høyre side for QR-kode -->
-		<div id="qr-code" class="flex justify-center items-center m-6 md:w-1/3">
-			<!-- Viser QR-kode hvis qrCodeURL er satt -->
-			{#if qrCodeURL}
-				<img class="block md:ml-0 md:mb-0 {qrCodeSize}" src={qrCodeURL} alt="QR-kode for bestillingslenke" />
-			{:else}
-				<!-- Kan vise melding her mens QR-kode genereres (eller om den feiler) -->
-				<p class="text-white"></p>
+			{#if link2}
+				<p class="mb-4 md:text-2xl lg:text-3xl">
+					<a href={link2} class="text-blue-500 bg-gray-100 px-2 py-1 rounded-3xl md:text-2xl lg:text-3xl hover:underline">
+						Bestill andre forestilling her
+					</a>
+				</p>
 			{/if}
 		</div>
 	</div>
