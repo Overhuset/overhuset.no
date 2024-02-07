@@ -210,7 +210,6 @@ Selskaper som er med på avtalen er:
 | Arktekk             |
 | Boitano             |
 | Edisys              |
-| Fink                |
 | Forse               |
 | Jpro                |
 | Kodemaker           |

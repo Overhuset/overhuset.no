@@ -4,6 +4,21 @@ Overhusets intranett-sider er ment å ha innhold som er interessant for konsulen
 
 Her vil vi legge ut informasjon om hvilke avtaler vi har, info om kvalitetssystemet, styrende dokumenter i Overhuset, arrangementer, sosiale aktiviteter og annet.
 
+Selskapene i Overhuset er:
+
+| Overhuset-selskaper | AU-Representant |
+|---------------------|----------------|
+| Arktekk             | Kaare Nilsen   |
+| Boitano             | Ove Suhr       |
+| Edisys              | Rolf Lysfjord  |
+| Fink                | Thomas Halmø   |
+| Forse               | Terje Andersen |
+| Jpro                | Steinar Hansen |
+| Kodemaker           | Kolbjørn Jetne |
+| Sannsyn             | Øyvin Spørck   |
+| Uptime              | Ole Kristian Villabø |
+| Zenior              | Kristtoffer Moum |
+
 ## Rammeavtaler
 Se [her](/intranett/rammeavtaler) for informasjon om hvilke rammeavtaler Overhuset har.
 
