@@ -6,7 +6,9 @@
 	export let regissor; // Typen antas å være en streng
 	export let stjerner; // Typen antas å være en streng
 	export let utgivelsesdato; // Typen antas å være en streng
+	export let tekst1; // Typen antas å være en streng
 	export let link1; // Typen er en streng (URL)
+	export let tekst2; // Typen antas å være en streng
 	export let link2; // Typen er en streng (URL)
 	export let bakgrunnsBilde; // Prop for bakgrunnsbilde
 
@@ -41,15 +43,15 @@
 			<!-- Legg til andre lenker ved behov -->
 			{#if link1}
 				<p class="py-3 mb-4 md:text-2xl lg:text-3xl">
-					<a href={link1} class="text-blue-500 bg-gray-100 px-2 py-1 rounded-3xl md:text-2xl lg:text-3xl hover:underline">
-						Vika 27/2 kl 17:30 - Bestill
+					<a href={link1} target="_blank" rel="noopener noreferrer" class="text-blue-500 bg-gray-100 px-2 py-1 rounded-3xl md:text-2xl lg:text-3xl hover:underline">
+						{tekst1} - Bestill
 					</a>
 				</p>
 			{/if}
 			{#if link2}
 				<p class="py-3 mb-4 md:text-2xl lg:text-3xl">
-					<a href={link2} class="text-blue-500 bg-gray-100 px-2 py-1 rounded-3xl md:text-2xl lg:text-3xl hover:underline">
-						Klingenberg 28/2 kl 17:30 - Bestill
+					<a href={link2} target="_blank" rel="noopener noreferrer" class="text-blue-500 bg-gray-100 px-2 py-1 rounded-3xl md:text-2xl lg:text-3xl hover:underline">
+						{tekst2} - Bestill
 					</a>
 				</p>
 			{/if}
