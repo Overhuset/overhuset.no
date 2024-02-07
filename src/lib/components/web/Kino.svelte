@@ -40,16 +40,16 @@
 			<p class="mb-4 md:text-2xl lg:text-3xl text-white">Stjerner: {stjerner}</p>
 			<!-- Legg til andre lenker ved behov -->
 			{#if link1}
-				<p class="mb-4 md:text-2xl lg:text-3xl">
+				<p class="py-3 mb-4 md:text-2xl lg:text-3xl">
 					<a href={link1} class="text-blue-500 bg-gray-100 px-2 py-1 rounded-3xl md:text-2xl lg:text-3xl hover:underline">
-						Bestill første forestilling her
+						Vika 27/2 kl 17:30 - Bestill
 					</a>
 				</p>
 			{/if}
 			{#if link2}
-				<p class="mb-4 md:text-2xl lg:text-3xl">
+				<p class="py-3 mb-4 md:text-2xl lg:text-3xl">
 					<a href={link2} class="text-blue-500 bg-gray-100 px-2 py-1 rounded-3xl md:text-2xl lg:text-3xl hover:underline">
-						Bestill andre forestilling her
+						Klingenberg 28/2 kl 17:30 - Bestill
 					</a>
 				</p>
 			{/if}
