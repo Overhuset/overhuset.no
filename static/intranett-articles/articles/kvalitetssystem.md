@@ -9,9 +9,9 @@ Det er også et krav at de som jobber på prosjekter gjennom Overhuset skal sett
 Alle filene finner du [her](https://kvalitetssystem.overhuset.no)
 
 De mest sentrale filene å kjenne til er:
-- [Kvalitetshåndboken](https://drive.google.com/drive/u/3/folders/1cO0v987ULtzm3I4dxnIIXpROz27U-YfT)
-- [Rutine for oppdrag](https://drive.google.com/drive/u/3/folders/1cO0v987ULtzm3I4dxnIIXpROz27U-YfT)
-- [Rutine for kompetanse](https://drive.google.com/drive/u/3/folders/1cO0v987ULtzm3I4dxnIIXpROz27U-YfT)
+- [Kvalitetshåndboken](https://drive.google.com/file/d/1YWds1cVNoN6E42XKZg8Qh1BOA9pS7FBG/view?usp=drive_link)
+- [Rutine for oppdrag](https://drive.google.com/file/d/1TP0gtL42byVrsqVDNWd4v2p5feBv1zat/view?usp=drive_link)
+- [Rutine for kompetanse](https://drive.google.com/file/d/1idv9QlXC8CoW2lHVnS8DY2960TbFUwB8/view?usp=drive_link)
 
 For å være en lærende organisasjon trenger vi også å få vite om hendelser. 
 
@@ -30,7 +30,7 @@ man må ikke ha gjort en fullstendig vurdering før man legger inn en hendelse. 
 
 Hensikten med hendelsesrapportering er å lære, og forsøke å sørge for at den samme situasjonen ikke skjer igjen. Dersom man ikke registrerer hendelser blir det vanskelig å dokumentere at man har en lærende organisasjon.
 
-Hendelsesregistrering gjøres [her](hendlese.overhuset.no)
+Hendelsesregistrering gjøres [her](https://hendelse.overhuset.no)
 
 I tillegg til dette trenger dere også å vite om kvalitetspolitikken vår, som på en måte er løftet om hvordan vi driver kvalitetsarbeidet vårt, og som også er ment for eksterne å lese.
 
