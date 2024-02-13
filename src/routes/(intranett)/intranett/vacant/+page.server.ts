@@ -36,6 +36,4 @@ const load: PageServerLoad = async ({ locals }) => {
     return { vacantList, user, authUser};
 };
 
-export {
-    load
-};
+export { load };

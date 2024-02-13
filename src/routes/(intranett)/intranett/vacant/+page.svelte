@@ -1,12 +1,19 @@
 <script lang="ts">
- 	import Vacant from "./VacantRow.svelte";
+	import type {AuthUser, Vacant} from "$lib/types.js";
 	import {invalidateAll} from "$app/navigation";
- 	const api = '/api/vacant';
+	import VacantRow from "./VacantRow.svelte";
+
+	export let data;
+
+	const api = '/api/vacant';
 	const headers = {'content-type': 'application/json'};
-  	export let data;
+	const authUser: AuthUser | undefined = data.authUser;
  	let newVacant: Vacant | undefined = undefined;
+
 	const handleToggleNewForm = () => {
-		newVacant = !!newVacant ? undefined : { createdBy: data?.user?.userId };
+		newVacant = !!newVacant ? undefined : {
+			createdBy: data?.user?.userId
+		};
 	}
 
 	const handleDeleteEntry = async (id: string) => {
@@ -95,7 +102,7 @@
 				<th></th>
 			</tr>
 			{#each data.vacantList as vacant}
-				<Vacant vacant={vacant} authUser={data.authUser} onDelete={handleDeleteEntry} />
+				<VacantRow vacant={vacant} authUser={authUser} onDelete={handleDeleteEntry} />
 			{/each}
 		</table>
 	</div>
