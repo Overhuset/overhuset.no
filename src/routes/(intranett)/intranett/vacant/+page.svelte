@@ -1,5 +1,5 @@
 <script lang="ts">
- 	import Vacant from "./vacant/Vacant.svelte";
+ 	import Vacant from "./VacantRow.svelte";
 	import {invalidateAll} from "$app/navigation";
  	const api = '/api/vacant';
 	const headers = {'content-type': 'application/json'};
@@ -66,7 +66,15 @@
 				<br/>
 				<div class="buttons-container">
 					<button class="secondaryButton" on:click={handleToggleNewForm} > Avbryt </button>
-					<button class="primaryButton" disabled={!(newVacant.email)}> Legg til </button>
+					<button
+						class="primaryButton"
+						disabled={
+							!newVacant.firstName ||
+							!newVacant.lastName ||
+							!newVacant.email ||
+							!newVacant.vacantFrom
+						}
+					> Legg til </button>
 				</div>
 			</form>
 		{/if}
