@@ -30,7 +30,8 @@ const fetchAllVacant = async () => {
 const load: PageServerLoad = async ({ locals }) => {
     const session = await locals.auth.validate();
     const user  = session?.user;
-    const authUser = await fetchAuthUser(user?.userId);
+    const userId = user?.userId;
+    const authUser = userId ? await fetchAuthUser(userId) : undefined;
     const vacantList = await fetchAllVacant();
     return { vacantList, user, authUser};
 };

@@ -24,3 +24,17 @@ export async function DELETE({ request }) {
     }
     return new Response(JSON.stringify({ message: "Vacant deleted" }), { status: 200 });
 }
+
+
+/**
+ * create table vacant_consultant
+ * (
+ *     first_name  varchar not null,
+ *     last_name   varchar not null,
+ *     vacant_from timestamp,
+ *     email       varchar not null,
+ *     comment     varchar,
+ *     created_by  varchar,
+ *     id          uuid    not null
+ * );
+ */

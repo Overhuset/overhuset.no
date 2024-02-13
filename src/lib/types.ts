@@ -9,3 +9,13 @@ export type Event = {
 	location: string;
 	type: 'Åpent' | 'Internt' | 'Online kurs';
 };
+
+export type Vacant = {
+	id?: string;
+	firstName?: string;
+	lastName?: string;
+	vacantFrom?: string;
+	email?: string;
+	comment?: string;
+	createdBy?: string;
+}
