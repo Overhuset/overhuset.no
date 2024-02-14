@@ -18,13 +18,10 @@
 		return "";
  	}
 
-	const getIsCurrentlyVacant = (date?: string) => {
-		if (date) {
-			const d = new Date(date);
+	const getIsCurrentlyVacant = () => {
+			const d = new Date(vacant?.vacantFrom);
 			const now = new Date();
-			return d.getTime() > now.getTime();
-		}
-		return true;
+			return d.getTime() < now.getTime();
 	}
 
 	const getIsSameDomain = (email1?: string, email2?: string) => {
@@ -57,7 +54,7 @@
 		}
 	}
 
-	const isVacant = getIsCurrentlyVacant(vacant.vacantFrom);
+	const isVacant = getIsCurrentlyVacant();
 
 </script>
 
@@ -65,7 +62,7 @@
 <div class="card {isVacant ? 'currentlyVacant' : 'toBeVacant'}">
 	<div class="cardHeader">
  		<div>{vacant.firstName} {vacant.lastName} {getCompanyName(vacant?.createdBy)}</div>
-		<div> Ledig {#if isVacant} nå {:else} fra: {getDateFormat(vacant.vacantFrom)} {/if}</div>
+		<div> Ledig fra: {getDateFormat(vacant.vacantFrom)} </div>
 	</div>
 
 	<div class="divider"></div>

@@ -11,6 +11,16 @@
 	const headers = {'content-type': 'application/json'};
  	let newVacant: Vacant | undefined = undefined;
 
+	 const sortVacantList = (by: "firstName" | "vacantFrom" | "createdAt") => {
+		 const clone = [...data.vacantList];
+		 switch (by) {
+			 case "firstName" : return clone.sort((v1: Vacant, v2: Vacant) =>  (v1.firstName || "").localeCompare(v2.firstName || ""));
+			 case "vacantFrom" : return clone.sort((v1: Vacant, v2: Vacant) =>  (v1.vacantFrom || "").localeCompare(v2.vacantFrom || ""));
+			 case "createdAt" : return clone.reverse();// created at, newest first
+			 default: return clone;
+		 }
+	 }
+
 	const handleToggleNewForm = () => {
 		newVacant = !!newVacant ? undefined : { createdBy: data?.email };
 		open = !open
@@ -39,6 +49,7 @@
 			invalidateAll();
 		}
 	}
+
 </script>
 
 
@@ -49,7 +60,7 @@
 		<div>
 			{#if !open}
 				<div class="buttons-container">
-					<button on:click={handleToggleNewForm} class="cursor-pointer rounded-lg bg-white px-2 py-1"> Registrer ny </button>
+					<button on:click={handleToggleNewForm} class="cursor-pointer rounded-lg bg-white px-2 py-1"> Legg til </button>
 				</div>
 			{/if}
 
@@ -101,6 +112,11 @@
 				{#each data.vacantList as vacant}
 					<VacantRow vacant={vacant} email={data.email} onDelete={handleDeleteEntry} />
 				{/each}
+
+				{#if data.vacantList.length === 0}
+					Ingen ledige konsulenter! :D
+				{/if}
+
 			</div>
 		</div>
 	</div>
