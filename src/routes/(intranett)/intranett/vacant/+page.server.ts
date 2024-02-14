@@ -2,15 +2,11 @@ import type { PageServerLoad } from './$types';
 import {createPool} from "@vercel/postgres";
 
 
-const fetchAuthUser = async (id: string) => {
+const fetchEmail = async (id: string) => {
     const db = createPool();
-    const result = await db.query(`SELECT * FROM auth_user WHERE id = '${id}'`);
-    const parsed = result.rows.map(au => ({
-        id: au.id,
-        email:au.email,
-        username: au.username
-    }));
-    return parsed[0];
+    const result = await db.query(`SELECT email FROM auth_user WHERE id = '${id}'`);
+    const email = result.rows.map(au => au.email);
+    return email[0];
 }
 
 const fetchAllVacant = async () => {
@@ -30,10 +26,9 @@ const fetchAllVacant = async () => {
 const load: PageServerLoad = async ({ locals }) => {
     const session = await locals.auth.validate();
     const user  = session?.user;
-    const userId = user?.userId;
-    const authUser = userId ? await fetchAuthUser(userId) : undefined;
+    const email = user?.userId ? await fetchEmail(user?.userId) : undefined;
     const vacantList = await fetchAllVacant();
-    return { vacantList, user, authUser};
+    return { vacantList, user, email};
 };
 
 export { load };

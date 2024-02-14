@@ -19,9 +19,3 @@ export type Vacant = {
 	comment?: string;
 	createdBy?: string;
 }
-
-export type AuthUser = {
-	id?: string;
-	email?: string;
-	username?: string;
-}

@@ -1,19 +1,19 @@
 <script lang="ts">
-	import type {AuthUser, Vacant} from "$lib/types.js";
+	import type {Vacant} from "$lib/types.js";
 	import {invalidateAll} from "$app/navigation";
-	import VacantRow from "./VacantRow.svelte";
+	import VacantRow from "./VacantCard.svelte";
+	import collapse from 'svelte-collapse'
+	let open = false
 
 	export let data;
 
 	const api = '/api/vacant';
 	const headers = {'content-type': 'application/json'};
-	const authUser: AuthUser | undefined = data.authUser;
  	let newVacant: Vacant | undefined = undefined;
 
 	const handleToggleNewForm = () => {
-		newVacant = !!newVacant ? undefined : {
-			createdBy: data?.user?.userId
-		};
+		newVacant = !!newVacant ? undefined : { createdBy: data?.email };
+		open = !open
 	}
 
 	const handleDeleteEntry = async (id: string) => {
@@ -35,93 +35,103 @@
 				alert("Legge til feilet");
 			}
 			newVacant = undefined;
+			open = false;
 			invalidateAll();
 		}
 	}
 </script>
 
 
-<div class="w-full my-40 grid justify-center text-center gap-20">
-	<h1 class="text-5xl">Ledige konsulenter</h1>
+<div class="prose prose-xl mx-auto p-4 md:py-20">
+	<div class="layout">
+		<h1 class="text-5xl">Ledige konsulenter</h1>
 
-	<dialog open={!!newVacant} class="dialog">
-		<h1 class="text-2xl">Registrer ledig konsulent</h1>
-		<br/>
-
-		{#if !!newVacant}
-			<form on:submit|preventDefault={handleNewEntry}>
-				<div class="row">
-					<label for="first_name">Fornavn</label>
-					<input type="text" bind:value={newVacant.firstName}   />
-				</div>
-				<div class="row">
-					<label for="last_name">Etternavn</label>
-					<input name="last_name" id="last_name" type="text" bind:value={newVacant.lastName}  />
-				</div>
-				<div class="row">
-					<label for="">E-post</label>
-					<input name="email" id="email" type="email" bind:value={newVacant.email}  />
-				</div>
-				<div class="row">
-					<label for="from">Ledig fra</label>
-					<input name="from" id="from" type="date" bind:value={newVacant.vacantFrom}  />
-				</div>
-				<div class="row">
-					<label for="comment">Kommentar</label>
-					<input type="text" bind:value={newVacant.comment}  />
-				</div>
-				<br/>
+		<div>
+			{#if !open}
 				<div class="buttons-container">
-					<button class="secondaryButton" on:click={handleToggleNewForm} > Avbryt </button>
-					<button
-						class="primaryButton"
-						disabled={
-							!newVacant.firstName ||
-							!newVacant.lastName ||
-							!newVacant.email ||
-							!newVacant.vacantFrom
-						}
-					> Legg til </button>
+					<button on:click={handleToggleNewForm} class="cursor-pointer rounded-lg bg-white px-2 py-1"> Registrer ny </button>
 				</div>
-			</form>
-		{/if}
+			{/if}
 
-	</dialog>
-	<div>
-		<div class="buttons-container">
-			<button on:click={handleToggleNewForm} class="cursor-pointer rounded-lg bg-white px-2 py-1"> Registrer ny </button>
+			<div use:collapse={{open}}>
+				{#if !!newVacant}
+					<h3>Registrer ledig konsulent</h3>
+					<form on:submit|preventDefault={handleNewEntry}>
+						<table>
+							<tr>
+								<td>
+									<label for="first_name">Fornavn</label>
+								</td>
+								<td>
+									<input type="text" bind:value={newVacant.firstName}/>
+								</td>
+							</tr>
+							<tr>
+								<td><label for="last_name">Etternavn</label></td>
+								<td><input name="last_name" id="last_name" type="text" bind:value={newVacant.lastName}  /></td>
+							</tr>
+							<tr>
+								<td><label for="from">Ledig fra</label></td>
+								<td><input name="from" id="from" type="date" bind:value={newVacant.vacantFrom}  /></td>
+							</tr>
+							<tr>
+								<td><label for="comment">Kommentar</label></td>
+								<td><textarea bind:value={newVacant.comment}  /></td>
+							</tr>
+						</table>
+						<div class="buttons-container">
+							<button class="secondaryButton" on:click={handleToggleNewForm} > Avbryt </button>
+							<button
+									class="primaryButton"
+									disabled={
+								!newVacant.firstName ||
+								!newVacant.lastName ||
+								!newVacant.vacantFrom ||
+								!newVacant.createdBy
+							}
+							> Legg til </button>
+						</div>
+					</form>
+				{/if}
+			</div>
+
+			<br/>
+
+			<div class="list">
+				{#each data.vacantList as vacant}
+					<VacantRow vacant={vacant} email={data.email} onDelete={handleDeleteEntry} />
+				{/each}
+			</div>
 		</div>
-		<br/>
-
-		<table>
-			<tr>
-				<th>Navn</th>
-				<th>E-post</th>
-				<th>Ledig fra</th>
-				<th>kommentar</th>
-				<th></th>
-			</tr>
-			{#each data.vacantList as vacant}
-				<VacantRow vacant={vacant} authUser={authUser} onDelete={handleDeleteEntry} />
-			{/each}
-		</table>
 	</div>
-
 </div>
 
 <style>
-	th {
-		padding: 0 1rem;
-		text-align: left;
-	}
 	input {
 		border: 1px solid #ababab;
 		border-radius: 0.3rem;
 		padding: 0.2rem 0.4rem;
+		margin-bottom: 0.4rem;
+	}
+	textarea {
+		border: 1px solid #ababab;
+		border-radius: 0.3rem;
+		width: 100%;
+		min-height: 10rem;
 	}
 	button {
 		padding: 0.2rem 0.8rem;
 		border-radius: 0.5rem;
+	}
+	.layout {
+		width: 100%;
+		max-width: 70rem;
+	}
+	.list {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		gap: 0.4rem;
 	}
 	.primaryButton {
 		color: white;
@@ -133,26 +143,11 @@
 	.secondaryButton {
 		color: #4d4d4d;
 	}
-	label {
-		min-width: 6rem;
-		text-align: left;
-	}
-	.row {
-		display: flex;
-		justify-content: flex-start;
-		align-items: center;
-		gap: 0.5rem;
-		margin-bottom: 0.7rem;
-	}
 	.buttons-container {
 		width: 100%;
 		display: flex;
 		justify-content: flex-end;
 		gap: 2rem;
-	}
-	dialog {
-		padding: 1.5rem;
-		border-radius:0.5rem;
 	}
 </style>
 
