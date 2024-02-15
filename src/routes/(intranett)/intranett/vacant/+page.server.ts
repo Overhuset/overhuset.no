@@ -1,6 +1,7 @@
 import type { PageServerLoad } from './$types';
 import {createPool} from "@vercel/postgres";
-
+import { error } from "@sveltejs/kit";
+import { put } from "@vercel/blob";
 
 const fetchEmail = async (id: string) => {
     const db = createPool();
@@ -19,7 +20,9 @@ const fetchAllVacant = async () => {
         email: v.email,
         vacantFrom: v.vacant_from,
         comment: v.comment,
-        createdBy: v.created_by
+        createdBy: v.created_by,
+        createdAt: v.created_by,
+        cv: v.cv
     }));
 }
 
@@ -31,4 +34,22 @@ const load: PageServerLoad = async ({ locals }) => {
     return { vacantList, user, email};
 };
 
-export { load };
+const actions = {
+    // @ts-ignore
+    upload: async ({ request }) => {
+        const form = await request.formData();
+        const file = form.get("file") as File;
+
+        if (!file) {
+            throw error(400, { message: "No file to upload." });
+        }
+
+        const { url } = await put(file.name, file, { access: "public" });
+        return { uploaded: url };
+    },
+};
+
+
+export { load, actions };
+
+export const prerender = false;

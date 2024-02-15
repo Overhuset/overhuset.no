@@ -18,4 +18,6 @@ export type Vacant = {
 	email?: string;
 	comment?: string;
 	createdBy?: string;
+	createdAt?: string;
+	cv?: string;
 }

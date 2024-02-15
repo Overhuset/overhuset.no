@@ -3,9 +3,12 @@
 	import {invalidateAll} from "$app/navigation";
 	import VacantRow from "./VacantCard.svelte";
 	import collapse from 'svelte-collapse'
+	import { enhance } from '$app/forms';
 	let open = false
 
 	export let data;
+	export let actions;
+	export let form;
 
 	const api = '/api/vacant';
 	const headers = {'content-type': 'application/json'};
@@ -53,6 +56,8 @@
 </script>
 
 
+
+
 <div class="prose prose-xl mx-auto p-4 md:py-20">
 	<div class="layout">
 		<h1 class="text-5xl">Ledige konsulenter</h1>
@@ -67,6 +72,13 @@
 			<div use:collapse={{open}}>
 				{#if !!newVacant}
 					<h3>Registrer ledig konsulent</h3>
+					<form use:enhance action="?/upload" method="POST" enctype="multipart/form-data">
+						<input type="file" name="file" required />
+						<button>Velg</button>
+						{#if form}
+							<p>uploaded {form.uploaded}</p>
+						{/if}
+					</form>
 					<form on:submit|preventDefault={handleNewEntry}>
 						<table>
 							<tr>
@@ -103,6 +115,9 @@
 							> Legg til </button>
 						</div>
 					</form>
+
+
+
 				{/if}
 			</div>
 

@@ -1,4 +1,5 @@
 import {createPool} from "@vercel/postgres";
+import { put } from '@vercel/blob';
 import { v4 as uuidv4 } from 'uuid';
 import type {Vacant} from "$lib/types.js";
 
@@ -6,8 +7,8 @@ import type {Vacant} from "$lib/types.js";
 // @ts-ignore
 export async function POST({ request }) {
     const vacant: Vacant = await request.json();
-    const {firstName, lastName, email, vacantFrom, comment, createdBy} = vacant;
-    const sql = `INSERT INTO vacant_consultant (id, first_name, last_name, vacant_from, comment, created_by) VALUES ('${uuidv4()}', '${firstName}', '${lastName}', '${vacantFrom}', '${comment}', '${createdBy}')`;
+    const {firstName, lastName, email, vacantFrom, comment, createdBy, createdAt, cv} = vacant;
+    const sql = `INSERT INTO vacant_consultant (id, first_name, last_name, vacant_from, comment, created_by, created_at, cv) VALUES ('${uuidv4()}', '${firstName}', '${lastName}', '${vacantFrom}', '${comment}', '${createdBy}', '${createdAt}', '${cv}')`;
     const db = createPool();
     await db.query(sql);
     return new Response(JSON.stringify({ message: "Vacant created" }), { status: 200 });
@@ -34,6 +35,8 @@ export async function DELETE({ request }) {
  *     vacant_from timestamp,
  *     comment     varchar,
  *     created_by  varchar,
- *     id          uuid    not null
+ *     id          uuid    not null,
+ *     created_at  timestamp,
+ *     cv          varchar
  * );
  */
