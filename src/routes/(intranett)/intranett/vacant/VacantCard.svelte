@@ -54,6 +54,12 @@
 		}
 	}
 
+	const handleOpenCV = () => {
+		if (vacant?.cv) {
+			window.open(vacant.cv,"_self");
+		}
+	}
+
 	const isVacant = getIsCurrentlyVacant();
 
 </script>
@@ -61,8 +67,13 @@
 
 <div class="card {isVacant ? 'currentlyVacant' : 'toBeVacant'}">
 	<div class="cardHeader">
- 		<div>{vacant.firstName} {vacant.lastName} {getCompanyName(vacant?.createdBy)}</div>
-		<div> Ledig fra: {getDateFormat(vacant.vacantFrom)} </div>
+ 		<div>{vacant.firstName} {vacant.lastName}
+			{getCompanyName(vacant?.createdBy)}
+		</div>
+		<div>
+			Ledig
+			{#if isVacant} nå {:else} fra {getDateFormat(vacant.vacantFrom)} {/if}
+		</div>
 	</div>
 
 	<div class="divider"></div>
@@ -71,13 +82,15 @@
 
 	<div class="CardButtonsContainer">
 		<div>Kontakt: <a href="mailto: {vacant.createdBy}">{vacant.createdBy}</a></div>
+		{#if vacant.cv}
+			<button on:click={handleOpenCV} class="cardButton">CV</button>
+		{/if}
+		{#if getDeleteAllowed()}
+			<button class="cardButton" on:click={handleDelete}>Slett</button>
+		{/if}
 	</div>
 
-	{#if getDeleteAllowed()}
-		<div class="CardButtonsContainer">
-			<button class="deleteButton" on:click={handleDelete}>Slett</button>
-		</div>
-	{/if}
+
 </div>
 
 
@@ -120,13 +133,16 @@
 	}
 	.CardButtonsContainer {
 		width: 100%;
-		text-align: right;
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-end;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 1rem;
 	}
-	.deleteButton {
-		padding: 0.2rem 0.8rem;
+	.cardButton {
+		padding: 0.1rem 0.5rem;
 		border-radius: 0.5rem;
  		border: 1px solid silver;
-		color: white;
-		background-color: rgb(115, 66, 13);
-	}
+ 	}
 </style>

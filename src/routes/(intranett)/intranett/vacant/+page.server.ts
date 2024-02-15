@@ -12,7 +12,7 @@ const fetchEmail = async (id: string) => {
 
 const fetchAllVacant = async () => {
     const db = createPool();
-    const result = await db.query('SELECT * FROM vacant_consultant');
+    const result = await db.query('SELECT * FROM vacant_consultant ORDER by vacant_from ASC');
     return result.rows.map(v => ({
         id: v.id,
         firstName: v.first_name,
@@ -38,7 +38,7 @@ const actions = {
     // @ts-ignore
     upload: async ({ request }) => {
         const form = await request.formData();
-        const file = form.get("file") as File;
+        const file = form.get("cv") as File;
 
         if (!file) {
             throw error(400, { message: "No file to upload." });

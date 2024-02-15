@@ -25,8 +25,16 @@
 	 }
 
 	const handleToggleNewForm = () => {
-		newVacant = !!newVacant ? undefined : { createdBy: data?.email };
-		open = !open
+		if (!!newVacant) {
+			open = false;
+			newVacant = undefined;
+			if (form?.uploaded) {
+				form.uploaded = undefined;
+			}
+		} else {
+			open = true;
+			newVacant = { createdBy: data?.email};
+		}
 	}
 
 	const handleDeleteEntry = async (id: string) => {
@@ -42,12 +50,14 @@
 
 	const handleNewEntry = async () => {
 		if (newVacant) {
-			const body = JSON.stringify( newVacant );
+			console.log("form.uploaded: ", form?.uploaded)
+			const body = JSON.stringify( {...newVacant, cv: form?.uploaded || null} );
 			const response = await fetch(api, {method: 'POST', body, headers});
 			if (response.status !== 200) {
 				alert("Legge til feilet");
 			}
 			newVacant = undefined;
+			form.uploaded = undefined;
 			open = false;
 			invalidateAll();
 		}
@@ -72,22 +82,12 @@
 			<div use:collapse={{open}}>
 				{#if !!newVacant}
 					<h3>Registrer ledig konsulent</h3>
-					<form use:enhance action="?/upload" method="POST" enctype="multipart/form-data">
-						<input type="file" name="file" required />
-						<button>Velg</button>
-						{#if form}
-							<p>uploaded {form.uploaded}</p>
-						{/if}
-					</form>
+
 					<form on:submit|preventDefault={handleNewEntry}>
 						<table>
 							<tr>
-								<td>
-									<label for="first_name">Fornavn</label>
-								</td>
-								<td>
-									<input type="text" bind:value={newVacant.firstName}/>
-								</td>
+								<td><label for="first_name">Fornavn</label></td>
+								<td><input name="first_name" id="first_name" type="text" bind:value={newVacant.firstName}/></td>
 							</tr>
 							<tr>
 								<td><label for="last_name">Etternavn</label></td>
@@ -101,12 +101,32 @@
 								<td><label for="comment">Kommentar</label></td>
 								<td><textarea bind:value={newVacant.comment}  /></td>
 							</tr>
+							<tr>
+								<td>
+									<label for="cv">
+										CV {#if form?.uploaded} (lastet inn){/if}
+									</label>
+								</td>
+								<td>
+									<form use:enhance action="?/upload" method="POST" enctype="multipart/form-data">
+ 										<input type="file" required name="cv" id="cv" class="cvInput"/>
+										<button class="secondaryButton">Last opp</button>
+									</form>
+								</td>
+							</tr>
+							<tr>
+								<td>
+								</td>
+								<td>
+
+								</td>
+							</tr>
 						</table>
+
+
 						<div class="buttons-container">
 							<button class="secondaryButton" on:click={handleToggleNewForm} > Avbryt </button>
-							<button
-									class="primaryButton"
-									disabled={
+							<button class="primaryButton" disabled={
 								!newVacant.firstName ||
 								!newVacant.lastName ||
 								!newVacant.vacantFrom ||
@@ -115,12 +135,10 @@
 							> Legg til </button>
 						</div>
 					</form>
-
-
-
 				{/if}
 			</div>
 
+			<br/>
 			<br/>
 
 			<div class="list">
@@ -144,11 +162,15 @@
 		padding: 0.2rem 0.4rem;
 		margin-bottom: 0.4rem;
 	}
+	label {
+		margin-right: 2rem;
+	}
 	textarea {
 		border: 1px solid #ababab;
 		border-radius: 0.3rem;
 		width: 100%;
 		min-height: 10rem;
+		padding: 0.2rem 0.4rem;
 	}
 	button {
 		padding: 0.2rem 0.8rem;
@@ -172,13 +194,17 @@
 		opacity: 0.4;
 	}
 	.secondaryButton {
+		border: 1px solid silver;
 		color: #4d4d4d;
 	}
 	.buttons-container {
 		width: 100%;
 		display: flex;
 		justify-content: flex-end;
-		gap: 2rem;
+		gap: 1rem;
+	}
+	.cvInput {
+		background-color: white;
 	}
 </style>
 
