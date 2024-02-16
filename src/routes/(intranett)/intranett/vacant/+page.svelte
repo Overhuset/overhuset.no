@@ -13,6 +13,7 @@
 	const api = '/api/vacant';
 	const headers = {'content-type': 'application/json'};
  	let newVacant: Vacant | undefined = undefined;
+	let isUploadingCV: boolean = false;
 
 	 const sortVacantList = (by: "firstName" | "vacantFrom" | "createdAt") => {
 		 const clone = [...data.vacantList];
@@ -24,16 +25,25 @@
 		 }
 	 }
 
+	const onCloseForm = () => {
+		open = false;
+		newVacant = undefined;
+		isUploadingCV = false;
+		if (form) {
+			form.uploaded = "";
+		}
+	}
+
+	const onOpenForm = () => {
+		open = true;
+		newVacant = { createdBy: data?.email};
+	}
+
 	const handleToggleNewForm = () => {
 		if (!!newVacant) {
-			open = false;
-			newVacant = undefined;
-			if (form?.uploaded) {
-				form.uploaded = undefined;
-			}
+			onCloseForm();
 		} else {
-			open = true;
-			newVacant = { createdBy: data?.email};
+			onOpenForm();
 		}
 	}
 
@@ -41,24 +51,22 @@
 		if (id) {
 			const body = JSON.stringify( id );
 			const response = await fetch(api, {method: 'DELETE', body, headers});
-			if (response.status !== 200) {
-				alert("Sletting feilet");
-			}
+			if (response.status !== 200) alert("Sletting feilet");
 			invalidateAll();
 		}
 	}
 
+
+	const handleUploadStart = () => {
+		isUploadingCV = true;
+	}
+
 	const handleNewEntry = async () => {
 		if (newVacant) {
-			console.log("form.uploaded: ", form?.uploaded)
-			const body = JSON.stringify( {...newVacant, cv: form?.uploaded || null} );
+ 			const body = JSON.stringify( {...newVacant, cv: form?.uploaded || null} );
 			const response = await fetch(api, {method: 'POST', body, headers});
-			if (response.status !== 200) {
-				alert("Legge til feilet");
-			}
-			newVacant = undefined;
-			form.uploaded = undefined;
-			open = false;
+			if (response.status !== 200) alert("Legge til feilet");
+			onCloseForm();
 			invalidateAll();
 		}
 	}
@@ -82,7 +90,6 @@
 			<div use:collapse={{open}}>
 				{#if !!newVacant}
 					<h3>Registrer ledig konsulent</h3>
-
 					<form on:submit|preventDefault={handleNewEntry}>
 						<table>
 							<tr>
@@ -104,35 +111,28 @@
 							<tr>
 								<td>
 									<label for="cv">
-										CV {#if form?.uploaded} (lastet inn){/if}
+										CV {#if form?.uploaded} (lastet inn) {/if}
 									</label>
 								</td>
 								<td>
 									<form use:enhance action="?/upload" method="POST" enctype="multipart/form-data">
  										<input type="file" required name="cv" id="cv" class="cvInput"/>
-										<button class="secondaryButton">Last opp</button>
+										<button class="secondaryButton" on:click={handleUploadStart}>
+											{#if !form?.uploaded && isUploadingCV} laster... {:else} Last opp {/if}
+										</button>
 									</form>
-								</td>
-							</tr>
-							<tr>
-								<td>
-								</td>
-								<td>
-
 								</td>
 							</tr>
 						</table>
 
-
 						<div class="buttons-container">
-							<button class="secondaryButton" on:click={handleToggleNewForm} > Avbryt </button>
+							<button class="secondaryButton" on:click={handleToggleNewForm}> Avbryt </button>
 							<button class="primaryButton" disabled={
 								!newVacant.firstName ||
 								!newVacant.lastName ||
 								!newVacant.vacantFrom ||
 								!newVacant.createdBy
-							}
-							> Legg til </button>
+							}> Legg til </button>
 						</div>
 					</form>
 				{/if}
@@ -145,11 +145,9 @@
 				{#each data.vacantList as vacant}
 					<VacantRow vacant={vacant} email={data.email} onDelete={handleDeleteEntry} />
 				{/each}
-
 				{#if data.vacantList.length === 0}
 					Ingen ledige konsulenter! :D
 				{/if}
-
 			</div>
 		</div>
 	</div>
