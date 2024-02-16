@@ -36,7 +36,7 @@
 	};
 
 	const getDeleteAllowed = () => {
-		const isSameDomain = getIsSameDomain(email, vacant.email);
+		const isSameDomain = getIsSameDomain(email, vacant.createdBy);
 		const isSameCreator = email === vacant.createdBy;
 		return isSameDomain || isSameCreator;
 	};
