@@ -18,7 +18,7 @@
 	 const sortVacantList = (by: "firstName" | "vacantFrom" | "createdAt") => {
 		 const clone = [...data.vacantList];
 		 switch (by) {
-			 case "firstName" : return clone.sort((v1: Vacant, v2: Vacant) =>  (v1.firstName || "").localeCompare(v2.firstName || ""));
+			 case "firstName" : return clone.sort((v1: Vacant, v2: Vacant) =>  (v1.name || "").localeCompare(v2.name || ""));
 			 case "vacantFrom" : return clone.sort((v1: Vacant, v2: Vacant) =>  (v1.vacantFrom || "").localeCompare(v2.vacantFrom || ""));
 			 case "createdAt" : return clone.reverse();// created at, newest first
 			 default: return clone;
@@ -93,12 +93,8 @@
 					<form on:submit|preventDefault={handleNewEntry}>
 						<table>
 							<tr>
-								<td><label for="first_name">Fornavn</label></td>
-								<td><input name="first_name" id="first_name" type="text" bind:value={newVacant.firstName}/></td>
-							</tr>
-							<tr>
-								<td><label for="last_name">Etternavn</label></td>
-								<td><input name="last_name" id="last_name" type="text" bind:value={newVacant.lastName}  /></td>
+								<td><label for="name">Navn</label></td>
+								<td><input name="name" id="name" type="text" bind:value={newVacant.name}/></td>
 							</tr>
 							<tr>
 								<td><label for="from">Ledig fra</label></td>
@@ -128,8 +124,7 @@
 						<div class="buttons-container">
 							<button class="secondaryButton" on:click={handleToggleNewForm}> Avbryt </button>
 							<button class="primaryButton" disabled={
-								!newVacant.firstName ||
-								!newVacant.lastName ||
+								!newVacant.name ||
 								!newVacant.vacantFrom ||
 								!newVacant.createdBy
 							}> Legg til </button>

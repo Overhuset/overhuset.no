@@ -15,8 +15,7 @@ const fetchAllVacant = async () => {
     const result = await db.query('SELECT * FROM vacant_consultant ORDER by vacant_from ASC');
     return result.rows.map(v => ({
         id: v.id,
-        firstName: v.first_name,
-        lastName: v.last_name,
+        name: v.name,
         email: v.email,
         vacantFrom: v.vacant_from,
         comment: v.comment,

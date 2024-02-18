@@ -67,7 +67,7 @@
 
 <div class="card {isVacant ? 'currentlyVacant' : 'toBeVacant'}">
 	<div class="cardHeader">
- 		<div>{vacant.firstName} {vacant.lastName}
+ 		<div>{vacant.name}
 			{getCompanyName(vacant?.createdBy)}
 		</div>
 		<div>

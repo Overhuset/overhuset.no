@@ -12,8 +12,7 @@ export type Event = {
 
 export type Vacant = {
 	id?: string;
-	firstName?: string;
-	lastName?: string;
+	name?: string;
 	vacantFrom?: string;
 	email?: string;
 	comment?: string;

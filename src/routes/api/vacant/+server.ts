@@ -14,9 +14,9 @@ const getNow = () => {
 // @ts-ignore
 export async function POST({ request }) {
     const vacant: Vacant = await request.json();
-    const {firstName, lastName, email, vacantFrom, comment, createdBy, cv} = vacant;
+    const {name, email, vacantFrom, comment, createdBy, cv} = vacant;
     const now = getNow();
-    const sql = `INSERT INTO vacant_consultant (id, first_name, last_name, vacant_from, comment, created_by, created_at,  cv) VALUES ('${uuidv4()}', '${firstName}', '${lastName}', '${vacantFrom}', '${comment}', '${createdBy}', '${now}', '${cv}')`;
+    const sql = `INSERT INTO vacant_consultant (id, name, vacant_from, comment, created_by, created_at,  cv) VALUES ('${uuidv4()}', '${name}', '${vacantFrom}', '${comment}', '${createdBy}', '${now}', '${cv}')`;
     const db = createPool();
     await db.query(sql);
     return new Response(JSON.stringify({ message: "Vacant created" }), { status: 200 });
