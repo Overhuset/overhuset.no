@@ -107,7 +107,7 @@
 						<input name="name" id="name" type="text" bind:value={newVacant.name}/>
 						<label for="from">Ledig fra *</label>
 						<input name="from" id="from" type="date" bind:value={newVacant.vacantFrom}/>
-						<label for="comment">Kommentar</label>
+						<label for="comment">Beskrivelse / kompetanse</label>
 						<textarea bind:value={newVacant.comment}/>
 
 						<form use:enhance action="?/upload" method="POST" enctype="multipart/form-data">
