@@ -24,6 +24,14 @@
 			return d.getTime() < now.getTime();
 	}
 
+	const getCvShortName = () => {
+		if (vacant?.cv && vacant?.cv?.length > 5) {
+			const split = vacant?.cv.split("/");
+			return split[split.length-1];
+		}
+		return undefined;
+	}
+
 	const getIsSameDomain = (email1?: string, email2?: string) => {
 		if (!email1 || !email2) {
 			return false;
@@ -54,6 +62,10 @@
 		}
 	}
 
+	const handleMailTo = () => {
+		location.href = "mailto:"+vacant.createdBy+'?subject=Ledig konsulent - '+vacant.name;
+	}
+
 	const handleOpenCV = () => {
 		if (vacant?.cv) {
 			window.open(vacant.cv,"_self");
@@ -71,26 +83,26 @@
 			{getCompanyName(vacant?.createdBy)}
 		</div>
 		<div>
-			Ledig
-			{#if isVacant} nå {:else} fra {getDateFormat(vacant.vacantFrom)} {/if}
+			{#if isVacant}
+				Ledig nå
+			{:else}
+				fra {getDateFormat(vacant.vacantFrom)}
+			{/if}
 		</div>
 	</div>
 
 	<div class="divider"></div>
-
 	<div class="cardComment">{vacant.comment || "" }</div>
-
 	<div class="CardButtonsContainer">
-		<div>Kontakt: <a href="mailto: {vacant.createdBy}">{vacant.createdBy}</a></div>
-		{#if vacant.cv}
-			<button on:click={handleOpenCV} class="cardButton">CV</button>
+
+		{#if getCvShortName()}
+			<button on:click={handleOpenCV} class="cardButton" title={"CV: " + getCvShortName()}>Gå til CV</button>
 		{/if}
+		<button class="cardButton" on:click={handleMailTo}>kontakt {vacant.createdBy}</button>
 		{#if getDeleteAllowed()}
 			<button class="cardButton" on:click={handleDelete}>Slett</button>
 		{/if}
 	</div>
-
-
 </div>
 
 
@@ -101,7 +113,7 @@
 		flex-direction: row;
 		justify-content: flex-start;
 		flex-wrap: wrap;
- 		padding: 0.7rem;
+ 		padding: 1rem;
 		background-color: #fcfcfc;
 		border-radius: 0.5rem;
 	}
@@ -129,7 +141,8 @@
 		padding: 0 0.4rem;
 		text-align: left;
 		min-height: 5rem;
- 		margin-bottom: 1rem;
+ 		margin-top: 0.5rem;
+ 		margin-bottom: 1.5rem;
 	}
 	.CardButtonsContainer {
 		width: 100%;
