@@ -68,7 +68,7 @@
 
 	const handleOpenCV = () => {
 		if (vacant?.cv) {
-			window.open(vacant.cv,"_self");
+			window.open(vacant.cv,"_blank");
 		}
 	}
 
