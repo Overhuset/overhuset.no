@@ -29,9 +29,10 @@
 			{#if isLinkItem(item)}
 				<a href={`/intranett/${item.slug}`}>{item.title}</a>
 			{:else}
-				{item.title} ⬇️
+				{item.title}
 			{/if}
 		{/each}
+		<a href={`/intranett/ledig`}>Ledig</a>
 	</div>
 	<svelte:fragment slot="trail">
 		{#if loggedIn}
