@@ -50,94 +50,9 @@
 		return isSameDomain || isSameCreator;
 	};
 
-	const getCompanyName = (createdBy?: string) => {
-		const domain = overhusetDomains.find(domain => createdBy?.includes(domain));
+	const getCompanyName = () => {
+		const domain = overhusetDomains.find(domain => vacant.createdBy?.includes(domain));
 		return domain ? `${domain.split('.')[0]}` : "";
-	}
-
-	const getCompanyIcon = () => {
-
-		const companies = [
-			 {
-			href: 'https://www.advansia.no/',
-					imgSrc: '/companies/advansia_logo.svg',
-					name: 'Advansia',
-		},
-	 {
-			href: 'https://afry.com/no-no',
-					imgSrc: '/companies/afry_logo.png',
-					name: 'Afry',
-		},
-	 {
-			href: 'https://www.arktekk.no',
-					imgSrc: '/companies/arktekk_logo.png',
-					name: 'Arktekk',
-		},
-		 {
-			href: 'https://boitano.no',
-					imgSrc: '/companies/boitano_logo.svg',
-					name: 'Boitano',
-		},
-		{
-			href: 'https://www.edisys.no/',
-					imgSrc: '/companies/edisys_logo.png',
-					name: 'Edisys',
-		},
-		{
-			href: 'https://www.fink.no/',
-					imgSrc: '/companies/fink_logo.png',
-					name: 'Fink',
-		},
-		{
-			href: 'https://www.forse.no/',
-					imgSrc: '/companies/forse_logo.svg',
-					name: 'Forse',
-		},
-		 {
-			href: 'https://www.jpro.no/',
-					imgSrc: '/companies/jpro_logo.png',
-					name: 'Jpro',
-		},
-		 {
-			href: 'https://www.kodemaker.no/',
-					imgSrc: '/companies/kodemaker_logo.png',
-					name: 'Kodemaker',
-		},
-		{
-			href: 'https://www.redpill-linpro.com/no',
-					imgSrc: '/companies/redpill_logo.svg',
-					name: 'Redpill Linpro',
-		},
-		 {
-			href: 'https://www.sannsyn.com/no',
-					imgSrc: '/companies/sannsyn_logo.png',
-					name: 'Sannsyn',
-		},
-		 {
-			href: 'https://www.techfolk.no/',
-					imgSrc: '/companies/techfolk_logo.svg',
-					name: 'Techfolk',
-		},
-	{
-			href: 'https://www.uptimeconsulting.no/',
-					imgSrc: '/companies/uptime_logo.png',
-					name: 'Uptime',
-		},
-	{
-			href: 'https://www.variant.no/',
-					imgSrc: '/companies/variant_logo.svg',
-					name: 'Variant',
-		},
-		 {
-			href: 'https://www.zenior.no/',
-					imgSrc: '/companies/zenior_logo.png',
-					name: 'Zenior',
-		}
-		]
-
-		const companyName = getCompanyName(vacant?.createdBy);
-		const company = companies?.find(company => company.name.toLowerCase().includes(companyName.toLowerCase()));
-		return company?.imgSrc;
 	}
 
 	const handleDelete = () => {
@@ -165,8 +80,8 @@
 
 <div class="card {isVacant ? 'currentlyVacant' : 'toBeVacant'}">
 	<div class="cardHeader">
- 		<div class="nameCompany">
-			<span style="float:left">{vacant.name}</span> <img src={getCompanyIcon()} class="w-10"/>
+ 		<div>
+			<span style="float:left">{vacant.name} - {getCompanyName()}</span>
 		</div>
 		<div>
 			{#if isVacant}
@@ -175,7 +90,6 @@
 				fra {getDateFormat(vacant.vacantFrom)}
 			{/if}
 		</div>
-
 	</div>
 
 	<div class="divider"></div>
@@ -229,6 +143,8 @@
 		min-height: 5rem;
  		margin-top: 0.5rem;
  		margin-bottom: 1.5rem;
+		max-height: 15rem;
+		overflow-y: auto;
 	}
 	.CardButtonsContainer {
 		width: 100%;
@@ -236,13 +152,6 @@
 		flex-direction: row;
 		justify-content: flex-end;
 		align-items: center;
-		flex-wrap: wrap;
-		gap: 1rem;
-	}
-	.nameCompany {
-		display: flex;
-		flex-direction: row;
-		justify-content: flex-start;
 		flex-wrap: wrap;
 		gap: 1rem;
 	}
