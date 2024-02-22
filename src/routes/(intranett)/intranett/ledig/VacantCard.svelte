@@ -5,23 +5,32 @@
 	export let vacant: Vacant;
 	export let email: string | undefined;
  	export let onDelete: (id: string) => void;
+ 	export let onChange: (vacant: Vacant) => void;
+
+	const getIsCurrentlyVacant = () => {
+		const d = vacant?.vacantFrom ? new Date(vacant?.vacantFrom) : new Date();
+		const now = new Date();
+		return d.getTime() < now.getTime();
+	}
+
+	let changeVacant: Vacant | undefined;
+	const currentlyVacant = getIsCurrentlyVacant();
 
 
 
 	const getDateFormat = (date?: string) => {
 		if (date) {
-			let d = new Date(date), month = '' + (d.getMonth() + 1), day = '' + d.getDate(), year = d.getFullYear();
-			if (month.length < 2) month = '0' + month;
-			if (day.length < 2) day = '0' + day;
+			let d = new Date(date), month = `${d.getMonth() + 1}`, day = '' + d.getDate(), year = d.getFullYear();
+			if (month.length < 2) month = `0${month}`;
+			if (day.length < 2) day = `0${day}`;
 			return [day, month, year, ].join('.');
 		}
 		return "";
- 	}
+	}
 
-	const getIsCurrentlyVacant = () => {
-			const d = new Date(vacant?.vacantFrom);
-			const now = new Date();
-			return d.getTime() < now.getTime();
+	const getCompanyName = () => {
+		const domain = overhusetDomains.find(domain => vacant.createdBy?.includes(domain));
+		return domain ? `${domain.split('.')[0]}` : "";
 	}
 
 	const getCvShortName = () => {
@@ -43,16 +52,11 @@
 		return getEmailDomain(email1) === getEmailDomain(email2);
 	};
 
-	const getDeleteAllowed = () => {
+	const getCanChange = () => {
 		const isSameDomain = getIsSameDomain(email, vacant.createdBy);
 		const isSameCreator = email === vacant.createdBy;
 		return isSameDomain || isSameCreator;
 	};
-
-	const getCompanyName = (createdBy?: string) => {
-		const domain = overhusetDomains.find(domain => createdBy?.includes(domain));
-		return domain ? `(${domain.split('.')[0]})` : "";
-	}
 
 	const handleDelete = () => {
 		if (vacant?.id) {
@@ -63,44 +67,80 @@
 	}
 
 	const handleMailTo = () => {
-		location.href = "mailto:"+vacant.createdBy+'?subject=Ledig konsulent - '+vacant.name;
+		location.href = `mailto:${vacant.createdBy}?subject=Ledig konsulent - ${vacant.name}`;
 	}
 
 	const handleOpenCV = () => {
 		if (vacant?.cv) {
-			window.open(vacant.cv,"_self");
+			window.open(vacant.cv,"_blank");
 		}
 	}
 
-	const isVacant = getIsCurrentlyVacant();
+	const handleSaveChanges = () => {
+		if (changeVacant?.id) {
+			onChange(changeVacant);
+			handleChangeModeToggle();
+		}
+	}
+
+	const handleChangeModeToggle = () => {
+		changeVacant = changeVacant ? undefined : {...vacant}
+	}
 
 </script>
 
 
-<div class="card {isVacant ? 'currentlyVacant' : 'toBeVacant'}">
+<div class="card {currentlyVacant ? 'currentlyVacant' : 'toBeVacant'}">
 	<div class="cardHeader">
- 		<div>{vacant.name}
-			{getCompanyName(vacant?.createdBy)}
-		</div>
-		<div>
-			{#if isVacant}
-				Ledig nå
+ 		<div>
+			{#if changeVacant}
+				<input
+					name="name"
+					id="name"
+					type="text"
+					bind:value={changeVacant.name}
+				/>
 			{:else}
-				fra {getDateFormat(vacant.vacantFrom)}
+				<span>{`${vacant.name} - ${getCompanyName()}`}</span>
+			{/if}
+		</div>
+
+		<div>
+			{#if changeVacant}
+				<input name="from" id="from" type="date" bind:value={changeVacant.vacantFrom}/>
+			{:else}
+				<span>{currentlyVacant ? "Ledig nå" : `fra ${getDateFormat(vacant.vacantFrom)}`}</span>
 			{/if}
 		</div>
 	</div>
 
 	<div class="divider"></div>
-	<div class="cardComment">{vacant.comment || "" }</div>
-	<div class="CardButtonsContainer">
 
-		{#if getCvShortName()}
-			<button on:click={handleOpenCV} class="cardButton" title={"CV: " + getCvShortName()}>Gå til CV</button>
-		{/if}
-		<button class="cardButton" on:click={handleMailTo}>kontakt {vacant.createdBy}</button>
-		{#if getDeleteAllowed()}
-			<button class="cardButton" on:click={handleDelete}>Slett</button>
+	{#if changeVacant}
+		<textarea
+			bind:value={changeVacant.comment}
+			class="cardComment"
+			style="min-height: 10rem"
+		/>
+	{:else}
+		<div class="cardComment">
+			{vacant.comment || "" }
+		</div>
+	{/if}
+
+	<div class="CardButtonsContainer">
+		{#if changeVacant}
+			<button class="cardButton" on:click={handleChangeModeToggle}>Avbryt</button>
+			<button class="cardButton" on:click={handleSaveChanges}>Lagre</button>
+		{:else}
+			{#if getCvShortName()}
+				<button on:click={handleOpenCV} class="cardButton" title={getCvShortName()}>Gå til CV</button>
+			{/if}
+			<button class="cardButton" on:click={handleMailTo}>kontakt {vacant.createdBy}</button>
+			{#if getCanChange()}
+				<button class="cardButton" on:click={handleChangeModeToggle}>Endre</button>
+				<button class="cardButton" on:click={handleDelete}>Slett</button>
+			{/if}
 		{/if}
 	</div>
 </div>
@@ -108,6 +148,18 @@
 
 
 <style>
+	input {
+		border: 1px solid #ababab;
+		border-radius: 0.3rem;
+		padding: 0.2rem 0.4rem;
+	}
+	textarea {
+		border: 1px solid #ababab;
+		border-radius: 0.3rem;
+		width: 100%;
+		min-height: 9rem;
+		padding: 0.2rem 0.4rem;
+	}
 	.card {
 		display: flex;
 		flex-direction: row;
@@ -143,6 +195,8 @@
 		min-height: 5rem;
  		margin-top: 0.5rem;
  		margin-bottom: 1.5rem;
+		max-height: 15rem;
+		overflow-y: auto;
 	}
 	.CardButtonsContainer {
 		width: 100%;

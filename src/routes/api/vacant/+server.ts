@@ -1,5 +1,4 @@
 import {createPool} from "@vercel/postgres";
-import { put } from '@vercel/blob';
 import { v4 as uuidv4 } from 'uuid';
 import type {Vacant} from "$lib/types.js";
 
@@ -14,12 +13,31 @@ const getNow = () => {
 // @ts-ignore
 export async function POST({ request }) {
     const vacant: Vacant = await request.json();
-    const {name, email, vacantFrom, comment, createdBy, cv} = vacant;
-    const now = getNow();
-    const sql = `INSERT INTO vacant_consultant (id, name, vacant_from, comment, created_by, created_at,  cv) VALUES ('${uuidv4()}', '${name}', '${vacantFrom}', '${comment}', '${createdBy}', '${now}', '${cv}')`;
-    const db = createPool();
-    await db.query(sql);
-    return new Response(JSON.stringify({ message: "Vacant created" }), { status: 200 });
+
+    if (vacant?.id) {
+        const {id, name, comment, vacantFrom} = vacant;
+        const uuidLength = 36;
+        if (id && id.length === uuidLength) {
+            const sql = `UPDATE vacant_consultant SET name='${name}', comment='${comment}', vacant_from='${vacantFrom}' WHERE id='${id}'`;
+            const db = createPool();
+            await db.query(sql);
+        }
+        return new Response(JSON.stringify({ message: "Vacant updated" }), { status: 200 });
+
+    } else {
+        const {name, email, vacantFrom, comment, createdBy, cv} = vacant;
+        const now = getNow();
+        const sql = `INSERT INTO vacant_consultant (id, name, vacant_from, comment, created_by, created_at,  cv) VALUES ('${uuidv4()}', '${name}', '${vacantFrom}', '${comment}', '${createdBy}', '${now}', '${cv}')`;
+        const db = createPool();
+        await db.query(sql);
+        return new Response(JSON.stringify({ message: "Vacant created" }), { status: 200 });
+    }
+}
+
+
+// @ts-ignore
+export async function PUT ({ request }) {
+
 }
 
 // @ts-ignore

@@ -82,6 +82,15 @@
 		}
 	}
 
+	const handleChangeEntry = async (changedVacant: Vacant) => {
+		if (changedVacant) {
+			const body = JSON.stringify({...changedVacant});
+			const response = await fetch(api, {method: 'POST', body, headers});
+			if (response.status !== 200) alert("Endre feilet");
+			invalidateAll();
+		}
+	}
+
 </script>
 
 
@@ -151,7 +160,7 @@
 
 			<div class="list">
 				{#each data.vacantList as vacant}
-					<VacantRow vacant={vacant} email={data.email} onDelete={handleDeleteEntry} />
+					<VacantRow vacant={vacant} email={data.email} onDelete={handleDeleteEntry} onChange={handleChangeEntry} />
 				{/each}
 				{#if data.vacantList.length === 0}
 					Ingen ledige konsulenter! :D
@@ -189,7 +198,6 @@
 		padding: 0.2rem 0.8rem;
 		border-radius: 0.5rem;
 	}
-
 	.layout {
 		width: 100%;
 		max-width: 70rem;
