@@ -28,6 +28,16 @@
 		return "";
 	}
 
+	const getDateFormatDatePicker = (date?: string) => {
+		if (date) {
+			let d = new Date(date), month = `${d.getMonth() + 1}`, day = '' + d.getDate(), year = d.getFullYear();
+			if (month.length < 2) month = `0${month}`;
+			if (day.length < 2) day = `0${day}`;
+			return [year, month, day ].join('-');
+		}
+		return "";
+	}
+
 	const getCompanyName = () => {
 		const domain = overhusetDomains.find(domain => vacant.createdBy?.includes(domain));
 		return domain ? `${domain.split('.')[0]}` : "";
@@ -84,8 +94,9 @@
 	}
 
 	const handleChangeModeToggle = () => {
-		changeVacant = changeVacant ? undefined : {...vacant}
+		changeVacant = changeVacant ? undefined : {...vacant, vacantFrom: getDateFormatDatePicker(vacant?.vacantFrom)}
 	}
+
 
 </script>
 
@@ -107,7 +118,7 @@
 
 		<div>
 			{#if changeVacant}
-				<input name="from" id="from" type="date" bind:value={changeVacant.vacantFrom}/>
+				<input name="from" id="from" type="date"  bind:value={changeVacant.vacantFrom}/>
 			{:else}
 				<span>{currentlyVacant ? "Ledig nå" : `fra ${getDateFormat(vacant.vacantFrom)}`}</span>
 			{/if}

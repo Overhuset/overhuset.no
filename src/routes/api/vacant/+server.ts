@@ -36,11 +36,6 @@ export async function POST({ request }) {
 
 
 // @ts-ignore
-export async function PUT ({ request }) {
-
-}
-
-// @ts-ignore
 export async function DELETE({ request }) {
     const id = await request.json();
     const uuidLength = 36;
