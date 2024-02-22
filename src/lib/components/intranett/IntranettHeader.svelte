@@ -34,7 +34,7 @@
 		{/each}
 
 		{#if loggedIn}
-			<a href={`/intranett/ledig`}>Ledig</a>
+			<a href={`/intranett/ledig`}>Ledige konsulenter</a>
 		{/if}
 	</div>
 	<svelte:fragment slot="trail">
