@@ -32,7 +32,10 @@
 				{item.title}
 			{/if}
 		{/each}
-		<a href={`/intranett/ledig`}>Ledig</a>
+
+		{#if loggedIn}
+			<a href={`/intranett/ledig`}>Ledig</a>
+		{/if}
 	</div>
 	<svelte:fragment slot="trail">
 		{#if loggedIn}
