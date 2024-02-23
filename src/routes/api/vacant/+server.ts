@@ -15,10 +15,10 @@ export async function POST({ request }) {
     const vacant: Vacant = await request.json();
 
     if (vacant?.id) {
-        const {id, name, comment, vacantFrom} = vacant;
+        const {id, name, comment, vacantFrom,cv} = vacant;
         const uuidLength = 36;
         if (id && id.length === uuidLength) {
-            const sql = `UPDATE vacant_consultant SET name='${name}', comment='${comment}', vacant_from='${vacantFrom}' WHERE id='${id}'`;
+            const sql = `UPDATE vacant_consultant SET name='${name}', comment='${comment}', vacant_from='${vacantFrom}',cv='${cv}' WHERE id='${id}'`;
             const db = createPool();
             await db.query(sql);
         }

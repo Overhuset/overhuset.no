@@ -1,11 +1,16 @@
 <script lang="ts">
 	import type {Vacant} from "$lib/types";
 	import {overhusetDomains} from "$lib/config/constellations";
+	import CvFileUpload from "./CvFileUpload.svelte";
 
 	export let vacant: Vacant;
 	export let email: string | undefined;
+	export let form: any;
  	export let onDelete: (id: string) => void;
  	export let onChange: (vacant: Vacant) => void;
+ 	export let onChangeToggle: () => void;
+
+	let cvLoading = false;
 
 	const getIsCurrentlyVacant = () => {
 		const d = vacant?.vacantFrom ? new Date(vacant?.vacantFrom) : new Date();
@@ -94,10 +99,17 @@
 	}
 
 	const handleChangeModeToggle = () => {
-		changeVacant = changeVacant ? undefined : {...vacant, vacantFrom: getDateFormatDatePicker(vacant?.vacantFrom)}
+		changeVacant = changeVacant ? undefined : {...vacant, vacantFrom: getDateFormatDatePicker(vacant?.vacantFrom)};
+		onChangeToggle();
 	}
 
+	const handleFileUploaded = (path: string) => {
+		changeVacant = {...changeVacant, cv: path};
+	}
 
+	const handleLoadingStateChange = (loading: boolean) => {
+		cvLoading = loading;
+	}
 </script>
 
 
@@ -133,6 +145,11 @@
 			class="cardComment"
 			style="min-height: 10rem"
 		/>
+		<CvFileUpload
+			form={form}
+			onChange={handleFileUploaded}
+			onLoadingStateChange={handleLoadingStateChange}
+		/>
 	{:else}
 		<div class="cardComment">
 			{vacant.comment || "" }
@@ -142,9 +159,9 @@
 	<div class="CardButtonsContainer">
 		{#if changeVacant}
 			<button class="cardButton" on:click={handleChangeModeToggle}>Avbryt</button>
-			<button class="cardButton" on:click={handleSaveChanges}>Lagre</button>
+			<button class="cardButton" on:click={handleSaveChanges} disabled={cvLoading}>Lagre</button>
 		{:else}
-			{#if getCvShortName()}
+			{#if (vacant?.cv?.length || 0) > 5}
 				<button on:click={handleOpenCV} class="cardButton" title={getCvShortName()}>Gå til CV</button>
 			{/if}
 			<button class="cardButton" on:click={handleMailTo}>kontakt {vacant.createdBy}</button>
