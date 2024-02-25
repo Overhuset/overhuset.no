@@ -1,11 +1,13 @@
 <script lang="ts">
     import { enhance } from '$app/forms';
     export let form: any;
+    export let id: string | undefined;
     export let onChange: (fileName: string) => void;
     export let onLoadingStateChange: (loading: boolean) => void | undefined;
 
     let fileSelect: string | undefined = undefined;
     let isUploadingCV: boolean = false;
+    const fileInputContainerId = "file_input_id_"+id;
 
     const getCvShortName = () => {
         if (fileSelect) {
@@ -24,7 +26,10 @@
     }
 
     const handleBrowseClick = () => {
-        document.getElementById(`cv`)?.click();
+        const fileInput =  document.getElementById(fileInputContainerId)?.firstChild;
+        if (fileInput) {
+            fileInput.click();
+        }
     }
 
      $: {
@@ -45,8 +50,16 @@
 <div>
     <form use:enhance action="?/upload" method="POST" enctype="multipart/form-data">
         <label>CV - filen kan være på maks 4.5mb</label>
-        <input type="file" bind:value={fileSelect} required name="cv" id="cv" class="cvInput"/>
-
+        <div id={fileInputContainerId}>
+            <input
+                type="file"
+                name="cv"
+                id="cv"
+                class="cvInput"
+                bind:value={fileSelect}
+                required
+            />
+        </div>
         <div class="file-upload-container">
             <button class="secondaryButton" on:click={handleBrowseClick} style="min-width: 8rem">Velg en fil</button>
             <div class="file-select-container">

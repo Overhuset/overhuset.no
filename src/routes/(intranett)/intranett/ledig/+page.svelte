@@ -117,6 +117,7 @@
 						<textarea bind:value={newVacant.comment}/>
 						<CvFileUpload
 							form={form}
+							id="new"
 							onChange={handleFileUploaded}
 							onLoadingStateChange={handleLoadingStateChange}
 						/>

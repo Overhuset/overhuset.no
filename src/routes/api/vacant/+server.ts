@@ -15,6 +15,7 @@ export async function POST({ request }) {
     const vacant: Vacant = await request.json();
 
     if (vacant?.id) {
+        // update
         const {id, name, comment, vacantFrom,cv} = vacant;
         const uuidLength = 36;
         if (id && id.length === uuidLength) {
@@ -29,6 +30,7 @@ export async function POST({ request }) {
         return new Response(JSON.stringify({ message: "Vacant updated" }), { status: 200 });
 
     } else {
+        // new
         const {name, email, vacantFrom, comment, createdBy, cv} = vacant;
         const now = getNow();
         const sql = `INSERT INTO vacant_consultant (id, name, vacant_from, comment, created_by, created_at,  cv) VALUES ('${uuidv4()}', '${name}', '${vacantFrom}', '${comment}', '${createdBy}', '${now}', '${cv}')`;
