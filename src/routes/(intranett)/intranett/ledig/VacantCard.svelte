@@ -1,11 +1,16 @@
 <script lang="ts">
 	import type {Vacant} from "$lib/types";
 	import {overhusetDomains} from "$lib/config/constellations";
+	import CvFileUpload from "./CvFileUpload.svelte";
 
 	export let vacant: Vacant;
 	export let email: string | undefined;
+	export let form: any;
  	export let onDelete: (id: string) => void;
  	export let onChange: (vacant: Vacant) => void;
+ 	export let onChangeToggle: () => void;
+
+	let cvLoading = false;
 
 	const getIsCurrentlyVacant = () => {
 		const d = vacant?.vacantFrom ? new Date(vacant?.vacantFrom) : new Date();
@@ -24,6 +29,16 @@
 			if (month.length < 2) month = `0${month}`;
 			if (day.length < 2) day = `0${day}`;
 			return [day, month, year, ].join('.');
+		}
+		return "";
+	}
+
+	const getDateFormatDatePicker = (date?: string) => {
+		if (date) {
+			let d = new Date(date), month = `${d.getMonth() + 1}`, day = '' + d.getDate(), year = d.getFullYear();
+			if (month.length < 2) month = `0${month}`;
+			if (day.length < 2) day = `0${day}`;
+			return [year, month, day ].join('-');
 		}
 		return "";
 	}
@@ -84,9 +99,17 @@
 	}
 
 	const handleChangeModeToggle = () => {
-		changeVacant = changeVacant ? undefined : {...vacant}
+		changeVacant = changeVacant ? undefined : {...vacant, vacantFrom: getDateFormatDatePicker(vacant?.vacantFrom)};
+		onChangeToggle();
 	}
 
+	const handleFileUploaded = (path: string) => {
+		changeVacant = {...changeVacant, cv: path};
+	}
+
+	const handleLoadingStateChange = (loading: boolean) => {
+		cvLoading = loading;
+	}
 </script>
 
 
@@ -107,7 +130,7 @@
 
 		<div>
 			{#if changeVacant}
-				<input name="from" id="from" type="date" bind:value={changeVacant.vacantFrom}/>
+				<input name="from" id="from" type="date"  bind:value={changeVacant.vacantFrom}/>
 			{:else}
 				<span>{currentlyVacant ? "Ledig nå" : `fra ${getDateFormat(vacant.vacantFrom)}`}</span>
 			{/if}
@@ -122,6 +145,12 @@
 			class="cardComment"
 			style="min-height: 10rem"
 		/>
+		<CvFileUpload
+			form={form}
+			id={vacant.id}
+			onChange={handleFileUploaded}
+			onLoadingStateChange={handleLoadingStateChange}
+		/>
 	{:else}
 		<div class="cardComment">
 			{vacant.comment || "" }
@@ -131,9 +160,9 @@
 	<div class="CardButtonsContainer">
 		{#if changeVacant}
 			<button class="cardButton" on:click={handleChangeModeToggle}>Avbryt</button>
-			<button class="cardButton" on:click={handleSaveChanges}>Lagre</button>
+			<button class="cardButton" on:click={handleSaveChanges} disabled={cvLoading}>Lagre</button>
 		{:else}
-			{#if getCvShortName()}
+			{#if (vacant?.cv?.length || 0) > 5}
 				<button on:click={handleOpenCV} class="cardButton" title={getCvShortName()}>Gå til CV</button>
 			{/if}
 			<button class="cardButton" on:click={handleMailTo}>kontakt {vacant.createdBy}</button>

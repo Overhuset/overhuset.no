@@ -1,9 +1,9 @@
 <script lang="ts">
 	import type {Vacant} from "$lib/types.js";
 	import {invalidateAll} from "$app/navigation";
-	import VacantRow from "./VacantCard.svelte";
+	import VacantCard from "./VacantCard.svelte";
 	import collapse from 'svelte-collapse'
-	import { enhance } from '$app/forms';
+ 	import CvFileUpload from "./CvFileUpload.svelte";
 	let open = false
 
 	export let data;
@@ -13,9 +13,7 @@
 	const api = '/api/vacant';
 	const headers = {'content-type': 'application/json'};
  	let newVacant: Vacant | undefined = undefined;
-	let fileSelect: string | undefined = undefined;
-	let isUploadingCV: boolean = false;
-
+	let cvLoading = false;
 
 	 const sortVacantList = (by: "firstName" | "vacantFrom" | "createdAt") => {
 		 const clone = [...data.vacantList];
@@ -27,19 +25,11 @@
 		 }
 	 }
 
-	 const getCvShortName = () => {
-		 if (fileSelect) {
-			const split = fileSelect.split("\\");
- 			return split[split.length-1];
-		 }
-		 return null;
-	}
 
 	const onCloseForm = () => {
 		open = false;
 		newVacant = undefined;
-		fileSelect = undefined;
-		isUploadingCV = false;
+
 		if (form) {
 			form.uploaded = "";
 		}
@@ -67,14 +57,9 @@
 		}
 	}
 
-
-	const handleUploadStart = () => {
-		isUploadingCV = true;
-	}
-
 	const handleNewEntry = async () => {
 		if (newVacant) {
- 			const body = JSON.stringify( {...newVacant, cv: form?.uploaded || null} );
+ 			const body = JSON.stringify( {...newVacant});
 			const response = await fetch(api, {method: 'POST', body, headers});
 			if (response.status !== 200) alert("Legge til feilet");
 			onCloseForm();
@@ -89,6 +74,18 @@
 			if (response.status !== 200) alert("Endre feilet");
 			invalidateAll();
 		}
+	}
+
+	const handleChangeToggle = () => {
+		onCloseForm();
+	}
+
+	const handleFileUploaded = (path: string) => {
+		newVacant = {...newVacant, cv: path};
+	}
+
+	const handleLoadingStateChange = (loading: boolean) => {
+		cvLoading = loading;
 	}
 
 </script>
@@ -118,29 +115,12 @@
 						<input name="from" id="from" type="date" bind:value={newVacant.vacantFrom}/>
 						<label for="comment">Beskrivelse / kompetanse</label>
 						<textarea bind:value={newVacant.comment}/>
-
-						<form use:enhance action="?/upload" method="POST" enctype="multipart/form-data">
-							<label>CV - filen kan være på maks 4.5mb</label>
-							<input type="file" bind:value={fileSelect} required name="cv" id="cv" class="cvInput"/>
-
-							<div class="file-upload-container">
-								<button class="secondaryButton" onClick="document.getElementById('cv').click();" style="min-width: 8rem">Velg en fil</button>
-								<div class="file-select-container">
-									{#if fileSelect}
-										<span>{getCvShortName()}</span>
-										{#if !form?.uploaded}
-											<button class="primaryButton" style="margin-left: 1rem" on:click={handleUploadStart}>
-												{#if isUploadingCV}laster...{:else}Last opp{/if}
-											</button>
-										{:else}
-											(lastet opp)
-										{/if}
-									{/if}
-								</div>
-							</div>
-						</form>
-
-						<br/>
+						<CvFileUpload
+							form={form}
+							id="new"
+							onChange={handleFileUploaded}
+							onLoadingStateChange={handleLoadingStateChange}
+						/>
 
 						<div class="buttons-container">
 							<button class="secondaryButton" on:click={handleToggleNewForm}>Avbryt</button>
@@ -148,7 +128,7 @@
 								!newVacant.name ||
 								!newVacant.vacantFrom ||
 								!newVacant.createdBy ||
-								(fileSelect && !form?.uploaded)
+								cvLoading
 							}>Registrer konsulent</button>
 						</div>
 					</form>
@@ -160,7 +140,14 @@
 
 			<div class="list">
 				{#each data.vacantList as vacant}
-					<VacantRow vacant={vacant} email={data.email} onDelete={handleDeleteEntry} onChange={handleChangeEntry} />
+					<VacantCard
+						vacant={vacant}
+						email={data.email}
+						form={form}
+						onDelete={handleDeleteEntry}
+						onChange={handleChangeEntry}
+						onChangeToggle={handleChangeToggle}
+					/>
 				{/each}
 				{#if data.vacantList.length === 0}
 					Ingen ledige konsulenter! :D
@@ -224,21 +211,6 @@
 		display: flex;
 		justify-content: flex-end;
 		gap: 1rem;
-	}
-	.file-upload-container {
-		width: 100%;
-		display: flex;
-		justify-content: space-between;
-		gap: 1rem;
-	}
-	.file-select-container {
-		width: 100%;
-		display: flex;
-		justify-content: flex-end;
-		align-items: center;
-	}
-	.cvInput {
-		background-color: white;
 	}
 </style>
 
