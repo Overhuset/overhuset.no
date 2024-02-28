@@ -15,7 +15,7 @@ export const GET: RequestHandler = async ({ url }) => {
 			}
 		});
 	}
-
+}
 export async function load() {
 	const events = await getEventsFromSheet(OVERHUSET_SHEET_ID, OVERHUSET_SHEET_TAB_GID);
 	return {
