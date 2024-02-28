@@ -1,5 +1,7 @@
 import type { RequestHandler } from '@sveltejs/kit';
 
+console.log("Tsster");
+
 export const GET: RequestHandler = async ({ url }) => {
     console.log("URL=", url.pathname);
     // Sjekker om URL-en ender med '/'
