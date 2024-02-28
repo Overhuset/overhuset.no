@@ -1,6 +1,7 @@
 import type { RequestHandler } from '@sveltejs/kit';
 
 export const GET: RequestHandler = async ({ url }) => {
+    console.log("URL=", url.pathname);
     // Sjekker om URL-en ender med '/'
     if (url.pathname.endsWith('/')) {
         console.log("Redirecting to", url.pathname.slice(0, -1));
