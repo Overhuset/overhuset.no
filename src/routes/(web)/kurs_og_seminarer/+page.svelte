@@ -1,12 +1,11 @@
 <script lang="ts">
-	import Events from '$lib/components/Events.svelte';
-	import { MetaTags } from 'svelte-meta-tags';
+ 	import { MetaTags } from 'svelte-meta-tags';
+	import EventCard from "./EventCard.svelte";
 
 	export let data;
-	const pastEvents = data.pastEvents;
-	const futureEvents = data.futureEvents;
-	const onlineCourses = data.onlineCourses;
-</script>
+
+
+ </script>
 
 <section class="max-w-6xl mx-auto md:w-4/5">
 	<MetaTags
@@ -28,5 +27,9 @@
 		<p>Her finner du en oversikt over alt som skjer. Påmeldingsinfo skal stå under hvert
            arrangement. Skulle du likevel lure på noe, ikke nøl med <a href="/#kontakt" class="underline"> å ta kontakt!</a></p>
 	</div>
-	<Events {pastEvents} {futureEvents} {onlineCourses} />
+
+	{#each data.eventList as event}
+		<EventCard event={event} />
+	{/each}
+
 </section>

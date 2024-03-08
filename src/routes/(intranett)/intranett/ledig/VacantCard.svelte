@@ -2,6 +2,8 @@
 	import type {Vacant} from "$lib/types";
 	import {overhusetDomains} from "$lib/config/constellations";
 	import CvFileUpload from "./CvFileUpload.svelte";
+	import {getDateFormat, getDateFormatDatePicker} from "$lib/utils/dateUtils";
+	import {getIsSameDomain} from "$lib/utils/domainUtils";
 
 	export let vacant: Vacant;
 	export let email: string | undefined;
@@ -22,27 +24,6 @@
 	const currentlyVacant = getIsCurrentlyVacant();
 
 
-
-	const getDateFormat = (date?: string) => {
-		if (date) {
-			let d = new Date(date), month = `${d.getMonth() + 1}`, day = '' + d.getDate(), year = d.getFullYear();
-			if (month.length < 2) month = `0${month}`;
-			if (day.length < 2) day = `0${day}`;
-			return [day, month, year, ].join('.');
-		}
-		return "";
-	}
-
-	const getDateFormatDatePicker = (date?: string) => {
-		if (date) {
-			let d = new Date(date), month = `${d.getMonth() + 1}`, day = '' + d.getDate(), year = d.getFullYear();
-			if (month.length < 2) month = `0${month}`;
-			if (day.length < 2) day = `0${day}`;
-			return [year, month, day ].join('-');
-		}
-		return "";
-	}
-
 	const getCompanyName = () => {
 		const domain = overhusetDomains.find(domain => vacant.createdBy?.includes(domain));
 		return domain ? `${domain.split('.')[0]}` : "";
@@ -55,17 +36,6 @@
 		}
 		return undefined;
 	}
-
-	const getIsSameDomain = (email1?: string, email2?: string) => {
-		if (!email1 || !email2) {
-			return false;
-		}
-		const getEmailDomain = (email: string) => {
-			const splitted = email?.split('@') || undefined;
-			return splitted ? splitted[1] : splitted;
-		}
-		return getEmailDomain(email1) === getEmailDomain(email2);
-	};
 
 	const getCanChange = () => {
 		const isSameDomain = getIsSameDomain(email, vacant.createdBy);

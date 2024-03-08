@@ -1,13 +1,18 @@
 export type Event = {
+	id: string,
 	title: string;
 	description: string;
-	date: string;
-	time: string;
-	company: string;
-	presentationLink: string;
-	registrationLink: string;
 	location: string;
-	type: 'Åpent' | 'Internt' | 'Online kurs';
+	time: string;
+	createdBy: string;
+	createdAt: Date;
+	registration: string;
+	published: boolean;
+	onlineStreaming: boolean;
+	physicalAttendance: boolean
+	externalsAllowed: boolean;
+	onlineCourse: boolean;
+	company: string;
 };
 
 export type Vacant = {
