@@ -2,7 +2,7 @@
 	import type {Vacant} from "$lib/types.js";
 	import {invalidateAll} from "$app/navigation";
 	import VacantCard from "./VacantCard.svelte";
-	import collapse from 'svelte-collapse'
+	import collapse from 'svelte-collapse';
  	import CvFileUpload from "./CvFileUpload.svelte";
 	let open = false
 
