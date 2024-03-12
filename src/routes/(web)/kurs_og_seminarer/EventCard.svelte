@@ -8,11 +8,7 @@
     const logo = getLogoFromCompanyName(event.company);
     let open = false;
 
-    const toggleOpen = () => {
-       open = !open;
-    }
-
-
+    const toggleOpen = () => open = !open;
 </script>
 
 
@@ -20,7 +16,6 @@
     <div class="spaceBetween">
         <div class="title">
             <div>
-
                 <div class="prose">
                     <h1>{event.title}</h1>
                 </div>
@@ -36,10 +31,23 @@
 
     <div class="spaceBetween2">
         <div class="rowDirection">
-            <div> {#if event?.externalsAllowed}✔ Åpen for eksterne {:else} Kun for interne {/if} </div>
-            {#if event?.physicalAttendance} <div>✔ Fysisk oppmøte</div>{/if}
-            {#if event?.onlineStreaming} <div>✔ Online streaming</div> {/if}
+            <div>
+                {#if event?.externalsAllowed}
+                    ✔ Åpen for eksterne
+                {:else}
+                    Kun for interne
+                {/if}
+            </div>
+
+            {#if event?.physicalAttendance}
+                <div>✔ Fysisk oppmøte</div>
+            {/if}
+
+            {#if event?.onlineStreaming}
+                <div>✔ Online streaming</div>
+            {/if}
         </div>
+
         <button on:click={toggleOpen} class="cursor-pointer rounded-lg bg-white px-2 py-1">
             {#if open}Lukk{:else}Les mer{/if}
         </button>
@@ -49,9 +57,36 @@
     <div use:collapse={{open}} style="width:100%">
         <div class="divider"></div>
         <div class="description">
-            {#if event.description} <div>  {event.description}</div> {/if}
+            {#if event.description}
+                {#each (event.description?.split(" ") || []) as possibleLink}
+                    {#if possibleLink.includes("https")}
+                        <a href={possibleLink} target="_blank">{possibleLink}</a>
+                    {:else}
+                        {`${possibleLink} `}
+                    {/if}
+                {/each}
+
+            {/if}
+
             <br/>
-            {#if event.registration} <div>  {event.registration}</div> {/if}
+            <br/>
+
+            <div class="prose">
+                <h3>Påmelding</h3>
+            </div>
+            {#if event.registration}
+                {#each (event.registration?.split(" ") || []) as possibleLink}
+                    {#if possibleLink.includes("https")}
+                        <a href={possibleLink} target="_blank">Trykk her</a>
+                    {:else if possibleLink.includes("@")}
+                        <a href={"mailto:" + possibleLink}>Send e-post</a>
+                    {:else}
+                        {`${possibleLink} `}
+                    {/if}
+                {/each}
+            {:else}
+                Ikke nødvendig. Møt opp!
+            {/if}
         </div>
     </div>
 
@@ -60,6 +95,10 @@
 
 
 <style>
+    a {
+        color: rgb(115, 66, 13);
+        font-weight: bold;
+    }
     button {
         padding: 0.2rem 0.8rem;
         border-radius: 0.5rem;

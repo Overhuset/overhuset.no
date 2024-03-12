@@ -3,7 +3,7 @@ import {createPool} from "@vercel/postgres";
 
 const fetchAllEvents = async () => {
 	const db = createPool();
-	const result = await db.query('SELECT * FROM event ORDER by time ASC');
+	const result = await db.query('SELECT * FROM event ORDER by time DESC');
 	return result.rows.map(e => ({
 		id: e.id,
 		title: e.title,
