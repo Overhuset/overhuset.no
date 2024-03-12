@@ -27,3 +27,9 @@ export const getDateFormatDatePicker = (date?: string) => {
     }
     return "";
 }
+
+export const getIsPassed = (date?: Date) => {
+    const d = date ? new Date(date) : new Date();
+    const now = new Date();
+    return d.getTime() < now.getTime();
+}

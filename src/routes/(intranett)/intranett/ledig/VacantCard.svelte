@@ -2,7 +2,7 @@
 	import type {Vacant} from "$lib/types";
 	import {overhusetDomains} from "$lib/config/constellations";
 	import CvFileUpload from "./CvFileUpload.svelte";
-	import {getDateFormat, getDateFormatDatePicker} from "$lib/utils/dateUtils";
+	import {getDateFormat, getDateFormatDatePicker, getIsPassed} from "$lib/utils/dateUtils";
 	import {getIsSameDomain} from "$lib/utils/domainUtils";
 
 	export let vacant: Vacant;
@@ -13,15 +13,8 @@
  	export let onChangeToggle: () => void;
 
 	let cvLoading = false;
-
-	const getIsCurrentlyVacant = () => {
-		const d = vacant?.vacantFrom ? new Date(vacant?.vacantFrom) : new Date();
-		const now = new Date();
-		return d.getTime() < now.getTime();
-	}
-
 	let changeVacant: Vacant | undefined;
-	const currentlyVacant = getIsCurrentlyVacant();
+	const currentlyVacant = getIsPassed(vacant?.vacantFrom);
 
 
 	const getCompanyName = () => {

@@ -1,18 +1,19 @@
 <script lang="ts">
     import type {Event} from "$lib/types";
     import collapse from 'svelte-collapse';
-    import {getDateFormat, getTimeFormat} from "$lib/utils/dateUtils";
+    import {getDateFormat, getIsPassed, getTimeFormat} from "$lib/utils/dateUtils";
     import {getLogoFromCompanyName} from "$lib/components/companies";
 
     export let event: Event;
     const logo = getLogoFromCompanyName(event.company);
     let open = false;
+    const isPassed = getIsPassed(event?.time);
 
     const toggleOpen = () => open = !open;
 </script>
 
 
-<div class="card upcoming">
+<div class={`card ${(isPassed ? "past" : "upcoming")}`}>
     <div class="spaceBetween">
         <div class="title">
             <div>
@@ -65,27 +66,29 @@
                         {`${possibleLink} `}
                     {/if}
                 {/each}
-
             {/if}
 
-            <br/>
-            <br/>
+            {#if !isPassed}
+                <br/>
+                <br/>
 
-            <div class="prose">
-                <h3>Påmelding</h3>
-            </div>
-            {#if event.registration}
-                {#each (event.registration?.split(" ") || []) as possibleLink}
-                    {#if possibleLink.includes("https")}
-                        <a href={possibleLink} target="_blank">Trykk her</a>
-                    {:else if possibleLink.includes("@")}
-                        <a href={"mailto:" + possibleLink}>Send e-post</a>
-                    {:else}
-                        {`${possibleLink} `}
-                    {/if}
-                {/each}
-            {:else}
-                Ikke nødvendig. Møt opp!
+                isPassed
+                <div class="prose">
+                    <h3>Påmelding</h3>
+                </div>
+                {#if event.registration}
+                    {#each (event.registration?.split(" ") || []) as possibleLink}
+                        {#if possibleLink.includes("https")}
+                            <a href={possibleLink} target="_blank">Trykk her</a>
+                        {:else if possibleLink.includes("@")}
+                            <a href={"mailto:" + possibleLink}>Send e-post</a>
+                        {:else}
+                            {`${possibleLink} `}
+                        {/if}
+                    {/each}
+                {:else}
+                    Ikke nødvendig. Møt opp!
+                {/if}
             {/if}
         </div>
     </div>
