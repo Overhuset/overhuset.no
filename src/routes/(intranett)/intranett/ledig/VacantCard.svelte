@@ -4,6 +4,7 @@
 	import CvFileUpload from "./CvFileUpload.svelte";
 	import {getDateFormat, getDateFormatDatePicker, getIsPassed} from "$lib/utils/dateUtils";
 	import {getIsSameDomain} from "$lib/utils/domainUtils";
+	import Divider from "$lib/components/common/Divider.svelte";
 
 	export let vacant: Vacant;
 	export let email: string | undefined;
@@ -100,7 +101,7 @@
 		</div>
 	</div>
 
-	<div class="divider"></div>
+	<Divider />
 
 	{#if changeVacant}
 		<textarea
@@ -174,11 +175,6 @@
 		justify-content: space-between;
 		flex-wrap: wrap;
 		padding: 0 0.4rem;
-	}
-	.divider {
-		width: 100%;
-		border-bottom: 1px solid #d3d3d3;
-		margin: 0.4rem 0;
 	}
 	.cardComment {
 		width: 100%;

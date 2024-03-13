@@ -3,6 +3,8 @@
     import collapse from 'svelte-collapse';
     import {getDateFormat, getIsPassed, getTimeFormat} from "$lib/utils/dateUtils";
     import {getLogoFromCompanyName} from "$lib/components/companies";
+    import Card from "$lib/components/common/Card.svelte";
+    import Divider from "$lib/components/common/Divider.svelte";
 
     export let event: Event;
     const logo = getLogoFromCompanyName(event.company);
@@ -12,17 +14,16 @@
     const toggleOpen = () => open = !open;
 </script>
 
-
-<div class={`card ${(isPassed ? "past" : "upcoming")}`}>
+<Card variant={isPassed ? "secondary" : "primary"} onClick={toggleOpen}>
     <div class="spaceBetween">
         <div class="title">
-            <div>
+
                 <div class="prose">
                     <h1>{event.title}</h1>
                 </div>
                 <div>Tid: {getDateFormat(event.time)} kl {getTimeFormat(event.time)}</div>
                 <div>Sted: {event.location}</div>
-            </div>
+
         </div>
 
         <div>
@@ -49,14 +50,16 @@
             {/if}
         </div>
 
-        <button on:click={toggleOpen} class="cursor-pointer rounded-lg bg-white px-2 py-1">
+        <button  class="cursor-pointer rounded-lg bg-white px-2 py-1">
             {#if open}Lukk{:else}Les mer{/if}
         </button>
     </div>
 
 
     <div use:collapse={{open}} style="width:100%">
-        <div class="divider"></div>
+
+        <Divider/>
+
         <div class="description">
             {#if event.description}
                 {#each (event.description?.split(" ") || []) as possibleLink}
@@ -71,8 +74,6 @@
             {#if !isPassed}
                 <br/>
                 <br/>
-
-                isPassed
                 <div class="prose">
                     <h3>Påmelding</h3>
                 </div>
@@ -93,9 +94,7 @@
         </div>
     </div>
 
-</div>
-
-
+</Card>
 
 <style>
     a {
@@ -108,23 +107,11 @@
         color: white;
         background-color: rgb(115, 66, 13);
     }
-    .card {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        flex-wrap: wrap;
-        padding: 1rem;
-        background-color: #fcfcfc;
-        border-radius: 0.5rem;
-        margin-bottom: 1rem;
-    }
     .title {
         display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
+        flex-direction: column;
         align-items: flex-start;
         flex-wrap: wrap;
-        gap: 2rem;
         margin-bottom: 1rem;
     }
     .rowDirection {
@@ -134,12 +121,6 @@
         align-items: flex-start;
         gap: 2rem;
         flex-wrap: wrap;
-    }
-    .upcoming {
-        border-left: 7px solid rgb(115, 66, 13);
-    }
-    .past {
-        border-left: 7px solid #ababab;
     }
     .spaceBetween {
         width: 100%;
@@ -159,11 +140,6 @@
         flex-wrap: wrap;
         padding: 0 0.4rem;
         gap: 2rem;
-    }
-    .divider {
-        width: 100%;
-        border-bottom: 1px solid #d3d3d3;
-        margin: 0.5rem 0;
     }
     .description {
         width: 100%;
