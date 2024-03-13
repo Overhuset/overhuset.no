@@ -1,15 +1,21 @@
 <script lang="ts">
     export let variant: "primary" | "secondary" | "none";
-    export let onClick: () => void;
-
-    const handleOnClick = () =>  onClick();
-
+    export let onClick: () => void | undefined;
+    const handleOnClick = () =>  onClick && onClick();
 </script>
 
 
-<button class={`card ${variant} ${!!onClick && "clickable"}`} on:click={handleOnClick}>
-    <slot />
-</button>
+
+<div class={`card ${variant} ${onClick !== undefined ? "clickable" : ""}`}>
+    {#if !!onClick}
+        <button on:click={handleOnClick} class="fullWidth" >
+            <slot />
+        </button>
+    {:else}
+        <slot class="fullWidth" />
+    {/if}
+</div>
+
 
 
 
@@ -36,5 +42,8 @@
     }
     .clickable:hover {
         background-color: #f6f6f6;
+    }
+    .fullWidth {
+        width: 100%;
     }
 </style>

@@ -5,6 +5,7 @@
     import {getLogoFromCompanyName} from "$lib/components/companies";
     import Card from "$lib/components/common/Card.svelte";
     import Divider from "$lib/components/common/Divider.svelte";
+    import LinksInTextRender from "$lib/components/common/LinksInTextRender.svelte";
 
     export let event: Event;
     const logo = getLogoFromCompanyName(event.company);
@@ -17,13 +18,11 @@
 <Card variant={isPassed ? "secondary" : "primary"} onClick={toggleOpen}>
     <div class="spaceBetween">
         <div class="title">
-
-                <div class="prose">
-                    <h1>{event.title}</h1>
-                </div>
-                <div>Tid: {getDateFormat(event.time)} kl {getTimeFormat(event.time)}</div>
-                <div>Sted: {event.location}</div>
-
+            <div class="prose">
+                <h1>{event.title}</h1>
+            </div>
+            <div>Tid: {getDateFormat(event.time)} kl {getTimeFormat(event.time)}</div>
+            <div>Sted: {event.location}</div>
         </div>
 
         <div>
@@ -62,31 +61,25 @@
 
         <div class="description">
             {#if event.description}
-                {#each (event.description?.split(" ") || []) as possibleLink}
-                    {#if possibleLink.includes("https")}
-                        <a href={possibleLink} target="_blank">{possibleLink}</a>
-                    {:else}
-                        {`${possibleLink} `}
-                    {/if}
-                {/each}
+                <LinksInTextRender
+                    text={event?.description}
+                    linkTitle={undefined}
+                    emailTitle={undefined}
+                />
             {/if}
 
-            {#if !isPassed}
+            {#if isPassed}
                 <br/>
                 <br/>
                 <div class="prose">
                     <h3>Påmelding</h3>
                 </div>
                 {#if event.registration}
-                    {#each (event.registration?.split(" ") || []) as possibleLink}
-                        {#if possibleLink.includes("https")}
-                            <a href={possibleLink} target="_blank">Trykk her</a>
-                        {:else if possibleLink.includes("@")}
-                            <a href={"mailto:" + possibleLink}>Send e-post</a>
-                        {:else}
-                            {`${possibleLink} `}
-                        {/if}
-                    {/each}
+                    <LinksInTextRender
+                        text={event.registration}
+                        linkTitle="Trykk her"
+                        emailTitle="Send e-post"
+                    />
                 {:else}
                     Ikke nødvendig. Møt opp!
                 {/if}
@@ -97,10 +90,6 @@
 </Card>
 
 <style>
-    a {
-        color: rgb(115, 66, 13);
-        font-weight: bold;
-    }
     button {
         padding: 0.2rem 0.8rem;
         border-radius: 0.5rem;
