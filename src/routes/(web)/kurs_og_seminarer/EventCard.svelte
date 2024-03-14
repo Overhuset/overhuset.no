@@ -21,7 +21,7 @@
     <div class="spaceBetween">
         <div class="title">
             <div class="prose">
-                <h1>{event.title}</h1>
+                <h2>{event.title}</h2>
             </div>
             <div>Tid: {getDateFormat(event.time)} kl {getTimeFormat(event.time)}</div>
             <div>Sted: {event.location}</div>
