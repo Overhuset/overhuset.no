@@ -1,10 +1,17 @@
 <script lang="ts">
  	import { MetaTags } from 'svelte-meta-tags';
 	import EventCard from "./EventCard.svelte";
+	import {getIsPassed} from "$lib/utils/dateUtils";
+	import Button from "$lib/components/common/Button.svelte";
 
 	export let data;
 
-
+	const eventsUpcoming = data.eventList.filter(event => !event.onlineCourse && !getIsPassed(event?.time));
+	const eventsPassed = data.eventList.filter(event => !event.onlineCourse && getIsPassed(event?.time));
+	const onlineEvents = data.eventList.filter(event => event.onlineCourse);
+	let showEventsUpcoming = true;
+	let showOnlineEvents = true;
+	let showEventsPassed = true;
  </script>
 
 <section class="max-w-6xl mx-auto md:w-4/5">
@@ -28,8 +35,47 @@
            arrangement. Skulle du likevel lure på noe, ikke nøl med <a href="/#kontakt" class="underline"> å ta kontakt!</a></p>
 	</div>
 
-	{#each data.eventList as event}
-		<EventCard event={event} />
-	{/each}
+	<Button
+		variant={showEventsUpcoming ? "primary" : "none"}
+		onClick={() => showEventsUpcoming = !showEventsUpcoming}
+	>
+		Kommende ({eventsUpcoming?.length || 0})
+	</Button>
+
+	<Button
+		variant={showOnlineEvents ? "primary" : "none"}
+		onClick={() => showOnlineEvents = !showOnlineEvents}
+	>
+		Online kurs ({onlineEvents?.length || 0})
+	</Button>
+
+	<Button
+		variant={showEventsPassed ? "primary" : "none"}
+		onClick={() => showEventsPassed = !showEventsPassed}
+	>
+		Historiske ({eventsPassed?.length || 0})
+	</Button>
+
+	<br/>
+	<br/>
+
+	{#if showEventsUpcoming}
+		{#each eventsUpcoming as event}
+			<EventCard event={event} />
+		{/each}
+	{/if}
+
+	{#if showOnlineEvents}
+		{#each onlineEvents as event}
+			<EventCard event={event} />
+		{/each}
+	{/if}
+
+	{#if showEventsPassed}
+		{#each eventsPassed as event}
+			<EventCard event={event} />
+		{/each}
+	{/if}
 
 </section>
+

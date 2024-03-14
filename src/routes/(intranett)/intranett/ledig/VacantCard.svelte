@@ -78,7 +78,7 @@
 </script>
 
 
-<Card variant={currentlyVacant ? 'primary' : 'secondary'} onClick={undefined} >
+<Card variant={currentlyVacant ? 'primary' : 'secondary'} >
 	<div style="width: 100%">
 		<div class="cardHeader">
 			<div>
@@ -123,7 +123,7 @@
 			</div>
 		{/if}
 
-		<div class="CardButtonsContainer">
+		<div class="cardButtonsContainer">
 			{#if changeVacant}
 				<button class="cardButton" on:click={handleChangeModeToggle}>Avbryt</button>
 				<button class="cardButton" on:click={handleSaveChanges} disabled={cvLoading}>Lagre</button>
@@ -174,7 +174,7 @@
 		max-height: 15rem;
 		overflow-y: auto;
 	}
-	.CardButtonsContainer {
+	.cardButtonsContainer {
 		width: 100%;
 		display: flex;
 		flex-direction: row;

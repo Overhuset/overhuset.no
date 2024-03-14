@@ -6,16 +6,18 @@
     import Card from "$lib/components/common/Card.svelte";
     import Divider from "$lib/components/common/Divider.svelte";
     import LinksInTextRender from "$lib/components/common/LinksInTextRender.svelte";
+    import Button from "$lib/components/common/Button.svelte";
 
     export let event: Event;
     const logo = getLogoFromCompanyName(event.company);
     let open = false;
     const isPassed = getIsPassed(event?.time);
-
-    const toggleOpen = () => open = !open;
+    const variant = open ? "primary" : "none";
+    const handleToggleOpen = () => {open = !open};
 </script>
 
-<Card variant={isPassed ? "secondary" : "primary"} onClick={toggleOpen}>
+
+<Card variant={isPassed ? "secondary" : "primary"} onClick={handleToggleOpen}>
     <div class="spaceBetween">
         <div class="title">
             <div class="prose">
@@ -24,7 +26,6 @@
             <div>Tid: {getDateFormat(event.time)} kl {getTimeFormat(event.time)}</div>
             <div>Sted: {event.location}</div>
         </div>
-
         <div>
             <img src={logo} alt="" class="w-16" />
         </div>
@@ -49,14 +50,12 @@
             {/if}
         </div>
 
-        <button  class="cursor-pointer rounded-lg bg-white px-2 py-1">
+        <Button variant={open ? "primary" : "none"}>
             {#if open}Lukk{:else}Les mer{/if}
-        </button>
+        </Button>
     </div>
 
-
     <div use:collapse={{open}} style="width:100%">
-
         <Divider/>
 
         <div class="description">
@@ -68,7 +67,7 @@
                 />
             {/if}
 
-            {#if isPassed}
+            {#if !isPassed}
                 <br/>
                 <br/>
                 <div class="prose">
@@ -86,16 +85,10 @@
             {/if}
         </div>
     </div>
-
 </Card>
 
+
 <style>
-    button {
-        padding: 0.2rem 0.8rem;
-        border-radius: 0.5rem;
-        color: white;
-        background-color: rgb(115, 66, 13);
-    }
     .title {
         display: flex;
         flex-direction: column;

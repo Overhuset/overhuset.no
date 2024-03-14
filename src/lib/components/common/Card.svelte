@@ -1,9 +1,9 @@
 <script lang="ts">
     export let variant: "primary" | "secondary" | "none";
-    export let onClick: () => void | undefined;
-    const handleOnClick = () =>  onClick && onClick();
-</script>
+    export let onClick: (() => void) | undefined;
 
+    const handleOnClick = () =>  { onClick && onClick() };
+</script>
 
 
 <div class={`card ${variant} ${onClick !== undefined ? "clickable" : ""}`}>
@@ -15,8 +15,6 @@
         <slot class="fullWidth" />
     {/if}
 </div>
-
-
 
 
 <style>

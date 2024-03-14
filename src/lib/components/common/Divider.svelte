@@ -1,6 +1,3 @@
-
-
-
 <div class="divider"></div>
 
 
