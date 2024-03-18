@@ -13,12 +13,13 @@
 	const online = (all.filter(event => event.onlineCourse));
  </script>
 
-<section class="max-w-6xl mx-auto md:w-4/5">
+<section class="max-w-6xl mx-auto md:w-5/5" style="max-width:140ch">
 	<MetaTags
 	title='Overhuset - kurs og seminarer for IT-bransjen'
 	description='Overhuset holder kurs og seminarer gjennom hele året, for å bidra til kompetanseheving for alle med
 				interesse for IT og systemutvikling. Sjekk programmet her.'
     />
+
 	<div class="prose mb-16 mt-8 mx-4">
 		<h1>Seminarer, kurs og aktiviteter på Overhuset</h1>
 		<p class="font-bold">
@@ -31,43 +32,47 @@
 			erfaring på hver sine fagområder. Sammen er vi faglig krutt – og det må selvsagt deles!
 		</p>
 		<p>Her finner du en oversikt over alt som skjer. Påmeldingsinfo skal stå under hvert
-           arrangement. Skulle du likevel lure på noe, ikke nøl med <a href="/#kontakt" class="underline"> å ta kontakt!</a></p>
+			arrangement. Skulle du likevel lure på noe, ikke nøl med <a href="/#kontakt" class="underline"> å ta kontakt</a>.
+		</p>
+
+		<br/>
+
+		<ButtonGroup>
+			<Button
+					on:click={() => filterMode = "all"}
+					checked={filterMode === "all"}>
+				Alle ({data.eventList?.length || 0})
+			</Button>
+			<Button
+					on:click={() => filterMode = "upcoming"}
+					checked={filterMode === "upcoming"}>
+				Kommende ({upcoming?.length || 0})
+			</Button>
+			<Button
+					on:click={() => filterMode = "online"}
+					checked={filterMode === "online"}>
+				Online kurs ({online?.length || 0})
+			</Button>
+			<Button
+					on:click={() => filterMode = "historic"}
+					checked={filterMode === "historic"}
+			>
+				Historiske ({historic?.length || 0})
+			</Button>
+		</ButtonGroup>
+
+		<br/>
+		<br/>
+
+		{#each (
+				filterMode === "all" ? data.eventList :
+						(filterMode === "upcoming" ? upcoming :
+								(filterMode === "online" ? online :
+										historic))) as event}
+			<EventCard event={event} />
+		{/each}
 	</div>
 
-	<ButtonGroup>
-		<Button
-			on:click={() => filterMode = "all"}
-			checked={filterMode === "all"}>
-			Alle ({data.eventList?.length || 0})
-		</Button>
-		<Button
-			on:click={() => filterMode = "upcoming"}
-			checked={filterMode === "upcoming"}>
-			Kommende ({upcoming?.length || 0})
-		</Button>
-		<Button
-			on:click={() => filterMode = "online"}
-			checked={filterMode === "online"}>
-			Online kurs ({online?.length || 0})
-		</Button>
-		<Button
-			on:click={() => filterMode = "historic"}
-			checked={filterMode === "historic"}
-		>
-			Historiske ({historic?.length || 0})
-		</Button>
-	</ButtonGroup>
-
-	<br/>
-	<br/>
-
-	{#each (
-		filterMode === "all" ? data.eventList :
-			(filterMode === "upcoming" ? upcoming :
-				(filterMode === "online" ? online :
-					historic))) as event}
-		<EventCard event={event} />
-	{/each}
 
 </section>
 

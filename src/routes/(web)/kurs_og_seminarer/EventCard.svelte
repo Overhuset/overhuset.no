@@ -6,7 +6,7 @@
     import Card from "$lib/components/common/Card.svelte";
     import Divider from "$lib/components/common/Divider.svelte";
     import LinksInTextRender from "$lib/components/common/LinksInTextRender.svelte";
-    import Button from "$lib/components/common/Button.svelte";
+    import {Button} from "flowbite-svelte";
 
     export let event: Event;
     const logo = getLogoFromCompanyName(event.company);
@@ -50,7 +50,7 @@
             {/if}
         </div>
 
-        <Button variant={open ? "primary" : "none"}>
+        <Button pill color={open ? "primary" : "light"}>
             {#if open}Lukk{:else}Les mer{/if}
         </Button>
     </div>
