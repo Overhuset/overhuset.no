@@ -2,16 +2,15 @@
  	import { MetaTags } from 'svelte-meta-tags';
 	import EventCard from "./EventCard.svelte";
 	import {getIsPassed} from "$lib/utils/dateUtils";
-	import Button from "$lib/components/common/Button.svelte";
+	import { ButtonGroup, Button } from 'flowbite-svelte';
 
 	export let data;
 
-	const eventsUpcoming = data.eventList.filter(event => !event.onlineCourse && !getIsPassed(event?.time));
-	const eventsPassed = data.eventList.filter(event => !event.onlineCourse && getIsPassed(event?.time));
-	const onlineEvents = data.eventList.filter(event => event.onlineCourse);
-	let showEventsUpcoming = true;
-	let showOnlineEvents = true;
-	let showEventsPassed = true;
+	let filterMode: "all" | "upcoming" | "historic" | "online" = "all";
+	const all = (data.eventList || []);
+	const upcoming = (all.filter(event => !event.onlineCourse && !getIsPassed(event?.time)));
+	const historic = (all.filter(event => !event.onlineCourse && getIsPassed(event?.time)));
+	const online = (all.filter(event => event.onlineCourse));
  </script>
 
 <section class="max-w-6xl mx-auto md:w-4/5">
@@ -35,47 +34,40 @@
            arrangement. Skulle du likevel lure på noe, ikke nøl med <a href="/#kontakt" class="underline"> å ta kontakt!</a></p>
 	</div>
 
-	<Button
-		variant={showEventsUpcoming ? "primary" : "none"}
-		onClick={() => showEventsUpcoming = !showEventsUpcoming}
-	>
-		Kommende ({eventsUpcoming?.length || 0})
-	</Button>
-
-	<Button
-		variant={showOnlineEvents ? "primary" : "none"}
-		onClick={() => showOnlineEvents = !showOnlineEvents}
-	>
-		Online kurs ({onlineEvents?.length || 0})
-	</Button>
-
-	<Button
-		variant={showEventsPassed ? "primary" : "none"}
-		onClick={() => showEventsPassed = !showEventsPassed}
-	>
-		Historiske ({eventsPassed?.length || 0})
-	</Button>
+	<ButtonGroup>
+		<Button
+			on:click={() => filterMode = "all"}
+			checked={filterMode === "all"}>
+			Alle ({data.eventList?.length || 0})
+		</Button>
+		<Button
+			on:click={() => filterMode = "upcoming"}
+			checked={filterMode === "upcoming"}>
+			Kommende ({upcoming?.length || 0})
+		</Button>
+		<Button
+			on:click={() => filterMode = "online"}
+			checked={filterMode === "online"}>
+			Online kurs ({online?.length || 0})
+		</Button>
+		<Button
+			on:click={() => filterMode = "historic"}
+			checked={filterMode === "historic"}
+		>
+			Historiske ({historic?.length || 0})
+		</Button>
+	</ButtonGroup>
 
 	<br/>
 	<br/>
 
-	{#if showEventsUpcoming}
-		{#each eventsUpcoming as event}
-			<EventCard event={event} />
-		{/each}
-	{/if}
-
-	{#if showOnlineEvents}
-		{#each onlineEvents as event}
-			<EventCard event={event} />
-		{/each}
-	{/if}
-
-	{#if showEventsPassed}
-		{#each eventsPassed as event}
-			<EventCard event={event} />
-		{/each}
-	{/if}
+	{#each (
+		filterMode === "all" ? data.eventList :
+			(filterMode === "upcoming" ? upcoming :
+				(filterMode === "online" ? online :
+					historic))) as event}
+		<EventCard event={event} />
+	{/each}
 
 </section>
 
