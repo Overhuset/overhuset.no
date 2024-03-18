@@ -1,4 +1,5 @@
 <script lang="ts">
+	import {Button, Input, Textarea} from "flowbite-svelte";
 	import type {Vacant} from "$lib/types";
 	import {overhusetDomains} from "$lib/config/constellations";
 	import CvFileUpload from "./CvFileUpload.svelte";
@@ -83,7 +84,7 @@
 		<div class="cardHeader">
 			<div>
 				{#if changeVacant}
-					<input
+					<Input
 						name="name"
 						id="name"
 						type="text"
@@ -96,7 +97,7 @@
 
 			<div>
 				{#if changeVacant}
-					<input name="from" id="from" type="date"  bind:value={changeVacant.vacantFrom}/>
+					<Input name="from" id="from" type="date"  bind:value={changeVacant.vacantFrom}/>
 				{:else}
 					<span>{currentlyVacant ? "Ledig nå" : `fra ${getDateFormat(vacant.vacantFrom)}`}</span>
 				{/if}
@@ -106,10 +107,10 @@
 		<Divider />
 
 		{#if changeVacant}
-			<textarea
+			<Textarea
 				bind:value={changeVacant.comment}
 				class="cardComment"
-				style="min-height: 10rem"
+				rows="10"
 			/>
 			<CvFileUpload
 				form={form}
@@ -125,16 +126,16 @@
 
 		<div class="cardButtonsContainer">
 			{#if changeVacant}
-				<button class="cardButton" on:click={handleChangeModeToggle}>Avbryt</button>
-				<button class="cardButton" on:click={handleSaveChanges} disabled={cvLoading}>Lagre</button>
+				<Button color="dark" pill  on:click={handleChangeModeToggle}>Avbryt</Button>
+				<Button color="primary" pill  on:click={handleSaveChanges} disabled={cvLoading}>Lagre</Button>
 			{:else}
 				{#if (vacant?.cv?.length || 0) > 5}
-					<button on:click={handleOpenCV} class="cardButton" title={getCvShortName()}>Gå til CV</button>
+					<Button color="dark" pill on:click={handleOpenCV} title={getCvShortName()}>Gå til CV</Button>
 				{/if}
-				<button class="cardButton" on:click={handleMailTo}>kontakt {vacant.createdBy}</button>
+				<Button color="dark" pill on:click={handleMailTo}>kontakt {vacant.createdBy}</Button>
 				{#if getCanChange()}
-					<button class="cardButton" on:click={handleChangeModeToggle}>Endre</button>
-					<button class="cardButton" on:click={handleDelete}>Slett</button>
+					<Button color="primary" pill on:click={handleChangeModeToggle}>Endre</Button>
+					<Button color="primary" pill on:click={handleDelete}>Slett</Button>
 				{/if}
 			{/if}
 		</div>
@@ -144,18 +145,6 @@
 
 
 <style>
-	input {
-		border: 1px solid #ababab;
-		border-radius: 0.3rem;
-		padding: 0.2rem 0.4rem;
-	}
-	textarea {
-		border: 1px solid #ababab;
-		border-radius: 0.3rem;
-		width: 100%;
-		min-height: 9rem;
-		padding: 0.2rem 0.4rem;
-	}
 	.cardHeader {
 		width: 100%;
 		display: flex;
@@ -181,12 +170,6 @@
 		justify-content: flex-end;
 		align-items: center;
 		flex-wrap: wrap;
-		gap: 1rem;
+		gap: 0.5rem;
 	}
-	.cardButton {
-		padding: 0.1rem 0.5rem;
-		border-radius: 0.5rem;
- 		border: 1px solid silver;
-		cursor: pointer;
- 	}
 </style>

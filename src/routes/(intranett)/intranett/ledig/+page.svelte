@@ -4,6 +4,7 @@
 	import VacantCard from "./VacantCard.svelte";
 	import collapse from 'svelte-collapse';
  	import CvFileUpload from "./CvFileUpload.svelte";
+	import {Button, Input, Textarea} from "flowbite-svelte";
 	let open = false
 
 	export let data;
@@ -93,14 +94,14 @@
 
 
 
-<div class="prose prose-xl mx-auto p-4 md:py-20">
+<div class="prose prose-xl mx-auto p-4 md:py-20" style="max-width:140ch">
 	<div class="layout">
 		<h1 class="text-5xl">Ledige konsulenter</h1>
 
 		<div>
 			{#if !open}
 				<div class="buttons-container">
-					<button on:click={handleToggleNewForm} class="cursor-pointer rounded-lg bg-white px-2 py-1"> Legg til konsulent</button>
+					<Button on:click={handleToggleNewForm}>Legg til konsulent</Button>
 				</div>
 			{/if}
 
@@ -109,12 +110,12 @@
 					<h3>Registrer ledig konsulent</h3>
 
 					<form on:submit|preventDefault={handleNewEntry}>
-						<label for="name">Navn *</label>
-						<input name="name" id="name" type="text" bind:value={newVacant.name}/>
+						<label for="name" color="dark">Navn *</label>
+						<Input clor="base" name="name" id="name" type="text" bind:value={newVacant.name}/>
 						<label for="from">Ledig fra *</label>
-						<input name="from" id="from" type="date" bind:value={newVacant.vacantFrom}/>
+						<Input name="from" id="from" type="date" bind:value={newVacant.vacantFrom}/>
 						<label for="comment">Beskrivelse / kompetanse</label>
-						<textarea bind:value={newVacant.comment}/>
+						<Textarea bind:value={newVacant.comment} rows="10"/>
 						<CvFileUpload
 							form={form}
 							id="new"
@@ -123,13 +124,13 @@
 						/>
 
 						<div class="buttons-container">
-							<button class="secondaryButton" on:click={handleToggleNewForm}>Avbryt</button>
-							<button class="primaryButton" disabled={
+							<Button color="primary" on:click={handleToggleNewForm}>Avbryt</Button>
+							<Button color="primary" disabled={
 								!newVacant.name ||
 								!newVacant.vacantFrom ||
 								!newVacant.createdBy ||
 								cvLoading
-							}>Registrer konsulent</button>
+							}>Registrer konsulent</Button>
 						</div>
 					</form>
 				{/if}
@@ -164,26 +165,12 @@
 		padding: 0.2rem 0.4rem;
 		margin-bottom: 0.4rem;
 	}
-	input[type="file"] {
-		display:none;
-	}
 	input[type="text"]{
 		width: 70%;
 	}
 	label {
 		margin-top: 0.3rem;
 		margin-right: 2rem;
-	}
-	textarea {
-		border: 1px solid #ababab;
-		border-radius: 0.3rem;
-		width: 100%;
-		min-height: 9rem;
-		padding: 0.2rem 0.4rem;
-	}
-	button {
-		padding: 0.2rem 0.8rem;
-		border-radius: 0.5rem;
 	}
 	.layout {
 		width: 100%;
@@ -194,17 +181,6 @@
 		display: flex;
 		flex-direction: column;
 		gap: 0.4rem;
-	}
-	.primaryButton {
-		color: white;
-		background-color: rgb(115, 66, 13);
-	}
-	.primaryButton:disabled {
-		opacity: 0.4;
-	}
-	.secondaryButton {
-		border: 1px solid silver;
-		color: #4d4d4d;
 	}
 	.buttons-container {
 		width: 100%;
