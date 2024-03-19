@@ -2,16 +2,14 @@
     import {getDateFormat, getDateFormatDatePicker, getTimeFormat} from "$lib/utils/dateUtils";
     import {AccordionItem} from "@skeletonlabs/skeleton";
     import {Button, Input, Textarea, Toggle, Select} from "flowbite-svelte";
-    import type {Event} from "$lib/types";
+    import type {Company, Event} from "$lib/types";
     import Label from "$lib/components/common/Label.svelte";
 
-    let companies = [
-        { value: 'us', name: 'United States' },
-        { value: 'ca', name: 'Canada' },
-        { value: 'fr', name: 'France' }
-    ];
-
     export let event: Event;
+    export let companies: Company[];
+
+    const companiesOptions: {value: string, name: string}[] =
+        companies.map(company => ({ value: company.id || "", name: company.nameShort || ""}));
 
     let eventToChange = {
         ...event,
@@ -54,14 +52,14 @@
             </Label>
             <Label label="Sted">
                 <Input
-                        name="title" type="text"
-                        bind:value={eventToChange.location}
-                        style="min-width: 25rem"
+                    name="title" type="text"
+                    bind:value={eventToChange.location}
+                    style="min-width: 25rem"
                 />
             </Label>
             <Label label="Selskap">
                 <Select
-                    items={companies}
+                    items={companiesOptions}
                     bind:value={eventToChange.companyId}
                     style="min-width: 25rem"
                 />
@@ -126,12 +124,14 @@
         <Label label="Registrering">
             <Textarea placeholder="Forklar hvordan man melder seg på. Husk mellomrom foran og etter linker i teksten. La stå tom hvis man kan komme uanmeldt" rows="4" name="registration" bind:value={eventToChange.registration} />
         </Label>
+        <Label label={`Opprettet av ${event.createdBy} ${getDateFormat(event.createdAt)} kl ${getTimeFormat(event.createdAt)}`}/>
 
         <div class="buttons-container">
             <Button pill on:click={handleRevert}>Forkast endringer</Button>
             <Button pill on:click={handleDelete}>Slett</Button>
             <Button pill on:click={handleSave}>Lagre</Button>
         </div>
+
     </span>
 </AccordionItem>
 

@@ -1,4 +1,4 @@
-export const getDateFormat = (date?: string) => {
+export const getDateFormat = (date?: string | Date) => {
     if (date) {
         let d = new Date(date), month = `${d.getMonth() + 1}`, day = '' + d.getDate(), year = d.getFullYear();
         if (month.length < 2) month = `0${month}`;
@@ -8,7 +8,7 @@ export const getDateFormat = (date?: string) => {
     return "";
 }
 
-export const getTimeFormat = (date?: string) => {
+export const getTimeFormat = (date?: string | Date) => {
     if (date) {
         let d = new Date(date), hours = `${d.getHours() + 1}`, minutes = '' + d.getMinutes();
         if (hours.length < 2) hours = `0${hours}`;

@@ -42,7 +42,12 @@
 
 	<Accordion>
 		{#each (data.eventList || []) as event}
-			<EventAccordionItem event={event} onChange={handleChangeEvent} onDelete={handleDeleteEvent}/>
+			<EventAccordionItem
+				event={event}
+				companies={data.companyList}
+				onChange={handleChangeEvent}
+				onDelete={handleDeleteEvent}
+			/>
 		{/each}
 	</Accordion>
 </div>

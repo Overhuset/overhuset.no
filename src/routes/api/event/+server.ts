@@ -54,8 +54,6 @@ export async function PUT({ request }) {
                  time=${time ? `'${time}'` :  'NULL'},
                  time_end=${timeEnd ? `'${timeEnd}'` :  'NULL'}
             WHERE id='${id}'`;
-        console.log("update: ", sql);
-        console.log("now: ", now);
         const db = createPool();
         await db.query(sql);
         return new Response(JSON.stringify({ message: "event updated" }), { status: 200 });

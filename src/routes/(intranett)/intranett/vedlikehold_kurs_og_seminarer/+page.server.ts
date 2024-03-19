@@ -31,10 +31,24 @@ const fetchAllEvents = async () => {
 	}));
 }
 
+const fetchAllCompanies = async () => {
+	const db = createPool();
+	const result = await db.query('SELECT * FROM company');
+	return result.rows.map(c => ({
+		id: c.id,
+		name: c.name,
+		nameShort: c.name_short,
+		logoRef: c.logo_ref,
+		url: c.url,
+		description: c.description
+	}));
+}
+
 export async function load({ locals }) {
 	const session = await locals.auth.validate();
 	const user  = session?.user;
 	const email = user?.userId ? await fetchEmail(user?.userId) : undefined;
 	const eventList = await fetchAllEvents();
-	return { eventList, email};
+	const companyList = fetchAllCompanies();
+	return { eventList, companyList, email};
 }

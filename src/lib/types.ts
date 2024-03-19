@@ -28,3 +28,12 @@ export type Vacant = {
 	createdAt?: string;
 	cv?: string;
 }
+
+export type Company = {
+	id?: string;
+	name?: string;
+	nameShort?: string;
+	logoRef?: string;
+	url?: string;
+	description?: string;
+}
