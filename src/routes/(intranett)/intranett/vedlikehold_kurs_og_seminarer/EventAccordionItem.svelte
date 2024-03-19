@@ -47,9 +47,10 @@
                 <span> - {getDateFormat(event.timeEnd)} </span> {#if !event?.fullDay} <span> kl {getTimeFormat(event.timeEnd)}</span> {/if}
             {/if}
         {/if}
-
     </span>
+
     <span slot="summary"/>
+
     <span slot="content">
         <div class="inputs-container">
             <Label label="Tittel">
