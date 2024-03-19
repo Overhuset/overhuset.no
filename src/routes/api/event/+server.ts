@@ -20,8 +20,23 @@ export async function PUT({ request }) {
     const isValidUuid = getIsValidUuid(event?.id);
 
     if (isValidUuid) {
-        const {id, title, description, registration,location, time,timeEnd,company,published,onlineStreaming,physicalAttendance,externalsAllowed,onlineCourse,fullDay} = event;
         const now = getNowFroDB();
+        const {
+            id,
+            title,
+            description,
+            registration,
+            location,
+            time,
+            timeEnd,
+            company,
+            published,
+            onlineStreaming,
+            physicalAttendance,
+            externalsAllowed,
+            onlineCourse,
+            fullDay
+        } = event;
         const sql =  `UPDATE event SET 
                  title='${title}', 
                  description='${description}',
@@ -35,8 +50,8 @@ export async function PUT({ request }) {
                  full_day='${fullDay}',
                  company='${company}',
                  company_id='${time}',
-                 time ='${time}',
-                 time_end='${timeEnd}'
+                 time_end=${time ? `'${time}'` :  'NULL'}
+                 time_end=${timeEnd ? `'${timeEnd}'` :  'NULL'}
             WHERE id='${id}'`;
         console.log("update: ", sql);
         console.log("now: ", now);

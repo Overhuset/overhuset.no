@@ -23,7 +23,12 @@
             <div class="prose">
                 <h2>{event.title}</h2>
             </div>
-            <div>Tid: {getDateFormat(event.time)} kl {getTimeFormat(event.time)}</div>
+            <div>
+                <span>Tid: {getDateFormat(event.time)} </span> {#if !event?.fullDay} <span> kl {getTimeFormat(event.time)}</span> {/if}
+                {#if event?.timeEnd}
+                    <span> - {getDateFormat(event.timeEnd)} </span> {#if !event?.fullDay} <span> kl {getTimeFormat(event.timeEnd)}</span> {/if}
+                {/if}
+            </div>
             <div>Sted: {event.location}</div>
         </div>
         <div>
