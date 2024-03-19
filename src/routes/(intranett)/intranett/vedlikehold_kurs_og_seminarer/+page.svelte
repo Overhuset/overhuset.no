@@ -10,8 +10,8 @@
 	export let data;
 
 	const handleNewEvent = async () => {
-		const newEvent: Event = {
-			title: `*NY* av ${data.email}`,
+ 		const body = JSON.stringify({
+			title: `*NYTT* av ${data.email}`,
 			location: undefined,
 			companyId: undefined,
 			company: undefined,
@@ -26,9 +26,7 @@
 			description: undefined,
 			registration: undefined,
 			createdBy: data.email,
-		};
-
-		const body = JSON.stringify(newEvent);
+		});
 		const response = await fetch(api, {method: 'POST', body, headers});
 		if (response.status !== 200) alert("Opprett feilet");
 		invalidateAll();
@@ -60,7 +58,7 @@
 
 	<div class="buttons-container">
 		<Button on:click={handleNewEvent}>
-			Opprett ny
+			Opprett nytt
 		</Button>
 	</div>
 
