@@ -9,7 +9,6 @@ export type Event = {
 	createdAt?: Date;
 	registration?: string;
 	published: boolean;
-	allDay: boolean;
 	onlineStreaming: boolean;
 	physicalAttendance: boolean
 	externalsAllowed: boolean;

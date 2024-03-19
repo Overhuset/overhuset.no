@@ -17,7 +17,7 @@
 			company: undefined,
 			time: undefined,
 			timeEnd: undefined,
-			allDay: false,
+			fullDay: false,
 			externalsAllowed: false,
 			physicalAttendance: false,
 			onlineCourse: false,
@@ -58,17 +58,17 @@
 
 	<div class="buttons-container">
 		<Button on:click={handleNewEvent}>
-			Opprett nytt
+			Opprett ny
 		</Button>
 	</div>
 
 	<Accordion>
 		{#each (data.eventList || []) as event}
 			<EventAccordionItem
-					event={event}
-					companies={data.companyList}
-					onChange={handleChangeEvent}
-					onDelete={handleDeleteEvent}
+				event={event}
+				companies={data.companyList}
+				onChange={handleChangeEvent}
+				onDelete={handleDeleteEvent}
 			/>
 		{/each}
 	</Accordion>
