@@ -12,7 +12,7 @@ export async function POST({ request }) {
     const sql = `INSERT INTO event (id, title, description, registration, created_by, created_at) VALUES ('${uuidv4()}', '${title}', '${description}', '${registration}', '${createdBy}', '${now}')`;
     const db = createPool();
     await db.query(sql);
-    return new Response(JSON.stringify({ message: "Vacant created" }), { status: 200 });
+    return new Response(JSON.stringify({ message: "event created" }), { status: 200 });
 }
 
 export async function PUT({ request }) {
@@ -20,9 +20,24 @@ export async function PUT({ request }) {
     const isValidUuid = getIsValidUuid(event?.id);
 
     if (isValidUuid) {
-        const {id, title, description, registration} = event;
+        const {id, title, description, registration,location, time,timeEnd,company,published,onlineStreaming,physicalAttendance,externalsAllowed,onlineCourse,fullDay} = event;
         const now = getNowFroDB();
-        const sql =  `UPDATE event SET title='${title}', description='${description}', registration='${registration}' WHERE id='${id}'`;
+        const sql =  `UPDATE event SET 
+                 title='${title}', 
+                 description='${description}',
+                 registration='${registration}',
+                 location='${location}',
+                 published='${published}',
+                 externals_allowed='${externalsAllowed}',
+                 physical_attendance='${physicalAttendance}',
+                 online_streaming='${onlineStreaming}',
+                 online_course='${onlineCourse}',
+                 full_day='${fullDay}',
+                 company='${company}',
+                 company_id='${time}',
+                 time ='${time}',
+                 time_end='${timeEnd}'
+            WHERE id='${id}'`;
         console.log("update: ", sql);
         console.log("now: ", now);
         const db = createPool();
@@ -31,7 +46,6 @@ export async function PUT({ request }) {
     }
 
     return new Response(JSON.stringify({ message: "update event failed" }), { status: 400 });
-
 }
 
 

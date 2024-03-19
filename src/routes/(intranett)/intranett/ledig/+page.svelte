@@ -51,7 +51,7 @@
 
 	const handleDeleteEntry = async (id: string) => {
 		if (id) {
-			const body = JSON.stringify( id );
+			const body = JSON.stringify(id);
 			const response = await fetch(api, {method: 'DELETE', body, headers});
 			if (response.status !== 200) alert("Sletting feilet");
 			invalidateAll();

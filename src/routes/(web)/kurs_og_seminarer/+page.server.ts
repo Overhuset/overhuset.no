@@ -2,13 +2,14 @@ import {createPool} from "@vercel/postgres";
 
 const fetchAllEvents = async () => {
 	const db = createPool();
-	const result = await db.query('SELECT * FROM event ORDER by time DESC');
+	const result = await db.query('SELECT * FROM event WHERE published = true ORDER by time DESC');
 	return result.rows.map(e => ({
 		id: e.id,
 		title: e.title,
 		description: e.description,
 		location: e.location,
 		time: e.time,
+		timeEnd: e.time_end,
 		createdBy: e.created_by,
 		createdAt: e.created_at,
 		registration: e.registration,
@@ -16,7 +17,9 @@ const fetchAllEvents = async () => {
 		onlineStreaming: e.online_streaming,
 		physicalAttendance: e.physical_attendance,
 		externalsAllowed: e.externals_allowed,
+		companyId: e.company_id,
 		company: e.company,
+		fullDay: e.full_day,
 		onlineCourse: e.online_course
 	}));
 }

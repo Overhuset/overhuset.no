@@ -1,5 +1,5 @@
 <script lang="ts">
-    import {getDateFormat, getTimeFormat} from "$lib/utils/dateUtils";
+    import {getDateFormat, getDateFormatDatePicker, getTimeFormat} from "$lib/utils/dateUtils";
     import {AccordionItem} from "@skeletonlabs/skeleton";
     import {Button, Input, Textarea, Toggle} from "flowbite-svelte";
     import type {Event} from "$lib/types";
@@ -7,20 +7,26 @@
 
     export let event: Event;
 
-    let eventToChange = {...event};
+    let eventToChange = {
+        ...event,
+        time: getDateFormatDatePicker(event?.time),
+        timeEnd: getDateFormatDatePicker(event?.timeEnd)
+    };
+
     export let onChange: (eventChanged: Event) => void;
+    export let onDelete: (id: string) => void;
 
     const handleSave = () => {
-        console.log("handleSave");
         onChange(eventToChange);
     }
 
     const handleDelete = () => {
-        console.log("handleDelete");
+        if (confirm("Bekreft sletting") == true) {
+            onDelete(event.id);
+        }
     }
 
     const handleRevert = () => {
-        console.log("handleRevert");
         eventToChange = {...event};
     }
 
@@ -38,29 +44,55 @@
     <span slot="content">
         <div class="inputs-container">
             <Label label="Tittel*">
-                <Input name="title" type="text" bind:value={eventToChange.title} style="min-width: 25rem"/>
+                <Input
+                    name="title" type="text"
+                    bind:value={eventToChange.title}
+                    style="min-width: 25rem"
+                />
             </Label>
             <Label label="Tidspunkt*">
                 <Input name="time" type="date" bind:value={eventToChange.time}/>
             </Label>
             <Label label="Tidspunkt slutt">
-                <Input name="time" type="date" bind:value={eventToChange.time}/>
+                <Input name="time" type="date" bind:value={eventToChange.timeEnd}/>
             </Label>
-            <Label label="Heldags">
-                <Toggle checked={false} color="purple"/>
+            <Label label="Skjul klokkeslett">
+                <Toggle
+                    checked={eventToChange.fullDay}
+                    on:change={() => eventToChange.fullDay = !eventToChange.fullDay}
+                    color="purple"
+                />
             </Label>
         </div>
 
         <div class="inputs-container">
             <Label label="Åpent for eksterne">
-                <Toggle checked={eventToChange.externalsAllowed} color="purple"/>
+                <Toggle
+                    checked={eventToChange.externalsAllowed}
+                    on:change={() => eventToChange.externalsAllowed = !eventToChange.externalsAllowed}
+                    color="purple"
+                />
             </Label>
             <Label label="Fysisk oppmøte">
-                <Toggle checked={eventToChange.physicalAttendance} color="purple"/>
+                <Toggle
+                    checked={eventToChange.physicalAttendance}
+                    on:change={() => eventToChange.physicalAttendance = !eventToChange.physicalAttendance}
+                    color="purple"
+                />
+            </Label>
+                 <Label label="Online-kurs">
+                <Toggle
+                        checked={eventToChange.onlineCourse}
+                        on:change={() => eventToChange.onlineCourse = !eventToChange.onlineCourse}
+                        color="purple"
+                />
             </Label>
             <Label label="Publisert">
-                Publisert
-                <Toggle checked={eventToChange.published} color="purple"/>
+                <Toggle
+                    checked={eventToChange.published}
+                    on:change={() => eventToChange.published = !eventToChange.published}
+                    color="purple"
+                />
             </Label>
         </div>
 

@@ -4,6 +4,7 @@ export type Event = {
 	description: string;
 	location: string;
 	time: string;
+	timeEnd: string;
 	createdBy: string;
 	createdAt: Date;
 	registration: string;
@@ -11,8 +12,10 @@ export type Event = {
 	onlineStreaming: boolean;
 	physicalAttendance: boolean
 	externalsAllowed: boolean;
+	fullDay: boolean;
 	onlineCourse: boolean;
 	company: string;
+	companyId: string;
 };
 
 export type Vacant = {
