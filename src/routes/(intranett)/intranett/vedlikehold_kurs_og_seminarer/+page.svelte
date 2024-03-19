@@ -27,10 +27,10 @@
 			registration: undefined,
 			createdBy: data.email,
 		});
+
 		const response = await fetch(api, {method: 'POST', body, headers});
 		if (response.status !== 200) alert("Opprett feilet");
 		invalidateAll();
-
 	}
 	const handleChangeEvent = async (eventChanged: Event) => {
 		if (eventChanged) {
@@ -38,6 +38,7 @@
 			const response = await fetch(api, {method: 'PUT', body, headers});
 			if (response.status !== 200) alert("Endre feilet");
 			invalidateAll();
+
 		}
 	}
 
@@ -63,7 +64,7 @@
 	</div>
 
 	<Accordion>
-		{#each (data.eventList || []) as event}
+		{#each (data.eventList || []) as event (event.id)}
 			<EventAccordionItem
 				event={event}
 				companies={data.companyList}

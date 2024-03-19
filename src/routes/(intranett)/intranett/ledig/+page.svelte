@@ -140,7 +140,7 @@
 			<br/>
 
 			<div class="list">
-				{#each data.vacantList as vacant}
+				{#each data.vacantList as vacant (vacant.id)}
 					<VacantCard
 						vacant={vacant}
 						email={data.email}
