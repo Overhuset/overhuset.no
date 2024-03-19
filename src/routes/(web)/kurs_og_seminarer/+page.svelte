@@ -13,14 +13,14 @@
 	const online = (all.filter(event => event.onlineCourse));
  </script>
 
-<section class="max-w-6xl mx-auto md:w-5/5" style="max-width:140ch">
+ <section class="max-w-6xl mx-auto md:w-5/5">
 	<MetaTags
 	title='Overhuset - kurs og seminarer for IT-bransjen'
 	description='Overhuset holder kurs og seminarer gjennom hele året, for å bidra til kompetanseheving for alle med
 				interesse for IT og systemutvikling. Sjekk programmet her.'
     />
 
-	<div class="prose mb-16 mt-8 mx-4">
+	<div class="prose mb-16 mt-8 mx-4" style="max-width:140ch">
 		<h1>Seminarer, kurs og aktiviteter på Overhuset</h1>
 		<p class="font-bold">
 			Mens de dyktige konsulentene våre er opptatte av å bidra til kompetanseløft ute hos

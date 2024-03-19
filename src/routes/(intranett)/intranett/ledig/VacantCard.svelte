@@ -79,7 +79,7 @@
 </script>
 
 
-<Card variant={currentlyVacant ? 'primary' : 'secondary'} >
+<Card variant={currentlyVacant ? 'primary' : 'secondary'} onClick={undefined} >
 	<div style="width: 100%">
 		<div class="cardHeader">
 			<div>

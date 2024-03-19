@@ -1,6 +1,6 @@
 <script lang="ts">
     import { enhance } from '$app/forms';
-    import {Button} from "flowbite-svelte";
+    import {Button, Spinner} from "flowbite-svelte";
     export let form: any;
     export let id: string | undefined;
     export let onChange: (fileName: string) => void;
@@ -68,7 +68,7 @@
                     <span>{getCvShortName()}</span>
                     {#if !form?.uploaded}
                         <Button color="purple" style="margin-left: 1rem" on:click={handleUploadStart}>
-                            {#if isUploadingCV}laster...{:else}Last opp{/if}
+                            {#if isUploadingCV}<Spinner size="6" />{:else}Last opp{/if}
                         </Button>
                     {:else}
                         <span> (lastet opp)</span>

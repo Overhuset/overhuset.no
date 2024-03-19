@@ -9,6 +9,7 @@ const fetchAllEvents = async () => {
 		description: e.description,
 		location: e.location,
 		time: e.time,
+		timeEnd: e.time_end,
 		createdBy: e.created_by,
 		createdAt: e.created_at,
 		registration: e.registration,
@@ -16,11 +17,11 @@ const fetchAllEvents = async () => {
 		onlineStreaming: e.online_streaming,
 		physicalAttendance: e.physical_attendance,
 		externalsAllowed: e.externals_allowed,
+		companyId: e.company_id,
 		company: e.company,
 		onlineCourse: e.online_course
 	}));
 }
-
 
 export async function load() {
 	const eventList = await fetchAllEvents();
