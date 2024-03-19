@@ -11,7 +11,7 @@
     const companiesOptions: {value: string, name: string}[] =
         companies.map(company => ({ value: company.id || "", name: company.nameShort || ""}));
 
-    let eventToChange = {
+    let eventToChange: Event = {
         ...event,
         time: getDateFormatDatePicker(event?.time),
         timeEnd: getDateFormatDatePicker(event?.timeEnd)
@@ -26,7 +26,9 @@
 
     const handleDelete = () => {
         if (confirm("Bekreft sletting") == true) {
-            onDelete(event.id);
+            if (event?.id) {
+                onDelete(event.id);
+            }
         }
     }
 
@@ -38,21 +40,32 @@
 
 <AccordionItem>
     <span slot="lead">
-        <b>{eventToChange.title} </b> - {getDateFormat(eventToChange.time)} kl {getTimeFormat(eventToChange.time)} ({eventToChange.location})
+        <b>{eventToChange.title} </b>
+        {#if eventToChange.time}
+            <span> - {getDateFormat(eventToChange.time)} kl {getTimeFormat(eventToChange.time)} ({eventToChange.location})</span>
+            {#if eventToChange.timeEnd}
+                <span> - {getDateFormat(event.timeEnd)} </span> {#if !event?.fullDay} <span> kl {getTimeFormat(event.timeEnd)}</span> {/if}
+            {/if}
+        {/if}
+
     </span>
     <span slot="summary"/>
     <span slot="content">
         <div class="inputs-container">
             <Label label="Tittel">
                 <Input
-                    name="title" type="text"
+                    name="title"
+                    type="text"
+                    placeholder="Tittel på arrangement"
                     bind:value={eventToChange.title}
                     style="min-width: 25rem"
                 />
             </Label>
             <Label label="Sted">
                 <Input
-                    name="title" type="text"
+                    name="title"
+                    type="text"
+                    placeholder="Lokasjon for arrangement"
                     bind:value={eventToChange.location}
                     style="min-width: 25rem"
                 />

@@ -1,21 +1,22 @@
 export type Event = {
-	id: string,
-	title: string;
-	description: string;
-	location: string;
-	time: string;
-	timeEnd: string;
+	id?: string,
+	title?: string;
+	description?: string;
+	location?: string;
+	time?: string;
+	timeEnd?: string;
 	createdBy: string;
-	createdAt: Date;
-	registration: string;
+	createdAt?: Date;
+	registration?: string;
 	published: boolean;
+	allDay: boolean;
 	onlineStreaming: boolean;
 	physicalAttendance: boolean
 	externalsAllowed: boolean;
 	fullDay: boolean;
 	onlineCourse: boolean;
-	company: string;
-	companyId: string;
+	company?: string;
+	companyId?: string;
 };
 
 export type Vacant = {

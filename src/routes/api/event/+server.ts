@@ -7,9 +7,43 @@ import {getIsValidUuid} from "$lib/utils/uuidUtils";
 // @ts-ignore
 export async function POST({ request }) {
     const event: Event = await request.json();
-    const {id, title, description, registration,createdBy} = event;
     const now = getNowFroDB();
-    const sql = `INSERT INTO event (id, title, description, registration, created_by, created_at) VALUES ('${uuidv4()}', '${title}', '${description}', '${registration}', '${createdBy}', '${now}')`;
+    const sql = `INSERT INTO event (
+                   id,
+                   title, 
+                   description,
+                   registration,
+                   location,
+                   time,
+                   time_end,
+                   company,
+                   company_id,
+                   published,
+                   online_course,
+                   online_streaming,
+                   physical_attendance,
+                   externals_allowed,
+                   full_day,
+                   created_by,
+                   created_at
+                ) VALUES (
+                  '${uuidv4()}', 
+                  '${event.title || ""}', 
+                  '${event.description || ""}',
+                  '${event.registration || ""}',
+                  '${event.location || ""}',
+                  NULL,
+                  NULL,
+                  '${event.company || ""}',
+                  '${event.companyId || ""}',
+                  ${!!event.published},
+                  ${!!event.onlineCourse},
+                  ${!!event.onlineStreaming},
+                  ${!!event.physicalAttendance},
+                  ${!!event.externalsAllowed},
+                  ${!!event.fullDay},
+                  '${event.createdBy}',
+                  '${now}')`;
     const db = createPool();
     await db.query(sql);
     return new Response(JSON.stringify({ message: "event created" }), { status: 200 });
@@ -20,40 +54,22 @@ export async function PUT({ request }) {
     const isValidUuid = getIsValidUuid(event?.id);
 
     if (isValidUuid) {
-        const now = getNowFroDB();
-        const {
-            id,
-            title,
-            description,
-            registration,
-            location,
-            time,
-            timeEnd,
-            company,
-            companyId,
-            published,
-            onlineStreaming,
-            physicalAttendance,
-            externalsAllowed,
-            onlineCourse,
-            fullDay
-        } = event;
         const sql =  `UPDATE event SET 
-                 title='${title}', 
-                 description='${description}',
-                 registration='${registration}',
-                 location='${location}',
-                 published='${published}',
-                 externals_allowed='${externalsAllowed}',
-                 physical_attendance='${physicalAttendance}',
-                 online_streaming='${onlineStreaming}',
-                 online_course='${onlineCourse}',
-                 full_day='${fullDay}',
-                 company='${company}',
-                 company_id='${companyId}',
-                 time=${time ? `'${time}'` :  'NULL'},
-                 time_end=${timeEnd ? `'${timeEnd}'` :  'NULL'}
-            WHERE id='${id}'`;
+                 title='${event.title}', 
+                 description='${event.description}',
+                 registration='${event.registration}',
+                 location='${event.location}',
+                 published='${event.published}',
+                 externals_allowed='${event.externalsAllowed}',
+                 physical_attendance='${event.physicalAttendance}',
+                 online_streaming='${event.onlineStreaming}',
+                 online_course='${event.onlineCourse}',
+                 full_day='${event.fullDay}',
+                 company='${event.company}',
+                 company_id='${event.companyId}',
+                 time=${event.time ? `'${event.time}'` :  'NULL'},
+                 time_end=${event.timeEnd ? `'${event.timeEnd}'` :  'NULL'}
+            WHERE id='${event.id}'`;
         const db = createPool();
         await db.query(sql);
         return new Response(JSON.stringify({ message: "event updated" }), { status: 200 });

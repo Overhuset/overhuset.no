@@ -2,19 +2,37 @@
 	import {Accordion} from "@skeletonlabs/skeleton";
 	import EventAccordionItem from "./EventAccordionItem.svelte";
 	import {invalidateAll} from "$app/navigation";
-
+	import {Button} from "flowbite-svelte";
+	import type {Event} from "$lib/types";
 	const api = '/api/event';
 	const headers = {'content-type': 'application/json'};
 
 	export let data;
 
-	const handleNewEvent = async (title: string) => {
-		if (title) {
-			const body = JSON.stringify({ title, createdBy: data.email});
-			const response = await fetch(api, {method: 'PUT', body, headers});
-			if (response.status !== 200) alert("Endre feilet");
-			invalidateAll();
-		}
+	const handleNewEvent = async () => {
+		const newEvent: Event = {
+			title: `*NY* av ${data.email}`,
+			location: undefined,
+			companyId: undefined,
+			company: undefined,
+			time: undefined,
+			timeEnd: undefined,
+			allDay: false,
+			externalsAllowed: false,
+			physicalAttendance: false,
+			onlineCourse: false,
+			onlineStreaming: false,
+			published: false,
+			description: undefined,
+			registration: undefined,
+			createdBy: data.email,
+		};
+
+		const body = JSON.stringify(newEvent);
+		const response = await fetch(api, {method: 'POST', body, headers});
+		if (response.status !== 200) alert("Opprett feilet");
+		invalidateAll();
+
 	}
 	const handleChangeEvent = async (eventChanged: Event) => {
 		if (eventChanged) {
@@ -40,17 +58,30 @@
 	<h1>Administrer</h1>
 	<h3>Seminarer, kurs og aktiviteter</h3>
 
+	<div class="buttons-container">
+		<Button on:click={handleNewEvent}>
+			Opprett ny
+		</Button>
+	</div>
+
 	<Accordion>
 		{#each (data.eventList || []) as event}
 			<EventAccordionItem
-				event={event}
-				companies={data.companyList}
-				onChange={handleChangeEvent}
-				onDelete={handleDeleteEvent}
+					event={event}
+					companies={data.companyList}
+					onChange={handleChangeEvent}
+					onDelete={handleDeleteEvent}
 			/>
 		{/each}
 	</Accordion>
 </div>
 
-
+<style>
+ 	.buttons-container {
+		width: 100%;
+		display: flex;
+		justify-content: flex-end;
+		margin-bottom: 1.5rem;
+	}
+</style>
 
