@@ -9,7 +9,7 @@ const fetchEmail = async (id: string) => {
 
 const fetchAllEvents = async () => {
 	const db = createPool();
-	const result = await db.query('SELECT * FROM event ORDER by time DESC');
+	const result = await db.query('SELECT * FROM event ORDER by created_at DESC');
 	return result.rows.map(e => ({
 		id: e.id,
 		title: e.title,

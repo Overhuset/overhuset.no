@@ -30,6 +30,7 @@ export async function PUT({ request }) {
             time,
             timeEnd,
             company,
+            companyId,
             published,
             onlineStreaming,
             physicalAttendance,
@@ -49,8 +50,8 @@ export async function PUT({ request }) {
                  online_course='${onlineCourse}',
                  full_day='${fullDay}',
                  company='${company}',
-                 company_id='${time}',
-                 time_end=${time ? `'${time}'` :  'NULL'}
+                 company_id='${companyId}',
+                 time=${time ? `'${time}'` :  'NULL'},
                  time_end=${timeEnd ? `'${timeEnd}'` :  'NULL'}
             WHERE id='${id}'`;
         console.log("update: ", sql);
