@@ -68,7 +68,7 @@
 				filterMode === "all" ? data.eventList :
 						(filterMode === "upcoming" ? upcoming :
 								(filterMode === "online" ? online :
-										historic))) as event}
+										historic))) as event (event.id)}
 			<EventCard event={event} />
 		{/each}
 	</div>

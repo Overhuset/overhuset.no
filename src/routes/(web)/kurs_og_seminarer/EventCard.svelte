@@ -24,12 +24,27 @@
                 <h2>{event.title}</h2>
             </div>
             <div>
-                <span>Tid: {getDateFormat(event.time)} </span> {#if !event?.fullDay} <span> kl {getTimeFormat(event.time)}</span> {/if}
-                {#if event?.timeEnd}
-                    <span> - {getDateFormat(event.timeEnd)} </span> {#if !event?.fullDay} <span> kl {getTimeFormat(event.timeEnd)}</span> {/if}
+                <span>Tid: </span>
+                {#if event.time}
+                    <span>{getDateFormat(event.time)} </span>
+                    {#if !event?.fullDay} <span> kl {getTimeFormat(event.time)}</span> {/if}
+                {:else}
+                    <span>Ikke angitt</span>
+                {/if}
+
+                {#if event.timeEnd}
+                    <span> - {getDateFormat(event.timeEnd)} </span>
+                    {#if !event?.fullDay} <span> kl {getTimeFormat(event.timeEnd)}</span> {/if}
                 {/if}
             </div>
-            <div>Sted: {event.location}</div>
+            <div>
+                <span>Sted: </span>
+                {#if event.location}
+                    <span>{event.location}</span>
+                {:else}
+                    <span>Ikke angitt</span>
+                {/if}
+            </div>
         </div>
         <div>
             <img src={logo} alt="" class="w-16" />
@@ -45,6 +60,9 @@
                     Kun for interne
                 {/if}
             </div>
+            {#if event?.onlineCourse}
+                <div>✔ Online-kurs</div>
+            {/if}
 
             {#if event?.physicalAttendance}
                 <div>✔ Fysisk oppmøte</div>
