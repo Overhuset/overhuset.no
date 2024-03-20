@@ -8,8 +8,7 @@
     export let event: Event;
     export let companies: Company[];
 
-    const companiesOptions: {value: string, name: string}[] =
-        companies.map(company => ({ value: company.id || "", name: company.nameShort || ""}));
+    const companiesOptions: {value?: string, name: string}[] = companies.map(company => ({ value: company.id || "", name: company.nameShort || ""}));
 
     let eventToChange: Event = {
         ...event,
@@ -73,6 +72,7 @@
             </Label>
             <Label label="Selskap">
                 <Select
+                    placeholder="Overhuset"
                     items={companiesOptions}
                     bind:value={eventToChange.companyId}
                     style="min-width: 25rem"
