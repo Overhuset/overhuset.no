@@ -26,24 +26,23 @@
             <div>
                 <span>Tid: </span>
                 {#if event.time}
+                    {#if event.timeEnd}<span>Fra </span>{/if}
+
                     <span>{getDateFormat(event.time)} </span>
-                    {#if !event?.fullDay} <span> kl {getTimeFormat(event.time)}</span> {/if}
+                    {#if !event?.fullDay}<span> kl {getTimeFormat(event.time)}</span>{/if}
+
+                    {#if event.timeEnd}
+                        <span> til </span>
+                        <span>{getDateFormat(event.timeEnd)} </span>
+                        {#if !event?.fullDay}<span> kl {getTimeFormat(event.timeEnd)}</span>{/if}
+                    {/if}
                 {:else}
                     <span>Ikke angitt</span>
-                {/if}
-
-                {#if event.timeEnd}
-                    <span> - {getDateFormat(event.timeEnd)} </span>
-                    {#if !event?.fullDay} <span> kl {getTimeFormat(event.timeEnd)}</span> {/if}
                 {/if}
             </div>
             <div>
                 <span>Sted: </span>
-                {#if event.location}
-                    <span>{event.location}</span>
-                {:else}
-                    <span>Ikke angitt</span>
-                {/if}
+                {#if event.location}<span>{event.location}</span>{:else}<span>Ikke angitt</span>{/if}
             </div>
         </div>
         <div>
