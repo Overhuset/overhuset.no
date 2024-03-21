@@ -4,10 +4,23 @@
 	import {invalidateAll} from "$app/navigation";
 	import {Button} from "flowbite-svelte";
 	import type {Event} from "$lib/types";
+	import { toasts, ToastContainer, FlatToast }  from "svelte-toasts";
+
 	const api = '/api/event';
 	const headers = {'content-type': 'application/json'};
 
 	export let data;
+
+	const onToast = (type: "success" | "error", message: string) => {
+		toasts.add({
+			description: message,
+			duration: 3000,
+			placement: 'bottom-right',
+			type: type,
+			theme: 'light',
+		});
+	}
+
 
 	const handleNewEvent = async () => {
  		const body = JSON.stringify({
@@ -29,16 +42,28 @@
 		});
 
 		const response = await fetch(api, {method: 'POST', body, headers});
-		if (response.status !== 200) alert("Opprett feilet");
+
+		if (response.status == 200) {
+			onToast("success", "Arrangement opprettet");
+		} else {
+			onToast("error", "En feil oppstod ved opprett arrangement");
+		}
+
 		invalidateAll();
 	}
+
 	const handleChangeEvent = async (eventChanged: Event) => {
 		if (eventChanged) {
 			const body = JSON.stringify({...eventChanged});
 			const response = await fetch(api, {method: 'PUT', body, headers});
-			if (response.status !== 200) alert("Endre feilet");
-			invalidateAll();
 
+			if (response.status == 200) {
+				onToast("success", "Endringer lagret");
+			} else {
+				onToast("error", "En feil oppstod ved lagring");
+			}
+
+			invalidateAll();
 		}
 	}
 
@@ -46,7 +71,13 @@
 		if (id) {
 			const body = JSON.stringify(id);
 			const response = await fetch(api, {method: 'DELETE', body, headers});
-			if (response.status !== 200) alert("Sletting feilet");
+
+			if (response.status == 200) {
+				onToast("success", "Arrangement slettet");
+			} else {
+				onToast("error", "En feil oppstod ved sletting");
+			}
+
 			invalidateAll();
 		}
 	}
@@ -73,6 +104,10 @@
 			/>
 		{/each}
 	</Accordion>
+
+	<ToastContainer placement="bottom-right" let:data={data}>
+		<FlatToast {data} /> <!-- Provider template for your toasts -->
+	</ToastContainer>
 </div>
 
 <style>
