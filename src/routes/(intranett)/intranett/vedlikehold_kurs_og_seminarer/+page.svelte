@@ -1,7 +1,7 @@
 <script lang="ts">
 	import {Accordion} from "@skeletonlabs/skeleton";
 	import EventAccordionItem from "./EventAccordionItem.svelte";
-	import {invalidateAll} from "$app/navigation";
+	import {invalidate, invalidateAll} from "$app/navigation";
 	import {Button, Tooltip} from "flowbite-svelte";
 	import type {Event} from "$lib/types";
 	import { toasts, ToastContainer, FlatToast }  from "svelte-toasts";
@@ -12,7 +12,6 @@
 
 	export let data;
 
-	const {eventList, companyList, authUser} = data;
 
 	const onToast = (type: "success" | "info" | "error", message: string) => {
 		toasts.add({
@@ -27,7 +26,7 @@
 
 	const handleNewEvent = async () => {
  		const body = JSON.stringify({
-			title: `*NY* av ${authUser?.email}`,
+			title: `*NY* av ${data.authUser?.email}`,
 			location: undefined,
 			companyId: undefined,
 			company: undefined,
@@ -41,7 +40,7 @@
 			published: false,
 			description: undefined,
 			registration: undefined,
-			createdBy: authUser?.email,
+			createdBy: data.authUser?.email,
 		});
 
 		const response = await fetch(api, {method: 'POST', body, headers});
@@ -85,7 +84,7 @@
 				onToast("error", "En feil oppstod ved sletting");
 			}
 
-			invalidateAll();
+			invalidate("");
 		}
 	}
 
@@ -103,11 +102,11 @@
 	</div>
 
 	<Accordion>
-		{#each (eventList || []) as event (event.id)}
+		{#each (data.eventList || []) as event (event.id)}
 			<EventAccordionItem
 				event={event}
-				companies={companyList}
-				authUser={authUser}
+				companies={[]}
+				authUser={data.authUser}
 				onChange={handleChangeEvent}
 				onDelete={handleDeleteEvent}
 				onRevert={handleRevertEvent}
