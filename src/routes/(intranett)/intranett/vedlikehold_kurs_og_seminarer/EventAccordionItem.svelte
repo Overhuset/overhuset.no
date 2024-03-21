@@ -9,7 +9,7 @@
     import type {AuthUser, Company, Event} from "$lib/types";
     import Label from "$lib/components/common/Label.svelte";
     import {getIsSameDomain} from "$lib/utils/domainUtils";
-    import {AngleDownOutline, AngleUpOutline, CalendarWeekSolid} from 'flowbite-svelte-icons';
+    import {AngleDownOutline, AngleUpOutline, CalendarMonthSolid, CalendarWeekSolid} from 'flowbite-svelte-icons';
 
     export let event: Event;
     export let companies: Company[];
@@ -235,5 +235,13 @@
     }
     .author {
         color: #A5371B
+    }
+    .iconLabel {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.5rem;
     }
 </style>

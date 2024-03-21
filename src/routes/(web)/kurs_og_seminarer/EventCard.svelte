@@ -8,6 +8,7 @@
     import LinksInTextRender from "$lib/components/common/LinksInTextRender.svelte";
     import {Button} from "flowbite-svelte";
     import type {Company} from "$lib/types.js";
+    import {CalendarMonthSolid, MapPinAltSolid} from "flowbite-svelte-icons";
 
     export let event: Event;
     export let companies: Company[];
@@ -29,8 +30,9 @@
             <div class="prose">
                 <h2>{event.title}</h2>
             </div>
-            <div>
-                <span>Tid: </span>
+
+            <div class="iconLabel">
+                <CalendarMonthSolid />
                 {#if event.time}
                     {#if event.timeEnd}<span>Fra </span>{/if}
 
@@ -46,8 +48,8 @@
                     <span>Ikke angitt</span>
                 {/if}
             </div>
-            <div>
-                <span>Sted: </span>
+            <div class="iconLabel">
+                <MapPinAltSolid size="md"/>
                 {#if event.location}<span>{event.location}</span>{:else}<span>Ikke angitt</span>{/if}
             </div>
         </div>
@@ -134,6 +136,14 @@
         align-items: flex-start;
         gap: 2rem;
         flex-wrap: wrap;
+    }
+    .iconLabel {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.5rem;
     }
     .spaceBetween {
         width: 100%;
