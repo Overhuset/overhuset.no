@@ -8,7 +8,7 @@
     export let event: Event;
     export let companies: Company[];
 
-    const companiesOptions: {value?: string, name: string}[] = companies.map(company => ({ value: company.id || "", name: company.nameShort || ""}));
+    const companiesOptions: {value: string, name: string}[] = companies.map(company => ({ value: company.id || "", name: company.nameShort || ""}));
 
     let eventToChange: Event = {
         ...event,
@@ -114,7 +114,7 @@
                         color="purple"
                 />
             </Label>
-                    <Label label="Åpent for eksterne">
+            <Label label="Åpent for eksterne">
                 <Toggle
                         checked={eventToChange.externalsAllowed}
                         on:change={() => eventToChange.externalsAllowed = !eventToChange.externalsAllowed}
