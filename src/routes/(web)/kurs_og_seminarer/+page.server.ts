@@ -24,8 +24,22 @@ const fetchAllEvents = async () => {
 	}));
 }
 
+const fetchAllCompanies = async () => {
+	const db = createPool();
+	const result = await db.query('SELECT * FROM company');
+	return result.rows.map(c => ({
+		id: c.id,
+		name: c.name,
+		nameShort: c.name_short,
+		logoRef: c.logo_ref,
+		url: c.url,
+		description: c.description
+	}));
+}
+
 
 export async function load() {
 	const eventList = await fetchAllEvents();
-	return { eventList };
+	const companies = await fetchAllCompanies();
+	return { eventList, companies };
 }

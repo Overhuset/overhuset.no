@@ -8,6 +8,7 @@
 
 	let filterMode: "all" | "upcoming" | "historic" | "online" = "all";
 	const all = (data.eventList || []);
+	const companies = data.companies;
 	const upcoming = (all.filter(event => !event.onlineCourse && !getIsPassed(event?.time)));
 	const historic = (all.filter(event => !event.onlineCourse && getIsPassed(event?.time)));
 	const online = (all.filter(event => event.onlineCourse));
@@ -69,7 +70,7 @@
 						(filterMode === "upcoming" ? upcoming :
 								(filterMode === "online" ? online :
 										historic))) as event (event.id)}
-			<EventCard event={event} />
+			<EventCard event={event} companies={companies}/>
 		{/each}
 	</div>
 
