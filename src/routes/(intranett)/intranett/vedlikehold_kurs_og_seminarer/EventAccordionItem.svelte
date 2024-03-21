@@ -104,7 +104,7 @@
                     bind:value={eventToChange.time}
                     style="min-width: 12rem"
                 />
-                <Tooltip type="light" placement="bottom"  triggeredBy="[id='time']">Ikke påkrevd. Feks ved online-kurs, kan det være nyttig å ikke sette denne.</Tooltip>
+                <Tooltip type="light" placement="bottom" triggeredBy="[id='time']">Ikke påkrevd. Feks ved online-kurs, kan det være nyttig å ikke sette denne.</Tooltip>
             </Label>
 
             <Label label="Tidspunkt slutt">
@@ -117,60 +117,64 @@
                  <Tooltip type="light" placement="bottom"  triggeredBy="[id='timeEnd']">Ikke påkrevd. Feks ved online-kurs eller heldags-arrangement osv, kan det være nyttig å ikke sette denne.</Tooltip>
             </Label>
             <Label label="Skjul klokkeslett">
-                <Toggle
-                        id="fullDay"
-                        checked={eventToChange.fullDay}
-                        on:change={() => eventToChange.fullDay = !eventToChange.fullDay}
-                        color="purple"
-                />
-                <Tooltip type="light" placement="bottom"  triggeredBy="[id='fullDay']">Viser kun dato, uten tidspunkt i oversikt over arrangement.</Tooltip>
+                <div id="fullDay">
+                     <Toggle
+                         checked={eventToChange.fullDay}
+                         on:change={() => eventToChange.fullDay = !eventToChange.fullDay}
+                         color="purple"
+                     />
+                </div>
+                <Tooltip type="light" placement="bottom" triggeredBy="[id='fullDay']">Viser kun dato, uten tidspunkt i oversikt over arrangement.</Tooltip>
             </Label>
             <Label label="Åpent for eksterne">
-                <Toggle
-                        id="externalsAllowed"
-                        checked={eventToChange.externalsAllowed}
-                        on:change={() => eventToChange.externalsAllowed = !eventToChange.externalsAllowed}
-                        color="purple"
-                />
+                <div id="externalsAllowed">
+                     <Toggle
+                         checked={eventToChange.externalsAllowed}
+                         on:change={() => eventToChange.externalsAllowed = !eventToChange.externalsAllowed}
+                         color="purple"
+                     />
+                </div>
                 <Tooltip type="light" placement="bottom"  triggeredBy="[id='externalsAllowed']">Markerer arrangement som åpent for eksterne.</Tooltip>
             </Label>
             <Label label="Fysisk oppmøte">
-                <Toggle
-                        id="physicalAttendance"
+                <div id="physicalAttendance">
+                    <Toggle
                         checked={eventToChange.physicalAttendance}
                         on:change={() => eventToChange.physicalAttendance = !eventToChange.physicalAttendance}
                         color="purple"
-                />
+                    />
+                </div>
                 <Tooltip type="light" placement="bottom"  triggeredBy="[id='physicalAttendance']">Velg denne dersom arrangementet har et fysisk oppmøtested.</Tooltip>
             </Label>
             <Label label="Online streaming">
-                <Toggle
-                        id="onlineStreaming"
-                        checked={eventToChange.onlineStreaming}
-                        on:change={() => eventToChange.onlineStreaming = !eventToChange.onlineStreaming}
-                        color="purple"
-                />
+                <div id="onlineStreaming">
+                     <Toggle
+                         checked={eventToChange.onlineStreaming}
+                         on:change={() => eventToChange.onlineStreaming = !eventToChange.onlineStreaming}
+                         color="purple"
+                     />
+                </div>
                 <Tooltip type="light" placement="bottom"  triggeredBy="[id='onlineStreaming']">Velg denne dersom arrangementet streames.</Tooltip>
             </Label>
             <Label label="Online-kurs">
-                <div>
+                <div id="onlineCourse">
                     <Toggle
-                            id="onlineCourse"
-                            checked={eventToChange.onlineCourse}
-                            on:change={() => eventToChange.onlineCourse = !eventToChange.onlineCourse}
-                            color="purple"
+                        checked={eventToChange.onlineCourse}
+                        on:change={() => eventToChange.onlineCourse = !eventToChange.onlineCourse}
+                        color="purple"
                     />
                 </div>
                 <Tooltip type="light" placement="bottom" triggeredBy="[id='onlineCourse']">Velg denne dersom arrangementet er et online-kurs, kun på nett.</Tooltip>
             </Label>
             <Label label="Publisert">
-                <Toggle
-                        id="published"
-                        checked={eventToChange.published}
-                        on:change={() => eventToChange.published = !eventToChange.published}
-                        color="purple"
-                />
-                  <Tooltip type="light" placement="bottom" triggeredBy="[id='published']">Arrangementet er synlig i oversikten når denne er valgt.</Tooltip>
+                <div id="published">
+                     <Toggle
+                         checked={eventToChange.published}
+                         on:change={() => eventToChange.published = !eventToChange.published}
+                         color="purple"
+                     />
+                </div>
+                <Tooltip type="light" placement="bottom" triggeredBy="[id='published']">Arrangementet er synlig i oversikten når denne er valgt.</Tooltip>
             </Label>
         </div>
 
