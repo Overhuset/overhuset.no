@@ -26,7 +26,7 @@
         timeEnd: getDateTimeFormatForDatePicker(event?.timeEnd)
     };
 
-    const changeAllowed = getIsSameDomain(authUser?.email, event.createdBy);
+    const changeAllowed = authUser?.admin || getIsSameDomain(authUser?.email, event.createdBy);
 
     const handleSave = () => {
         onChange(eventToChange);
