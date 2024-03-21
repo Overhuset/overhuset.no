@@ -1,12 +1,11 @@
 <script lang="ts">
     import {
         getDateFormat,
-        getDateFormatForDatePicker,
         getDateTimeFormatForDatePicker,
         getTimeFormat
     } from "$lib/utils/dateUtils";
     import {AccordionItem} from "@skeletonlabs/skeleton";
-    import {Button, Input, Textarea, Toggle, Select} from "flowbite-svelte";
+    import {Button, Input, Textarea, Toggle, Select, Tooltip} from "flowbite-svelte";
     import type {Company, Event} from "$lib/types";
     import Label from "$lib/components/common/Label.svelte";
 
@@ -71,7 +70,6 @@
         <div class="inputs-container">
             <Label label="Tittel">
                 <Input
-                    name="title"
                     type="text"
                     placeholder="Tittel på arrangement"
                     bind:value={eventToChange.title}
@@ -80,7 +78,6 @@
             </Label>
             <Label label="Sted">
                 <Input
-                    name="title"
                     type="text"
                     placeholder="Lokasjon for arrangement"
                     bind:value={eventToChange.location}
@@ -99,55 +96,79 @@
 
         <div class="inputs-container">
             <Label label="Tidspunkt">
-                {eventToChange.time}
                 <Input
+                    id="time"
                     type="datetime-local"
                     bind:value={eventToChange.time}
                     style="min-width: 12rem"
                 />
+                <Tooltip type="light" placement="bottom"  triggeredBy="[id='time']">Ikke påkrevd. Feks ved online-kurs, kan det være nyttig å ikke sette denne.</Tooltip>
             </Label>
+
             <Label label="Tidspunkt slutt">
-                {eventToChange.timeEnd}
                 <Input
+                   id="timeEnd"
                    type="datetime-local"
                    bind:value={eventToChange.timeEnd}
                    style="min-width: 12rem"
                 />
+                 <Tooltip type="light" placement="bottom"  triggeredBy="[id='timeEnd']">Ikke påkrevd. Feks ved online-kurs eller heldags-arrangement osv, kan det være nyttig å ikke sette denne.</Tooltip>
             </Label>
             <Label label="Skjul klokkeslett">
                 <Toggle
+                        id="fullDay"
                         checked={eventToChange.fullDay}
                         on:change={() => eventToChange.fullDay = !eventToChange.fullDay}
                         color="purple"
                 />
+                <Tooltip type="light" placement="bottom"  triggeredBy="[id='fullDay']">Viser kun dato, uten tidspunkt i oversikt over arrangement.</Tooltip>
             </Label>
             <Label label="Åpent for eksterne">
                 <Toggle
+                        id="externalsAllowed"
                         checked={eventToChange.externalsAllowed}
                         on:change={() => eventToChange.externalsAllowed = !eventToChange.externalsAllowed}
                         color="purple"
                 />
+                <Tooltip type="light" placement="bottom"  triggeredBy="[id='externalsAllowed']">Markerer arrangement som åpent for eksterne.</Tooltip>
             </Label>
             <Label label="Fysisk oppmøte">
                 <Toggle
+                        id="physicalAttendance"
                         checked={eventToChange.physicalAttendance}
                         on:change={() => eventToChange.physicalAttendance = !eventToChange.physicalAttendance}
                         color="purple"
                 />
+                <Tooltip type="light" placement="bottom"  triggeredBy="[id='physicalAttendance']">Velg denne dersom arrangementet har et fysisk oppmøtested.</Tooltip>
             </Label>
-                 <Label label="Online-kurs">
+            <Label label="Online streaming">
                 <Toggle
-                        checked={eventToChange.onlineCourse}
-                        on:change={() => eventToChange.onlineCourse = !eventToChange.onlineCourse}
+                        id="onlineStreaming"
+                        checked={eventToChange.onlineStreaming}
+                        on:change={() => eventToChange.onlineStreaming = !eventToChange.onlineStreaming}
                         color="purple"
                 />
+                <Tooltip type="light" placement="bottom"  triggeredBy="[id='onlineStreaming']">Velg denne dersom arrangementet streames.</Tooltip>
+            </Label>
+            <Label label="Online-kurs">
+                <div>
+                    <Toggle
+                            id="onlineCourse"
+                            checked={eventToChange.onlineCourse}
+                            on:change={() => eventToChange.onlineCourse = !eventToChange.onlineCourse}
+                            color="purple"
+                    />
+                </div>
+                <Tooltip type="light" placement="bottom" triggeredBy="[id='onlineCourse']">Velg denne dersom arrangementet er et online-kurs, kun på nett.</Tooltip>
             </Label>
             <Label label="Publisert">
                 <Toggle
+                        id="published"
                         checked={eventToChange.published}
                         on:change={() => eventToChange.published = !eventToChange.published}
                         color="purple"
                 />
+                  <Tooltip type="light" placement="bottom" triggeredBy="[id='published']">Arrangementet er synlig i oversikten når denne er valgt.</Tooltip>
             </Label>
         </div>
 
