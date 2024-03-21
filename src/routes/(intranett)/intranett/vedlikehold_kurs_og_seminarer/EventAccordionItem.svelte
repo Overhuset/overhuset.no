@@ -22,6 +22,7 @@
 
     export let onChange: (eventChanged: Event) => void;
     export let onDelete: (id: string) => void;
+    export let onRevert: () => void;
 
     const handleSave = () => {
         onChange(eventToChange);
@@ -37,6 +38,7 @@
 
     const handleRevert = () => {
         eventToChange = {...event};
+        onRevert();
     }
 
 </script>

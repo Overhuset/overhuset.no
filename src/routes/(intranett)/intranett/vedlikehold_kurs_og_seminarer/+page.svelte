@@ -11,7 +11,7 @@
 
 	export let data;
 
-	const onToast = (type: "success" | "error", message: string) => {
+	const onToast = (type: "success" | "info" | "error", message: string) => {
 		toasts.add({
 			description: message,
 			duration: 3000,
@@ -67,6 +67,10 @@
 		}
 	}
 
+	const handleRevertEvent = () => {
+		onToast("info", "Endringer forkastet");
+	}
+
 	const handleDeleteEvent = async (id: string) => {
 		if (id) {
 			const body = JSON.stringify(id);
@@ -101,6 +105,7 @@
 				companies={data.companyList}
 				onChange={handleChangeEvent}
 				onDelete={handleDeleteEvent}
+				onRevert={handleRevertEvent}
 			/>
 		{/each}
 	</Accordion>
