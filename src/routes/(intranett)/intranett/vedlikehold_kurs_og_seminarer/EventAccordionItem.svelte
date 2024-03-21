@@ -40,11 +40,23 @@
 <AccordionItem>
     <span slot="lead">
         <b>{eventToChange.title} </b>
-        {#if eventToChange.time}
-            <span> - {getDateFormat(eventToChange.time)} kl {getTimeFormat(eventToChange.time)} ({eventToChange.location})</span>
-            {#if eventToChange.timeEnd}
-                <span> - {getDateFormat(event.timeEnd)} </span> {#if !event?.fullDay} <span> kl {getTimeFormat(event.timeEnd)}</span> {/if}
+           <span> - </span>
+        {#if event.time}
+            {#if event.timeEnd}<span>Fra </span>{/if}
+            <span>{getDateFormat(event.time)} </span>
+            {#if !event?.fullDay}<span> kl {getTimeFormat(event.time)}</span>{/if}
+
+            {#if event.timeEnd}
+                <span> til </span>
+                <span>{getDateFormat(event.timeEnd)} </span>
+                {#if !event?.fullDay}<span> kl {getTimeFormat(event.timeEnd)}</span>{/if}
             {/if}
+        {:else}
+            <span>Tid ikke angitt</span>
+        {/if}
+
+        {#if event.location}
+            <span> - {event.location}</span>
         {/if}
     </span>
 
