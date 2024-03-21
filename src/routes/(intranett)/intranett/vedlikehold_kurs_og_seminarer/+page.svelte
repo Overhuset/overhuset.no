@@ -2,14 +2,17 @@
 	import {Accordion} from "@skeletonlabs/skeleton";
 	import EventAccordionItem from "./EventAccordionItem.svelte";
 	import {invalidateAll} from "$app/navigation";
-	import {Button} from "flowbite-svelte";
+	import {Button, Tooltip} from "flowbite-svelte";
 	import type {Event} from "$lib/types";
 	import { toasts, ToastContainer, FlatToast }  from "svelte-toasts";
+	import {PlusOutline} from "flowbite-svelte-icons";
 
 	const api = '/api/event';
 	const headers = {'content-type': 'application/json'};
 
 	export let data;
+
+	const {eventList, companyList, authUser} = data;
 
 	const onToast = (type: "success" | "info" | "error", message: string) => {
 		toasts.add({
@@ -24,7 +27,7 @@
 
 	const handleNewEvent = async () => {
  		const body = JSON.stringify({
-			title: `*NY* av ${data.email}`,
+			title: `*NY* av ${authUser?.email}`,
 			location: undefined,
 			companyId: undefined,
 			company: undefined,
@@ -38,7 +41,7 @@
 			published: false,
 			description: undefined,
 			registration: undefined,
-			createdBy: data.email,
+			createdBy: authUser?.email,
 		});
 
 		const response = await fetch(api, {method: 'POST', body, headers});
@@ -93,16 +96,18 @@
 	<h3>Seminarer, kurs og aktiviteter</h3>
 
 	<div class="buttons-container">
-		<Button on:click={handleNewEvent}>
-			Opprett ny
+		<Button id="new" on:click={handleNewEvent}>
+			<PlusOutline size="lg" />
 		</Button>
+		<Tooltip type="light" placement="top" triggeredBy="[id='new']">Opprett nytt arrangement og fortsett redigering ved å velge det i listen nedenfor</Tooltip>
 	</div>
 
 	<Accordion>
-		{#each (data.eventList || []) as event (event.id)}
+		{#each (eventList || []) as event (event.id)}
 			<EventAccordionItem
 				event={event}
-				companies={data.companyList}
+				companies={companyList}
+				authUser={authUser}
 				onChange={handleChangeEvent}
 				onDelete={handleDeleteEvent}
 				onRevert={handleRevertEvent}

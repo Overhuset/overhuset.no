@@ -6,11 +6,17 @@
     } from "$lib/utils/dateUtils";
     import {AccordionItem} from "@skeletonlabs/skeleton";
     import {Button, Input, Textarea, Toggle, Select, Tooltip} from "flowbite-svelte";
-    import type {Company, Event} from "$lib/types";
+    import type {AuthUser, Company, Event} from "$lib/types";
     import Label from "$lib/components/common/Label.svelte";
+    import {getIsSameDomain} from "$lib/utils/domainUtils";
+    import {AngleDownOutline, AngleUpOutline, CalendarWeekSolid} from 'flowbite-svelte-icons';
 
     export let event: Event;
     export let companies: Company[];
+    export let authUser: AuthUser | undefined;
+    export let onChange: (eventChanged: Event) => void;
+    export let onDelete: (id: string) => void;
+    export let onRevert: () => void;
 
     const companiesOptions: {value: string, name: string}[] = companies.map(company => ({ value: company.id || "", name: company.nameShort || ""}));
 
@@ -20,9 +26,7 @@
         timeEnd: getDateTimeFormatForDatePicker(event?.timeEnd)
     };
 
-    export let onChange: (eventChanged: Event) => void;
-    export let onDelete: (id: string) => void;
-    export let onRevert: () => void;
+    const changeAllowed = getIsSameDomain(authUser?.email, event.createdBy);
 
     const handleSave = () => {
         onChange(eventToChange);
@@ -43,7 +47,21 @@
 
 </script>
 
-<AccordionItem>
+<AccordionItem disabled={!changeAllowed}>
+
+    <span slot="iconOpen">
+        {#if changeAllowed}
+            <AngleDownOutline size="md" />
+        {/if}
+    </span>
+
+    <span slot="iconClosed">
+        {#if changeAllowed}
+            <AngleUpOutline size="md" />
+        {/if}
+    </span>
+
+
     <span slot="lead">
         <b>{eventToChange.title} </b>
            <span> - </span>
@@ -66,7 +84,9 @@
         {/if}
     </span>
 
-    <span slot="summary"/>
+    <span slot="summary" class="author">
+        av {event.createdBy}
+    </span>
 
     <span slot="content">
         <div class="inputs-container">
@@ -212,5 +232,8 @@
         gap: 1rem;
         margin-top: 1rem;
         margin-bottom: 1rem;
+    }
+    .author {
+        color: #A5371B
     }
 </style>

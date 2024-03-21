@@ -37,3 +37,8 @@ export type Company = {
 	url?: string;
 	description?: string;
 }
+
+export type AuthUser = {
+	email?:  string;
+	admin: boolean;
+}
