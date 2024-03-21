@@ -1,5 +1,10 @@
 <script lang="ts">
-    import {getDateFormat, getDateFormatDatePicker, getTimeFormat} from "$lib/utils/dateUtils";
+    import {
+        getDateFormat,
+        getDateFormatForDatePicker,
+        getDateTimeFormatForDatePicker,
+        getTimeFormat
+    } from "$lib/utils/dateUtils";
     import {AccordionItem} from "@skeletonlabs/skeleton";
     import {Button, Input, Textarea, Toggle, Select} from "flowbite-svelte";
     import type {Company, Event} from "$lib/types";
@@ -12,8 +17,8 @@
 
     let eventToChange: Event = {
         ...event,
-        time: getDateFormatDatePicker(event?.time),
-        timeEnd: getDateFormatDatePicker(event?.timeEnd)
+        time: getDateTimeFormatForDatePicker(event?.time),
+        timeEnd: getDateTimeFormatForDatePicker(event?.timeEnd)
     };
 
     export let onChange: (eventChanged: Event) => void;
@@ -94,15 +99,17 @@
 
         <div class="inputs-container">
             <Label label="Tidspunkt">
+                {eventToChange.time}
                 <Input
-                    type={eventToChange.fullDay ? "date" : "datetime-local" }
+                    type="datetime-local"
                     bind:value={eventToChange.time}
                     style="min-width: 12rem"
                 />
             </Label>
             <Label label="Tidspunkt slutt">
+                {eventToChange.timeEnd}
                 <Input
-                   type={eventToChange.fullDay ? "date" : "datetime-local" }
+                   type="datetime-local"
                    bind:value={eventToChange.timeEnd}
                    style="min-width: 12rem"
                 />

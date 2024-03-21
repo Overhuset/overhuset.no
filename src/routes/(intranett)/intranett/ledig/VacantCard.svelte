@@ -3,7 +3,7 @@
 	import type {Vacant} from "$lib/types";
 	import {overhusetDomains} from "$lib/config/constellations";
 	import CvFileUpload from "./CvFileUpload.svelte";
-	import {getDateFormat, getDateFormatDatePicker, getIsPassed} from "$lib/utils/dateUtils";
+	import {getDateFormat, getDateFormatForDatePicker, getIsPassed} from "$lib/utils/dateUtils";
 	import {getIsSameDomain} from "$lib/utils/domainUtils";
 	import Divider from "$lib/components/common/Divider.svelte";
 	import Card from "$lib/components/common/Card.svelte";
@@ -65,7 +65,7 @@
 	}
 
 	const handleChangeModeToggle = () => {
-		changeVacant = changeVacant ? undefined : {...vacant, vacantFrom: getDateFormatDatePicker(vacant?.vacantFrom)};
+		changeVacant = changeVacant ? undefined : {...vacant, vacantFrom: getDateFormatForDatePicker(vacant?.vacantFrom)};
 		onChangeToggle();
 	}
 

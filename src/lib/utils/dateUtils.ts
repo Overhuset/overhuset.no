@@ -18,12 +18,23 @@ export const getTimeFormat = (date?: string | Date) => {
     return "";
 }
 
-export const getDateFormatDatePicker = (date?: string) => {
+export const getDateFormatForDatePicker = (date?: string) => {
     if (date) {
         let d = new Date(date), month = `${d.getMonth() + 1}`, day = '' + d.getDate(), year = d.getFullYear();
         if (month.length < 2) month = `0${month}`;
         if (day.length < 2) day = `0${day}`;
         return [year, month, day ].join('-');
+    }
+    return "";
+}
+
+// "2000-01-01T00:00:00"
+export const getDateTimeFormatForDatePicker = (date?: string) => {
+    if (date) {
+        let d = new Date(date), month = `${d.getMonth() + 1}`, day = '' + d.getDate(), year = d.getFullYear();
+        if (month.length < 2) month = `0${month}`;
+        if (day.length < 2) day = `0${day}`;
+        return `${[year, month, day].join('-')}T${getTimeFormat(date)}`;
     }
     return "";
 }
