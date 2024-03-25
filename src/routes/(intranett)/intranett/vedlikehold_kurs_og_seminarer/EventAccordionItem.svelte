@@ -228,7 +228,7 @@
         justify-content: flex-start;
         align-items: center;
         flex-wrap: wrap;
-        gap: 1rem;
+        gap: 0.5rem;
     }
     .time-container {
         margin-top: -0.7rem;
