@@ -105,7 +105,7 @@
 		{#each (data.eventList || []) as event (event.id)}
 			<EventAccordionItem
 				event={event}
-				companies={[]}
+				companies={data.companyList}
 				authUser={data.authUser}
 				onChange={handleChangeEvent}
 				onDelete={handleDeleteEvent}

@@ -20,6 +20,8 @@
 
     const companiesOptions: {value: string, name: string}[] = companies.map(company => ({ value: company.id || "", name: company.nameShort || ""}));
 
+
+    console.log("companies: ", companies);
     let eventToChange: Event = {
         ...event,
         time: getDateTimeFormatForDatePicker(event?.time),
