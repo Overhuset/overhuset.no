@@ -67,7 +67,7 @@
 
         <div class="title-container">
             <b>{eventToChange.title}</b>
-            <Badge rounded color="indigo"> {(event.createdBy)}</Badge>
+            <Badge rounded color="dark"> {(event.createdBy)}</Badge>
         </div>
 
         <div class="time-container">
