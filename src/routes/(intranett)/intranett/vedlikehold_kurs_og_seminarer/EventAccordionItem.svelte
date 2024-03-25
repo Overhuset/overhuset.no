@@ -9,7 +9,8 @@
     import type {AuthUser, Company, Event} from "$lib/types";
     import Label from "$lib/components/common/Label.svelte";
     import {getIsSameDomain} from "$lib/utils/domainUtils";
-    import {AngleDownOutline, AngleUpOutline, CalendarMonthSolid, CalendarWeekSolid} from 'flowbite-svelte-icons';
+    import { Badge } from 'flowbite-svelte';
+    import {AngleDownOutline, AngleUpOutline} from 'flowbite-svelte-icons';
 
     export let event: Event;
     export let companies: Company[];
@@ -20,8 +21,6 @@
 
     const companiesOptions: {value: string, name: string}[] = companies.map(company => ({ value: company.id || "", name: company.nameShort || ""}));
 
-
-    console.log("companies: ", companies);
     let eventToChange: Event = {
         ...event,
         time: getDateTimeFormatForDatePicker(event?.time),
@@ -65,29 +64,35 @@
 
 
     <span slot="lead">
-        <b>{eventToChange.title} </b>
-           <span> - </span>
-        {#if event.time}
-            {#if event.timeEnd}<span>Fra </span>{/if}
-            <span>{getDateFormat(event.time)} </span>
-            {#if !event?.fullDay}<span> kl {getTimeFormat(event.time)}</span>{/if}
 
-            {#if event.timeEnd}
-                <span> til </span>
-                <span>{getDateFormat(event.timeEnd)} </span>
-                {#if !event?.fullDay}<span> kl {getTimeFormat(event.timeEnd)}</span>{/if}
+        <div class="title-container">
+            <b>{eventToChange.title}</b>
+            <Badge rounded color="indigo"> {(event.createdBy)}</Badge>
+        </div>
+
+        <div class="time-container">
+            {#if event.time}
+                {#if event.timeEnd}<span>Fra </span>{/if}
+                <span>{getDateFormat(event.time)} </span>
+                {#if !event?.fullDay}<span> kl {getTimeFormat(event.time)}</span>{/if}
+
+                {#if event.timeEnd}
+                    <span> til </span>
+                    <span>{getDateFormat(event.timeEnd)} </span>
+                    {#if !event?.fullDay}<span> kl {getTimeFormat(event.timeEnd)}</span>{/if}
+                {/if}
+            {:else}
+                <span>Tid ikke angitt</span>
             {/if}
-        {:else}
-            <span>Tid ikke angitt</span>
-        {/if}
-
-        {#if event.location}
-            <span> - {event.location}</span>
-        {/if}
+            {#if event.location}
+                <span> - {event.location}</span>
+            {/if}
+        </div>
     </span>
 
     <span slot="summary" class="author">
-        av {event.createdBy}
+
+
     </span>
 
     <span slot="content">
@@ -206,7 +211,6 @@
         <Label label="Registrering">
             <Textarea placeholder="Forklar hvordan man melder seg på. Husk mellomrom foran og etter linker i teksten. La stå tom hvis man kan komme uanmeldt" rows="4" name="registration" bind:value={eventToChange.registration} />
         </Label>
-        <Label label={`Opprettet av ${event.createdBy} ${getDateFormat(event.createdAt)} kl ${getTimeFormat(event.createdAt)}`}/>
 
         <div class="buttons-container">
             <Button pill on:click={handleRevert}>Forkast endringer</Button>
@@ -219,6 +223,17 @@
 
 
 <style>
+    .title-container {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    .time-container {
+        margin-top: -0.7rem;
+
+    }
     .inputs-container {
         display: flex;
         justify-content: flex-start;
@@ -237,13 +252,5 @@
     }
     .author {
         color: #A5371B
-    }
-    .iconLabel {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 0.5rem;
     }
 </style>

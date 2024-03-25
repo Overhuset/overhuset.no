@@ -26,7 +26,7 @@
 
 	const handleNewEvent = async () => {
  		const body = JSON.stringify({
-			title: `*NY* av ${data.authUser?.email}`,
+			title: `*NY*`,
 			location: undefined,
 			companyId: undefined,
 			company: undefined,
