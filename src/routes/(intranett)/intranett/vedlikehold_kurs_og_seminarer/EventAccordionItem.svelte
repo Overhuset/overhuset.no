@@ -27,6 +27,10 @@
         timeEnd: getDateTimeFormatForDatePicker(event?.timeEnd)
     };
 
+    const getIsDirty = (event1: Event, event2: Event) => {
+        return JSON.stringify({...event1, time: null, timeEnd: null}) !== JSON.stringify({...event2, time: null, timeEnd: null});
+    }
+
     const changeAllowed = authUser?.admin || getIsSameDomain(authUser?.email, event.createdBy);
 
     const handleSave = () => {
@@ -211,8 +215,8 @@
 
         <div class="buttons-container">
             <Button pill on:click={handleDelete}>Slett</Button>
-            <Button pill on:click={handleRevert}>Forkast endringer</Button>
-            <Button pill on:click={handleSave}>Lagre</Button>
+            <Button pill on:click={handleRevert} disabled={!getIsDirty(eventToChange, event)}>Forkast endringer</Button>
+            <Button pill on:click={handleSave} disabled={!getIsDirty(eventToChange, event)}>Lagre</Button>
         </div>
 
     </span>
