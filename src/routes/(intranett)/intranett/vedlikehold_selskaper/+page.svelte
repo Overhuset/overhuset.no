@@ -1,11 +1,11 @@
 <script lang="ts">
 	import {Accordion} from "@skeletonlabs/skeleton";
-	import {invalidate, invalidateAll} from "$app/navigation";
+	import {invalidateAll} from "$app/navigation";
 	import {Button, Tooltip} from "flowbite-svelte";
 	import type {Company} from "$lib/types";
 	import { toasts, ToastContainer, FlatToast }  from "svelte-toasts";
 	import CompanyAccordionItem from "./CompanyAccordionItem.svelte";
-	import {AngleUpOutline, PlusOutline} from "flowbite-svelte-icons";
+	import {PlusOutline} from "flowbite-svelte-icons";
 
 	const api = '/api/company';
 	const headers = {'content-type': 'application/json'};
@@ -74,7 +74,7 @@
 				onToast("error", "En feil oppstod ved sletting");
 			}
 
-			invalidate("");
+			invalidateAll();
 		}
 	}
 </script>

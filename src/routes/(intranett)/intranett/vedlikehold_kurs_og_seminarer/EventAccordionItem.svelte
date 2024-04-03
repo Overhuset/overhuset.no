@@ -90,10 +90,7 @@
         </div>
     </span>
 
-    <span slot="summary" class="author">
-
-
-    </span>
+    <span slot="summary" class="author"/>
 
     <span slot="content">
         <div class="inputs-container">
@@ -213,8 +210,8 @@
         </Label>
 
         <div class="buttons-container">
-            <Button pill on:click={handleRevert}>Forkast endringer</Button>
             <Button pill on:click={handleDelete}>Slett</Button>
+            <Button pill on:click={handleRevert}>Forkast endringer</Button>
             <Button pill on:click={handleSave}>Lagre</Button>
         </div>
 

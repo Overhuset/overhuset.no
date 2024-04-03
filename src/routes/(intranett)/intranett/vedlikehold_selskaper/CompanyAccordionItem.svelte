@@ -1,5 +1,4 @@
 <script lang="ts">
-
     import {AccordionItem} from "@skeletonlabs/skeleton";
     import {Button, Input, Textarea} from "flowbite-svelte";
     import type {AuthUser, Company} from "$lib/types";
@@ -16,6 +15,10 @@
     const changeAllowed = authUser?.admin;
 
     let companyToChange: Company = {...company};
+
+    const getIsDirty = (company1: Company, company2: Company) => {
+        return JSON.stringify(company1) !== JSON.stringify(company2);
+    }
 
     const handleSave = () => {
         if (companyToChange) {
@@ -109,8 +112,8 @@
         <div class="buttons-container">
             {#if changeAllowed}
                 <Button pill on:click={handleDelete}>Slett</Button>
-                <Button pill on:click={handleRevert}>Forkast endringer</Button>
-                <Button pill on:click={handleSave}>Lagre</Button>
+                <Button pill on:click={handleRevert} disabled={!getIsDirty(companyToChange, company)}>Forkast endringer</Button>
+                <Button pill on:click={handleSave} disabled={!getIsDirty(companyToChange, company)}>Lagre</Button>
             {/if}
         </div>
 

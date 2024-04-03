@@ -1,7 +1,7 @@
 <script lang="ts">
 	import {Accordion} from "@skeletonlabs/skeleton";
 	import EventAccordionItem from "./EventAccordionItem.svelte";
-	import {invalidate, invalidateAll} from "$app/navigation";
+	import {invalidateAll} from "$app/navigation";
 	import {Button, Tooltip} from "flowbite-svelte";
 	import type {Event} from "$lib/types";
 	import { toasts, ToastContainer, FlatToast }  from "svelte-toasts";
@@ -84,7 +84,7 @@
 				onToast("error", "En feil oppstod ved sletting");
 			}
 
-			invalidate("");
+			invalidateAll();
 		}
 	}
 
