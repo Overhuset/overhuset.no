@@ -9,6 +9,7 @@
     export let company: Company;
     export let authUser: AuthUser | undefined;
     export let onChange: (companyChanged: Company) => void;
+    export let onDelete: (id: string) => void;
     export let onRevert: () => void;
 
 
@@ -19,6 +20,14 @@
     const handleSave = () => {
         if (companyToChange) {
             onChange(companyToChange);
+        }
+    }
+
+    const handleDelete = () => {
+        if (confirm("Bekreft sletting") == true) {
+            if (company?.id) {
+                onDelete(company.id);
+            }
         }
     }
 
@@ -72,18 +81,18 @@
         <div class="inputs-container">
             <Label label="Nettside">
                 <Input
-                        type="text"
-                        placeholder="Url til firmaets hjemmeside"
-                        bind:value={companyToChange.url}
-                        style="min-width: 25rem"
+                    type="text"
+                    placeholder="Url til firmaets hjemmeside"
+                    bind:value={companyToChange.url}
+                    style="min-width: 25rem"
                 />
             </Label>
             <Label label="Logo">
                 <Input
-                        type="text"
-                        placeholder="Url til firmaets logo"
-                        bind:value={companyToChange.logoRef}
-                        style="min-width: 25rem"
+                    type="text"
+                    placeholder="Url til firmaets logo"
+                    bind:value={companyToChange.logoRef}
+                    style="min-width: 25rem"
                 />
             </Label>
         </div>
@@ -98,13 +107,11 @@
         </Label>
 
         <div class="buttons-container">
-            <Button pill on:click={handleRevert}>
-                Forkast endringer
-            </Button>
-
-            <Button pill on:click={handleSave}>
-                Lagre
-            </Button>
+            {#if changeAllowed}
+                <Button pill on:click={handleDelete}>Slett</Button>
+                <Button pill on:click={handleRevert}>Forkast endringer</Button>
+                <Button pill on:click={handleSave}>Lagre</Button>
+            {/if}
         </div>
 
     </span>

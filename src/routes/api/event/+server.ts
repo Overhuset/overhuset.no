@@ -87,8 +87,9 @@ export async function DELETE({ request }) {
         const sql = `DELETE FROM event WHERE id = '${id}'`;
         const db = createPool();
         await db.query(sql);
+        return new Response(JSON.stringify({ message: "event deleted" }), { status: 200 });
     }
-    return new Response(JSON.stringify({ message: "event deleted" }), { status: 200 });
+    return new Response(JSON.stringify({ message: "Delete event failed" }), { status: 400 });
 }
 
 /**

@@ -5,7 +5,7 @@ export type Event = {
 	location?: string;
 	time?: string;
 	timeEnd?: string;
-	createdBy: string;
+	createdBy?: string;
 	createdAt?: Date;
 	registration?: string;
 	published: boolean;
@@ -36,6 +36,8 @@ export type Company = {
 	logoRef?: string;
 	url?: string;
 	description?: string;
+	createdBy?: string;
+	createdAt?: Date;
 }
 
 export type AuthUser = {

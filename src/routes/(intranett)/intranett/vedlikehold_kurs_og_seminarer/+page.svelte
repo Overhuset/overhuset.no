@@ -115,7 +115,7 @@
 	</Accordion>
 
 	<ToastContainer placement="bottom-right" let:data={data}>
-		<FlatToast {data} /> <!-- Provider template for your toasts -->
+		<FlatToast {data} />
 	</ToastContainer>
 </div>
 
