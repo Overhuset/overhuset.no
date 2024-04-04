@@ -27,7 +27,7 @@
         background-color: #fcfcfc;
         border-radius: 0.5rem;
         margin-bottom: 1rem;
-        width: 100%;
+        width: 75%;
     }
     .primary {
         border-left: 7px solid rgb(115, 66, 13);
