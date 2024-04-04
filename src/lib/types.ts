@@ -1,13 +1,21 @@
 export type Event = {
-	title: string;
-	description: string;
-	date: string;
-	time: string;
-	company: string;
-	presentationLink: string;
-	registrationLink: string;
-	location: string;
-	type: 'Åpent' | 'Internt' | 'Online kurs';
+	id?: string,
+	title?: string;
+	description?: string;
+	location?: string;
+	time?: string;
+	timeEnd?: string;
+	createdBy?: string;
+	createdAt?: Date;
+	registration?: string;
+	published: boolean;
+	onlineStreaming: boolean;
+	physicalAttendance: boolean
+	externalsAllowed: boolean;
+	fullDay: boolean;
+	onlineCourse: boolean;
+	company?: string;
+	companyId?: string;
 };
 
 export type Vacant = {
@@ -19,4 +27,22 @@ export type Vacant = {
 	createdBy?: string;
 	createdAt?: string;
 	cv?: string;
+}
+
+export type Company = {
+	id?: string;
+	name?: string;
+	nameShort?: string;
+	logoRef?: string;
+	url?: string;
+	description?: string;
+	createdBy?: string;
+	createdAt?: Date;
+	partner?: boolean;
+	active?: boolean;
+}
+
+export type AuthUser = {
+	email?:  string;
+	admin: boolean;
 }

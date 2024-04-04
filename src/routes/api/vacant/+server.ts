@@ -1,14 +1,22 @@
 import {createPool} from "@vercel/postgres";
 import { v4 as uuidv4 } from 'uuid';
 import type {Vacant} from "$lib/types.js";
+import {getNowFroDB} from "$lib/utils/dateUtils";
 
-const getNow = () => {
-        let d = new Date(), month = '' + (d.getMonth() + 1), day = '' + d.getDate(), year = d.getFullYear();
-        if (month.length < 2) month = '0' + month;
-        if (day.length < 2) day = '0' + day;
-        return [year, month, day].join('-');
+export const fetchAllVacants = async () => {
+    const db = createPool();
+    const result = await db.query('SELECT * FROM vacant_consultant ORDER by vacant_from ASC');
+    return result.rows.map(v => ({
+        id: v.id,
+        name: v.name,
+        email: v.email,
+        vacantFrom: v.vacant_from,
+        comment: v.comment,
+        createdBy: v.created_by,
+        createdAt: v.created_by,
+        cv: v.cv
+    }));
 }
-
 
 // @ts-ignore
 export async function POST({ request }) {
@@ -32,13 +40,14 @@ export async function POST({ request }) {
     } else {
         // new
         const {name, email, vacantFrom, comment, createdBy, cv} = vacant;
-        const now = getNow();
+        const now = getNowFroDB();
         const sql = `INSERT INTO vacant_consultant (id, name, vacant_from, comment, created_by, created_at,  cv) VALUES ('${uuidv4()}', '${name}', '${vacantFrom}', '${comment}', '${createdBy}', '${now}', '${cv}')`;
         const db = createPool();
         await db.query(sql);
         return new Response(JSON.stringify({ message: "Vacant created" }), { status: 200 });
     }
 }
+
 
 
 // @ts-ignore
@@ -55,15 +64,13 @@ export async function DELETE({ request }) {
 
 
 /**
- * create table vacant_consultant
- * (
- *     first_name  varchar not null,
- *     last_name   varchar not null,
- *     vacant_from timestamp,
- *     comment     varchar,
- *     created_by  varchar,
- *     id          uuid    not null,
- *     created_at  timestamp,
- *     cv          varchar
- * );
- */
+ create table vacant_consultant
+ (
+ vacant_from timestamp,
+ comment     varchar,
+ created_by  varchar,
+ id          uuid not null,
+ created_at  timestamp,
+ cv          varchar,
+ name        varchar
+ ); */

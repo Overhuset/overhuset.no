@@ -2,6 +2,7 @@ import type { PageServerLoad } from './$types';
 import {createPool} from "@vercel/postgres";
 import { error } from "@sveltejs/kit";
 import { put } from "@vercel/blob";
+import {fetchAllVacants} from "../../../api/vacant/+server";
 
 const fetchEmail = async (id: string) => {
     const db = createPool();
@@ -10,26 +11,11 @@ const fetchEmail = async (id: string) => {
     return email[0];
 }
 
-const fetchAllVacant = async () => {
-    const db = createPool();
-    const result = await db.query('SELECT * FROM vacant_consultant ORDER by vacant_from ASC');
-    return result.rows.map(v => ({
-        id: v.id,
-        name: v.name,
-        email: v.email,
-        vacantFrom: v.vacant_from,
-        comment: v.comment,
-        createdBy: v.created_by,
-        createdAt: v.created_by,
-        cv: v.cv
-    }));
-}
-
 const load: PageServerLoad = async ({ locals }) => {
     const session = await locals.auth.validate();
     const user  = session?.user;
     const email = user?.userId ? await fetchEmail(user?.userId) : undefined;
-    const vacantList = await fetchAllVacant();
+    const vacantList = await fetchAllVacants();
     return { vacantList, user, email};
 };
 

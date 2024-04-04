@@ -1,5 +1,6 @@
 <script lang="ts">
     import { enhance } from '$app/forms';
+    import {Button, Spinner} from "flowbite-svelte";
     export let form: any;
     export let id: string | undefined;
     export let onChange: (fileName: string) => void;
@@ -61,14 +62,14 @@
             />
         </div>
         <div class="file-upload-container">
-            <button class="secondaryButton" on:click={handleBrowseClick} style="min-width: 8rem">Velg en fil</button>
+            <Button color="dark" on:click={handleBrowseClick} style="min-width: 8rem">Velg en fil</Button>
             <div class="file-select-container">
                 {#if fileSelect}
                     <span>{getCvShortName()}</span>
                     {#if !form?.uploaded}
-                        <button class="primaryButton" style="margin-left: 1rem" on:click={handleUploadStart}>
-                            {#if isUploadingCV}laster...{:else}Last opp{/if}
-                        </button>
+                        <Button color="purple" style="margin-left: 1rem" on:click={handleUploadStart}>
+                            {#if isUploadingCV}<Spinner size="6" />{:else}Last opp{/if}
+                        </Button>
                     {:else}
                         <span> (lastet opp)</span>
                     {/if}
@@ -90,34 +91,9 @@
     input[type="file"] {
         display:none;
     }
-    input[type="text"]{
-        width: 70%;
-    }
     label {
         margin-top: 0.3rem;
         margin-right: 2rem;
-    }
-    textarea {
-        border: 1px solid #ababab;
-        border-radius: 0.3rem;
-        width: 100%;
-        min-height: 9rem;
-        padding: 0.2rem 0.4rem;
-    }
-    button {
-        padding: 0.2rem 0.8rem;
-        border-radius: 0.5rem;
-    }
-    .primaryButton {
-        color: white;
-        background-color: rgb(115, 66, 13);
-    }
-    .primaryButton:disabled {
-        opacity: 0.4;
-    }
-    .secondaryButton {
-        border: 1px solid silver;
-        color: #4d4d4d;
     }
     .file-upload-container {
         width: 100%;

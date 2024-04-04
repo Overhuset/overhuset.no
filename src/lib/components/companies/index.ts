@@ -151,10 +151,11 @@ export const companies: Record<string, CompanyWithComponent> = {
 
 const companyList = listify(companies, (_key, value) => value);
 
-export const getLogoFromCompanyName = (companyName: string) => {
-	const company = companyList.find((company) =>
+export const getLogoFromCompanyName = (companyName?: string) => {
+	const company = companyName && companyList.find((company) =>
 		[company.name, company.companyName].includes(companyName)
 	);
+
 	if (company) {
 		return company.imgSrc;
 	}

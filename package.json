@@ -26,6 +26,7 @@
     "eslint": "^8.53.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-svelte": "^2.35.0",
+    "flowbite-svelte-icons": "^1.4.5",
     "postcss": "^8.4.31",
     "prettier": "^3.1.0",
     "prettier-plugin-svelte": "^3.1.0",
@@ -46,6 +47,7 @@
     "@vercel/postgres": "^0.5.1",
     "bun": "^1.0.26",
     "bun-types": "^1.0.11",
+    "flowbite-svelte": "^0.44.24",
     "lucia": "^2.7.4",
     "luxon": "^3.4.4",
     "papaparse": "^5.4.1",
@@ -54,6 +56,7 @@
     "svelte-collapse": "^0.1.2",
     "svelte-markdown": "^0.4.0",
     "svelte-meta-tags": "^3.1.0",
+    "svelte-toasts": "^1.1.2",
     "uuid": "^9.0.1"
   }
 }
