@@ -21,14 +21,19 @@
 
     const companiesOptions: {value: string, name: string}[] = companies.map(company => ({ value: company.id || "", name: company.nameShort || ""}));
 
-    let eventToChange: Event = {
-        ...event,
-        time: getDateTimeFormatForDatePicker(event?.time),
-        timeEnd: getDateTimeFormatForDatePicker(event?.timeEnd)
+    const getEventWithDatePickerFormat = (event: Event) => {
+        return {
+            ...event,
+            time: getDateTimeFormatForDatePicker(event?.time),
+            timeEnd: getDateTimeFormatForDatePicker(event?.timeEnd)
+        }
     };
 
-    const getIsDirty = (event1: Event, event2: Event) => {
-        return JSON.stringify({...event1, time: null, timeEnd: null}) !== JSON.stringify({...event2, time: null, timeEnd: null});
+    let eventToChange: Event = getEventWithDatePickerFormat(event);
+
+    const getIsDirty = (eventToChange: Event, event: Event) => {
+        const compareEvent = getEventWithDatePickerFormat(event);
+        return JSON.stringify(eventToChange) !== JSON.stringify(compareEvent);
     }
 
     const changeAllowed = authUser?.admin || getIsSameDomain(authUser?.email, event.createdBy);
