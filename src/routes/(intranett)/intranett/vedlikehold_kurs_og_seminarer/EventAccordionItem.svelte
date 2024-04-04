@@ -19,7 +19,8 @@
     export let onDelete: (id: string) => void;
     export let onRevert: () => void;
 
-    const companiesOptions: {value: string, name: string}[] = companies.map(company => ({ value: company.id || "", name: company.nameShort || ""}));
+    // @ts-ignore
+    const companiesOptions: {value: string, name: string}[] = [{value: undefined, name: "Overhuset"}].concat(companies.map(company => ({ value: company.id || "", name: company.nameShort || ""})));
 
     const getEventWithDatePickerFormat = (event: Event) => {
         return {
@@ -121,7 +122,7 @@
             </Label>
             <Label label="Selskap">
                 <Select
-                    placeholder="Overhuset"
+                    placeholder="Ikke valgt"
                     items={companiesOptions}
                     bind:value={eventToChange.companyId}
                     style="min-width: 25rem"
