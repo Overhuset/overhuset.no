@@ -13,6 +13,8 @@ export async function POST({ request }) {
                    name_short,
                    logo_ref,
                    url,
+                   partner,
+                   active,
                    description,
                    created_by,
                    created_at
@@ -22,6 +24,8 @@ export async function POST({ request }) {
                   '${company.nameShort || ""}',
                   '${company.logoRef || ""}',
                   '${company.url || ""}',
+                  '${company.partner || false}',
+                  '${company.active || false}',
                   '${company.description || ""}',
                   '${company.createdBy || ""}',
                   '${now}')`;
@@ -40,6 +44,8 @@ export async function PUT({ request }) {
                  name_short='${company.nameShort}',
                  logo_ref='${company.logoRef}',
                  url='${company.url}',
+                 partner='${company.partner}',
+                 active='${company.active}',
                  description='${company.description}'
             WHERE id='${company.id}'`;
         const db = createPool();

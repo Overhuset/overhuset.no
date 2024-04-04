@@ -24,22 +24,24 @@ const fetchAllEvents = async () => {
 	}));
 }
 
-const fetchAllCompanies = async () => {
+const fetchAllPartnerCompanies = async () => {
 	const db = createPool();
-	const result = await db.query('SELECT * FROM company');
+	const result = await db.query('SELECT * FROM company WHERE active = true AND partner = true');
 	return result.rows.map(c => ({
 		id: c.id,
 		name: c.name,
 		nameShort: c.name_short,
 		logoRef: c.logo_ref,
 		url: c.url,
-		description: c.description
+		description: c.description,
+		partner: c.partner
 	}));
 }
 
 
 export async function load() {
 	const eventList = await fetchAllEvents();
-	const companies = await fetchAllCompanies();
-	return { eventList, companies };
+	const companies = await fetchAllPartnerCompanies();
+	const partnerEventsOnly = eventList.filter(e => companies.find(c => c.id === e.companyId));
+	return { eventList:partnerEventsOnly, companies };
 }

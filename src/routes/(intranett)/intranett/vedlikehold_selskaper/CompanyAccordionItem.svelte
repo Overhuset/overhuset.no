@@ -1,6 +1,6 @@
 <script lang="ts">
     import {AccordionItem} from "@skeletonlabs/skeleton";
-    import {Button, Input, Textarea} from "flowbite-svelte";
+    import {Badge, Button, Input, Textarea, Toggle, Tooltip} from "flowbite-svelte";
     import type {AuthUser, Company} from "$lib/types";
     import Label from "$lib/components/common/Label.svelte";
 
@@ -56,7 +56,10 @@
     </span>
 
     <span slot="lead">
-      <b>{companyToChange.name}</b>
+       <div class="title-container">
+            <b>{companyToChange.name}</b>
+            <Badge rounded color="dark"> {(companyToChange.createdBy || "ukjent")}</Badge>
+       </div>
     </span>
 
     <span slot="summary"></span>
@@ -78,6 +81,26 @@
                     bind:value={companyToChange.nameShort}
                     style="min-width: 25rem"
                 />
+            </Label>
+            <Label label="Partner">
+                <div id="partner">
+                     <Toggle
+                         checked={companyToChange.partner}
+                         on:change={() => companyToChange.partner = !companyToChange.partner}
+                         color="purple"
+                     />
+                </div>
+                <Tooltip type="light" placement="bottom" triggeredBy="[id='partner']">Huk på hvis selskapet er partner av Overhuset. Ikke huk på hvis selskapet kun er del av konstellasjon.</Tooltip>
+            </Label>
+            <Label label="Aktiv">
+                <div id="active">
+                     <Toggle
+                         checked={companyToChange.active}
+                         on:change={() => companyToChange.active = !companyToChange.active}
+                         color="purple"
+                     />
+                </div>
+                <Tooltip type="light" placement="bottom" triggeredBy="[id='partner']">Huk på hvis selskapet skal være synlig på Overhuset sine sider. Arrangementer osv knyttet til selskapet blir også påvirket av dette valget.</Tooltip>
             </Label>
         </div>
 
@@ -122,7 +145,13 @@
 
 
 <style>
-
+    .title-container {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
     .inputs-container {
         display: flex;
         justify-content: flex-start;

@@ -233,7 +233,6 @@
     }
     .time-container {
         margin-top: -0.7rem;
-
     }
     .inputs-container {
         display: flex;

@@ -17,7 +17,11 @@ const fetchAllCompanies = async () => {
 		nameShort: c.name_short,
 		logoRef: c.logo_ref,
 		url: c.url,
-		description: c.description
+		description: c.description,
+		createdBy: c.created_by,
+		createdAt: c.created_at,
+		partner: c.partner,
+		active: c.active
 	}));
 }
 

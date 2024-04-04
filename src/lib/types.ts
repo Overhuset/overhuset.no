@@ -38,6 +38,8 @@ export type Company = {
 	description?: string;
 	createdBy?: string;
 	createdAt?: Date;
+	partner?: boolean;
+	active?: boolean;
 }
 
 export type AuthUser = {
