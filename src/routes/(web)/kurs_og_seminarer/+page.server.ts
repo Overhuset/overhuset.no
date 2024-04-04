@@ -24,9 +24,9 @@ const fetchAllEvents = async () => {
 	}));
 }
 
-const fetchAllPartnerCompanies = async () => {
+const fetchActiveCompanies = async () => {
 	const db = createPool();
-	const result = await db.query('SELECT * FROM company WHERE active = true AND partner = true');
+	const result = await db.query('SELECT * FROM company WHERE active = true');
 	return result.rows.map(c => ({
 		id: c.id,
 		name: c.name,
@@ -41,7 +41,9 @@ const fetchAllPartnerCompanies = async () => {
 
 export async function load() {
 	const eventList = await fetchAllEvents();
-	const companies = await fetchAllPartnerCompanies();
-	const partnerEventsOnly = eventList.filter(e => companies.find(c => c.id === e.companyId));
+	const companies = await fetchActiveCompanies();
+	const partnerEventsOnly = eventList.filter(
+		e =>
+			companies.find(c => c.id === e.companyId && (c.partner || !e.companyId )));
 	return { eventList:partnerEventsOnly, companies };
 }
