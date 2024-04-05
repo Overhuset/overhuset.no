@@ -3,21 +3,6 @@ import { v4 as uuidv4 } from 'uuid';
 import type {Vacant} from "$lib/types.js";
 import {getNowFroDB} from "$lib/utils/dateUtils";
 
-export const fetchAllVacants = async () => {
-    const db = createPool();
-    const result = await db.query('SELECT * FROM vacant_consultant ORDER by vacant_from ASC');
-    return result.rows.map(v => ({
-        id: v.id,
-        name: v.name,
-        email: v.email,
-        vacantFrom: v.vacant_from,
-        comment: v.comment,
-        createdBy: v.created_by,
-        createdAt: v.created_by,
-        cv: v.cv
-    }));
-}
-
 // @ts-ignore
 export async function POST({ request }) {
     const vacant: Vacant = await request.json();

@@ -12,6 +12,7 @@
 
     const getCvShortName = () => {
         if (fileSelect) {
+            // @ts-ignore
             const split = fileSelect.split("\\");
             return split[split.length-1];
         }
@@ -29,20 +30,21 @@
     const handleBrowseClick = () => {
         const fileInput =  document.getElementById(fileInputContainerId)?.firstChild;
         if (fileInput) {
+            // @ts-ignore
             fileInput.click();
         }
     }
 
-     $: {
+    $: {
          if (form?.uploaded !== undefined) {
-             isUploadingCV = false;
-             onChange(form?.uploaded);
+            isUploadingCV = false;
+            onChange(form?.uploaded);
 
-             if (onLoadingStateChange) {
-                 onLoadingStateChange(false);
-             }
-         }
-     }
+            if (onLoadingStateChange) {
+                onLoadingStateChange(false);
+            }
+        }
+    }
 
 </script>
 

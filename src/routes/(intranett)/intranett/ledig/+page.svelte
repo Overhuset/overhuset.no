@@ -125,7 +125,7 @@
 
 						<div class="buttons-container">
 							<Button color="primary" on:click={handleToggleNewForm}>Avbryt</Button>
-							<Button color="primary" disabled={
+							<Button type="submit" color="primary" disabled={
 								!newVacant.name ||
 								!newVacant.vacantFrom ||
 								!newVacant.createdBy ||
