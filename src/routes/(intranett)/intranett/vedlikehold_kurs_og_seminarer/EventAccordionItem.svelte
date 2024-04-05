@@ -20,7 +20,7 @@
     export let onRevert: () => void;
 
     // @ts-ignore
-    const companiesOptions: {value: string, name: string}[] = [{value: undefined, name: "Overhuset"}].concat(companies.map(company => ({ value: company.id || "", name: company.nameShort || ""})));
+    const companiesOptions: {value: string, name: string}[] = companies.map(company => ({ value: company.id || "", name: company.nameShort || ""}));
 
     const getEventWithDatePickerFormat = (event: Event) => {
         return {
