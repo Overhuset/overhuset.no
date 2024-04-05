@@ -9,6 +9,7 @@
     let fileSelect: string | undefined = undefined;
     let isUploadingCV: boolean = false;
     const fileInputContainerId = "file_input_id_"+id;
+    const fileInputFormId = "file_input_form_id_"+id;
 
     const getCvShortName = () => {
         if (fileSelect) {
@@ -21,10 +22,10 @@
 
     const handleUploadStart = () => {
         isUploadingCV = true;
-
         if (onLoadingStateChange) {
             onLoadingStateChange(true);
         }
+        return true;
     }
 
     const handleBrowseClick = () => {
@@ -51,7 +52,7 @@
 
 
 <div>
-    <form use:enhance action="?/upload" method="POST" enctype="multipart/form-data">
+    <form id={fileInputFormId} on:submit={handleUploadStart} use:enhance action="?/upload" method="POST" enctype="multipart/form-data">
         <label>CV - filen kan være på maks 4.5mb</label>
         <div id={fileInputContainerId}>
             <input
@@ -69,7 +70,7 @@
                 {#if fileSelect}
                     <span>{getCvShortName()}</span>
                     {#if !form?.uploaded}
-                        <Button color="purple" style="margin-left: 1rem" on:click={handleUploadStart}>
+                        <Button color="purple" style="margin-left: 1rem" type="submit">
                             {#if isUploadingCV}<Spinner size="6" />{:else}Last opp{/if}
                         </Button>
                     {:else}
