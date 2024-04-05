@@ -42,8 +42,9 @@ const fetchActiveCompanies = async () => {
 export async function load() {
 	const eventList = await fetchAllEvents();
 	const companies = await fetchActiveCompanies();
-	const partnerEventsOnly = eventList.filter(
+	// filter, only partners and Overhuset
+	const filteredList = eventList.filter(
 		e =>
-			companies.find(c => c.id === e.companyId && (c.partner || !e.companyId )));
-	return { eventList:partnerEventsOnly, companies };
+			companies.find(c => c.id === e.companyId && (c.partner || c.nameShort === "Overhuset")));
+	return { eventList:filteredList, companies };
 }

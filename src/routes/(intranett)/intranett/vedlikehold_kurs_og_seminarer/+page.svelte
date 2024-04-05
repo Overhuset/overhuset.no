@@ -2,7 +2,16 @@
 	import {Accordion} from "@skeletonlabs/skeleton";
 	import EventAccordionItem from "./EventAccordionItem.svelte";
 	import {invalidateAll} from "$app/navigation";
-	import {Button, Tooltip} from "flowbite-svelte";
+	import {
+		Button,
+		Table,
+		TableBody,
+		TableBodyCell,
+		TableBodyRow,
+		TableHead,
+		TableHeadCell,
+		Tooltip
+	} from "flowbite-svelte";
 	import type {Event} from "$lib/types";
 	import { toasts, ToastContainer, FlatToast }  from "svelte-toasts";
 	import {PlusOutline} from "flowbite-svelte-icons";
@@ -95,24 +104,33 @@
 	<h3>Seminarer, kurs og aktiviteter</h3>
 
 	<div class="buttons-container">
-		<Button id="new" on:click={handleNewEvent}>
-			<PlusOutline size="lg" />
-		</Button>
+		<Button id="new" on:click={handleNewEvent} size="md"><PlusOutline class="w-5 h-5 me-2" />Nytt arrangement</Button>
 		<Tooltip type="light" placement="top" triggeredBy="[id='new']">Opprett nytt arrangement og fortsett redigering ved å velge det i listen nedenfor</Tooltip>
 	</div>
 
-	<Accordion>
-		{#each (data.eventList || []) as event (event.id)}
-			<EventAccordionItem
-				event={event}
-				companies={data.companyList}
-				authUser={data.authUser}
-				onChange={handleChangeEvent}
-				onDelete={handleDeleteEvent}
-				onRevert={handleRevertEvent}
-			/>
-		{/each}
-	</Accordion>
+	<Table>
+		<TableHead>
+			<TableHeadCell style="color: white">Arrangementer</TableHeadCell>
+		</TableHead>
+		<TableBody>
+				{#each (data.eventList || []) as event (event.id)}
+					<TableBodyRow>
+						<TableBodyCell>
+							<Accordion>
+								<EventAccordionItem
+										event={event}
+										companies={data.companyList}
+										authUser={data.authUser}
+										onChange={handleChangeEvent}
+										onDelete={handleDeleteEvent}
+										onRevert={handleRevertEvent}
+								/>
+							</Accordion>
+						</TableBodyCell>
+					</TableBodyRow>
+				{/each}
+		</TableBody>
+	</Table>
 
 	<ToastContainer placement="bottom-right" let:data={data}>
 		<FlatToast {data} />

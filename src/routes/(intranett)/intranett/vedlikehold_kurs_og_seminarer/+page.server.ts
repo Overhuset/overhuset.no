@@ -34,7 +34,7 @@ const fetchAllEvents = async () => {
 
 const fetchAllCompanies = async () => {
 	const db = createPool();
-	const result = await db.query('SELECT * FROM company');
+	const result = await db.query('SELECT * FROM company ORDER BY created_at ASC');
 	return result.rows.map(c => ({
 		id: c.id,
 		name: c.name,

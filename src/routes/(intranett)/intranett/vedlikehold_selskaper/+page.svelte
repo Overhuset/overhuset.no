@@ -1,11 +1,21 @@
 <script lang="ts">
 	import {Accordion} from "@skeletonlabs/skeleton";
 	import {invalidateAll} from "$app/navigation";
-	import {Button, Tooltip} from "flowbite-svelte";
+	import {
+		Button,
+		Table,
+		TableBody,
+		TableBodyCell,
+		TableBodyRow,
+		TableHead,
+		TableHeadCell,
+		Tooltip
+	} from "flowbite-svelte";
 	import type {Company} from "$lib/types";
 	import { toasts, ToastContainer, FlatToast }  from "svelte-toasts";
 	import CompanyAccordionItem from "./CompanyAccordionItem.svelte";
 	import {PlusOutline} from "flowbite-svelte-icons";
+	import EventAccordionItem from "../vedlikehold_kurs_og_seminarer/EventAccordionItem.svelte";
 
 	const api = '/api/company';
 	const headers = {'content-type': 'application/json'};
@@ -85,24 +95,33 @@
 
 	<div class="buttons-container">
 		{#if data.authUser?.admin}
-			<Button id="new" on:click={handleNewCompany}>
-				<PlusOutline size="lg" />
-			</Button>
+			<Button id="new" on:click={handleNewCompany} size="md"><PlusOutline class="w-5 h-5 me-2" />Nytt selskap</Button>
 			<Tooltip type="light" placement="top" triggeredBy="[id='new']">Opprett nytt selskap og fortsett redigering ved å velge det i listen nedenfor</Tooltip>
 		{/if}
 	</div>
 
-	<Accordion>
-		{#each (data.companyList || []) as company (company.id)}
-			<CompanyAccordionItem
-				company={company}
-				authUser={data.authUser}
-				onChange={handleChangeCompany}
-				onDelete={handleDeleteCompany}
- 				onRevert={handleRevertCompany}
-			/>
-		{/each}
-	</Accordion>
+	<Table>
+		<TableHead>
+			<TableHeadCell style="color: white">Selskaper</TableHeadCell>
+		</TableHead>
+		<TableBody>
+			{#each (data.companyList || []) as company (company.id)}
+				<TableBodyRow>
+					<TableBodyCell>
+						<Accordion>
+							<CompanyAccordionItem
+									company={company}
+									authUser={data.authUser}
+									onChange={handleChangeCompany}
+									onDelete={handleDeleteCompany}
+									onRevert={handleRevertCompany}
+							/>
+						</Accordion>
+					</TableBodyCell>
+				</TableBodyRow>
+			{/each}
+		</TableBody>
+	</Table>
 
 	<ToastContainer placement="bottom-right" let:data={data}>
 		<FlatToast {data} />

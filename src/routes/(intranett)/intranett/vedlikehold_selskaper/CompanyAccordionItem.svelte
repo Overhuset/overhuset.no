@@ -124,12 +124,14 @@
         </div>
 
         <Label label="Beskrivelse">
-            <Textarea
-                placeholder="Beskrivende tekst om selskapet"
-                rows="10"
-                name="description"
-                bind:value={companyToChange.description}
-            />
+            <div>
+                 <Textarea
+                     placeholder="Beskrivende tekst om selskapet"
+                     rows="10"
+                     name="description"
+                     bind:value={companyToChange.description}
+                 />
+            </div>
         </Label>
 
         <div class="buttons-container">
