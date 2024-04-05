@@ -31,12 +31,6 @@ const tree: TreeItem[] = [
 		markdown: 'retningslinjer.md',
 		status: 'published'
 	},
-	{
-		title: 'Sosialt 🥳',
-		slug: 'sosialt',
-		markdown: 'sosialt.md',
-		status: 'published'
-	}
 	// {
 	// 	title: 'Example nested tree',
 	// 	children: [
