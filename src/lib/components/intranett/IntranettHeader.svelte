@@ -43,7 +43,6 @@
 		{/each}
 		{#if loggedIn}
 			<NavLi href={`/intranett/ledig`}>Ledige konsulenter</NavLi>
-			<NavLi href={`/intranett/vedlikehold_kurs_og_seminarer`}>Administrer</NavLi>
 			<NavLi class="cursor-pointer">
 				Vedlikehold<ChevronDownOutline class="w-3 h-3 ms-2 text-primary-800 dark:text-white inline" />
 			</NavLi>
