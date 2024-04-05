@@ -8,8 +8,6 @@
 		TableBody,
 		TableBodyCell,
 		TableBodyRow,
-		TableHead,
-		TableHeadCell,
 		Tooltip
 	} from "flowbite-svelte";
 	import type {Event} from "$lib/types";
@@ -109,9 +107,6 @@
 	</div>
 
 	<Table>
-		<TableHead>
-			<TableHeadCell style="color: white">Arrangementer</TableHeadCell>
-		</TableHead>
 		<TableBody>
 				{#each (data.eventList || []) as event (event.id)}
 					<TableBodyRow>

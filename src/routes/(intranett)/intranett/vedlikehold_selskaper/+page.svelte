@@ -7,15 +7,12 @@
 		TableBody,
 		TableBodyCell,
 		TableBodyRow,
-		TableHead,
-		TableHeadCell,
 		Tooltip
 	} from "flowbite-svelte";
 	import type {Company} from "$lib/types";
 	import { toasts, ToastContainer, FlatToast }  from "svelte-toasts";
 	import CompanyAccordionItem from "./CompanyAccordionItem.svelte";
 	import {PlusOutline} from "flowbite-svelte-icons";
-	import EventAccordionItem from "../vedlikehold_kurs_og_seminarer/EventAccordionItem.svelte";
 
 	const api = '/api/company';
 	const headers = {'content-type': 'application/json'};
@@ -101,9 +98,6 @@
 	</div>
 
 	<Table>
-		<TableHead>
-			<TableHeadCell style="color: white">Selskaper</TableHeadCell>
-		</TableHead>
 		<TableBody>
 			{#each (data.companyList || []) as company (company.id)}
 				<TableBodyRow>
