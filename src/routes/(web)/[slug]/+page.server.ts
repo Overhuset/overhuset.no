@@ -17,9 +17,9 @@ const fetchConstellation = async (urlRef:string) => {
 
 const fetchCompanies = async (constellation?: Constellation) => {
 	if (constellation) {
-		const db = createPool();
 		const companyIds = (constellation.companies || "").split(";");
 		const companyIdsParam = companyIds.map(companyId => `'${companyId}'`);
+		const db = createPool();
 		const sql = `SELECT * FROM company WHERE id IN (${companyIdsParam})`;
 		const result = await db.query(sql);
 		return result.rows.map(c => mapFromDbToCompanyObject(c));
@@ -27,10 +27,17 @@ const fetchCompanies = async (constellation?: Constellation) => {
 	return [];
 }
 
-const fetchEvents = async () => {
-	const db = createPool();
-	const result = await db.query('SELECT * FROM event ORDER by created_at DESC');
-	return result.rows.map(e => mapFromDbToEventObject(e));
+const fetchEvents = async (constellation?: Constellation) => {
+	if (constellation) {
+		const companyIds = (constellation.companies || "").split(";");
+		const companyIdsParam = companyIds.map(companyId => `'${companyId}'`);
+		const db = createPool();
+		const sql = `SELECT * FROM event WHERE company_id IN (${companyIdsParam}) ORDER by created_at DESC`;
+		console.log("sql: ", sql );
+		const result = await db.query(sql);
+		return result.rows.map(e => mapFromDbToEventObject(e));
+	}
+	return [];
 }
 
 export const load: PageServerLoad = async ({ fetch, params }) => {
@@ -38,7 +45,7 @@ export const load: PageServerLoad = async ({ fetch, params }) => {
 	if (params.slug) {
 		const constellation = await fetchConstellation(params.slug);
 		const companiesList = await fetchCompanies(constellation);
-		const eventList = await fetchEvents();
+		const eventList = await fetchEvents(constellation);
 		if (constellation) {
 			return {
 				constellation,
