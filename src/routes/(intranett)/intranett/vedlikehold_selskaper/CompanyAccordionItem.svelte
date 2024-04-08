@@ -123,6 +123,10 @@
                     style="min-width: 25rem"
                 />
             </Label>
+
+            <a href={`/konsulentselskap/${companyToChange?.nameShort?.toLowerCase()}`} class="flex justify-center items-center min-h-[160px] md:last:col-start-3 md:[&:nth-last-child(2)]:col-start-2">
+                <img src={companyToChange.logoRef} alt={companyToChange.name} class="w-1/2 md:w-28" />
+            </a>
         </div>
 
         <Label label="Beskrivelse">

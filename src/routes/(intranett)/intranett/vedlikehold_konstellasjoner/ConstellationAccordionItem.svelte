@@ -82,42 +82,47 @@
             </Label>
             <Label label="Logo">
                 <Input
-                        type="text"
-                        placeholder="Url til konstellasjonens logo"
-                        bind:value={constellationToChange.logoRef}
-                        style="min-width: 25rem"
+                    type="text"
+                    placeholder="Url til konstellasjonens logo"
+                    bind:value={constellationToChange.logoRef}
+                    style="min-width: 25rem"
                 />
             </Label>
             <Label label="Url-referanse">
                 <div id="urlRef">
                     <Input
-                            type="text"
-                            placeholder="Legg til en referanse til url for denne konstellasjonen"
-                            bind:value={constellationToChange.urlRef}
-                            style="min-width: 25rem"
+                        type="text"
+                        placeholder="Legg til en referanse til url for denne konstellasjonen"
+                        bind:value={constellationToChange.urlRef}
+                        style="min-width: 25rem"
                     />
                     <Tooltip type="light" placement="bottom" triggeredBy="[id='urlRef']">Url til denne konstellasjonen vil bli www.overhuset.no/konstellasjon?ref=url-referanse</Tooltip>
                 </div>
             </Label>
-
-              <Label label="Selskaper i konstellasjonen">
-                    <Select
-                        placeholder="Velg for å legge til"
-                        items={companiesOptions}
-                        bind:value={companyIdToAdd}
-                        style="min-width: 25rem"
-                    />
-                </Label>
+            <Label label="Selskaper i konstellasjonen">
+                <Select
+                    placeholder="Velg for å legge til"
+                    items={companiesOptions}
+                    bind:value={companyIdToAdd}
+                    style="min-width: 25rem"
+                />
+            </Label>
             <Label label="">
-
-                {#each constellationToChange.companies.split(";") as companyId (companyId)}
-
-                    <div>{companyId}</div>
-                    {/each}
-
 
             </Label>
         </div>
+
+         <div class="inputs-container">
+                  {#each companies as company (company.id)}
+                    {#if constellation?.companies?.includes(company?.id || "")}
+                        <Badge dismissable large color="dark">
+                            <a href={`/konsulentselskap/${company?.nameShort?.toLowerCase()}`} >
+                                <img src={company.logoRef} alt={company.name} class="h-16"/>
+                            </a>
+                        </Badge>
+                    {/if}
+                {/each}
+         </div>
 
         <div class="inputs-container">
             <Label label="Aktiv">
@@ -161,7 +166,6 @@
                 <Button pill on:click={handleSave} disabled={!getIsDirty(constellationToChange, constellation)}>Lagre</Button>
             {/if}
         </div>
-
     </span>
 </AccordionItem>
 
