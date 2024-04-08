@@ -1,5 +1,6 @@
 import type { AuthUser } from "$lib/types";
 import {createPool} from "@vercel/postgres";
+import {mapFromDbToCompanyObject} from "$lib/utils/objectMapper";
 
 const fetchAuthUser = async (id: string) => {
 	const db = createPool();
@@ -11,18 +12,7 @@ const fetchAuthUser = async (id: string) => {
 const fetchAllCompanies = async () => {
 	const db = createPool();
 	const result = await db.query('SELECT * FROM company ORDER BY name ASC');
-	return result.rows.map(c => ({
-		id: c.id,
-		name: c.name,
-		nameShort: c.name_short,
-		logoRef: c.logo_ref,
-		url: c.url,
-		description: c.description,
-		createdBy: c.created_by,
-		createdAt: c.created_at,
-		partner: c.partner,
-		active: c.active
-	}));
+	return result.rows.map(c => mapFromDbToCompanyObject(c));
 }
 
 export async function load({ locals }) {

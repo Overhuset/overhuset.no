@@ -1,5 +1,6 @@
 import type { AuthUser } from "$lib/types";
 import {createPool} from "@vercel/postgres";
+import {mapFromDbToConstellationObject} from "$lib/utils/objectMapper";
 
 const fetchAuthUser = async (id: string) => {
 	const db = createPool();
@@ -11,17 +12,7 @@ const fetchAuthUser = async (id: string) => {
 const fetchAllConstellations = async () => {
 	const db = createPool();
 	const result = await db.query('SELECT * FROM constellation ORDER BY name ASC');
-	return result.rows.map(c => ({
-		id: c.id,
-		name: c.name,
-		description: c.description,
-		companies: c.companies,
-		active: c.active,
-		createdBy: c.created_by,
-		createdAt: c.created_at,
-		logoRef: c.logo_ref,
-		urlRef: c.url_ref,
-	}));
+	return result.rows.map(c => mapFromDbToConstellationObject(c));
 }
 
 export async function load({ locals }) {
