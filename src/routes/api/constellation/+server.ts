@@ -11,6 +11,7 @@ export async function POST({ request }) {
                    id,
                    name,
                    description,
+                   description2,
                    companies,
                    active,
                    logo_ref,
@@ -21,6 +22,7 @@ export async function POST({ request }) {
                   '${uuidv4()}', 
                   '${constellation.name || ""}', 
                   '${constellation.description || ""}',
+                  '${constellation.description2 || ""}',
                   '${constellation.companies || ""}',
                   '${constellation.active || false}',
                   '${constellation.logoRef || ""}',
@@ -40,6 +42,7 @@ export async function PUT({ request }) {
         const sql =  `UPDATE constellation SET 
                  name='${constellation.name}',
                  description='${constellation.description}',
+                 description2='${constellation.description2}',
                  companies='${constellation.companies}',
                  active='${constellation.active}',
                  logo_ref='${constellation.logoRef}',

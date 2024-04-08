@@ -3,7 +3,8 @@
 	import EventAccordionItem from "./EventAccordionItem.svelte";
 	import {invalidateAll} from "$app/navigation";
 	import {
-		Button, P,
+		Button,
+		P,
 		Table,
 		TableBody,
 		TableBodyCell,

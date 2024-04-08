@@ -1,12 +1,13 @@
 <script lang="ts">
     import {AccordionItem} from "@skeletonlabs/skeleton";
-    import {Badge, Button, Input, Textarea, Toggle, Tooltip} from "flowbite-svelte";
-    import type {AuthUser, Constellation} from "$lib/types";
+    import {Badge, Button, Input, Select, Textarea, Toggle, Tooltip} from "flowbite-svelte";
+    import type {AuthUser, Company, Constellation} from "$lib/types";
     import Label from "$lib/components/common/Label.svelte";
 
     import {AngleDownOutline, AngleUpOutline} from 'flowbite-svelte-icons';
     export let constellation: Constellation;
     export let authUser: AuthUser | undefined;
+    export let companies: Company[];
     export let onChange: (constellationChanged: Constellation) => void;
     export let onDelete: (id: string) => void;
     export let onRevert: () => void;
@@ -15,6 +16,7 @@
     const changeAllowed = authUser?.admin;
 
     let constellationToChange: Constellation = {...constellation};
+    let companyIdToAdd: undefined;
 
     const getIsDirty = (constellation1: Constellation, constellation2: Constellation) => {
         return JSON.stringify(constellation1) !== JSON.stringify(constellation2);
@@ -38,6 +40,8 @@
         constellationToChange = {...constellation};
         onRevert();
     }
+
+    const companiesOptions: {value: string, name: string}[] = companies.map(company => ({ value: company.id || "", name: company.nameShort || ""}));
 
 </script>
 
@@ -76,14 +80,46 @@
                     style="min-width: 25rem"
                 />
             </Label>
-            <Label label="Selskaper i konstellasjonen">
+            <Label label="Logo">
                 <Input
-                    type="text"
-                    placeholder="Legg til ett eller flere selskaper"
-                    bind:value={constellationToChange.companies}
-                    style="min-width: 25rem"
+                        type="text"
+                        placeholder="Url til konstellasjonens logo"
+                        bind:value={constellationToChange.logoRef}
+                        style="min-width: 25rem"
                 />
             </Label>
+            <Label label="Url-referanse">
+                <div id="urlRef">
+                    <Input
+                            type="text"
+                            placeholder="Legg til en referanse til url for denne konstellasjonen"
+                            bind:value={constellationToChange.urlRef}
+                            style="min-width: 25rem"
+                    />
+                    <Tooltip type="light" placement="bottom" triggeredBy="[id='urlRef']">Url til denne konstellasjonen vil bli www.overhuset.no/konstellasjon?ref=url-referanse</Tooltip>
+                </div>
+            </Label>
+
+              <Label label="Selskaper i konstellasjonen">
+                    <Select
+                        placeholder="Velg for å legge til"
+                        items={companiesOptions}
+                        bind:value={companyIdToAdd}
+                        style="min-width: 25rem"
+                    />
+                </Label>
+            <Label label="">
+
+                {#each constellationToChange.companies.split(";") as companyId (companyId)}
+
+                    <div>{companyId}</div>
+                    {/each}
+
+
+            </Label>
+        </div>
+
+        <div class="inputs-container">
             <Label label="Aktiv">
                 <div id="active">
                      <Toggle
@@ -95,34 +131,25 @@
                 <Tooltip type="light" placement="bottom" triggeredBy="[id='partner']">Huk på hvis selskapet skal være synlig på Overhuset sine sider. Arrangementer osv knyttet til selskapet blir også påvirket av dette valget.</Tooltip>
             </Label>
         </div>
-        <div class="inputs-container">
-            <Label label="Logo">
-                <Input
-                    type="text"
-                    placeholder="Url til konstellasjonens logo"
-                    bind:value={constellationToChange.logoRef}
-                    style="min-width: 25rem"
-                />
-            </Label>
-            <Label label="Url-referanse">
-                <div id="urlRef">
-                    <Input
-                        type="text"
-                        placeholder="Legg til en referanse til url for denne konstellasjonen"
-                        bind:value={constellationToChange.urlRef}
-                        style="min-width: 25rem"
-                    />
-                    <Tooltip type="light" placement="bottom" triggeredBy="[id='urlRef']">Url til denne konstellasjonen vil bli www.overhuset.no/konstellasjon?ref=url-referanse</Tooltip>
-                </div>
-            </Label>
-        </div>
+
         <Label label="Beskrivelse">
             <div>
                  <Textarea
-                     placeholder="Beskrivende tekst om selskapet"
-                     rows="10"
+                     placeholder="Beskrivende tekst om konstelasjonen"
+                     rows="7"
                      name="description"
                      bind:value={constellationToChange.description}
+                 />
+            </div>
+        </Label>
+
+        <Label label="Beskrivende tekst - fortsettelse">
+            <div>
+                 <Textarea
+                     placeholder="Fortsettelse av beskrivende tekst. Denne presenteres etter selskapene."
+                     rows="7"
+                     name="description"
+                     bind:value={constellationToChange.description2}
                  />
             </div>
         </Label>

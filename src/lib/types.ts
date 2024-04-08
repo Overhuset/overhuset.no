@@ -46,6 +46,7 @@ export type Constellation = {
 	id?: string;
 	name?: string;
 	description?: string;
+	description2?: string;
 	companies?: string;
 	active?: boolean;
 	createdBy?: string;

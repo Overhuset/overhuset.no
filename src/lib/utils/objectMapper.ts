@@ -38,6 +38,7 @@ export const mapFromDbToConstellationObject = (constellation: any): Constellatio
         id: constellation.id,
         name: constellation.name,
         description: constellation.description,
+        description2: constellation.description2,
         companies: constellation.companies,
         active: constellation.active,
         createdBy: constellation.created_by,

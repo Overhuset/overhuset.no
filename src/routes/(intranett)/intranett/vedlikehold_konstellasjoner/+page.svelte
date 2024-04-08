@@ -14,6 +14,7 @@
 	import { toasts, ToastContainer, FlatToast }  from "svelte-toasts";
  	import {PlusOutline} from "flowbite-svelte-icons";
 	import ConstellationAccordionItem from "./ConstellationAccordionItem.svelte";
+	import EventAccordionItem from "../vedlikehold_kurs_og_seminarer/EventAccordionItem.svelte";
 
 	const api = '/api/constellation';
 	const headers = {'content-type': 'application/json'};
@@ -110,6 +111,7 @@
 							<ConstellationAccordionItem
 									constellation={constellation}
 									authUser={data.authUser}
+									companies={data.companyList}
 									onChange={handleChangeConstellation}
 									onDelete={handleDeleteConstellation}
 									onRevert={handleRevertConstellation}
