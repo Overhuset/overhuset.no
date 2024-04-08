@@ -44,7 +44,7 @@
 		{#if loggedIn}
 			<NavLi href={`/intranett/ledig`}>Ledige konsulenter</NavLi>
 			<NavLi class="cursor-pointer">
-				Vedlikehold<ChevronDownOutline class="w-3 h-3 ms-2 text-primary-800 dark:text-white inline" />
+				Administrer<ChevronDownOutline class="w-3 h-3 ms-2 text-primary-800 dark:text-white inline" />
 			</NavLi>
 			<Dropdown class="w-44 z-20">
 				<DropdownItem href="/intranett/vedlikehold_kurs_og_seminarer">Arrangementer</DropdownItem>

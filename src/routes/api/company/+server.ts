@@ -53,7 +53,7 @@ export async function PUT({ request }) {
         return new Response(JSON.stringify({ message: "company updated" }), { status: 200 });
     }
 
-    return new Response(JSON.stringify({ message: "company event failed" }), { status: 400 });
+    return new Response(JSON.stringify({ message: "company update failed" }), { status: 400 });
 }
 
 export async function DELETE({ request }) {

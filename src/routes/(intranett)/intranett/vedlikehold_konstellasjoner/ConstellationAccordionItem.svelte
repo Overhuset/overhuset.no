@@ -1,41 +1,41 @@
 <script lang="ts">
     import {AccordionItem} from "@skeletonlabs/skeleton";
     import {Badge, Button, Input, Textarea, Toggle, Tooltip} from "flowbite-svelte";
-    import type {AuthUser, Company} from "$lib/types";
+    import type {AuthUser, Constellation} from "$lib/types";
     import Label from "$lib/components/common/Label.svelte";
 
     import {AngleDownOutline, AngleUpOutline} from 'flowbite-svelte-icons';
-    export let company: Company;
+    export let constellation: Constellation;
     export let authUser: AuthUser | undefined;
-    export let onChange: (companyChanged: Company) => void;
+    export let onChange: (constellationChanged: Constellation) => void;
     export let onDelete: (id: string) => void;
     export let onRevert: () => void;
 
 
     const changeAllowed = authUser?.admin;
 
-    let companyToChange: Company = {...company};
+    let constellationToChange: Constellation = {...constellation};
 
-    const getIsDirty = (company1: Company, company2: Company) => {
-        return JSON.stringify(company1) !== JSON.stringify(company2);
+    const getIsDirty = (constellation1: Constellation, constellation2: Constellation) => {
+        return JSON.stringify(constellation1) !== JSON.stringify(constellation2);
     }
 
     const handleSave = () => {
-        if (companyToChange) {
-            onChange(companyToChange);
+        if (constellationToChange) {
+            onChange(constellationToChange);
         }
     }
 
     const handleDelete = () => {
         if (confirm("Bekreft sletting") == true) {
-            if (company?.id) {
-                onDelete(company.id);
+            if (constellation?.id) {
+                onDelete(constellation.id);
             }
         }
     }
 
     const handleRevert = () => {
-        companyToChange = {...company};
+        constellationToChange = {...constellation};
         onRevert();
     }
 
@@ -58,9 +58,9 @@
     <span slot="lead">
        <div class="title-container">
             <span class="leading-none text-lg dark:text-white">
-                {companyToChange.name}
+                {constellationToChange.name}
             </span>
-            <Badge rounded color="dark"> {(companyToChange.createdBy || "ukjent")}</Badge>
+             <Badge rounded color="dark"> {(constellationToChange.createdBy || "ukjent")}</Badge>
        </div>
     </span>
 
@@ -68,70 +68,61 @@
 
     <span slot="content">
         <div class="inputs-container">
-            <Label label="Navn på selskap">
+            <Label label="Navn på konstellasjon">
                 <Input
                     type="text"
-                    placeholder="Fullt navn på selskapet."
-                    bind:value={companyToChange.name}
+                    placeholder="Gi konstellasjonen et navn"
+                    bind:value={constellationToChange.name}
                     style="min-width: 25rem"
                 />
             </Label>
-            <Label label="Kort navn på selskap">
+            <Label label="Selskaper i konstellasjonen">
                 <Input
                     type="text"
-                    placeholder="Alternativt, forkortet navn på selskapet"
-                    bind:value={companyToChange.nameShort}
+                    placeholder="Legg til ett eller flere selskaper"
+                    bind:value={constellationToChange.companies}
                     style="min-width: 25rem"
                 />
-            </Label>
-            <Label label="Partner">
-                <div id="partner">
-                     <Toggle
-                         checked={companyToChange.partner}
-                         on:change={() => companyToChange.partner = !companyToChange.partner}
-                         color="purple"
-                     />
-                </div>
-                <Tooltip type="light" placement="bottom" triggeredBy="[id='partner']">Huk på hvis selskapet er partner av Overhuset. Ikke huk på hvis selskapet kun er del av konstellasjon.</Tooltip>
             </Label>
             <Label label="Aktiv">
                 <div id="active">
                      <Toggle
-                         checked={companyToChange.active}
-                         on:change={() => companyToChange.active = !companyToChange.active}
+                         checked={constellationToChange.active}
+                         on:change={() => constellationToChange.active = !constellationToChange.active}
                          color="purple"
                      />
                 </div>
                 <Tooltip type="light" placement="bottom" triggeredBy="[id='partner']">Huk på hvis selskapet skal være synlig på Overhuset sine sider. Arrangementer osv knyttet til selskapet blir også påvirket av dette valget.</Tooltip>
             </Label>
         </div>
-
         <div class="inputs-container">
-            <Label label="Nettside">
-                <Input
-                    type="text"
-                    placeholder="Url til firmaets hjemmeside"
-                    bind:value={companyToChange.url}
-                    style="min-width: 25rem"
-                />
-            </Label>
             <Label label="Logo">
                 <Input
                     type="text"
-                    placeholder="Url til firmaets logo"
-                    bind:value={companyToChange.logoRef}
+                    placeholder="Url til konstellasjonens logo"
+                    bind:value={constellationToChange.logoRef}
                     style="min-width: 25rem"
                 />
             </Label>
+            <Label label="Url-referanse">
+                <div id="urlRef">
+                    <Input
+                        type="text"
+                        placeholder="Legg til en referanse til url for denne konstellasjonen"
+                        bind:value={constellationToChange.urlRef}
+                        style="min-width: 25rem"
+                    />
+                    <Tooltip type="light" placement="bottom" triggeredBy="[id='urlRef']">Url til denne konstellasjonen vil bli www.overhuset.no/konstellasjon?ref=url-referanse</Tooltip>
+                </div>
+            </Label>
         </div>
-
         <Label label="Beskrivelse">
             <div>
                  <Textarea
                      placeholder="Beskrivende tekst om selskapet"
                      rows="10"
                      name="description"
-                     bind:value={companyToChange.description}
+                     bind:value={constellationToChange.description}
                  />
             </div>
         </Label>
@@ -139,8 +130,8 @@
         <div class="buttons-container">
             {#if changeAllowed}
                 <Button pill on:click={handleDelete}>Slett</Button>
-                <Button pill on:click={handleRevert} disabled={!getIsDirty(companyToChange, company)}>Forkast endringer</Button>
-                <Button pill on:click={handleSave} disabled={!getIsDirty(companyToChange, company)}>Lagre</Button>
+                <Button pill on:click={handleRevert} disabled={!getIsDirty(constellationToChange, constellation)}>Forkast endringer</Button>
+                <Button pill on:click={handleSave} disabled={!getIsDirty(constellationToChange, constellation)}>Lagre</Button>
             {/if}
         </div>
 

@@ -2,7 +2,7 @@
 	import {Accordion} from "@skeletonlabs/skeleton";
 	import {invalidateAll} from "$app/navigation";
 	import {
-		Button,
+		Button, P,
 		Table,
 		TableBody,
 		TableBodyCell,
@@ -87,17 +87,19 @@
 </script>
 
 <div class="prose prose-xl mx-auto p-4 md:py-20" style="max-width:140ch">
-	<h1>Administrer</h1>
-	<h3>Selskaper</h3>
+	<div class="title">
+		<P lineHeight="0" size="3xl" color="dark" weight="thin" class="dada">Administrer</P>
+		<P size="3xl" color="dark" class="dada">Selskaper</P>
+	</div>
 
 	<div class="buttons-container">
 		{#if data.authUser?.admin}
-			<Button id="new" on:click={handleNewCompany} size="md"><PlusOutline class="w-5 h-5 me-2" />Nytt selskap</Button>
+ 			<Button pill={true} id="new" on:click={handleNewCompany} class="!p-2"><PlusOutline class="w-8 h-8" /></Button>
 			<Tooltip type="light" placement="top" triggeredBy="[id='new']">Opprett nytt selskap og fortsett redigering ved å velge det i listen nedenfor</Tooltip>
 		{/if}
 	</div>
 
-	<Table>
+	<Table hoverable={true}>
 		<TableBody>
 			{#each (data.companyList || []) as company (company.id)}
 				<TableBodyRow>
@@ -123,6 +125,12 @@
 </div>
 
 <style>
+	.title {
+		width: 100%;
+		display: flex;
+		justify-content: flex-start;
+		gap:0.4rem;
+	}
  	.buttons-container {
 		width: 100%;
 		display: flex;

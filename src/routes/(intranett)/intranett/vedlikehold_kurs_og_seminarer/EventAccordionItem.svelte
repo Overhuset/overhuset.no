@@ -58,7 +58,7 @@
 
 </script>
 
-<AccordionItem disabled={!changeAllowed}>
+<AccordionItem hover="" disabled={!changeAllowed}>
 
     <span slot="iconOpen">
         {#if changeAllowed}
@@ -75,8 +75,10 @@
 
     <span slot="lead">
         <div class="title-container">
-            <b>{eventToChange.title}</b>
-            <div class="time-container">
+            <span class="leading-none text-lg dark:text-white">
+                {eventToChange.title}
+            </span>
+            <span class="font-thin leading-none text-lg dark:text-white">
                 {#if event.time}
                     {#if event.timeEnd}<span>Fra </span>{/if}
                     <span>{getDateFormat(event.time)} </span>
@@ -93,7 +95,7 @@
                       {#if event.location}
                     <span> - {event.location}</span>
                 {/if}
-            </div>
+            </span>
             <Badge rounded color="dark"> {(event.createdBy)}</Badge>
         </div>
     </span>

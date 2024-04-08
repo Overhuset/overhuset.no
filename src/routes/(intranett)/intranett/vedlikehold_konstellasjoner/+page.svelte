@@ -1,24 +1,24 @@
 <script lang="ts">
 	import {Accordion} from "@skeletonlabs/skeleton";
-	import EventAccordionItem from "./EventAccordionItem.svelte";
 	import {invalidateAll} from "$app/navigation";
 	import {
-		Button, P,
+		Button,
+		P,
 		Table,
 		TableBody,
 		TableBodyCell,
 		TableBodyRow,
-		Tooltip
+		Tooltip,
 	} from "flowbite-svelte";
-	import type {Event} from "$lib/types";
+	import type {Constellation} from "$lib/types";
 	import { toasts, ToastContainer, FlatToast }  from "svelte-toasts";
-	import {PlusOutline} from "flowbite-svelte-icons";
+ 	import {PlusOutline} from "flowbite-svelte-icons";
+	import ConstellationAccordionItem from "./ConstellationAccordionItem.svelte";
 
-	const api = '/api/event';
+	const api = '/api/constellation';
 	const headers = {'content-type': 'application/json'};
 
 	export let data;
-
 
 	const onToast = (type: "success" | "info" | "error", message: string) => {
 		toasts.add({
@@ -30,40 +30,31 @@
 		});
 	}
 
-
-	const handleNewEvent = async () => {
- 		const body = JSON.stringify({
-			title: `*NY*`,
-			location: undefined,
-			companyId: undefined,
-			company: undefined,
-			time: undefined,
-			timeEnd: undefined,
-			fullDay: false,
-			externalsAllowed: false,
-			physicalAttendance: false,
-			onlineCourse: false,
-			onlineStreaming: false,
-			published: false,
-			description: undefined,
-			registration: undefined,
+	const handleNewConstellation = async () => {
+		const constellation: Constellation = {
+			name: `*NY*`,
+			//nameShort: undefined,
+			//logoRef: undefined,
+			//url: undefined,
+			//description: undefined,
 			createdBy: data.authUser?.email,
-		});
+		};
 
+		const body = JSON.stringify(constellation);
 		const response = await fetch(api, {method: 'POST', body, headers});
 
 		if (response.status == 200) {
-			onToast("success", "Arrangement opprettet");
+			onToast("success", "Konstellasjon opprettet");
 		} else {
-			onToast("error", "En feil oppstod ved opprett arrangement");
+			onToast("error", "En feil oppstod ved opprett konstellasjon");
 		}
 
 		invalidateAll();
 	}
 
-	const handleChangeEvent = async (eventChanged: Event) => {
-		if (eventChanged) {
-			const body = JSON.stringify({...eventChanged});
+	const handleChangeConstellation = async (constellationChanged: Constellation) => {
+		if (constellationChanged) {
+			const body = JSON.stringify({...constellationChanged});
 			const response = await fetch(api, {method: 'PUT', body, headers});
 
 			if (response.status == 200) {
@@ -76,17 +67,17 @@
 		}
 	}
 
-	const handleRevertEvent = () => {
+	const handleRevertConstellation = () => {
 		onToast("info", "Endringer forkastet");
 	}
 
-	const handleDeleteEvent = async (id: string) => {
+	const handleDeleteConstellation = async (id: string) => {
 		if (id) {
 			const body = JSON.stringify(id);
 			const response = await fetch(api, {method: 'DELETE', body, headers});
 
 			if (response.status == 200) {
-				onToast("success", "Arrangement slettet");
+				onToast("success", "Konstellasjon slettet");
 			} else {
 				onToast("error", "En feil oppstod ved sletting");
 			}
@@ -94,43 +85,41 @@
 			invalidateAll();
 		}
 	}
-
 </script>
 
 <div class="prose prose-xl mx-auto p-4 md:py-20" style="max-width:140ch">
+
 	<div class="title">
 		<P lineHeight="0" size="3xl" color="dark" weight="thin" class="dada">Administrer</P>
-		<P size="3xl" color="dark" class="dada">Arrangementer</P>
+		<P size="3xl" color="dark" class="dada">Konstellasjoner</P>
 	</div>
 
 	<div class="buttons-container">
- 		<Button pill={true} id="new" on:click={handleNewEvent} class="!p-2"><PlusOutline class="w-8 h-8" /></Button>
-		<Tooltip type="light" placement="top" triggeredBy="[id='new']">Opprett nytt arrangement og fortsett redigering ved å velge det i listen nedenfor</Tooltip>
+		{#if data.authUser?.admin}
+			<Button pill={true} id="new" on:click={handleNewConstellation} class="!p-2"><PlusOutline class="w-8 h-8" /></Button>
+			<Tooltip type="light" placement="top" triggeredBy="[id='new']">Opprett en ny konstellasjon og fortsett redigering ved å velge den i listen nedenfor</Tooltip>
+		{/if}
 	</div>
 
-	<div>
-		<Table hoverable={true}>
-			<TableBody>
-				{#each (data.eventList || []) as event (event.id)}
-					<TableBodyRow >
-						<TableBodyCell>
-							<Accordion>
-								<EventAccordionItem
-										event={event}
-										companies={data.companyList}
-										authUser={data.authUser}
-										onChange={handleChangeEvent}
-										onDelete={handleDeleteEvent}
-										onRevert={handleRevertEvent}
-								/>
-							</Accordion>
-						</TableBodyCell>
-					</TableBodyRow>
-				{/each}
-			</TableBody>
-		</Table>
-	</div>
-
+	<Table hoverable={true}>
+		<TableBody>
+			{#each (data.constellationList || []) as constellation (constellation.id)}
+				<TableBodyRow>
+					<TableBodyCell>
+						<Accordion>
+							<ConstellationAccordionItem
+									constellation={constellation}
+									authUser={data.authUser}
+									onChange={handleChangeConstellation}
+									onDelete={handleDeleteConstellation}
+									onRevert={handleRevertConstellation}
+							/>
+						</Accordion>
+					</TableBodyCell>
+				</TableBodyRow>
+			{/each}
+		</TableBody>
+	</Table>
 
 	<ToastContainer placement="bottom-right" let:data={data}>
 		<FlatToast {data} />
