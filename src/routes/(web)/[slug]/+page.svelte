@@ -16,9 +16,11 @@
 			{constellation.description}
 		</P>
 
-		<div class="rowDirection">
+		<div class="grid sm:grid-cols-3 md:grid-cols-4 md:gap-12">
 			{#each companiesList as company (company.id)}
-				<img src={company.logoRef} alt="" class="w-1/12" />
+				<a href={`/konsulentselskap/${company?.nameShort?.toLowerCase()}`} class="flex justify-center items-center min-h-[160px] md:last:col-start-3 md:[&:nth-last-child(2)]:col-start-2">
+ 					<img src={company.logoRef} alt={company.name} class="w-1/2 md:w-28" />
+				</a>
 			{/each}
 		</div>
 
@@ -27,14 +29,3 @@
 		{/each}
 	</div>
 </section>
-
-<style>
-	.rowDirection {
-		display: flex;
-		flex-direction: row;
-		justify-content: flex-start;
-		align-items: center;
-		gap: 5rem;
-		flex-wrap: wrap;
-	}
-</style>
