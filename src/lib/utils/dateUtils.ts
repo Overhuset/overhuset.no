@@ -1,18 +1,36 @@
-export const getDateFormat = (date?: string | Date) => {
+
+const getDateValues = (date?: string | Date) => {
     if (date) {
-        let d = new Date(date), month = `${d.getMonth() + 1}`, day = '' + d.getDate(), year = d.getFullYear();
+        let d = new Date(date),
+            month = `${d.getMonth()}`,
+            day = '' + d.getDate(),
+            year = `${d.getFullYear()}`,
+            hours = `${d.getHours()}`,
+            minutes = `${d.getMinutes()}`;
         if (month.length < 2) month = `0${month}`;
         if (day.length < 2) day = `0${day}`;
-        return [day, month, year, ].join('.');
+        if (hours.length < 2) hours = `0${hours}`;
+        if (minutes.length < 2) minutes = `0${minutes}`;
+
+        return {
+            day, month, year, hours, minutes
+        }
+    }
+    return null;
+}
+
+
+export const getDateFormat = (date?: string | Date) => {
+    if (date) {
+        const {day, month, year} = {...getDateValues(date)};
+        return [day, month, year,].join('.');
     }
     return "";
 }
 
 export const getTimeFormat = (date?: string | Date) => {
     if (date) {
-        let d = new Date(date), hours = `${d.getHours() + 1}`, minutes = '' + d.getMinutes();
-        if (hours.length < 2) hours = `0${hours}`;
-        if (minutes.length < 2) minutes = `0${minutes}`;
+        const {hours, minutes} = {...getDateValues(date)};
         return [hours, minutes, ].join(':');
     }
     return "";
@@ -20,9 +38,7 @@ export const getTimeFormat = (date?: string | Date) => {
 
 export const getDateFormatForDatePicker = (date?: string) => {
     if (date) {
-        let d = new Date(date), month = `${d.getMonth() + 1}`, day = '' + d.getDate(), year = d.getFullYear();
-        if (month.length < 2) month = `0${month}`;
-        if (day.length < 2) day = `0${day}`;
+        const {year, month, day} = {...getDateValues(date)};
         return [year, month, day ].join('-');
     }
     return "";
@@ -31,9 +47,7 @@ export const getDateFormatForDatePicker = (date?: string) => {
 // "2000-01-01T00:00:00"
 export const getDateTimeFormatForDatePicker = (date?: string) => {
     if (date) {
-        let d = new Date(date), month = `${d.getMonth() + 1}`, day = '' + d.getDate(), year = d.getFullYear();
-        if (month.length < 2) month = `0${month}`;
-        if (day.length < 2) day = `0${day}`;
+        const {year, month, day} = {...getDateValues(date)};
         return `${[year, month, day].join('-')}T${getTimeFormat(date)}`;
     }
     return "";
@@ -45,8 +59,8 @@ export const getIsPassed = (date?: Date | string) => {
     return d.getTime() < now.getTime();
 }
 
-export const getNowFroDB = () => {
-    let d = new Date(), month = '' + (d.getMonth() + 1), day = '' + d.getDate(), year = d.getFullYear();
+export const getNowForDB = () => {
+    let d = new Date(), month = `${d.getMonth()}`, day = `${d.getDate()}`, year = `${d.getFullYear()}`;
     if (month.length < 2) month = '0' + month;
     if (day.length < 2) day = '0' + day;
     return [year, month, day].join('-');
