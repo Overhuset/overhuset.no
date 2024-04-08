@@ -16,17 +16,6 @@
  	let newVacant: Vacant | undefined = undefined;
 	let cvLoading = false;
 
-	 const sortVacantList = (by: "firstName" | "vacantFrom" | "createdAt") => {
-		 const clone = [...data.vacantList];
-		 switch (by) {
-			 case "firstName" : return clone.sort((v1: Vacant, v2: Vacant) =>  (v1.name || "").localeCompare(v2.name || ""));
-			 case "vacantFrom" : return clone.sort((v1: Vacant, v2: Vacant) =>  (v1.vacantFrom || "").localeCompare(v2.vacantFrom || ""));
-			 case "createdAt" : return clone.reverse();// created at, newest first
-			 default: return clone;
-		 }
-	 }
-
-
 	const onCloseForm = () => {
 		open = false;
 		newVacant = undefined;
@@ -125,7 +114,7 @@
 
 						<div class="buttons-container">
 							<Button color="primary" on:click={handleToggleNewForm}>Avbryt</Button>
-							<Button color="primary" disabled={
+							<Button type="submit" color="primary" disabled={
 								!newVacant.name ||
 								!newVacant.vacantFrom ||
 								!newVacant.createdBy ||
