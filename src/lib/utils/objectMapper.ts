@@ -29,7 +29,9 @@ export const mapFromDbToCompanyObject = (company: any): Company => {
         nameShort: company.name_short,
         logoRef: company.logo_ref,
         url: company.url,
-        description: company.description
+        description: company.description,
+        partner: company.partner,
+        active: company.active
     }
 };
 
