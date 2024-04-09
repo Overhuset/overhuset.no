@@ -2,7 +2,7 @@
 const getDateValues = (date?: string | Date) => {
     if (date) {
         let d = new Date(date),
-            month = `${d.getMonth()}`,
+            month = `${d.getMonth()+1}`,
             day = '' + d.getDate(),
             year = `${d.getFullYear()}`,
             hours = `${d.getHours()}`,
