@@ -1,7 +1,7 @@
 import {createPool} from "@vercel/postgres";
 import { v4 as uuidv4 } from 'uuid';
 import type {Vacant} from "$lib/types.js";
-import {getNowFroDB} from "$lib/utils/dateUtils";
+import {getNowForDB} from "$lib/utils/dateUtils";
 
 // @ts-ignore
 export async function POST({ request }) {
@@ -25,7 +25,7 @@ export async function POST({ request }) {
     } else {
         // new
         const {name, email, vacantFrom, comment, createdBy, cv} = vacant;
-        const now = getNowFroDB();
+        const now = getNowForDB();
         const sql = `INSERT INTO vacant_consultant (id, name, vacant_from, comment, created_by, created_at,  cv) VALUES ('${uuidv4()}', '${name}', '${vacantFrom}', '${comment}', '${createdBy}', '${now}', '${cv}')`;
         const db = createPool();
         await db.query(sql);
