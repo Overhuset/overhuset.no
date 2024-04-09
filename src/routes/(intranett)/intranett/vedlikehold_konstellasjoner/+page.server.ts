@@ -17,7 +17,7 @@ const fetchAllConstellations = async () => {
 
 const fetchAllCompanies = async () => {
 	const db = createPool();
-	const result = await db.query('SELECT * FROM company ORDER BY created_at ASC');
+	const result = await db.query("SELECT * FROM company WHERE name_short != 'Overhuset' ORDER BY created_at ASC");
 	return result.rows.map(c => mapFromDbToCompanyObject(c));
 }
 
