@@ -15,14 +15,15 @@
 
 <section class="max-w-6xl mx-auto md:w-5/5">
 	<div class="prose mb-16 mt-8 mx-4" style="max-width:140ch">
+		<div style="display: flex; justify-content: center ">
+			{@html constellation.logoRef}
+		</div>
 
-		{@html constellation.logoRef}
-
-		<P size="4xl" color="dark" class="dada">
+		<P size="4xl" color="dark">
 			{constellation.name}
 		</P>
 
-		<P lineHeight="0" size="3xl" color="dark" weight="thin" style="margin-top: -3.5rem">
+		<P lineHeight="0" size="3xl" color="dark" weight="thin" style="margin-top: -2.5rem">
 			{constellation.description}
 		</P>
 
