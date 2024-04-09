@@ -41,7 +41,7 @@
 
 </script>
 
-<AccordionItem disabled={!changeAllowed}>
+<AccordionItem disabled={!changeAllowed} hover="">
 
     <span slot="iconOpen">
         {#if changeAllowed}
@@ -57,7 +57,9 @@
 
     <span slot="lead">
        <div class="title-container">
-            <b>{companyToChange.name}</b>
+            <span class="leading-none text-lg dark:text-white">
+                {companyToChange.name}
+            </span>
             <Badge rounded color="dark"> {(companyToChange.createdBy || "ukjent")}</Badge>
        </div>
     </span>
@@ -121,15 +123,21 @@
                     style="min-width: 25rem"
                 />
             </Label>
+
+            <a href={`/konsulentselskap/${companyToChange?.nameShort?.toLowerCase()}`} class="flex justify-center items-center min-h-[160px] md:last:col-start-3 md:[&:nth-last-child(2)]:col-start-2">
+                <img src={companyToChange.logoRef} alt={companyToChange.name} class="w-1/2 md:w-28" />
+            </a>
         </div>
 
         <Label label="Beskrivelse">
-            <Textarea
-                placeholder="Beskrivende tekst om selskapet"
-                rows="10"
-                name="description"
-                bind:value={companyToChange.description}
-            />
+            <div>
+                 <Textarea
+                     placeholder="Beskrivende tekst om selskapet"
+                     rows="10"
+                     name="description"
+                     bind:value={companyToChange.description}
+                 />
+            </div>
         </Label>
 
         <div class="buttons-container">
@@ -150,7 +158,7 @@
         justify-content: flex-start;
         align-items: center;
         flex-wrap: wrap;
-        gap: 0.5rem;
+        gap: 1rem;
     }
     .inputs-container {
         display: flex;

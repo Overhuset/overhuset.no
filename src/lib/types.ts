@@ -42,6 +42,20 @@ export type Company = {
 	active?: boolean;
 }
 
+export type Constellation = {
+	id?: string;
+	name?: string;
+	description?: string;
+	description2?: string;
+	companies?: string;
+	active?: boolean;
+	createdBy?: string;
+	createdAt?: Date;
+	logoRef?: string;
+	urlRef?: string;
+}
+
+
 export type AuthUser = {
 	email?:  string;
 	admin: boolean;

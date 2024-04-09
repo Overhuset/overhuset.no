@@ -1,7 +1,14 @@
 <script lang="ts">
 	import {Accordion} from "@skeletonlabs/skeleton";
 	import {invalidateAll} from "$app/navigation";
-	import {Button, Tooltip} from "flowbite-svelte";
+	import {
+		Button, P,
+		Table,
+		TableBody,
+		TableBodyCell,
+		TableBodyRow,
+		Tooltip
+	} from "flowbite-svelte";
 	import type {Company} from "$lib/types";
 	import { toasts, ToastContainer, FlatToast }  from "svelte-toasts";
 	import CompanyAccordionItem from "./CompanyAccordionItem.svelte";
@@ -25,10 +32,6 @@
 	const handleNewCompany = async () => {
 		const company: Company = {
 			name: `*NY*`,
-			nameShort: undefined,
-			logoRef: undefined,
-			url: undefined,
-			description: undefined,
 			createdBy: data.authUser?.email,
 		};
 
@@ -80,29 +83,37 @@
 </script>
 
 <div class="prose prose-xl mx-auto p-4 md:py-20" style="max-width:140ch">
-	<h1>Administrer</h1>
-	<h3>Selskaper</h3>
+	<div class="title">
+		<P lineHeight="0" size="3xl" color="dark" weight="thin" class="dada">Administrer</P>
+		<P size="3xl" color="dark" class="dada">Selskaper</P>
+	</div>
 
 	<div class="buttons-container">
 		{#if data.authUser?.admin}
-			<Button id="new" on:click={handleNewCompany}>
-				<PlusOutline size="lg" />
-			</Button>
+ 			<Button pill={true} id="new" on:click={handleNewCompany} class="!p-2"><PlusOutline class="w-8 h-8" /></Button>
 			<Tooltip type="light" placement="top" triggeredBy="[id='new']">Opprett nytt selskap og fortsett redigering ved å velge det i listen nedenfor</Tooltip>
 		{/if}
 	</div>
 
-	<Accordion>
-		{#each (data.companyList || []) as company (company.id)}
-			<CompanyAccordionItem
-				company={company}
-				authUser={data.authUser}
-				onChange={handleChangeCompany}
-				onDelete={handleDeleteCompany}
- 				onRevert={handleRevertCompany}
-			/>
-		{/each}
-	</Accordion>
+	<Table hoverable={true}>
+		<TableBody>
+			{#each (data.companyList || []) as company (company.id)}
+				<TableBodyRow>
+					<TableBodyCell>
+						<Accordion>
+							<CompanyAccordionItem
+									company={company}
+									authUser={data.authUser}
+									onChange={handleChangeCompany}
+									onDelete={handleDeleteCompany}
+									onRevert={handleRevertCompany}
+							/>
+						</Accordion>
+					</TableBodyCell>
+				</TableBodyRow>
+			{/each}
+		</TableBody>
+	</Table>
 
 	<ToastContainer placement="bottom-right" let:data={data}>
 		<FlatToast {data} />
@@ -110,6 +121,12 @@
 </div>
 
 <style>
+	.title {
+		width: 100%;
+		display: flex;
+		justify-content: flex-start;
+		gap:0.4rem;
+	}
  	.buttons-container {
 		width: 100%;
 		display: flex;

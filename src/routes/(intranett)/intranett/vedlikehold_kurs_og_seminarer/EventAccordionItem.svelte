@@ -58,7 +58,7 @@
 
 </script>
 
-<AccordionItem disabled={!changeAllowed}>
+<AccordionItem hover="" disabled={!changeAllowed}>
 
     <span slot="iconOpen">
         {#if changeAllowed}
@@ -74,29 +74,29 @@
 
 
     <span slot="lead">
-
         <div class="title-container">
-            <b>{eventToChange.title}</b>
-            <Badge rounded color="dark"> {(event.createdBy)}</Badge>
-        </div>
+            <span class="leading-none text-lg dark:text-white">
+                {eventToChange.title}
+            </span>
+            <span class="font-thin leading-none text-lg dark:text-white">
+                {#if event.time}
+                    {#if event.timeEnd}<span>Fra </span>{/if}
+                    <span>{getDateFormat(event.time)} </span>
+                    {#if !event?.fullDay}<span> kl {getTimeFormat(event.time)}</span>{/if}
 
-        <div class="time-container">
-            {#if event.time}
-                {#if event.timeEnd}<span>Fra </span>{/if}
-                <span>{getDateFormat(event.time)} </span>
-                {#if !event?.fullDay}<span> kl {getTimeFormat(event.time)}</span>{/if}
-
-                {#if event.timeEnd}
-                    <span> til </span>
-                    <span>{getDateFormat(event.timeEnd)} </span>
-                    {#if !event?.fullDay}<span> kl {getTimeFormat(event.timeEnd)}</span>{/if}
+                    {#if event.timeEnd}
+                        <span> til </span>
+                        <span>{getDateFormat(event.timeEnd)} </span>
+                        {#if !event?.fullDay}<span> kl {getTimeFormat(event.timeEnd)}</span>{/if}
+                    {/if}
+                {:else}
+                    <span>Tid ikke angitt</span>
                 {/if}
-            {:else}
-                <span>Tid ikke angitt</span>
-            {/if}
-            {#if event.location}
-                <span> - {event.location}</span>
-            {/if}
+                      {#if event.location}
+                    <span> - {event.location}</span>
+                {/if}
+            </span>
+            <Badge rounded color="dark"> {(event.createdBy)}</Badge>
         </div>
     </span>
 
@@ -160,12 +160,31 @@
                 </div>
                 <Tooltip type="light" placement="bottom" triggeredBy="[id='fullDay']">Viser kun dato, uten tidspunkt i oversikt over arrangement.</Tooltip>
             </Label>
-            <Label label="Åpent for eksterne">
+        </div>
+
+        <Label label="Beskrivelse">
+            <div>
+                <Textarea placeholder="Agenda og informasjon om arrangementet. Husk mellomrom foran og etter linker i teksten" rows="10" name="description" bind:value={eventToChange.description} />
+            </div>
+        </Label>
+
+        <br/>
+
+        <Label label="Registrering">
+          <div>
+              <Textarea placeholder="Forklar hvordan man melder seg på. Husk mellomrom foran og etter linker i teksten. La stå tom hvis man kan komme uanmeldt" rows="4" name="registration" bind:value={eventToChange.registration} />
+          </div>
+        </Label>
+
+        <br/>
+
+        <div class="inputs-container">
+          <Label label="Åpent for eksterne">
                 <div id="externalsAllowed">
                      <Toggle
-                         checked={eventToChange.externalsAllowed}
-                         on:change={() => eventToChange.externalsAllowed = !eventToChange.externalsAllowed}
-                         color="purple"
+                             checked={eventToChange.externalsAllowed}
+                             on:change={() => eventToChange.externalsAllowed = !eventToChange.externalsAllowed}
+                             color="purple"
                      />
                 </div>
                 <Tooltip type="light" placement="bottom"  triggeredBy="[id='externalsAllowed']">Markerer arrangement som åpent for eksterne.</Tooltip>
@@ -173,9 +192,9 @@
             <Label label="Fysisk oppmøte">
                 <div id="physicalAttendance">
                     <Toggle
-                        checked={eventToChange.physicalAttendance}
-                        on:change={() => eventToChange.physicalAttendance = !eventToChange.physicalAttendance}
-                        color="purple"
+                            checked={eventToChange.physicalAttendance}
+                            on:change={() => eventToChange.physicalAttendance = !eventToChange.physicalAttendance}
+                            color="purple"
                     />
                 </div>
                 <Tooltip type="light" placement="bottom"  triggeredBy="[id='physicalAttendance']">Velg denne dersom arrangementet har et fysisk oppmøtested.</Tooltip>
@@ -183,9 +202,9 @@
             <Label label="Online streaming">
                 <div id="onlineStreaming">
                      <Toggle
-                         checked={eventToChange.onlineStreaming}
-                         on:change={() => eventToChange.onlineStreaming = !eventToChange.onlineStreaming}
-                         color="purple"
+                             checked={eventToChange.onlineStreaming}
+                             on:change={() => eventToChange.onlineStreaming = !eventToChange.onlineStreaming}
+                             color="purple"
                      />
                 </div>
                 <Tooltip type="light" placement="bottom"  triggeredBy="[id='onlineStreaming']">Velg denne dersom arrangementet streames.</Tooltip>
@@ -193,9 +212,9 @@
             <Label label="Online-kurs">
                 <div id="onlineCourse">
                     <Toggle
-                        checked={eventToChange.onlineCourse}
-                        on:change={() => eventToChange.onlineCourse = !eventToChange.onlineCourse}
-                        color="purple"
+                            checked={eventToChange.onlineCourse}
+                            on:change={() => eventToChange.onlineCourse = !eventToChange.onlineCourse}
+                            color="purple"
                     />
                 </div>
                 <Tooltip type="light" placement="bottom" triggeredBy="[id='onlineCourse']">Velg denne dersom arrangementet er et online-kurs, kun på nett.</Tooltip>
@@ -203,21 +222,14 @@
             <Label label="Publisert">
                 <div id="published">
                      <Toggle
-                         checked={eventToChange.published}
-                         on:change={() => eventToChange.published = !eventToChange.published}
-                         color="purple"
+                             checked={eventToChange.published}
+                             on:change={() => eventToChange.published = !eventToChange.published}
+                             color="purple"
                      />
                 </div>
                 <Tooltip type="light" placement="bottom" triggeredBy="[id='published']">Arrangementet er synlig i oversikten når denne er valgt.</Tooltip>
             </Label>
-        </div>
-
-        <Label label="Beskrivelse">
-            <Textarea placeholder="Agenda og informasjon om arrangementet. Husk mellomrom foran og etter linker i teksten" rows="10" name="description" bind:value={eventToChange.description} />
-        </Label>
-        <Label label="Registrering">
-            <Textarea placeholder="Forklar hvordan man melder seg på. Husk mellomrom foran og etter linker i teksten. La stå tom hvis man kan komme uanmeldt" rows="4" name="registration" bind:value={eventToChange.registration} />
-        </Label>
+          </div>
 
         <div class="buttons-container">
             <Button pill on:click={handleDelete}>Slett</Button>
@@ -235,10 +247,7 @@
         justify-content: flex-start;
         align-items: center;
         flex-wrap: wrap;
-        gap: 0.5rem;
-    }
-    .time-container {
-        margin-top: -0.7rem;
+        gap: 1.5rem;
     }
     .inputs-container {
         display: flex;

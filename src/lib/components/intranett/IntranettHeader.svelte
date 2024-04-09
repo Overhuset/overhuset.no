@@ -1,11 +1,20 @@
 <script lang="ts">
-	import { AppBar, getDrawerStore } from '@skeletonlabs/skeleton';
-	import { drawerSettings } from '$lib/config/drawerSettings';
 	import { getTree, isLinkItem, type TreeItem } from '$lib/config/intranettNavigation';
 	import { dev } from '$app/environment';
 	import { onMount } from 'svelte';
 	import { enhance } from '$app/forms';
-	const drawerStore = getDrawerStore();
+	import {
+		Navbar,
+		NavBrand,
+		NavLi,
+		NavUl,
+		NavHamburger,
+		Avatar,
+		Button,
+		Dropdown,
+		DropdownItem, DropdownDivider
+	} from 'flowbite-svelte';
+	import {ArrowRightOutline, ChevronDownOutline} from "flowbite-svelte-icons";
 
 	let tree: TreeItem[] = [];
 	export let loggedIn: boolean = false;
@@ -16,38 +25,46 @@
 	});
 </script>
 
-<AppBar slotLead="text-2xl">
+<Navbar style="background-color: rgb(38, 33, 29)">
+	<NavBrand href="/">
+		<img src="/companies/overhuset_logo_white.svg" class="me-3 h-6 sm:h-9" alt="Overhuset Logo"/>
+		<span class="self-center whitespace-nowrap text-sm font-normal dark:text-white">Intranett</span>
+	</NavBrand>
 
-	<svelte:fragment slot="lead">
-		<div class="flex gap-4" style="padding-left: 1rem">
-			{#if loggedIn}
-				<button class="md:hidden" on:click={() => drawerStore.open(drawerSettings)}>☰</button>
-			{/if}
-			<a href="/intranett" class="text-white">Overhusets Intranett</a>
-		</div>
-	</svelte:fragment>
+	<NavHamburger />
 
-	<div class="hidden md:flex text-white gap-4 text-xl justify-end">
+	<NavUl class="order-1">
 		{#each tree as item}
 			{#if isLinkItem(item)}
-				<a href={`/intranett/${item.slug}`}>{item.title}</a>
+				<NavLi href={`/intranett/${item.slug}`}>{item.title}</NavLi>
 			{:else}
 				{item.title}
 			{/if}
 		{/each}
-
 		{#if loggedIn}
-			<a href={`/intranett/ledig`}>Ledige konsulenter</a>
-			<a href={`/intranett/vedlikehold_kurs_og_seminarer`}>Administrer</a>
+			<NavLi href={`/intranett/ledig`}>Ledige konsulenter</NavLi>
+			<NavLi class="cursor-pointer">
+				Administrer<ChevronDownOutline class="w-3 h-3 ms-2 text-primary-800 dark:text-white inline" />
+			</NavLi>
+			<Dropdown class="w-44 z-20">
+				<DropdownItem href="/intranett/vedlikehold_kurs_og_seminarer">Arrangementer</DropdownItem>
+				<DropdownItem href="/intranett/vedlikehold_selskaper">Selskaper</DropdownItem>
+				<DropdownItem href="/intranett/vedlikehold_konstellasjoner">Konstellasjoner</DropdownItem>
+				<DropdownItem href="/intranett/ledig">Ledige konsulenter</DropdownItem>
+			</Dropdown>
 		{/if}
-	</div>
+	</NavUl>
 
-	<svelte:fragment slot="trail">
-		{#if loggedIn}
-			<form method="post" action="/intranett?/logout" use:enhance>
-				<input type="submit" value="Logg ut" class="cursor-pointer rounded-lg bg-white px-2 py-1" />
-			</form>
-		{/if}
-	</svelte:fragment>
+	{#if loggedIn}
+		<NavUl class="order-2">
+			<NavLi>
+				<form method="post" action="/intranett?/logout" use:enhance>
+					<Button type="submit" size="xs">
+						Logg ut <ArrowRightOutline />
+					</Button>
+				</form>
+			</NavLi>
+		</NavUl>
+	{/if}
+</Navbar>
 
-</AppBar>

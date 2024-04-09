@@ -105,8 +105,6 @@
                         linkTitle="Trykk her"
                         emailTitle="Send e-post"
                     />
-                {:else}
-                    Ikke nødvendig. Møt opp!
                 {/if}
             {/if}
         </div>

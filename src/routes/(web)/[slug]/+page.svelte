@@ -1,42 +1,48 @@
 <script lang="ts">
- 	import { MetaTags } from 'svelte-meta-tags';
 	import EventCard from "$lib/components/common/EventCard.svelte";
+	import {Button, ButtonGroup, P} from "flowbite-svelte";
 	import {getIsPassed} from "$lib/utils/dateUtils";
-	import { ButtonGroup, Button } from 'flowbite-svelte';
 
 	export let data;
-
+	const constellation = data.constellation;
+	const companiesList = data.companiesList;
 	let filterMode: "all" | "upcoming" | "historic" | "online" = "all";
 	const all = (data.eventList || []);
-	const companies = data.companies;
 	const upcoming = (all.filter(event => !event.onlineCourse && !getIsPassed(event?.time)));
 	const historic = (all.filter(event => !event.onlineCourse && getIsPassed(event?.time)));
 	const online = (all.filter(event => event.onlineCourse));
- </script>
+</script>
 
- <section class="max-w-6xl mx-auto md:w-5/5">
-	<MetaTags
-	title='Overhuset - kurs og seminarer for IT-bransjen'
-	description='Overhuset holder kurs og seminarer gjennom hele året, for å bidra til kompetanseheving for alle med
-				interesse for IT og systemutvikling. Sjekk programmet her.'
-    />
-
+<section class="max-w-6xl mx-auto md:w-5/5">
 	<div class="prose mb-16 mt-8 mx-4" style="max-width:140ch">
-		<h1>Seminarer, kurs og aktiviteter på Overhuset</h1>
-		<p class="font-bold">
-			Mens de dyktige konsulentene våre er opptatte av å bidra til kompetanseløft ute hos
-			kundene våre, legger Overhuset som helhet til rette for faglig utvikling internt og for
-			alle interesserte.
-		</p>
-		<p>
-			Overhuset består av ti ulike konsulentselskaper, som alle besitter spisskompetanse og
-			erfaring på hver sine fagområder. Sammen er vi faglig krutt – og det må selvsagt deles!
-		</p>
-		<p>Her finner du en oversikt over alt som skjer. Påmeldingsinfo skal stå under hvert
-			arrangement. Skulle du likevel lure på noe, ikke nøl med <a href="/#kontakt" class="underline"> å ta kontakt</a>.
-		</p>
+		<div style="display: flex; justify-content: center ">
+			{@html constellation.logoRef}
+		</div>
+
+		<P size="4xl" color="dark">
+			{constellation.name}
+		</P>
+
+		<P lineHeight="0" size="3xl" color="dark" weight="thin" style="margin-top: -2.5rem">
+			{constellation.description}
+		</P>
+
+		<div>
+		<div class="grid sm:grid-cols-3 md:grid-cols-4 md:gap-12">
+			{#each companiesList as company (company.id)}
+				<a href={`/konsulentselskap/${company?.nameShort?.toLowerCase()}`} class="flex justify-center items-center min-h-[160px] md:last:col-start-3 md:[&:nth-last-child(2)]:col-start-2">
+ 					<img src={company.logoRef} alt={company.name} class="w-1/2 md:w-28" />
+				</a>
+			{/each}
+		</div>
 
 		<br/>
+		<br/>
+		<br/>
+
+		<P lineHeight="0" size="3xl" color="dark" weight="thin" style="margin-top: -3.5rem">
+			{constellation.description2}
+		</P>
 
 		<ButtonGroup>
 			<Button
@@ -70,10 +76,7 @@
 						(filterMode === "upcoming" ? upcoming :
 								(filterMode === "online" ? online :
 										historic))) as event (event.id)}
-			<EventCard event={event} companies={companies}/>
+			<EventCard event={event} companies={companiesList}/>
 		{/each}
 	</div>
-
-
 </section>
-
