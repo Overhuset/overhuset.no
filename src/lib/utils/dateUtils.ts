@@ -1,12 +1,11 @@
 
 const getDateValues = (date?: string | Date) => {
     if (date) {
-        let d = new Date(date),
-            month = `${d.getMonth()+1}`,
+        let d = new Date(date), month = `${d.getMonth()+1}`,
             day = '' + d.getDate(),
             year = `${d.getFullYear()}`,
-            hours = `${d.getHours()}`,
-            minutes = `${d.getMinutes()}`;
+            hours = `${d.getUTCHours()}`,
+            minutes = `${d.getUTCMinutes()}`;
         if (month.length < 2) month = `0${month}`;
         if (day.length < 2) day = `0${day}`;
         if (hours.length < 2) hours = `0${hours}`;
@@ -30,6 +29,8 @@ export const getDateFormat = (date?: string | Date) => {
 
 export const getTimeFormat = (date?: string | Date) => {
     if (date) {
+
+
         const {hours, minutes} = {...getDateValues(date)};
         return [hours, minutes, ].join(':');
     }
