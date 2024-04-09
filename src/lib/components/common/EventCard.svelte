@@ -62,13 +62,7 @@
             <div>
                 Av {companyName}
             </div>
-            <div>
-                {#if event?.externalsAllowed}
-                     ✔ åpent for eksterne
-                {:else}
-                    Kun for interne
-                {/if}
-            </div>
+            <div>✔ {#if event?.externalsAllowed} Åpent for eksterne {:else} Kun for interne {/if}</div>
             {#if event?.onlineCourse}
                 <div>✔ Online-kurs</div>
             {/if}

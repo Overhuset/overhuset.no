@@ -1,13 +1,13 @@
 import {createPool} from "@vercel/postgres";
 import { v4 as uuidv4 } from 'uuid';
 import type {Event} from "$lib/types.js";
-import {getNowFroDB} from "$lib/utils/dateUtils";
+import {getNowForDB} from "$lib/utils/dateUtils";
 import {getIsValidUuid} from "$lib/utils/uuidUtils";
 
 // @ts-ignore
 export async function POST({ request }) {
     const event: Event = await request.json();
-    const now = getNowFroDB();
+    const now = getNowForDB();
     const sql = `INSERT INTO event (
                    id,
                    title, 

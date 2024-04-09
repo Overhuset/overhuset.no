@@ -9,9 +9,11 @@
     let fileSelect: string | undefined = undefined;
     let isUploadingCV: boolean = false;
     const fileInputContainerId = "file_input_id_"+id;
+    const fileInputFormId = "file_input_form_id_"+id;
 
     const getCvShortName = () => {
         if (fileSelect) {
+            // @ts-ignore
             const split = fileSelect.split("\\");
             return split[split.length-1];
         }
@@ -20,36 +22,37 @@
 
     const handleUploadStart = () => {
         isUploadingCV = true;
-
         if (onLoadingStateChange) {
             onLoadingStateChange(true);
         }
+        return true;
     }
 
     const handleBrowseClick = () => {
         const fileInput =  document.getElementById(fileInputContainerId)?.firstChild;
         if (fileInput) {
+            // @ts-ignore
             fileInput.click();
         }
     }
 
-     $: {
+    $: {
          if (form?.uploaded !== undefined) {
-             isUploadingCV = false;
-             onChange(form?.uploaded);
+            isUploadingCV = false;
+            onChange(form?.uploaded);
 
-             if (onLoadingStateChange) {
-                 onLoadingStateChange(false);
-             }
-         }
-     }
+            if (onLoadingStateChange) {
+                onLoadingStateChange(false);
+            }
+        }
+    }
 
 </script>
 
 
 
 <div>
-    <form use:enhance action="?/upload" method="POST" enctype="multipart/form-data">
+    <form id={fileInputFormId} on:submit={handleUploadStart} use:enhance action="?/upload" method="POST" enctype="multipart/form-data">
         <label>CV - filen kan være på maks 4.5mb</label>
         <div id={fileInputContainerId}>
             <input
@@ -67,7 +70,7 @@
                 {#if fileSelect}
                     <span>{getCvShortName()}</span>
                     {#if !form?.uploaded}
-                        <Button color="purple" style="margin-left: 1rem" on:click={handleUploadStart}>
+                        <Button color="purple" style="margin-left: 1rem" type="submit">
                             {#if isUploadingCV}<Spinner size="6" />{:else}Last opp{/if}
                         </Button>
                     {:else}
