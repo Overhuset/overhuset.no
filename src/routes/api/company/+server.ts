@@ -44,10 +44,13 @@ export async function PUT({ request }) {
                  name_short='${company.nameShort}',
                  logo_ref='${company.logoRef}',
                  url='${company.url}',
-                 partner='${company.partner}',
-                 active='${company.active}',
+                 partner='${company.partner || false}',
+                 active='${company.active || false}',
                  description='${company.description}'
             WHERE id='${company.id}'`;
+
+        console.log("sql: ", sql);
+
         const db = createPool();
         await db.query(sql);
         return new Response(JSON.stringify({ message: "company updated" }), { status: 200 });

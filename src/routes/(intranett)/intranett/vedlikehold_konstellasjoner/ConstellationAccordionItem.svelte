@@ -5,6 +5,7 @@
     import Label from "$lib/components/common/Label.svelte";
 
     import {AngleDownOutline, AngleUpOutline} from 'flowbite-svelte-icons';
+    import FileUpload from "./FileUpload.svelte";
     export let constellation: Constellation;
     export let authUser: AuthUser | undefined;
     export let companies: Company[];
@@ -18,6 +19,7 @@
 
     let constellationToChange: Constellation = {...constellation};
     let selectedCompanies = constellation.companies?.split(";");
+    let loading = false;
 
     const getIsDirty = (constellation1: Constellation, constellation2: Constellation, companies: string[]) => {
          const companiesChanged = companies?.join(";") !== constellation1.companies;
@@ -46,6 +48,20 @@
         selectedCompanies = constellation.companies?.split(";");
         onRevert();
     }
+
+    const handleFileUploaded = (path: string) => {
+        console.log("handleFileUploaded: ", path);
+        constellationToChange = {...constellationToChange, logoRef: path};
+    }
+
+    const handleLoadingStateChange = (loading: boolean) => {
+        console.log("loading: ", loading);
+        loading = loading;
+    }
+
+
+
+
 
 </script>
 
@@ -109,16 +125,29 @@
             </Label>
         </div>
 
+
+
         <div class="inputs-container">
-            <Label label="Logo">
-                <Input
-                    type="text"
-                    placeholder="Url til konstellasjonens logo"
-                    bind:value={constellationToChange.logoRef}
-                    style="min-width: 25rem"
-                />
+            <Label label="Logo (svg)">
+                <div>
+                     <Textarea
+                             placeholder="klipp og lim inn logo i svg-format her"
+                             rows="7"
+                             name="logo"
+                             bind:value={constellationToChange.logoRef}
+                             style="min-width: 25rem"
+                     />
+                </div>
+            </Label>
+                <Label label="Logo (forhåndsvisning)">
+                <div  style="max-height: 10rem; max-width: 25rem; overflow:auto;">
+                    {@html constellationToChange.logoRef}
+                </div>
             </Label>
 
+        </div>
+
+        <div class="inputs-container">
            <Label label="Selskaper i konstellasjonen">
                 <MultiSelect
                     items={companiesOptions}

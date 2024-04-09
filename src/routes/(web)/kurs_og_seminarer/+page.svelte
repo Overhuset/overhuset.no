@@ -1,6 +1,6 @@
 <script lang="ts">
  	import { MetaTags } from 'svelte-meta-tags';
-	import EventCard from "./EventCard.svelte";
+	import EventCard from "$lib/components/common/EventCard.svelte";
 	import {getIsPassed} from "$lib/utils/dateUtils";
 	import { ButtonGroup, Button } from 'flowbite-svelte';
 

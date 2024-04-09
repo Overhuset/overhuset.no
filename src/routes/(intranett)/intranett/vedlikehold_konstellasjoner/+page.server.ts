@@ -1,6 +1,9 @@
 import type { AuthUser } from "$lib/types";
 import {createPool} from "@vercel/postgres";
 import {mapFromDbToCompanyObject, mapFromDbToConstellationObject} from "$lib/utils/objectMapper";
+import {error} from "@sveltejs/kit";
+import {put} from "@vercel/blob";
+import type {PageServerLoad} from "../../../../../.svelte-kit/types/src/routes/(intranett)/intranett/ledig/$types";
 
 const fetchAuthUser = async (id: string) => {
 	const db = createPool();
@@ -21,11 +24,16 @@ const fetchAllCompanies = async () => {
 	return result.rows.map(c => mapFromDbToCompanyObject(c));
 }
 
-export async function load({ locals }) {
+
+const load: PageServerLoad = async ({ locals }) => {
 	const session = await locals.auth.validate();
 	const user  = session?.user;
 	const authUser = user?.userId ? await fetchAuthUser(user.userId) : undefined;
 	const constellationList = await fetchAllConstellations();
 	const companyList = fetchAllCompanies();
-	return { constellationList, companyList, authUser};
+	return { constellationList, companyList, authUser };
 }
+
+export { load };
+
+export const prerender = false;

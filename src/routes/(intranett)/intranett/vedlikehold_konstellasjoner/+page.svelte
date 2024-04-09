@@ -14,12 +14,12 @@
 	import { toasts, ToastContainer, FlatToast }  from "svelte-toasts";
  	import {PlusOutline} from "flowbite-svelte-icons";
 	import ConstellationAccordionItem from "./ConstellationAccordionItem.svelte";
-	import EventAccordionItem from "../vedlikehold_kurs_og_seminarer/EventAccordionItem.svelte";
 
 	const api = '/api/constellation';
 	const headers = {'content-type': 'application/json'};
 
 	export let data;
+	export let actions;
 
 	const onToast = (type: "success" | "info" | "error", message: string) => {
 		toasts.add({
@@ -34,10 +34,6 @@
 	const handleNewConstellation = async () => {
 		const constellation: Constellation = {
 			name: `*NY*`,
-			//nameShort: undefined,
-			//logoRef: undefined,
-			//url: undefined,
-			//description: undefined,
 			createdBy: data.authUser?.email,
 		};
 
@@ -109,12 +105,12 @@
 					<TableBodyCell>
 						<Accordion>
 							<ConstellationAccordionItem
-									constellation={constellation}
-									authUser={data.authUser}
-									companies={data.companyList}
-									onChange={handleChangeConstellation}
-									onDelete={handleDeleteConstellation}
-									onRevert={handleRevertConstellation}
+								constellation={constellation}
+								authUser={data.authUser}
+								companies={data.companyList}
+								onChange={handleChangeConstellation}
+								onDelete={handleDeleteConstellation}
+								onRevert={handleRevertConstellation}
 							/>
 						</Accordion>
 					</TableBodyCell>
