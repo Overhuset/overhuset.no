@@ -32,10 +32,6 @@
 	const handleNewCompany = async () => {
 		const company: Company = {
 			name: `*NY*`,
-			nameShort: undefined,
-			logoRef: undefined,
-			url: undefined,
-			description: undefined,
 			createdBy: data.authUser?.email,
 		};
 

@@ -1,8 +1,6 @@
 import type { AuthUser } from "$lib/types";
 import {createPool} from "@vercel/postgres";
 import {mapFromDbToCompanyObject, mapFromDbToConstellationObject} from "$lib/utils/objectMapper";
-import {error} from "@sveltejs/kit";
-import {put} from "@vercel/blob";
 import type {PageServerLoad} from "../../../../../.svelte-kit/types/src/routes/(intranett)/intranett/ledig/$types";
 
 const fetchAuthUser = async (id: string) => {

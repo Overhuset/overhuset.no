@@ -50,18 +50,12 @@
     }
 
     const handleFileUploaded = (path: string) => {
-        console.log("handleFileUploaded: ", path);
         constellationToChange = {...constellationToChange, logoRef: path};
     }
 
     const handleLoadingStateChange = (loading: boolean) => {
-        console.log("loading: ", loading);
         loading = loading;
     }
-
-
-
-
 
 </script>
 
@@ -125,8 +119,6 @@
             </Label>
         </div>
 
-
-
         <div class="inputs-container">
             <Label label="Logo (svg)">
                 <div>
@@ -144,7 +136,6 @@
                     {@html constellationToChange.logoRef}
                 </div>
             </Label>
-
         </div>
 
         <div class="inputs-container">
@@ -226,5 +217,4 @@
         margin-top: 1rem;
         margin-bottom: 1rem;
     }
-
 </style>

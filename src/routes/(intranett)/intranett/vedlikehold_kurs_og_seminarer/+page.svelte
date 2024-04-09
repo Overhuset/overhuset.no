@@ -35,19 +35,12 @@
 	const handleNewEvent = async () => {
  		const body = JSON.stringify({
 			title: `*NY*`,
-			location: undefined,
-			companyId: undefined,
-			company: undefined,
-			time: undefined,
-			timeEnd: undefined,
 			fullDay: false,
 			externalsAllowed: false,
 			physicalAttendance: false,
 			onlineCourse: false,
 			onlineStreaming: false,
 			published: false,
-			description: undefined,
-			registration: undefined,
 			createdBy: data.authUser?.email,
 		});
 
