@@ -1,12 +1,12 @@
 import {createPool} from "@vercel/postgres";
 import type {Constellation} from "$lib/types.js";
 import {getIsValidUuid} from "$lib/utils/uuidUtils";
-import {getNowFroDB} from "$lib/utils/dateUtils";
+import {getNowForDB} from "$lib/utils/dateUtils";
 import {v4 as uuidv4} from "uuid";
 
 export async function POST({ request }) {
     const constellation: Constellation = await request.json();
-    const now = getNowFroDB();
+    const now = getNowForDB();
     const sql = `INSERT INTO constellation (
                    id,
                    name,
