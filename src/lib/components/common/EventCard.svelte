@@ -93,19 +93,17 @@
                 />
             {/if}
 
-            {#if !isPassed}
+            {#if !isPassed && event.registration}
                 <br/>
                 <br/>
                 <div class="prose">
                     <h3>Påmelding</h3>
                 </div>
-                {#if event.registration}
-                    <LinksInTextRender
-                        text={event.registration}
-                        linkTitle="Trykk her"
-                        emailTitle="Send e-post"
-                    />
-                {/if}
+                <LinksInTextRender
+                    text={event.registration}
+                    linkTitle="Trykk her"
+                    emailTitle="Send e-post"
+                />
             {/if}
         </div>
     </div>
