@@ -16,7 +16,6 @@
 
 	const api = '/api/company';
 	const headers = {'content-type': 'application/json'};
-
 	export let data;
 
 	const onToast = (type: "success" | "info" | "error", message: string) => {
@@ -84,8 +83,8 @@
 
 <div class="prose prose-xl mx-auto p-4 md:py-20" style="max-width:140ch">
 	<div class="title">
-		<P lineHeight="0" size="3xl" color="dark" weight="thin" class="dada">Administrer</P>
-		<P size="3xl" color="dark" class="dada">Selskaper</P>
+		<P lineHeight="0" size="3xl" color="dark" weight="thin">Administrer</P>
+		<P size="3xl" color="dark">Selskaper</P>
 	</div>
 
 	<div class="buttons-container">

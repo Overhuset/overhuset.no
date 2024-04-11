@@ -85,10 +85,9 @@
 </script>
 
 <div class="prose prose-xl mx-auto p-4 md:py-20" style="max-width:140ch">
-
 	<div class="title">
-		<P lineHeight="0" size="3xl" color="dark" weight="thin" class="dada">Administrer</P>
-		<P size="3xl" color="dark" class="dada">Konstellasjoner</P>
+		<P lineHeight="0" size="3xl" color="dark" weight="thin">Administrer</P>
+		<P size="3xl" color="dark">Konstellasjoner</P>
 	</div>
 
 	<div class="buttons-container">

@@ -6,6 +6,7 @@
 
     import {AngleDownOutline, AngleUpOutline} from 'flowbite-svelte-icons';
     import FileUpload from "./FileUpload.svelte";
+    import {getDateFormat} from "$lib/utils/dateUtils";
     export let constellation: Constellation;
     export let authUser: AuthUser | undefined;
     export let companies: Company[];
@@ -78,8 +79,10 @@
             <span class="leading-none text-lg dark:text-white">
                 {constellationToChange.name}
             </span>
-             <Badge rounded color="dark"> {(constellationToChange.createdBy || "ukjent")}</Badge>
        </div>
+        <Badge rounded color="dark" style="margin-top: 0.4rem">
+            Opprettet {getDateFormat(constellationToChange.createdAt)} av {(constellationToChange.createdBy)}
+        </Badge>
     </span>
 
     <span slot="summary"></span>
