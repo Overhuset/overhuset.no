@@ -3,7 +3,7 @@
 	import EventAccordionItem from "./EventAccordionItem.svelte";
 	import {invalidateAll} from "$app/navigation";
 	import {
-		Button, ButtonGroup,
+		Button,
 		P,
 		Table,
 		TableBody,
@@ -14,14 +14,15 @@
 	} from "flowbite-svelte";
 	import type {Event} from "$lib/types";
 	import { toasts, ToastContainer, FlatToast }  from "svelte-toasts";
-	import {ChevronDoubleDownOutline, PlusOutline} from "flowbite-svelte-icons";
+	import { PlusOutline } from "flowbite-svelte-icons";
 	import {sortEvents} from "./utils";
 
-	let sort:"title" | "createdAt" | "time" = 'title';
 	const api = '/api/event';
 	const headers = {'content-type': 'application/json'};
 
 	export let data;
+
+	let sort:"title" | "createdAt" | "time" = 'title';
 
 	const onToast = (type: "success" | "info" | "error", message: string) => {
 		toasts.add({
@@ -86,13 +87,9 @@
 			} else {
 				onToast("error", "En feil oppstod ved sletting");
 			}
-
 			invalidateAll();
 		}
 	}
-
-
-
 </script>
 
 <div class="prose prose-xl mx-auto p-4 md:py-20" style="max-width:140ch">
@@ -105,8 +102,7 @@
 		<Badge large rounded color="dark">
 			<div class="flex gap-4 m-3">
 				<div class="min-w-20"> Sortering:</div>
-				<Radio bind:group={sort} color="primary" value="time" class="me-2">Tidspunkt</Radio>
-				<Radio bind:group={sort} value="title">Tittel</Radio>
+				<Radio bind:group={sort} value="title">Navn</Radio>
 				<Radio bind:group={sort} value="createdAt">Opprettet</Radio>
 			</div>
 		</Badge>
@@ -115,30 +111,30 @@
 		<Tooltip type="light" placement="top" triggeredBy="[id='new']">Opprett nytt arrangement og fortsett redigering ved å velge det i listen nedenfor</Tooltip>
 	</div>
 
-	<div>
-		{#key sort}
-			<Table hoverable={true}>
-				<TableBody>
-					{#each (sortEvents(data.eventList, sort) || []) as event (event.id)}
-						<TableBodyRow >
-							<TableBodyCell>
-								<Accordion>
-									<EventAccordionItem
-											event={event}
-											companies={data.companyList}
-											authUser={data.authUser}
-											onChange={handleChangeEvent}
-											onDelete={handleDeleteEvent}
-											onRevert={handleRevertEvent}
-									/>
-								</Accordion>
-							</TableBodyCell>
-						</TableBodyRow>
-					{/each}
-				</TableBody>
-			</Table>
-		{/key}
-	</div>
+
+	{#key sort}
+		<Table hoverable={true}>
+			<TableBody>
+				{#each sortEvents(data.eventList, sort) as event (event.id)}
+					<TableBodyRow >
+						<TableBodyCell>
+							<Accordion>
+								<EventAccordionItem
+										event={event}
+										companies={data.companyList}
+										authUser={data.authUser}
+										onChange={handleChangeEvent}
+										onDelete={handleDeleteEvent}
+										onRevert={handleRevertEvent}
+								/>
+							</Accordion>
+						</TableBodyCell>
+					</TableBodyRow>
+				{/each}
+			</TableBody>
+		</Table>
+	{/key}
+
 
 	<ToastContainer placement="bottom-right" let:data={data}>
 		<FlatToast {data} />

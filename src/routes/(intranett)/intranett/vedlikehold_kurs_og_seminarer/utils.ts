@@ -1,6 +1,6 @@
 import type {Event} from "$lib/types";
 
-export const sortEvents = (events: Event[], by: "title" | "createdAt" | "time") => {
+export const sortEvents = (events: Event[], by: "title" | "createdAt" | "time"): Event[] => {
     switch (by) {
         case "title": {
             events.sort((a, b) => (a?.title || "").toLowerCase() < (b?.title || "").toLowerCase() ? -1 : 1);
