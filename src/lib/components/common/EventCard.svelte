@@ -6,7 +6,7 @@
     import Card from "$lib/components/common/Card.svelte";
     import Divider from "$lib/components/common/Divider.svelte";
     import LinksInTextRender from "$lib/components/common/LinksInTextRender.svelte";
-    import {Button} from "flowbite-svelte";
+    import {Button, P} from "flowbite-svelte";
     import type {Company} from "$lib/types.js";
     import {CalendarMonthSolid, MapPinAltSolid} from "flowbite-svelte-icons";
 
@@ -26,30 +26,39 @@
 <Card variant={isPassed ? "secondary" : "primary"} onClick={handleToggleOpen}>
     <div class="spaceBetween">
         <div class="title">
-            <div class="prose">
-                <h2>{event.title}</h2>
+            <P size="xl" color="dark" weight="semibold">
+                {event.title}
+            </P>
+
+            <div class="iconLabel">
+                <P size="lg" color="dark" weight="light">
+                    {companyName} inviterer
+                </P>
             </div>
 
             <div class="iconLabel">
                 <CalendarMonthSolid />
-                {#if event.time}
-                    {#if event.timeEnd}<span>Fra </span>{/if}
-
-                    <span>{getDateFormat(event.time)} </span>
-                    {#if !event?.fullDay}<span> kl {getTimeFormat(event.time)}</span>{/if}
-
-                    {#if event.timeEnd}
-                        <span> til </span>
-                        <span>{getDateFormat(event.timeEnd)} </span>
-                        {#if !event?.fullDay}<span> kl {getTimeFormat(event.timeEnd)}</span>{/if}
+                <P size="lg" color="dark" weight="light">
+                    {#if event.time}
+                        {#if event.timeEnd}<span>Fra </span>{/if}
+                        <span>{getDateFormat(event.time)} </span>
+                        {#if !event?.fullDay}<span> kl {getTimeFormat(event.time)}</span>{/if}
+                        {#if event.timeEnd}
+                            <span> til </span>
+                            <span>{getDateFormat(event.timeEnd)} </span>
+                            {#if !event?.fullDay}<span> kl {getTimeFormat(event.timeEnd)}</span>{/if}
+                        {/if}
+                    {:else}
+                        <span>Ikke angitt</span>
                     {/if}
-                {:else}
-                    <span>Ikke angitt</span>
-                {/if}
+                </P>
+
             </div>
             <div class="iconLabel">
                 <MapPinAltSolid size="md"/>
-                {#if event.location}<span>{event.location}</span>{:else}<span>Ikke angitt</span>{/if}
+                <P size="lg" color="dark" weight="light">
+                    {#if event.location}<span>{event.location}</span>{:else}<span>Ikke angitt</span>{/if}
+                </P>
             </div>
         </div>
         <div>
@@ -59,20 +68,25 @@
 
     <div class="spaceBetween2">
         <div class="rowDirection">
-            <div>
-                Av {companyName}
-            </div>
-            <div>✔ {#if event?.externalsAllowed} Åpent for eksterne {:else} Kun for interne {/if}</div>
+            <P size="lg" color="dark" weight="light">
+                ✔ {#if event?.externalsAllowed} Åpent for eksterne {:else} Kun for interne {/if}
+            </P>
             {#if event?.onlineCourse}
-                <div>✔ Online-kurs</div>
+                <P size="lg" color="dark" weight="light">
+                    ✔ Online-kurs
+                </P>
             {/if}
 
             {#if event?.physicalAttendance}
-                <div>✔ Fysisk oppmøte</div>
+                <P size="lg" color="dark" weight="light">
+                    ✔ Fysisk oppmøte
+                </P>
             {/if}
 
             {#if event?.onlineStreaming}
-                <div>✔ Online streaming</div>
+                <P size="lg" color="dark" weight="light">
+                    ✔ Online streaming
+                </P>
             {/if}
         </div>
 
@@ -82,32 +96,31 @@
     </div>
 
     <div use:collapse={{open}} style="width:100%">
+
         <Divider/>
 
-        <div class="description">
-            {#if event.description}
-                <LinksInTextRender
-                    text={event?.description}
-                    linkTitle={undefined}
-                    emailTitle={undefined}
-                />
-            {/if}
-
-            {#if !isPassed}
-                <br/>
-                <br/>
-                <div class="prose">
-                    <h3>Påmelding</h3>
-                </div>
-                {#if event.registration}
+        <P size="lg" color="dark" weight="light">
+            <div class="description">
+                {#if event.description}
                     <LinksInTextRender
-                        text={event.registration}
-                        linkTitle="Trykk her"
+                        text={event?.description}
+                        linkTitle="Her"
                         emailTitle="Send e-post"
                     />
                 {/if}
+            </div>
+        </P>
+
+        <P size="xl" color="dark" weight="thin">
+            {#if !isPassed && event.registration}
+                <P size="xl" color="dark">Påmelding</P>
+                <LinksInTextRender
+                    text={event.registration}
+                    linkTitle="Her"
+                    emailTitle="Send e-post"
+                />
             {/if}
-        </div>
+        </P>
     </div>
 </Card>
 
@@ -118,6 +131,7 @@
         align-items: flex-start;
         flex-wrap: wrap;
         margin-bottom: 1rem;
+        margin-top: -1rem;
     }
     .rowDirection {
         display: flex;
@@ -134,6 +148,7 @@
         flex-wrap: wrap;
         align-items: center;
         gap: 0.5rem;
+        margin-top:-2.5rem;
     }
     .spaceBetween {
         width: 100%;

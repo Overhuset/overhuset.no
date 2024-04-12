@@ -2,7 +2,8 @@
  	import { MetaTags } from 'svelte-meta-tags';
 	import EventCard from "$lib/components/common/EventCard.svelte";
 	import {getIsPassed} from "$lib/utils/dateUtils";
-	import { ButtonGroup, Button } from 'flowbite-svelte';
+	import {ButtonGroup, Button, P} from 'flowbite-svelte';
+	import LinksInTextRender from "$lib/components/common/LinksInTextRender.svelte";
 
 	export let data;
 
@@ -23,18 +24,19 @@
 
 	<div class="prose mb-16 mt-8 mx-4" style="max-width:140ch">
 		<h1>Seminarer, kurs og aktiviteter på Overhuset</h1>
-		<p class="font-bold">
-			Mens de dyktige konsulentene våre er opptatte av å bidra til kompetanseløft ute hos
+		<P size="xl" color="dark">	Mens de dyktige konsulentene våre er opptatte av å bidra til kompetanseløft ute hos
 			kundene våre, legger Overhuset som helhet til rette for faglig utvikling internt og for
 			alle interesserte.
-		</p>
-		<p>
+		</P>
+
+		<P lineHeight="0" size="xl" color="dark" weight="light">Administrer
 			Overhuset består av ti ulike konsulentselskaper, som alle besitter spisskompetanse og
 			erfaring på hver sine fagområder. Sammen er vi faglig krutt – og det må selvsagt deles!
-		</p>
-		<p>Her finner du en oversikt over alt som skjer. Påmeldingsinfo skal stå under hvert
-			arrangement. Skulle du likevel lure på noe, ikke nøl med <a href="/#kontakt" class="underline"> å ta kontakt</a>.
-		</p>
+			<br/>
+			<br/>
+			Her finner du en oversikt over alt som skjer. Påmeldingsinfo skal stå under hvert
+			arrangement. Skulle du likevel lure på noe, ikke nøl med å ta <a href="/#kontakt" class="underline">kontakt</a>.
+		</P>
 
 		<br/>
 

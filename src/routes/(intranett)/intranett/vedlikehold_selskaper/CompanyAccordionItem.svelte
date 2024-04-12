@@ -5,6 +5,7 @@
     import Label from "$lib/components/common/Label.svelte";
 
     import {AngleDownOutline, AngleUpOutline} from 'flowbite-svelte-icons';
+    import {getDateFormat} from "$lib/utils/dateUtils";
     export let company: Company;
     export let authUser: AuthUser | undefined;
     export let onChange: (companyChanged: Company) => void;
@@ -60,8 +61,10 @@
             <span class="leading-none text-lg dark:text-white">
                 {companyToChange.name}
             </span>
-            <Badge rounded color="dark"> {(companyToChange.createdBy || "ukjent")}</Badge>
        </div>
+       <Badge rounded color="dark" style="margin-top: 0.4rem">
+            Opprettet {getDateFormat(companyToChange.createdAt)} av {(companyToChange.createdBy)}
+       </Badge>
     </span>
 
     <span slot="summary"></span>

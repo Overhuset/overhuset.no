@@ -61,8 +61,6 @@ export const getIsPassed = (date?: Date | string) => {
 }
 
 export const getNowForDB = () => {
-    let d = new Date(), month = `${d.getMonth()}`, day = `${d.getDate()}`, year = `${d.getFullYear()}`;
-    if (month.length < 2) month = '0' + month;
-    if (day.length < 2) day = '0' + day;
-    return [year, month, day].join('-');
+    const {year, month, day} = {...getDateValues(new Date())};
+    return [year, month, day,].join('-');
 }
