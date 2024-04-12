@@ -88,8 +88,8 @@
             {#if event.description}
                 <LinksInTextRender
                     text={event?.description}
-                    linkTitle={undefined}
-                    emailTitle={undefined}
+                    linkTitle="Her"
+                    emailTitle="Send e-post"
                 />
             {/if}
 
@@ -101,7 +101,7 @@
                 </div>
                 <LinksInTextRender
                     text={event.registration}
-                    linkTitle="Trykk her"
+                    linkTitle="Her"
                     emailTitle="Send e-post"
                 />
             {/if}

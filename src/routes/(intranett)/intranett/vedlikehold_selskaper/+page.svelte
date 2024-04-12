@@ -43,10 +43,10 @@
 
 		if (response.status == 200) {
 			onToast("success", "Selskap opprettet");
+			sort = "createdAt";
 		} else {
 			onToast("error", "En feil oppstod ved opprett selskap");
 		}
-
 		invalidateAll();
 	}
 
@@ -60,7 +60,6 @@
 			} else {
 				onToast("error", "En feil oppstod ved lagring");
 			}
-
 			invalidateAll();
 		}
 	}
@@ -92,13 +91,15 @@
 	</div>
 
 	<div class="buttons-container">
-		<Badge large rounded color="dark">
-			<div class="flex gap-4 m-3">
-				<div class="min-w-20"> Sortering:</div>
-				<Radio bind:group={sort} value="name">Navn</Radio>
-				<Radio bind:group={sort} value="createdAt">Opprettet</Radio>
-			</div>
-		</Badge>
+		{#key sort}
+			<Badge large rounded color="dark">
+				<div class="flex gap-4 m-3">
+					<div class="min-w-20"> Sortering:</div>
+					<Radio bind:group={sort} value="name">Navn</Radio>
+					<Radio bind:group={sort} value="createdAt">Opprettet</Radio>
+				</div>
+			</Badge>
+		{/key}
 
 		{#if data.authUser?.admin}
 			<Button pill={true} id="new" on:click={handleNewCompany} class="!p-2"><PlusOutline class="w-8 h-8" /></Button>

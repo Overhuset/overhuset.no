@@ -51,6 +51,7 @@
 
 		if (response.status == 200) {
 			onToast("success", "Arrangement opprettet");
+			sort = "createdAt";
 		} else {
 			onToast("error", "En feil oppstod ved opprett arrangement");
 		}
@@ -99,13 +100,15 @@
 	</div>
 
 	<div class="buttons-container">
-		<Badge large rounded color="dark">
-			<div class="flex gap-4 m-3">
-				<div class="min-w-20"> Sortering:</div>
-				<Radio bind:group={sort} value="title">Navn</Radio>
-				<Radio bind:group={sort} value="createdAt">Opprettet</Radio>
-			</div>
-		</Badge>
+		{#key sort}
+			<Badge large rounded color="dark">
+				<div class="flex gap-4 m-3">
+					<div class="min-w-20"> Sortering:</div>
+					<Radio bind:group={sort} value="title">Navn</Radio>
+					<Radio bind:group={sort} value="createdAt">Opprettet</Radio>
+				</div>
+			</Badge>
+		{/key}
 
 		<Button pill={true} id="new" on:click={handleNewEvent} class="!p-2"><PlusOutline class="w-8 h-8" /></Button>
 		<Tooltip type="light" placement="top" triggeredBy="[id='new']">Opprett nytt arrangement og fortsett redigering ved å velge det i listen nedenfor</Tooltip>
