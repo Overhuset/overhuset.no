@@ -20,7 +20,7 @@ const fetchCompanies = async (constellation?: Constellation) => {
 		const companyIds = (constellation.companies || "").split(";");
 		const companyIdsParam = companyIds.map(companyId => `'${companyId}'`);
 		const db = createPool();
-		const sql = `SELECT * FROM company WHERE id IN (${companyIdsParam})`;
+		const sql = `SELECT * FROM company WHERE id IN (${companyIdsParam}) ORDER BY NAME ASC`;
 		const result = await db.query(sql);
 		return result.rows.map(c => mapFromDbToCompanyObject(c));
 	}
@@ -33,7 +33,7 @@ const fetchEvents = async (constellation?: Constellation) => {
 		const companyIds = (constellation.companies || "").split(";").concat(overhusetId);
 		const companyIdsParam = companyIds.map(companyId => `'${companyId}'`);
 		const db = createPool();
-		const sql = `SELECT * FROM event WHERE company_id IN (${companyIdsParam}) ORDER by time DESC`;
+		const sql = `SELECT * FROM event WHERE company_id IN (${companyIdsParam}) ORDER BY time DESC`;
 		const result = await db.query(sql);
 		return result.rows.map(e => mapFromDbToEventObject(e));
 	}
