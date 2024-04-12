@@ -29,10 +29,11 @@ const fetchCompanies = async (constellation?: Constellation) => {
 
 const fetchEvents = async (constellation?: Constellation) => {
 	if (constellation) {
-		const companyIds = (constellation.companies || "").split(";");
+		const overhusetId = "3dac0ec1-150a-4d4f-9d12-4d37e2aae2fd";
+		const companyIds = (constellation.companies || "").split(";").concat(overhusetId);
 		const companyIdsParam = companyIds.map(companyId => `'${companyId}'`);
 		const db = createPool();
-		const sql = `SELECT * FROM event WHERE company_id IN (${companyIdsParam}) ORDER by created_at DESC`;
+		const sql = `SELECT * FROM event WHERE company_id IN (${companyIdsParam}) ORDER by time DESC`;
 		const result = await db.query(sql);
 		return result.rows.map(e => mapFromDbToEventObject(e));
 	}
@@ -40,7 +41,6 @@ const fetchEvents = async (constellation?: Constellation) => {
 }
 
 export const load: PageServerLoad = async ({ fetch, params }) => {
-
 	if (params.slug) {
 		const constellation = await fetchConstellation(params.slug);
 		const companiesList = await fetchCompanies(constellation);
