@@ -63,13 +63,12 @@ prosjekter – i full bredde, på høyeste nivå.'
 	<div class="page-section text-white flex-col gap-12">
 		<h3 class="text-4xl md:text-6xl">OM OSS</h3>
 			<p class="max-w-4xl mx-auto text-lg md:text-2xl font-semibold">
-				Ved å forene bransjens beste konsulentselskaper, er ambisjonene om kvalitet tilsvarende høye. Vi
-				lykkes der andre feiler, fordi vi har samarbeid og kompetanseoverføring i vårt DNA.
+			Overhuset ble etablert i 2009, som svar på bransjens behov for fullservice-selskaper til større IT-prosjekter. 
+                        Selskapet består av ti konsulentselskaper med ekspertise på hver sine felt. Sammen tilbyr vi spisskompetanse i full bredde.
 			</p>
 		<p class="max-w-4xl mx-auto text-lg md:text-2xl font-light">
-			Overhusets konsulenter er stødige, ambisiøse og pålitelige fagfolk, som legger mye stolthet i å levere tjenester i
-			topp-klassen. For å få til det, følger vi kvalitetssystemet NS-EN ISO 9001, og har definert noen retningslinjer basert
-			på det.
+			Som kunde av Overhuset, forholder du deg til ett selskap, med ett kontaktpunkt og ett sett avtaler. Med over 300
+                        av bransjens mest erfarne konsulenter i stallen, setter vi sammen teamet akkurat ditt prosjekt trenger.
 		</p>
 		<a href="/om_oss" class="underline font-semibold px-8">Les mer</a>
 		<h3 class="text-4xl md:text-6xl">Å VÆRE BEST FORPLIKTER</h3>
