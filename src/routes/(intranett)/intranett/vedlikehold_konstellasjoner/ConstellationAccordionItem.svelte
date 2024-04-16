@@ -1,12 +1,11 @@
 <script lang="ts">
     import {AccordionItem} from "@skeletonlabs/skeleton";
-    import {Badge, Button, Input, MultiSelect, Select, Textarea, Toggle, Tooltip} from "flowbite-svelte";
+    import {Badge, Button, Input, MultiSelect, Textarea, Toggle, Tooltip} from "flowbite-svelte";
     import type {AuthUser, Company, Constellation} from "$lib/types";
     import Label from "$lib/components/common/Label.svelte";
-
     import {AngleDownOutline, AngleUpOutline} from 'flowbite-svelte-icons';
-    import FileUpload from "./FileUpload.svelte";
     import {getDateFormat} from "$lib/utils/dateUtils";
+
     export let constellation: Constellation;
     export let authUser: AuthUser | undefined;
     export let companies: Company[];
@@ -14,13 +13,11 @@
     export let onDelete: (id: string) => void;
     export let onRevert: () => void;
 
-
     const changeAllowed = authUser?.admin;
     const companiesOptions: {value: string, name: string}[] = companies.map(company => ({ value: company.id || "", name: company.nameShort || ""}));
 
     let constellationToChange: Constellation = {...constellation};
     let selectedCompanies = constellation.companies?.split(";");
-    let loading = false;
 
     const getIsDirty = (constellation1: Constellation, constellation2: Constellation, companies: string[]) => {
          const companiesChanged = companies?.join(";") !== constellation1.companies;
@@ -50,14 +47,6 @@
         onRevert();
     }
 
-    const handleFileUploaded = (path: string) => {
-        constellationToChange = {...constellationToChange, logoRef: path};
-    }
-
-    const handleLoadingStateChange = (loading: boolean) => {
-        loading = loading;
-    }
-
 </script>
 
 <AccordionItem disabled={!changeAllowed} hover="">
@@ -81,7 +70,7 @@
             </span>
        </div>
         <Badge rounded color="dark" style="margin-top: 0.4rem">
-            Opprettet {getDateFormat(constellationToChange.createdAt)} av {(constellationToChange.createdBy)}
+            Opprettet {getDateFormat(constellationToChange.createdAt)} av {(constellationToChange.createdBy || "ukjent")}
         </Badge>
     </span>
 
@@ -129,15 +118,19 @@
                              placeholder="klipp og lim inn logo i svg-format her"
                              rows="7"
                              name="logo"
-                             bind:value={constellationToChange.logoRef}
+                             bind:value={constellationToChange.logo}
                              style="min-width: 25rem"
                      />
                 </div>
                 <Tooltip type="light" placement="bottom" triggeredBy="[id='logo']">Her skal grafikk for log inn i svg-format. Klipp og lim innholdet inn her.</Tooltip>
             </Label>
                 <Label label="Logo (forhåndsvisning)">
-                <div  style="max-height: 10rem; max-width: 25rem; overflow:auto;">
-                    {@html constellationToChange.logoRef}
+                <div class="logo">
+                     {#key constellationToChange?.logo}
+                         {#if constellationToChange?.logo}
+                            <img src={URL.createObjectURL(new Blob([constellationToChange?.logo], { type: "image/svg+xml" }))} class="xs:w-2/5" />
+                         {/if}
+                    {/key}
                 </div>
             </Label>
         </div>
@@ -169,13 +162,19 @@
         </Label>
 
         <div class="inputs-container">
-            {#each companies as company (company.id)}
-                {#if selectedCompanies?.includes(company?.id || "")}
-                    <a href={`/konsulentselskap/${company?.nameShort?.toLowerCase()}`} >
-                        <img src={company.logoRef} alt={company.name} class="h-10"/>
-                    </a>
-                {/if}
-            {/each}
+            {#key companies}
+                {#each companies as company (company.id)}
+                    {#if selectedCompanies?.includes(company?.id || "")}
+                        <a href={`/konsulentselskap/${company?.nameShort?.toLowerCase()}`} >
+                           {#if company.logo}
+                               <div class="logo">
+                                     <img src={URL.createObjectURL(new Blob([company.logo], { type: "image/svg+xml" }))} />
+                               </div>
+                           {/if}
+                        </a>
+                    {/if}
+                {/each}
+            {/key}
         </div>
 
         <Label label="Beskrivelse - fortsettelse etter selskapslogoer">
@@ -223,5 +222,8 @@
         gap: 1rem;
         margin-top: 1rem;
         margin-bottom: 1rem;
+    }
+    .logo {
+        max-width: 7rem;
     }
 </style>

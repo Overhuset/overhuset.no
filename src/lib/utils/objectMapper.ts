@@ -27,6 +27,7 @@ export const mapFromDbToCompanyObject = (company: any): Company => {
         id: company.id,
         name: company.name,
         nameShort: company.name_short,
+        logo: company.logo,
         logoRef: company.logo_ref,
         url: company.url,
         description: company.description,
@@ -45,6 +46,7 @@ export const mapFromDbToConstellationObject = (constellation: any): Constellatio
         active: constellation.active,
         createdBy: constellation.created_by,
         createdAt: constellation.created_at,
+        logo: constellation.logo,
         logoRef: constellation.logo_ref,
         urlRef: constellation.url_ref,
     }

@@ -14,7 +14,7 @@
     export let companies: Company[];
 
     const company = event.companyId ? [...companies].find(company => company.id === event.companyId) : null;
-    const logo = company ? company.logoRef :  getLogoFromCompanyName(event?.company); // hack until all refs are from database.
+    const logo = company ? company.logo :  getLogoFromCompanyName(event?.company); // hack until all refs are from database.
     const companyName = (company ? company.nameShort : event.company) || "Overhuset"; // hack until all refs are from database.
     let open = false;
     const isPassed = getIsPassed(event?.time);
