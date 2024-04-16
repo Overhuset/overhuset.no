@@ -14,7 +14,6 @@
     export let companies: Company[];
 
     const company = event.companyId ? [...companies].find(company => company.id === event.companyId) : null;
-    const logo = company ? company.logo :  getLogoFromCompanyName(event?.company); // hack until all refs are from database.
     const companyName = (company ? company.nameShort : event.company) || "Overhuset"; // hack until all refs are from database.
     let open = false;
     const isPassed = getIsPassed(event?.time);
@@ -62,7 +61,9 @@
             </div>
         </div>
         <div>
-            <img src={logo} alt="" class="w-16" />
+            {#if company?.logo}
+                <img src={URL.createObjectURL(new Blob([company.logo], { type: "image/svg+xml" }))} class="w-16"/>
+            {/if}
         </div>
     </div>
 
