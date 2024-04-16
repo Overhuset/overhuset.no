@@ -16,6 +16,8 @@ export async function POST({ request }) {
                    url,
                    partner,
                    active,
+                   title,
+                   ingress,
                    description,
                    created_by,
                    created_at
@@ -28,6 +30,8 @@ export async function POST({ request }) {
                                  '${company.url || ""}',
                                  '${company.partner || false}',
                                  '${company.active || false}',
+                                 '${company.title || ""}',
+                                 '${company.ingress || ""}',
                                  '${company.description || ""}',
                                  '${company.createdBy || ""}',
                                  '${now}')`;
@@ -49,6 +53,8 @@ export async function PUT({ request }) {
                  url='${company.url}',
                  partner='${company.partner || false}',
                  active='${company.active || false}',
+                 title='${company.title}',
+                 ingress='${company.ingress}',
                  description='${company.description}'
             WHERE id='${company.id}'`;
         const db = createPool();

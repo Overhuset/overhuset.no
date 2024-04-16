@@ -36,6 +36,8 @@ export type Company = {
 	logo?: BlobPart;
 	logoRef?: string;
 	url?: string;
+	title?: string;
+	ingress?: string;
 	description?: string;
 	createdBy?: string;
 	createdAt?: Date;

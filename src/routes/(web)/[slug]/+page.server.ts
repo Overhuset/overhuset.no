@@ -11,13 +11,13 @@ import {
 
 const fetchConstellation = async (urlRef:string) => {
 	const db = createPool();
-	const result = await db.query(`SELECT * FROM constellation WHERE active = true AND url_ref = '${urlRef}'`);
+	const result = await db.query(`SELECT * FROM constellation WHERE active = true AND LOWER(url_ref) = LOWER('${urlRef}')`);
 	return result.rows.length > 0 ? mapFromDbToConstellationObject(result.rows[0]) : undefined;
 }
 
 const fetchCompany = async (nameShort:string) => {
 	const db = createPool();
-	const result = await db.query(`SELECT * FROM company WHERE active = true AND name_short = '${nameShort}'`);
+	const result = await db.query(`SELECT * FROM company WHERE active = true AND LOWER(name_short) = LOWER('${nameShort}')`);
 	return result.rows.length > 0 ? mapFromDbToCompanyObject(result.rows[0]) : undefined;
 }
 

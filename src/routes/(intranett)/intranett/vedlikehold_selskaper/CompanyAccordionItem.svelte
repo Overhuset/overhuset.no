@@ -147,13 +147,33 @@
             </Label>
         </div>
 
-        <Label label="Beskrivelse">
+        <Label label="Tittel">
             <div>
                  <Textarea
                      placeholder="Beskrivende tekst om selskapet"
-                     rows="10"
+                     rows="2"
                      name="description"
-                     bind:value={companyToChange.description}
+                     bind:value={companyToChange.title}
+                 />
+            </div>
+        </Label>
+        <Label label="Ingress">
+            <div>
+                 <Textarea
+                         placeholder="Beskrivende tekst om selskapet"
+                         rows="5"
+                         name="description"
+                         bind:value={companyToChange.ingress}
+                 />
+            </div>
+        </Label>
+        <Label label="Beskrivelse">
+            <div>
+                 <Textarea
+                         placeholder="Beskrivende tekst om selskapet"
+                         rows="10"
+                         name="description"
+                         bind:value={companyToChange.description}
                  />
             </div>
         </Label>
