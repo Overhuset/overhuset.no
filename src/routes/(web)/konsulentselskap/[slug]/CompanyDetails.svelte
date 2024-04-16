@@ -5,15 +5,14 @@
     export let data;
 
     const company = data.company;
-
-    const logoSrc = URL.createObjectURL(new Blob([company?.logo as BlobPart], { type: "image/svg+xml" }));
  </script>
 
 <section class="max-w-6xl mx-auto md:w-5/5">
 
     <div class="prose mb-16 mt-8 mx-4" style="max-width:140ch">
+        <button on:click={() => window.history.back()}>&larr; Tilbake</button>
         <div style="display: flex; justify-content: center; max-height: 11rem">
-            <img src={logoSrc} />
+            <img src={URL.createObjectURL(new Blob([company?.logo], { type: "image/svg+xml" }))} />
         </div>
 
         <P size="3xl" color="dark" weight="bold">{company.title}</P>

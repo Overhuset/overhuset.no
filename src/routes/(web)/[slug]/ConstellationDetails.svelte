@@ -11,7 +11,6 @@
     const upcoming = (all.filter(event => !event.onlineCourse && !getIsPassed(event?.time)));
     const historic = (all.filter(event => !event.onlineCourse && getIsPassed(event?.time)));
     const online = (all.filter(event => event.onlineCourse));
-    const logoSrc = URL.createObjectURL(new Blob([constellation?.logo as BlobPart], { type: "image/svg+xml" }));
     let filterMode: "all" | "upcoming" | "historic" | "online" = "all";
 </script>
 
@@ -19,7 +18,7 @@
 
     <div class="prose mb-16 mt-8 mx-4" style="max-width:140ch">
         <div style="display: flex; justify-content: center ">
-            <img src={logoSrc}  class="md:w-2/5 md:block" />
+            <img src={URL.createObjectURL(new Blob([constellation?.logo], { type: "image/svg+xml" }))}  class="md:w-2/5 md:block" />
         </div>
         <P size="4xl" color="dark">{constellation.name}</P>
         <P lineHeight="0" size="3xl" color="dark" weight="thin" style="margin-top: -2.5rem">{constellation.description}</P>

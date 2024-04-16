@@ -28,6 +28,7 @@
         }
     }
 
+    console.log(text?.split(" "));
 </script>
 
 <span>
