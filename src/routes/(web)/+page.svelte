@@ -1,7 +1,8 @@
 <script>
 	import CompanyList from '$lib/components/CompanyList.svelte';
-	import { overhuset } from '$lib/config/constellations';
 	import { MetaTags } from 'svelte-meta-tags';
+
+	export let data;
 </script>
 
 <svelte:head>
@@ -55,8 +56,7 @@ prosjekter – i full bredde, på høyeste nivå.'
 	Vi kan alt fra mobil- og systemutvikling, til data-infrastruktur og KI, for å nevne noe.
 		Nysgjerrig på hva hvert selskap er spesialisert innenfor? Klikk på logoene for å lese mer!
 	</p>
-
-	<CompanyList companyNames={overhuset} />
+	<CompanyList companyList={data.companyList} />
 </section>
 
 <section class="half-o" id="om_oss">

@@ -2,7 +2,6 @@
     import type {Event} from "$lib/types";
     import collapse from 'svelte-collapse';
     import {getDateFormat, getIsPassed, getTimeFormat} from "$lib/utils/dateUtils";
-    import {getLogoFromCompanyName} from "$lib/components/companies";
     import Card from "$lib/components/common/Card.svelte";
     import Divider from "$lib/components/common/Divider.svelte";
     import LinksInTextRender from "$lib/components/common/LinksInTextRender.svelte";

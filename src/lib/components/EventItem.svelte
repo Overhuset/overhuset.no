@@ -1,17 +1,15 @@
 <script lang="ts">
 	import { AccordionItem } from '@skeletonlabs/skeleton';
-	import { getLogoFromCompanyName } from '$lib/components/companies';
 	import type { Event } from '$lib/types';
 	export let event: Event;
 
 	export let isInThePast = false;
-	const logo = getLogoFromCompanyName(event.company);
+
 </script>
 
 <AccordionItem class="border-2 rounded-md w-full">
 	<svelte:fragment slot="summary">
 		<div class="flex items-center w-full h-28">
-			<img src={logo} alt="" class="w-20" />
 			<div class="flex flex-col pl-4 py-4 font-source">
 				<span class="font-light text-sm">{event?.date ?? 'TBA'}</span>
 				<span class="font-bold">{event?.title ?? 'TBA'}</span>
