@@ -9,7 +9,7 @@
 	<title>Overhuset</title>
 	<MetaTags
 	title='Overhuset – de råeste konsulentene i IT-bransjen'
-	description='Overhuset er et samarbeid mellom 10 ledende konsulentselskaper. Sammen tilbyr vi IT-tjenester til store
+	description='Overhuset er et samarbeid mellom 11 ledende konsulentselskaper. Sammen tilbyr vi IT-tjenester til store
 prosjekter – i full bredde, på høyeste nivå.'
 />
 </svelte:head>
@@ -18,7 +18,7 @@ prosjekter – i full bredde, på høyeste nivå.'
 	<h2
 		class="text-3xl md:text-4xl lg:text-6xl font-bold text-center text-stone-600 md:w-1/2 font-source md:px-16"
 	>
-		320 AV DE RÅESTE IT-KONSULENTENE I MARKEDET UNDER SAMME TAK
+		360 AV DE RÅESTE IT-KONSULENTENE I MARKEDET UNDER SAMME TAK
 	</h2>
 </section>
 
@@ -47,7 +47,7 @@ prosjekter – i full bredde, på høyeste nivå.'
 
 <section class="page-section flex-col max-w-6xl gap-24">
 	<p class="max-w-5xl text-2xl font-light">
-		Overhuset består av Norges ti ledende konsulentselskaper, som samarbeider om større IT-
+		Overhuset består av Norges elleve ledende konsulentselskaper, som samarbeider om større IT-
 		utviklingsprosjekter i offentlig og privat sektor. Hvert selskap er spesialisert innenfor sine
 		fagfelt, og er nøye satt sammen for å berike og komplettere hverandre på best mulig vis.
 		Sammen utgjør vi bransjens mest fremoverlente og kompetente fagmiljø.
@@ -67,7 +67,7 @@ prosjekter – i full bredde, på høyeste nivå.'
                         Selskapet består av ti konsulentselskaper med ekspertise på hver sine felt. Sammen tilbyr vi spisskompetanse i full bredde.
 			</p>
 		<p class="max-w-4xl mx-auto text-lg md:text-2xl font-light">
-			Som kunde av Overhuset, forholder du deg til ett selskap, med ett kontaktpunkt og ett sett avtaler. Med over 300
+			Som kunde av Overhuset, forholder du deg til ett selskap, med ett kontaktpunkt og ett sett avtaler. Med over 350
                         av bransjens mest erfarne konsulenter i stallen, setter vi sammen teamet akkurat ditt prosjekt trenger.
 		</p>
 		<a href="/om_oss" class="underline font-semibold px-8">Les mer</a>
