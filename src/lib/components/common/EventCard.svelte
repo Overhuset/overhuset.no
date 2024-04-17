@@ -8,6 +8,7 @@
     import {Button, P} from "flowbite-svelte";
     import type {Company} from "$lib/types.js";
     import {CalendarMonthSolid, MapPinAltSolid} from "flowbite-svelte-icons";
+    import SVGImageRender from "$lib/components/common/SVGImageRender.svelte";
 
     export let event: Event;
     export let companies: Company[];
@@ -60,9 +61,7 @@
             </div>
         </div>
         <div>
-            {#if company?.logo}
-                <img src={URL.createObjectURL(new Blob([company.logo], { type: "image/svg+xml" }))} class="w-16"/>
-            {/if}
+            <SVGImageRender svgString={company?.logo} styleClass="w-16" />
         </div>
     </div>
 

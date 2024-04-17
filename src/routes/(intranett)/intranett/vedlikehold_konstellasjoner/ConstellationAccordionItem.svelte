@@ -5,6 +5,7 @@
     import Label from "$lib/components/common/Label.svelte";
     import {AngleDownOutline, AngleUpOutline} from 'flowbite-svelte-icons';
     import {getDateFormat} from "$lib/utils/dateUtils";
+    import SVGImageRender from "$lib/components/common/SVGImageRender.svelte";
 
     export let constellation: Constellation;
     export let authUser: AuthUser | undefined;
@@ -127,9 +128,7 @@
                 <Label label="Logo (forhåndsvisning)">
                 <div class="logo">
                      {#key constellationToChange?.logo}
-                         {#if constellationToChange?.logo}
-                            <img src={URL.createObjectURL(new Blob([constellationToChange?.logo], { type: "image/svg+xml" }))} class="xs:w-2/5" />
-                         {/if}
+                         <SVGImageRender svgString={constellationToChange?.logo} styleClass="xs:w-2/5" />
                     {/key}
                 </div>
             </Label>
@@ -168,7 +167,7 @@
                         <a href={`/konsulentselskap/${company?.nameShort?.toLowerCase()}`} >
                            {#if company.logo}
                                <div class="logo">
-                                     <img src={URL.createObjectURL(new Blob([company.logo], { type: "image/svg+xml" }))} />
+                                   <SVGImageRender svgString={company.logo} styleClass={undefined} />
                                </div>
                            {/if}
                         </a>

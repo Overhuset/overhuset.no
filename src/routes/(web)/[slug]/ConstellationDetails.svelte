@@ -2,6 +2,7 @@
     import EventCard from "$lib/components/common/EventCard.svelte";
     import {Button, ButtonGroup, P} from "flowbite-svelte";
     import {getIsPassed} from "$lib/utils/dateUtils";
+    import SVGImageRender from "$lib/components/common/SVGImageRender.svelte";
 
     export let data;
 
@@ -18,7 +19,7 @@
 
     <div class="prose mb-16 mt-8 mx-4" style="max-width:140ch">
         <div style="display: flex; justify-content: center ">
-            <img src={URL.createObjectURL(new Blob([constellation?.logo], { type: "image/svg+xml" }))}  class="md:w-2/5 md:block" />
+            <SVGImageRender svgString={constellation?.logo} styleClass="md:w-2/5 md:block" />
         </div>
         <P size="4xl" color="dark">{constellation.name}</P>
         <P lineHeight="0" size="3xl" color="dark" weight="thin" style="margin-top: -2.5rem">{constellation.description}</P>
@@ -27,9 +28,7 @@
                 {#each companiesList as company (company.id)}
                     <a href={`/konsulentselskap/${company?.nameShort?.toLowerCase()}`}
                         class="flex justify-center items-center min-h-[160px] md:last:col-start-3 md:[&:nth-last-child(2)]:col-start-2">
-                        {#if company.logo}
-                            <img src={URL.createObjectURL(new Blob([company.logo], { type: "image/svg+xml" }))} class="w-1/2 md:w-28" />
-                        {/if}
+                        <SVGImageRender svgString={company?.logo} styleClass="w-1/2 md:w-28" />
                     </a>
                 {/each}
             </div>

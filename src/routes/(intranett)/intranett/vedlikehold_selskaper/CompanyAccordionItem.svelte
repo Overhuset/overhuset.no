@@ -5,6 +5,7 @@
     import Label from "$lib/components/common/Label.svelte";
     import {AngleDownOutline, AngleUpOutline} from 'flowbite-svelte-icons';
     import {getDateFormat} from "$lib/utils/dateUtils";
+    import SVGImageRender from "$lib/components/common/SVGImageRender.svelte";
 
 
     export let company: Company;
@@ -139,7 +140,7 @@
                     {#key companyToChange.logo}
                          {#if companyToChange.logo}
                              <div class="logo">
-                                 <img src={URL.createObjectURL(new Blob([companyToChange.logo], { type: "image/svg+xml" }))} />
+                                 <SVGImageRender svgString={companyToChange.logo} styleClass={undefined} />
                              </div>
                          {/if}
                     {/key}
