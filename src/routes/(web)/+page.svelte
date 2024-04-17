@@ -1,4 +1,4 @@
-<script>
+er<script>
 	import CompanyList from '$lib/components/CompanyList.svelte';
 	import { MetaTags } from 'svelte-meta-tags';
 
@@ -41,7 +41,7 @@ prosjekter – i full bredde, på høyeste nivå.'
 >
 	<!-- class="flex flex-col md:flex-row mx-auto my-12 md:my-24 max-w-8xl md:items-end justify-between md:gap-16 gap-6 px-12" -->
 
-	<h2 class="text-[#E97A58] font-bold text-5xl md:text-7xl md:w-1/2">TI KONSULENTSELSKAPER - ETT FELLESSKAP</h2>
+	<h2 class="text-[#E97A58] font-bold text-5xl md:text-7xl md:w-1/2">ELLEVE KONSULENTSELSKAPER - ETT FELLESSKAP</h2>
 	<img src="/assets/companies-deco.png" alt="" class="w-full md:w-1/2 aspect-[4/3] min-h-[200px]" />
 </section>
 
@@ -64,7 +64,7 @@ prosjekter – i full bredde, på høyeste nivå.'
 		<h3 class="text-4xl md:text-6xl">OM OSS</h3>
 			<p class="max-w-4xl mx-auto text-lg md:text-2xl font-semibold">
 			Overhuset ble etablert i 2009, som svar på bransjens behov for fullservice-selskaper til større IT-prosjekter. 
-                        Selskapet består av ti konsulentselskaper med ekspertise på hver sine felt. Sammen tilbyr vi spisskompetanse i full bredde.
+                        Selskapet består av elleve konsulentselskaper med ekspertise på hver sine felt. Sammen tilbyr vi spisskompetanse i full bredde.
 			</p>
 		<p class="max-w-4xl mx-auto text-lg md:text-2xl font-light">
 			Som kunde av Overhuset, forholder du deg til ett selskap, med ett kontaktpunkt og ett sett avtaler. Med over 350
