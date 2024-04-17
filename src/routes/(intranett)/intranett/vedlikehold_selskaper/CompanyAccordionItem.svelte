@@ -3,9 +3,11 @@
     import {Badge, Button, Input, Textarea, Toggle, Tooltip} from "flowbite-svelte";
     import type {AuthUser, Company} from "$lib/types";
     import Label from "$lib/components/common/Label.svelte";
-
     import {AngleDownOutline, AngleUpOutline} from 'flowbite-svelte-icons';
     import {getDateFormat} from "$lib/utils/dateUtils";
+    import SVGImageRender from "$lib/components/common/SVGImageRender.svelte";
+
+
     export let company: Company;
     export let authUser: AuthUser | undefined;
     export let onChange: (companyChanged: Company) => void;
@@ -14,7 +16,6 @@
 
 
     const changeAllowed = authUser?.admin;
-
     let companyToChange: Company = {...company};
 
     const getIsDirty = (company1: Company, company2: Company) => {
@@ -63,7 +64,7 @@
             </span>
        </div>
        <Badge rounded color="dark" style="margin-top: 0.4rem">
-            Opprettet {getDateFormat(companyToChange.createdAt)} av {(companyToChange.createdBy)}
+            Opprettet {getDateFormat(companyToChange.createdAt)} av {(companyToChange.createdBy  || "ukjent")}
        </Badge>
     </span>
 
@@ -87,6 +88,17 @@
                     style="min-width: 25rem"
                 />
             </Label>
+            <Label label="Nettside">
+                <Input
+                    type="text"
+                    placeholder="Url til firmaets hjemmeside"
+                    bind:value={companyToChange.url}
+                    style="min-width: 25rem"
+                />
+            </Label>
+        </div>
+
+        <div class="inputs-container">
             <Label label="Partner">
                 <div id="partner">
                      <Toggle
@@ -110,35 +122,59 @@
         </div>
 
         <div class="inputs-container">
-            <Label label="Nettside">
-                <Input
-                    type="text"
-                    placeholder="Url til firmaets hjemmeside"
-                    bind:value={companyToChange.url}
-                    style="min-width: 25rem"
-                />
-            </Label>
             <Label label="Logo">
-                <Input
-                    type="text"
-                    placeholder="Url til firmaets logo"
-                    bind:value={companyToChange.logoRef}
-                    style="min-width: 25rem"
-                />
+                <div id="logo">
+                     <Textarea
+                         placeholder="klipp og lim inn logo i svg-format her"
+                         rows="7"
+                         name="logo"
+                         bind:value={companyToChange.logo}
+                         style="min-width: 25rem"
+                     />
+                </div>
+                <Tooltip type="light" placement="bottom" triggeredBy="[id='logo']">Her skal grafikk for log inn i svg-format. Klipp og lim innholdet inn her.</Tooltip>
             </Label>
 
-            <a href={`/konsulentselskap/${companyToChange?.nameShort?.toLowerCase()}`} class="flex justify-center items-center min-h-[160px] md:last:col-start-3 md:[&:nth-last-child(2)]:col-start-2">
-                <img src={companyToChange.logoRef} alt={companyToChange.name} class="w-1/2 md:w-28" />
-            </a>
+            <Label label="Logo (forhåndsvisning)">
+                <div class="logo">
+                    {#key companyToChange.logo}
+                         {#if companyToChange.logo}
+                             <div class="logo">
+                                 <SVGImageRender svgString={companyToChange.logo} styleClass={undefined} />
+                             </div>
+                         {/if}
+                    {/key}
+                </div>
+            </Label>
         </div>
 
-        <Label label="Beskrivelse">
+        <Label label="Tittel">
             <div>
                  <Textarea
                      placeholder="Beskrivende tekst om selskapet"
-                     rows="10"
+                     rows="2"
                      name="description"
-                     bind:value={companyToChange.description}
+                     bind:value={companyToChange.title}
+                 />
+            </div>
+        </Label>
+        <Label label="Ingress">
+            <div>
+                 <Textarea
+                         placeholder="Beskrivende tekst om selskapet"
+                         rows="5"
+                         name="description"
+                         bind:value={companyToChange.ingress}
+                 />
+            </div>
+        </Label>
+        <Label label="Beskrivelse">
+            <div>
+                 <Textarea
+                         placeholder="Beskrivende tekst om selskapet"
+                         rows="10"
+                         name="description"
+                         bind:value={companyToChange.description}
                  />
             </div>
         </Label>
@@ -179,5 +215,7 @@
         margin-top: 1rem;
         margin-bottom: 1rem;
     }
-
+    .logo {
+        max-width: 7rem;
+    }
 </style>

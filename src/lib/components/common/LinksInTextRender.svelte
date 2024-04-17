@@ -2,7 +2,6 @@
     export let text: string | undefined;
     export let linkTitle: string | undefined;
     export let emailTitle: string | undefined;
-
 </script>
 
 <span>
@@ -22,8 +21,6 @@
         {/each}
     {/if}
 </span>
-
-
 
 
 <style>

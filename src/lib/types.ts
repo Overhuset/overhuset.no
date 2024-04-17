@@ -33,8 +33,11 @@ export type Company = {
 	id?: string;
 	name?: string;
 	nameShort?: string;
+	logo?: BlobPart;
 	logoRef?: string;
 	url?: string;
+	title?: string;
+	ingress?: string;
 	description?: string;
 	createdBy?: string;
 	createdAt?: Date;
@@ -51,6 +54,7 @@ export type Constellation = {
 	active?: boolean;
 	createdBy?: string;
 	createdAt?: Date;
+	logo?: string;
 	logoRef?: string;
 	urlRef?: string;
 }

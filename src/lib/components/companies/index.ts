@@ -151,16 +151,7 @@ export const companies: Record<string, CompanyWithComponent> = {
 
 const companyList = listify(companies, (_key, value) => value);
 
-export const getLogoFromCompanyName = (companyName?: string) => {
-	const company = companyName && companyList.find((company) =>
-		[company.name, company.companyName].includes(companyName)
-	);
 
-	if (company) {
-		return company.imgSrc;
-	}
-	return '/companies/overhuset_logo.svg';
-};
 
 export const getConstellation = (companyNames: string[] = overhuset) =>
 	companyNames.map((name) => companies[name]).filter(Boolean);

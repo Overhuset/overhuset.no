@@ -11,24 +11,30 @@ export async function POST({ request }) {
                    id,
                    name, 
                    name_short,
+                   logo,
                    logo_ref,
                    url,
                    partner,
                    active,
+                   title,
+                   ingress,
                    description,
                    created_by,
                    created_at
                 ) VALUES (
-                  '${uuidv4()}', 
-                  '${company.name || ""}', 
-                  '${company.nameShort || ""}',
-                  '${company.logoRef || ""}',
-                  '${company.url || ""}',
-                  '${company.partner || false}',
-                  '${company.active || false}',
-                  '${company.description || ""}',
-                  '${company.createdBy || ""}',
-                  '${now}')`;
+                                 '${uuidv4()}',
+                                 '${company.name || ""}',
+                                 '${company.nameShort || ""}',
+                                 '${company.logo || ""}',
+                                 '${company.logoRef || ""}',
+                                 '${company.url || ""}',
+                                 '${company.partner || false}',
+                                 '${company.active || false}',
+                                 '${company.title || ""}',
+                                 '${company.ingress || ""}',
+                                 '${company.description || ""}',
+                                 '${company.createdBy || ""}',
+                                 '${now}')`;
     const db = createPool();
     await db.query(sql);
     return new Response(JSON.stringify({ message: "event created" }), { status: 200 });
@@ -43,14 +49,14 @@ export async function PUT({ request }) {
                  name='${company.name}', 
                  name_short='${company.nameShort}',
                  logo_ref='${company.logoRef}',
+                 logo='${company.logo}',
                  url='${company.url}',
                  partner='${company.partner || false}',
                  active='${company.active || false}',
+                 title='${company.title}',
+                 ingress='${company.ingress}',
                  description='${company.description}'
             WHERE id='${company.id}'`;
-
-        console.log("sql: ", sql);
-
         const db = createPool();
         await db.query(sql);
         return new Response(JSON.stringify({ message: "company updated" }), { status: 200 });

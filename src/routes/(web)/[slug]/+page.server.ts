@@ -11,8 +11,14 @@ import {
 
 const fetchConstellation = async (urlRef:string) => {
 	const db = createPool();
-	const result = await db.query(`SELECT * FROM constellation WHERE active = true AND url_ref = '${urlRef}'`);
+	const result = await db.query(`SELECT * FROM constellation WHERE active = true AND LOWER(url_ref) = LOWER('${urlRef}')`);
 	return result.rows.length > 0 ? mapFromDbToConstellationObject(result.rows[0]) : undefined;
+}
+
+const fetchCompany = async (nameShort:string) => {
+	const db = createPool();
+	const result = await db.query(`SELECT * FROM company WHERE active = true AND LOWER(name_short) = LOWER('${nameShort}')`);
+	return result.rows.length > 0 ? mapFromDbToCompanyObject(result.rows[0]) : undefined;
 }
 
 const fetchCompanies = async (constellation?: Constellation) => {
@@ -43,11 +49,14 @@ const fetchEvents = async (constellation?: Constellation) => {
 export const load: PageServerLoad = async ({ fetch, params }) => {
 	if (params.slug) {
 		const constellation = await fetchConstellation(params.slug);
+		const company = await fetchCompany(params.slug);
 		const companiesList = await fetchCompanies(constellation);
 		const eventList = await fetchEvents(constellation);
-		if (constellation) {
+
+		if (constellation || company) {
 			return {
 				constellation,
+				company,
 				companiesList,
 				eventList,
 			}

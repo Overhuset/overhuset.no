@@ -2,19 +2,18 @@
     import type {Event} from "$lib/types";
     import collapse from 'svelte-collapse';
     import {getDateFormat, getIsPassed, getTimeFormat} from "$lib/utils/dateUtils";
-    import {getLogoFromCompanyName} from "$lib/components/companies";
     import Card from "$lib/components/common/Card.svelte";
     import Divider from "$lib/components/common/Divider.svelte";
     import LinksInTextRender from "$lib/components/common/LinksInTextRender.svelte";
     import {Button, P} from "flowbite-svelte";
     import type {Company} from "$lib/types.js";
     import {CalendarMonthSolid, MapPinAltSolid} from "flowbite-svelte-icons";
+    import SVGImageRender from "$lib/components/common/SVGImageRender.svelte";
 
     export let event: Event;
     export let companies: Company[];
 
     const company = event.companyId ? [...companies].find(company => company.id === event.companyId) : null;
-    const logo = company ? company.logoRef :  getLogoFromCompanyName(event?.company); // hack until all refs are from database.
     const companyName = (company ? company.nameShort : event.company) || "Overhuset"; // hack until all refs are from database.
     let open = false;
     const isPassed = getIsPassed(event?.time);
@@ -62,7 +61,7 @@
             </div>
         </div>
         <div>
-            <img src={logo} alt="" class="w-16" />
+            <SVGImageRender svgString={company?.logo} styleClass="w-16" />
         </div>
     </div>
 

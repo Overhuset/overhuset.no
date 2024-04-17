@@ -19,16 +19,16 @@ export async function POST({ request }) {
                    created_by,
                    created_at
                 ) VALUES (
-                  '${uuidv4()}', 
-                  '${constellation.name || ""}', 
-                  '${constellation.description || ""}',
-                  '${constellation.description2 || ""}',
-                  '${constellation.companies || ""}',
-                  '${constellation.active || false}',
-                  '${constellation.logoRef || ""}',
-                  '${constellation.urlRef || ""}',
-                  '${constellation.createdBy || ""}',
-                  '${now}')`;
+                                 '${uuidv4()}',
+                                 '${constellation.name || ""}',
+                                 '${constellation.description || ""}',
+                                 '${constellation.description2 || ""}',
+                                 '${constellation.companies || ""}',
+                                 '${constellation.active || false}',
+                                 '${constellation.logo || ""}',
+                                 '${constellation.urlRef || ""}',
+                                 '${constellation.createdBy || ""}',
+                                 '${now}')`;
     const db = createPool();
     await db.query(sql);
     return new Response(JSON.stringify({ message: "constellation created" }), { status: 200 });
@@ -45,7 +45,7 @@ export async function PUT({ request }) {
                  description2='${constellation.description2}',
                  companies='${constellation.companies}',
                  active='${constellation.active}',
-                 logo_ref='${constellation.logoRef}',
+                 logo_ref='${constellation.logo}',
                  url_ref='${constellation.urlRef}'
             WHERE id='${constellation.id}'`;
         const db = createPool();
