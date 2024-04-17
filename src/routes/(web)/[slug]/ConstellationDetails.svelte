@@ -1,5 +1,5 @@
 <script lang="ts">
-    import EventCard from "$lib/components/common/EventCard.svelte";
+    import EventCard from "$lib/components/common/event-card/EventCard.svelte";
     import {Button, ButtonGroup, P} from "flowbite-svelte";
     import {getIsPassed} from "$lib/utils/dateUtils";
     import SVGImageRender from "$lib/components/common/SVGImageRender.svelte";

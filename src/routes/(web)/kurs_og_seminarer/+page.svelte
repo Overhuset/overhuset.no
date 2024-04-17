@@ -1,18 +1,18 @@
 <script lang="ts">
  	import { MetaTags } from 'svelte-meta-tags';
-	import EventCard from "$lib/components/common/EventCard.svelte";
+	import EventCard from "$lib/components/common/event-card/EventCard.svelte";
 	import {getIsPassed} from "$lib/utils/dateUtils";
 	import {ButtonGroup, Button, P} from 'flowbite-svelte';
-	import LinksInTextRender from "$lib/components/common/LinksInTextRender.svelte";
 
 	export let data;
 
 	let filterMode: "all" | "upcoming" | "historic" | "online" = "all";
-	const all = (data.eventList || []);
+
 	const companies = data.companies;
-	const upcoming = (all.filter(event => !event.onlineCourse && !getIsPassed(event?.time)));
-	const historic = (all.filter(event => !event.onlineCourse && getIsPassed(event?.time)));
-	const online = (all.filter(event => event.onlineCourse));
+	const all = ((data.eventList || []).filter(event => !event.onlineCourse));
+	const upcoming = ((data.eventList || []).filter(event => !event.onlineCourse && !getIsPassed(event?.time)));
+	const historic = ((data.eventList || []).filter(event => !event.onlineCourse && getIsPassed(event?.time)));
+	const online = ((data.eventList || []).filter(event => event.onlineCourse));
  </script>
 
  <section class="max-w-6xl mx-auto md:w-5/5">
@@ -23,59 +23,86 @@
     />
 
 	<div class="prose mb-16 mt-8 mx-4" style="max-width:140ch">
-		<h1>Seminarer, kurs og aktiviteter på Overhuset</h1>
-		<P size="xl" color="dark">	Mens de dyktige konsulentene våre er opptatte av å bidra til kompetanseløft ute hos
+
+		<P size="3xl" color="dark" weight="bold">
+			Seminarer, kurs og aktiviteter på Overhuset
+		</P>
+
+		<P size="2xl" color="dark" weight="medium">
+			Mens de dyktige konsulentene våre er opptatte av å bidra til kompetanseløft ute hos
 			kundene våre, legger Overhuset som helhet til rette for faglig utvikling internt og for
 			alle interesserte.
-		</P>
 
-		<P lineHeight="0" size="xl" color="dark" weight="light">Administrer
 			Overhuset består av ti ulike konsulentselskaper, som alle besitter spisskompetanse og
 			erfaring på hver sine fagområder. Sammen er vi faglig krutt – og det må selvsagt deles!
-			<br/>
-			<br/>
-			Her finner du en oversikt over alt som skjer. Påmeldingsinfo skal stå under hvert
-			arrangement. Skulle du likevel lure på noe, ikke nøl med å ta <a href="/#kontakt" class="underline">kontakt</a>.
 		</P>
 
-		<br/>
+		<P lineHeight="0" size="2xl" color="dark" weight="light">
+			Her finner du en oversikt over alt som skjer. Påmeldingsinfo skal stå under hvert
+			arrangement.
+		</P>
 
-		<ButtonGroup>
-			<Button
-					on:click={() => filterMode = "all"}
-					checked={filterMode === "all"}>
-				Alle ({data.eventList?.length || 0})
-			</Button>
-			<Button
-					on:click={() => filterMode = "upcoming"}
-					checked={filterMode === "upcoming"}>
-				Kommende ({upcoming?.length || 0})
-			</Button>
-			<Button
-					on:click={() => filterMode = "online"}
-					checked={filterMode === "online"}>
-				Online kurs ({online?.length || 0})
-			</Button>
-			<Button
-					on:click={() => filterMode = "historic"}
-					checked={filterMode === "historic"}
-			>
-				Historiske ({historic?.length || 0})
-			</Button>
-		</ButtonGroup>
 
 		<br/>
+
+		<div class="container">
+			<ButtonGroup>
+				<Button
+						size="xl"
+						on:click={() => filterMode = "all"}
+						checked={filterMode === "all"}>
+					Alle ({all?.length || 0})
+				</Button>
+				<Button
+						size="xl"
+						on:click={() => filterMode = "upcoming"}
+						checked={filterMode === "upcoming"}>
+					Kommende ({upcoming?.length || 0})
+				</Button>
+				<Button
+						size="xl"
+						on:click={() => filterMode = "historic"}
+						checked={filterMode === "historic"}
+				>
+					Historiske ({historic?.length || 0})
+				</Button>
+			</ButtonGroup>
+
+			<ButtonGroup>
+				<Button
+						size="xl"
+						on:click={() => filterMode = "online"}
+						checked={filterMode === "online"}>
+					Online kurs ({online?.length || 0})
+				</Button>
+			</ButtonGroup>
+		</div>
+
+
+		<br/>
 		<br/>
 
-		{#each (
-				filterMode === "all" ? data.eventList :
-						(filterMode === "upcoming" ? upcoming :
-								(filterMode === "online" ? online :
-										historic))) as event (event.id)}
-			<EventCard event={event} companies={companies}/>
-		{/each}
+		<div class="grid sm:grid-cols-1 md:grid-cols-2 gap-2">
+			{#each (
+					filterMode === "all" ? data.eventList :
+							(filterMode === "upcoming" ? upcoming :
+									(filterMode === "online" ? online :
+											historic))) as event (event.id)}
+				<EventCard event={event} companies={companies}/>
+			{/each}
+		</div>
+
 	</div>
 
 
 </section>
+
+<style>
+	.container {
+		display: flex;
+		justify-content: flex-start;
+		gap: 1.5rem;
+		wrap: flex-wrap;
+	}
+</style>
 
