@@ -6,8 +6,7 @@
     export let data;
 
     const constellation = data.constellation;
-    const companiesList = data.companiesList;
-</script>
+ </script>
 
 <section class="max-w-6xl mx-auto md:w-5/5">
 
@@ -18,11 +17,11 @@
         <P size="3xl" color="dark">{constellation.name}</P>
         <P lineHeight="0" size="2xl" color="dark" weight="thin" style="margin-top: -2.5rem">{constellation.description}</P>
         <div>
-            <div class="grid sm:grid-cols-3 md:grid-cols-4 md:gap-12">
-                {#each companiesList as company (company.id)}
+            <div class="grid xs: grid-cols-2 sm:grid-cols-3 md:grid-cols-4 md:gap-12">
+                {#each data.companiesListWithoutOverhuset as company (company.id)}
                     <a href={`/konsulentselskap/${company?.nameShort?.toLowerCase()}`}
                         class="flex justify-center items-center min-h-[160px] md:last:col-start-3 md:[&:nth-last-child(2)]:col-start-2">
-                        <SVGImageRender svgString={company?.logo} styleClass="w-1/2 md:w-28" />
+                        <SVGImageRender svgString={company?.logo} styleClass="w-28" />
                     </a>
                 {/each}
             </div>
