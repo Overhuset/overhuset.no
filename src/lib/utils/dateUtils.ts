@@ -64,3 +64,8 @@ export const getNowForDB = () => {
     const {year, month, day} = {...getDateValues(new Date())};
     return [year, month, day,].join('-');
 }
+
+export const daysBetween = (date1?: Date, date2?: Date) =>  {
+    // @ts-ignore
+    return (date1 && date2) ? Math.round(Math.abs(date1 - date2) / (1000 * 60 * 60 * 24)) : 0;
+}

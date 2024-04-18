@@ -6,13 +6,13 @@
 
 	export let data;
 
-	let filterMode: "all" | "upcoming" | "historic" | "online" = "all";
-
 	const companies = data.companies;
-	const all = ((data.eventList || []).filter(event => !event.onlineCourse));
 	const upcoming = ((data.eventList || []).filter(event => !event.onlineCourse && !getIsPassed(event?.time)));
 	const historic = ((data.eventList || []).filter(event => !event.onlineCourse && getIsPassed(event?.time)));
 	const online = ((data.eventList || []).filter(event => event.onlineCourse));
+
+	let filterMode:  "upcoming" | "historic" | "online" = upcoming.length === 0 ? "historic" : "upcoming";
+
  </script>
 
  <section class="max-w-6xl mx-auto md:w-5/5">
@@ -49,12 +49,6 @@
 			<ButtonGroup>
 				<Button
 						size="xl"
-						on:click={() => filterMode = "all"}
-						checked={filterMode === "all"}>
-					Alle ({all?.length || 0})
-				</Button>
-				<Button
-						size="xl"
 						on:click={() => filterMode = "upcoming"}
 						checked={filterMode === "upcoming"}>
 					Kommende ({upcoming?.length || 0})
@@ -64,7 +58,7 @@
 						on:click={() => filterMode = "historic"}
 						checked={filterMode === "historic"}
 				>
-					Historiske ({historic?.length || 0})
+					Tidligere ({historic?.length || 0})
 				</Button>
 			</ButtonGroup>
 
@@ -82,15 +76,17 @@
 		<br/>
 		<br/>
 
-		<div class="grid sm:grid-cols-1 md:grid-cols-2 gap-2">
+		<div class="grid sm:grid-cols-1 md:grid-cols-2 gap-5">
 			{#each (
-					filterMode === "all" ? data.eventList :
-							(filterMode === "upcoming" ? upcoming :
-									(filterMode === "online" ? online :
-											historic))) as event (event.id)}
+				(filterMode === "upcoming" ? upcoming :
+						(filterMode === "online" ? online :
+								historic))) as event (event.id)}
 				<EventCard event={event} companies={companies}/>
 			{/each}
 		</div>
+
+		<br/>
+		<br/>
 
 	</div>
 
