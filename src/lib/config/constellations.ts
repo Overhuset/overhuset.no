@@ -22,7 +22,8 @@ export const overhusetDomains = [
 	'sannsyn.com',
 	'uptimeconsulting.no',
 	'zenior.no',
-	'overhuset.no'
+	'overhuset.no',
+	'scelto.no'
 ];
 
 export const posten = [
