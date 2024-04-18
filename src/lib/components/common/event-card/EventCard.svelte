@@ -32,7 +32,7 @@
     <Modal bind:open={modalOpen} size="lg" autoclose={true}>
         <EventCardHeader event={event} company={company} />
 
-        <P size="xl" color="dark" weight="light">
+        <P size="lg" color="dark" weight="light">
             <HtmlRender htmlText={event?.description} />
         </P>
 
