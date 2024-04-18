@@ -58,6 +58,6 @@
         display: flex;
         justify-content: flex-start;
         gap: 1.5rem;
-        wrap: flex-wrap;
+        flex-wrap: wrap;
     }
 </style>
