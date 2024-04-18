@@ -13,11 +13,13 @@
 </script>
 
 <div>
-
     <div style="margin-top: -1.5rem; height: 4.5rem;" class="spaceBetween">
-        <SVGImageRender svgString={company?.logo} styleClass="w-16" />
-        {#if !isPassed}
-            <Badge color="green" rounded style="padding: 0.4rem 0.5rem;" >
+        <div>
+            <SVGImageRender svgString={company?.logo} styleClass="w-16" />
+        </div>
+
+        {#if !isPassed && event?.time && !event?.onlineCourse}
+            <Badge color="green" rounded style="padding: 0.4rem 0.5rem;">
                 <Indicator color="green" size="lg" class="me-1" /> Om {daysBetween(event?.time, new Date())} dager
             </Badge>
         {/if}

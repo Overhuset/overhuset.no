@@ -1,18 +1,9 @@
 <script lang="ts">
  	import { MetaTags } from 'svelte-meta-tags';
-	import EventCard from "$lib/components/common/event-card/EventCard.svelte";
-	import {getIsPassed} from "$lib/utils/dateUtils";
-	import {ButtonGroup, Button, P} from 'flowbite-svelte';
+	import {P} from 'flowbite-svelte';
+	import Events from "$lib/components/common/events/Events.svelte";
 
 	export let data;
-
-	const companies = data.companies;
-	const upcoming = ((data.eventList || []).filter(event => !event.onlineCourse && !getIsPassed(event?.time)));
-	const historic = ((data.eventList || []).filter(event => !event.onlineCourse && getIsPassed(event?.time)));
-	const online = ((data.eventList || []).filter(event => event.onlineCourse));
-
-	let filterMode:  "upcoming" | "historic" | "online" = upcoming.length === 0 ? "historic" : "upcoming";
-
  </script>
 
  <section class="max-w-6xl mx-auto md:w-5/5">
@@ -42,63 +33,11 @@
 			arrangement.
 		</P>
 
-
 		<br/>
-
-		<div class="container">
-			<ButtonGroup>
-				<Button
-						size="xl"
-						on:click={() => filterMode = "upcoming"}
-						checked={filterMode === "upcoming"}>
-					Kommende ({upcoming?.length || 0})
-				</Button>
-				<Button
-						size="xl"
-						on:click={() => filterMode = "historic"}
-						checked={filterMode === "historic"}
-				>
-					Tidligere ({historic?.length || 0})
-				</Button>
-			</ButtonGroup>
-
-			<ButtonGroup>
-				<Button
-						size="xl"
-						on:click={() => filterMode = "online"}
-						checked={filterMode === "online"}>
-					Online kurs ({online?.length || 0})
-				</Button>
-			</ButtonGroup>
-		</div>
-
-
-		<br/>
-		<br/>
-
-		<div class="grid sm:grid-cols-1 md:grid-cols-2 gap-5">
-			{#each (
-				(filterMode === "upcoming" ? upcoming :
-						(filterMode === "online" ? online :
-								historic))) as event (event.id)}
-				<EventCard event={event} companies={companies}/>
-			{/each}
-		</div>
-
+		<Events data={data} />
 		<br/>
 		<br/>
 
 	</div>
-
-
 </section>
-
-<style>
-	.container {
-		display: flex;
-		justify-content: flex-start;
-		gap: 1.5rem;
-		wrap: flex-wrap;
-	}
-</style>
 

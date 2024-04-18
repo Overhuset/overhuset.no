@@ -1,18 +1,12 @@
 <script lang="ts">
-    import EventCard from "$lib/components/common/event-card/EventCard.svelte";
-    import {Button, ButtonGroup, P} from "flowbite-svelte";
-    import {getIsPassed} from "$lib/utils/dateUtils";
+    import {P} from "flowbite-svelte";
     import SVGImageRender from "$lib/components/common/SVGImageRender.svelte";
+    import Events from "$lib/components/common/events/Events.svelte";
 
     export let data;
 
     const constellation = data.constellation;
     const companiesList = data.companiesList;
-    const all = (data.eventList || []);
-    const upcoming = (all.filter(event => !event.onlineCourse && !getIsPassed(event?.time)));
-    const historic = (all.filter(event => !event.onlineCourse && getIsPassed(event?.time)));
-    const online = (all.filter(event => event.onlineCourse));
-    let filterMode: "all" | "upcoming" | "historic" | "online" = "all";
 </script>
 
 <section class="max-w-6xl mx-auto md:w-5/5">
@@ -21,8 +15,8 @@
         <div style="display: flex; justify-content: center ">
             <SVGImageRender svgString={constellation?.logo} styleClass="md:w-2/5 md:block" />
         </div>
-        <P size="4xl" color="dark">{constellation.name}</P>
-        <P lineHeight="0" size="3xl" color="dark" weight="thin" style="margin-top: -2.5rem">{constellation.description}</P>
+        <P size="3xl" color="dark">{constellation.name}</P>
+        <P lineHeight="0" size="2xl" color="dark" weight="thin" style="margin-top: -2.5rem">{constellation.description}</P>
         <div>
             <div class="grid sm:grid-cols-3 md:grid-cols-4 md:gap-12">
                 {#each companiesList as company (company.id)}
@@ -37,43 +31,11 @@
             <br/>
             <br/>
 
-            <P lineHeight="0" size="3xl" color="dark" weight="thin" style="margin-top: -3.5rem">
+            <P lineHeight="0" size="2xl" color="dark" weight="thin" style="margin-top: -3.5rem">
                 {constellation.description2}
             </P>
 
-            <ButtonGroup>
-                <Button
-                        on:click={() => filterMode = "all"}
-                        checked={filterMode === "all"}>
-                    Alle ({data.eventList?.length || 0})
-                </Button>
-                <Button
-                        on:click={() => filterMode = "upcoming"}
-                        checked={filterMode === "upcoming"}>
-                    Kommende ({upcoming?.length || 0})
-                </Button>
-                <Button
-                        on:click={() => filterMode = "online"}
-                        checked={filterMode === "online"}>
-                    Online kurs ({online?.length || 0})
-                </Button>
-                <Button
-                        on:click={() => filterMode = "historic"}
-                        checked={filterMode === "historic"}>
-                    Historiske ({historic?.length || 0})
-                </Button>
-            </ButtonGroup>
-
-            <br/>
-            <br/>
-
-            {#each (
-                filterMode === "all" ? data.eventList :
-                    (filterMode === "upcoming" ? upcoming :
-                        (filterMode === "online" ? online :
-                            historic))) as event (event.id)}
-                <EventCard event={event} companies={companiesList}/>
-            {/each}
+            <Events data={data} />
         </div>
     </div>
 </section>

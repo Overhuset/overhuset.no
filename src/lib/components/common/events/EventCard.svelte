@@ -4,7 +4,7 @@
     import {getIsPassed} from "$lib/utils/dateUtils";
     import {Button, Modal, P} from "flowbite-svelte";
     import { Card } from 'flowbite-svelte';
-    import EventCardHeader from "$lib/components/common/event-card/EventCardHeader.svelte";
+    import EventCardHeader from "$lib/components/common/events/EventCardHeader.svelte";
     import HtmlRender from "$lib/components/common/HtmlRender.svelte";
 
     export let event: Event;
