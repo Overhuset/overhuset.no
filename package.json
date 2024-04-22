@@ -46,7 +46,7 @@
     "@vercel/blob": "^0.22.0",
     "@vercel/postgres": "^0.5.1",
     "bun": "^1.0.26",
-    "bun-types": "^1.0.11",
+    "bun-types": "^1.1.4",
     "flowbite-svelte": "^0.44.24",
     "lucia": "^2.7.4",
     "luxon": "^3.4.4",
