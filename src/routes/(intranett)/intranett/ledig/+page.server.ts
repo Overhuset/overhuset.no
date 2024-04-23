@@ -35,22 +35,6 @@ const load: PageServerLoad = async ({ locals }) => {
     return { vacantList, user, email};
 };
 
-const actions = {
-    // @ts-ignore
-    upload: async ({ request }) => {
-        const form = await request.formData();
-        const file = form.get("cv") as File;
-
-        if (!file) {
-            throw error(400, { message: "No file to upload." });
-        }
-
-        const { url } = await put(file.name, file, { access: "public" });
-        return { uploaded: url };
-    },
-};
-
-
-export { load, actions };
+export { load };
 
 export const prerender = false;

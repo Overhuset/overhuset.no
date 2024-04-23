@@ -1,9 +1,6 @@
 <script lang="ts">
  	import VacantCard from "./VacantCard.svelte";
-	import collapse from 'svelte-collapse';
- 	import CvFileUpload from "../vedlikehold_ledig/CvFileUpload.svelte";
-	import {Button, Input, P, Textarea} from "flowbite-svelte";
-	let open = false
+	import {P} from "flowbite-svelte";
 
 	export let data;
 </script>
