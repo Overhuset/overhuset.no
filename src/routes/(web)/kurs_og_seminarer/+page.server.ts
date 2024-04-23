@@ -21,5 +21,5 @@ export async function load() {
 	// filter, only partners and Overhuset
 	const filteredList = eventList.filter(
 		e => companies.find(c => c.id === e.companyId && (c.partner || c.nameShort === "Overhuset")));
-	return { eventList:filteredList, companies };
+	return { eventList:filteredList, companiesList: companies };
 }
