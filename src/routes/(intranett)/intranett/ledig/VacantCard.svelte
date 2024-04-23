@@ -6,7 +6,6 @@
 	import HtmlRender from "$lib/components/common/HtmlRender.svelte";
 
 	export let vacant: Vacant;
-	export let email: string | undefined;
 
 	const currentlyVacant = getIsPassed(vacant?.vacantFrom);
 

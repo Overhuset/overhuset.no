@@ -17,7 +17,7 @@
 
 			<div class="grid sm:grid-cols-1 md:grid-cols-2 gap-5">
 				{#each data.vacantList as vacant (vacant.id)}
-					<VacantCard vacant={vacant} email={data.email} />
+					<VacantCard vacant={vacant} />
 				{/each}
 
 				{#if data.vacantList.length === 0}
