@@ -11,11 +11,9 @@
 	</a>
 	<nav>
 		<ul class="flex gap-4 md:items-end text-sm md:text-lg font-light">
-			<li><a href="/">Hjem</a></li>
-			<li><a href="/#selskapene">Selskapene</a></li>
-			<li><a href="/#om_oss">Om oss</a></li>
+			<li><a href="/">Om oss</a></li>
 			<li><a href="/kurs_og_seminarer">Kurs og Kompetanse</a></li>
-			<li><a href="/#kontakt">Kontakt</a></li>
+			<li><a href="/kontakt">Kontakt</a></li>
 			<li><a href="/intranett">Intranett</a></li>
 		</ul>
 	</nav>
