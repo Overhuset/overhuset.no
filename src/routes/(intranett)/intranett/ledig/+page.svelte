@@ -2,7 +2,7 @@
  	import VacantCard from "./VacantCard.svelte";
 	import collapse from 'svelte-collapse';
  	import CvFileUpload from "../vedlikehold_ledig/CvFileUpload.svelte";
-	import {Button, Input, Textarea} from "flowbite-svelte";
+	import {Button, Input, P, Textarea} from "flowbite-svelte";
 	let open = false
 
 	export let data;
@@ -13,7 +13,7 @@
 
 <div class="prose prose-xl mx-auto p-4 md:py-20" style="max-width:140ch">
 	<div class="layout">
-		<h1 class="text-5xl">Ledige konsulenter</h1>
+		<P size="3xl" color="dark">ledige konsulenter</P>
 		<div>
 			<br/>
 			<br/>
