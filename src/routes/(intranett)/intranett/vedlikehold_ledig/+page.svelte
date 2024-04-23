@@ -15,7 +15,7 @@
 	} from "flowbite-svelte";
 	import {FlatToast, ToastContainer, toasts} from "svelte-toasts";
 	import {PlusOutline} from "flowbite-svelte-icons";
-	import CvFileUpload from "../ledig/CvFileUpload.svelte";
+	import CvFileUpload from "./CvFileUpload.svelte";
 	import VacantAccordionItem from "./VacantAccordionItem.svelte";
 	import {Accordion} from "@skeletonlabs/skeleton";
 	let open = false

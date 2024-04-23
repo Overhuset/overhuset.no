@@ -4,7 +4,7 @@
 	import type {Event, Vacant} from "$lib/types";
 	import {getDateFormat} from "$lib/utils/dateUtils";
 	import {getIsSameDomain} from "$lib/utils/domainUtils";
-	import CvFileUpload from "../ledig/CvFileUpload.svelte";
+	import CvFileUpload from "./CvFileUpload.svelte";
 	import {AngleDownOutline, AngleUpOutline} from "flowbite-svelte-icons";
 	import {AccordionItem} from "@skeletonlabs/skeleton";
 
