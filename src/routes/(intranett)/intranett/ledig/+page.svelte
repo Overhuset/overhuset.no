@@ -10,7 +10,7 @@
 
 <div class="prose prose-xl mx-auto p-4 md:py-20" style="max-width:140ch">
 	<div class="layout">
-		<P size="3xl" color="dark">ledige konsulenter</P>
+		<P size="3xl" color="dark">Ledige konsulenter</P>
 		<div>
 			<br/>
 			<br/>
@@ -21,7 +21,7 @@
 				{/each}
 
 				{#if data.vacantList.length === 0}
-					Ingen ledige konsulenter! :D
+					Ingen Ledige konsulenter! :D
 				{/if}
 			</div>
 		</div>

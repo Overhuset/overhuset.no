@@ -33,7 +33,7 @@
 	}
 </script>
 
-<Card size="xl" color="none">
+<Card size="xl" color="none" border={true} style="border: 1px solid rgb(107 114 128)">
 	<div class="colDirection">
 		<div>
 			<div class="cardHeader">
@@ -60,7 +60,6 @@
 		</div>
 	</div>
  </Card>
-
 
 
 <style>
