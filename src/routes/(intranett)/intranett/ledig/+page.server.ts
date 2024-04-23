@@ -1,7 +1,5 @@
 import type { PageServerLoad } from './$types';
 import {createPool} from "@vercel/postgres";
-import { error } from "@sveltejs/kit";
-import { put } from "@vercel/blob";
 
 const fetchEmail = async (id: string) => {
     const db = createPool();

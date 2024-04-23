@@ -1,8 +1,8 @@
 <script lang="ts">
-	import {Badge, Button, Card, Indicator, P} from "flowbite-svelte";
+	import {Badge, Button, Card, P} from "flowbite-svelte";
 	import type {Vacant} from "$lib/types";
 	import {overhusetDomains} from "$lib/config/constellations";
-	import {daysBetween, getDateFormat, getIsPassed} from "$lib/utils/dateUtils";
+	import { getDateFormat, getIsPassed} from "$lib/utils/dateUtils";
 	import HtmlRender from "$lib/components/common/HtmlRender.svelte";
 
 	export let vacant: Vacant;
