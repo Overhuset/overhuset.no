@@ -1,0 +1,97 @@
+
+    <span slot="iconOpen">
+        {#if changeAllowed}
+            <AngleDownOutline size="md" />
+        {/if}
+    </span>
+
+	<span slot="iconClosed">
+        {#if changeAllowed}
+            <AngleUpOutline size="md" />
+        {/if}
+    </span>
+
+
+	<span slot="lead">
+        <div class="title-container">
+            <span class="leading-none text-lg dark:text-white">
+                {vacantToChange.name}
+            </span>
+            <span class="font-thin leading-none text-lg dark:text-white">
+                {#if vacantToChange.vacantFrom}
+					<span>{getDateFormat(vacantToChange.vacantFrom)} </span>
+                {/if}
+            </span>
+        </div>
+
+        <Badge rounded color="dark" style="margin-top: 0.4rem">
+            Opprettet av {(vacantToChange.createdBy)}
+        </Badge>
+    </span>
+
+
+	<span slot="content">
+		<br/>
+		<br/>
+
+        <div class="inputs-container">
+            <Label label="Navn på konsulent">
+				<Input
+					name="name"
+					id="name"
+					type="text"
+					bind:value={vacantToChange.name}
+					style="min-width: 25rem"
+				/>
+            </Label>
+			   <Label label="Ledig fra">
+				<Input
+					name="from"
+					id="from"
+					type="date"
+					bind:value={vacantToChange.vacantFrom}
+					style="min-width: 25rem"
+				/>
+            </Label>
+		</div>
+
+		<div class="inputs-container">
+            <Label label="Beskrivelse">
+				<div>
+					<Textarea
+							bind:value={vacantToChange.comment}
+							class="cardComment"
+							rows="10"
+							style="min-width: 52rem"
+					/>
+				</div>
+            </Label>
+		</div>
+
+		<div>
+			<CvFileUpload
+					form={form}
+					id={vacantToChange.id}
+					onChange={handleFileUploaded}
+					onLoadingStateChange={handleLoadingStateChange}
+			/>
+		</div>
+
+		<div class="inputs-container">
+			{#if (vacant?.cv?.length || 0) > 5}
+				<Button color="purple" pill on:click={handleOpenCV} title={getCvShortName()}>Gå til CV</Button>
+			{/if}
+			<Button color="purple" pill on:click={handleMailTo}>kontakt {vacant.createdBy}</Button>
+		</div>
+
+        <br/>
+
+		<div class="buttons-container">
+			{#if getCanChange()}
+				<Button color="primary" pill on:click={handleDelete}>Slett</Button>
+				<Button pill on:click={handleRevert} disabled={cvLoading}>Forkast endringer</Button>
+				<Button pill on:click={handleSaveChanges} disabled={cvLoading}>Lagre</Button>
+			{/if}>
+		</div>
+
+    </span>

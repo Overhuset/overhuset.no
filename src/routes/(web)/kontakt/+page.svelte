@@ -3,7 +3,7 @@
 	import {P} from 'flowbite-svelte';
 </script>
 
-<section class="max-w-6xl mx-auto md:w-5/5">
+<section class="max-w-6xl mx-auto md:w-5/5 mt-10">
 	<MetaTags
 			title='Overhuset - Kontakt'
 			description='Kontaktinformasjon'

@@ -6,7 +6,7 @@
 	export let data;
  </script>
 
- <section class="max-w-6xl mx-auto md:w-5/5">
+ <section class="max-w-6xl mx-auto md:w-5/5 mt-10">
 	<MetaTags
 	title='Overhuset - kurs og seminarer for IT-bransjen'
 	description='Overhuset holder kurs og seminarer gjennom hele året, for å bidra til kompetanseheving for alle med
