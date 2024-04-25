@@ -24,7 +24,7 @@
 			kundene våre, legger Overhuset som helhet til rette for faglig utvikling internt og for
 			alle interesserte.
 
-			Overhuset består av ti ulike konsulentselskaper, som alle besitter spisskompetanse og
+			Overhuset består av elleve ulike konsulentselskaper, som alle besitter spisskompetanse og
 			erfaring på hver sine fagområder. Sammen er vi faglig krutt – og det må selvsagt deles!
 		</P>
 
