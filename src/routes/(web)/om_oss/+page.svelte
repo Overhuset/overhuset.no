@@ -11,7 +11,7 @@ import { MetaTags } from 'svelte-meta-tags';
 		<h1>OM OSS</h1>
         <p class="font-semibold">
             Overhuset ble etablert i 2009, som svar på bransjens behov for fullservice-selskaper til større
-            IT-prosjekter. Selskapet består av ti konsulentselskaper med ekspertise på hver sine felt. Sammen
+            IT-prosjekter. Selskapet består av elleve konsulentselskaper med ekspertise på hver sine felt. Sammen
             tilbyr vi spisskompetanse i full bredde.</p>
 		<p class="py-4">
 			Som kunde av Overhuset, forholder du deg til ett selskap, med ett kontaktpunkt og ett sett avtaler. Med over
@@ -36,7 +36,7 @@ import { MetaTags } from 'svelte-meta-tags';
             <br>
             Vi er kanskje ikke helt ordinært organisert, men så er vi jo kanskje ikke helt ordinære heller? Vi er i hvert fall
             veldig stolte over å ha samlet så mange kloke hoder under ett og samme tak, og er ganske sikre på at du vil
-            sette pris på det også – enten som kunde eller konsulent i et av <a href='/#selskapene' class="underline">Overhusets ti partner-selskap.</a>
+            sette pris på det også – enten som kunde eller konsulent i et av <a href='/#selskapene' class="underline">Overhusets elleve partner-selskap.</a>
         </p>
 	</div>
 
