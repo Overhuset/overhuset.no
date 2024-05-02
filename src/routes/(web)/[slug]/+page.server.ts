@@ -8,6 +8,7 @@ import {
 	mapFromDbToEventObject
 } from "$lib/utils/objectMapper";
 
+
 const overhusetId = "3dac0ec1-150a-4d4f-9d12-4d37e2aae2fd";
 
 const fetchConstellation = async (urlRef:string) => {
