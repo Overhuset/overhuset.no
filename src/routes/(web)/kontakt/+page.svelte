@@ -28,7 +28,7 @@
 		<P lineHeight="0" size="2xl" color="default" weight="light">
 			<a href="tel:+4792036802">+47 920 36 802</a>
 			<br/>
-			<a href="mailto:ars.johnsen@overhuset.no">lars.johnsen@overhuset.no</a>
+			<a href="mailto:lars.johnsen@overhuset.no">lars.johnsen@overhuset.no</a>
 		</P>
 
 

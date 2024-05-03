@@ -18,7 +18,7 @@
 				Munkedamsveien 3b, 0161 OSLO
 			</a>
 			<a href="tel:+4792036802">+47 920 36 802</a>
-			<a href="mailto:ars.johnsen@overhuset.no">lars.johnsen@overhuset.no</a>
+			<a href="mailto:lars.johnsen@overhuset.no">lars.johnsen@overhuset.no</a>
 		</span>
 
 		<p class="md:text-right">
