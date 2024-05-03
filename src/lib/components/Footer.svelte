@@ -23,7 +23,7 @@
 
 		<p class="md:text-right">
 			All rights reserved.<br />
-			© 2023 Overhuset
+			© 2023-2024 Overhuset
 		</p>
 	</div>
 </footer>
