@@ -8,7 +8,7 @@ Selskapene i Overhuset er:
 
 | Overhuset-selskaper | AU-Representant |
 |---------------------|----------------|
-| Arktekk             | Kaare Nilsen   |
+| Arktekk             | Morte Andersen-Gott |
 | Boitano             | Ove Suhr       |
 | Edisys              | Rolf Lysfjord  |
 | Fink                | Thomas Halmø   |
@@ -16,6 +16,7 @@ Selskapene i Overhuset er:
 | Jpro                | Steinar Hansen |
 | Kodemaker           | Kolbjørn Jetne |
 | Sannsyn             | Øyvin Spørck   |
+| Scelto              | Tor Eric Sandvik |
 | Uptime              | Ole Kristian Villabø |
 | Zenior              | Kristtoffer Moum |
 
