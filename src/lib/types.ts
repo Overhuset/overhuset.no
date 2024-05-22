@@ -64,3 +64,19 @@ export type AuthUser = {
 	email?:  string;
 	admin: boolean;
 }
+
+export type EmailDomain = {
+	id?: string;
+	domain?: string;
+	companyId?: string;
+	createdBy?: string;
+	createdAt?: Date;
+}
+
+export type UserInvite = {
+	id?: string;
+	email?: string;
+	companyId?: string;
+	createdBy?: string;
+	createdAt?: Date;
+}
