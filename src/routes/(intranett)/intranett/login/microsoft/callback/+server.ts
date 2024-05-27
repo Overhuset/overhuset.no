@@ -1,65 +1,96 @@
 // routes/login/microsoft/callback/+server.ts
-import { overhusetDomains } from '$lib/config/constellations.js';
 import { auth, azureADAuth } from '$lib/server/lucia.js';
-import { OAuthRequestError } from '@lucia-auth/oauth';
-import type { RequestHandler } from '@sveltejs/kit';
+import {error, type RequestHandler} from '@sveltejs/kit';
+import type {AzureADUser, GoogleUser} from "@lucia-auth/oauth/dist/providers";
+import {createPool} from "@vercel/postgres";
+import {
+	mapFromDbToEmailDomainObject,
+	mapFromDbToUserInviteObject
+} from "$lib/utils/objectMapper";
+import type {User} from "lucia";
 
+const fetchEmailDomains = async (domain: string) => {
+	const db = createPool();
+	const result = await db.query(`SELECT * FROM email_domain where domain = '${domain}'`);
+	return result.rows.map(c => mapFromDbToEmailDomainObject(c));
+}
+
+const fetchUserInvites = async (email: string) => {
+	const db = createPool();
+	const result = await db.query(`SELECT * FROM user_invite where email = '${email}'`);
+	return result.rows.map(c => mapFromDbToUserInviteObject(c));
+}
+
+const verifyEmailAndGetCompany = async (azureADUser: AzureADUser) => {
+	const emailsignature = azureADUser.email?.match("(?<=@)[^.]+(?=\\.).*")[0];
+	if (!emailsignature) {
+		throw error(400, {message: `Mangler epost. <a style="color: white" href="/intranett">Gå tilbake</a>`});
+	}
+
+	const emailDomains = await fetchEmailDomains(emailsignature)
+	if(emailDomains.length > 0){
+		return emailDomains[0]
+	}
+
+	const userInvites = await fetchUserInvites(azureADUser.email)
+	if(userInvites.length > 0){
+		return userInvites[0]
+	}
+
+	throw error(403, {message: `Domenet og/eller epost [${azureADUser.email}] er ikke godkjent. <a style="color: white" href="/intranett">Gå tilbake</a>`});
+};
+
+const validateAuthCallback = async (code: string, storedCodeVerifier: string) => {
+	try {
+		return await azureADAuth.validateCallback(code, storedCodeVerifier);
+	} catch (e) {
+		throw error(400, {message: `Kunne ikke logge deg inn [${e.message}]. <a style="color: white" href="/intranett">Gå tilbake</a>`});
+	}
+}
+
+const createSessionAndRedirect = async (user: User, locals: App.Locals) => {
+	const session = await auth.createSession({
+		userId: user.userId,
+		attributes: {}
+	});
+
+	locals.auth.setSession(session);
+	return new Response(null, {
+		status: 302,
+		headers: {
+			Location: '/intranett'
+		}
+	});
+}
 
 export const GET: RequestHandler = async ({ url, cookies, locals }) => {
 	const storedState = cookies.get('microsoft_oauth_state');
 	const storedCodeVerifier = cookies.get('microsoft_oauth_codeVerifier');
 	const state = url.searchParams.get('state');
 	const code = url.searchParams.get('code');
-	// validate state
 	if (!storedState || !state || storedState !== state || !code) {
-		return new Response('Kunne ikke logge inn, feil tilstand', {
-			status: 403
-		});
+		throw error(400, {message: `Feil tilstand. <a style="color: white" href="/intranett">Gå tilbake</a>`});
 	}
+
+	const {getExistingUser, azureADUser, azureADTokens, createUser } = await validateAuthCallback(code, storedCodeVerifier);
+
+	const existingUser = await getExistingUser();
+
+	if (existingUser) return await createSessionAndRedirect(existingUser, locals);
+
+	const company = await verifyEmailAndGetCompany(azureADUser)
+
 	try {
-		const {getExistingUser, azureADUser, azureADTokens, createUser } = await azureADAuth.validateCallback(code, storedCodeVerifier);
-		const emailsignature = azureADUser.email?.match("(?<=@)[^.]+(?=\\.).*")[0];
-		if (!emailsignature) {
-			return new Response('Kunne ikke logge inn, epost mangler', {
-				status: 403
-			});
-		}
-
-		if (!overhusetDomains.includes(emailsignature)) {
-			return new Response(`Kunne ikke logge inn, domenet [${emailsignature}] er ikke godkjent`, {
-				status: 403
-			});
-		}
-
-		const getUser = async () => {
-			const existingUser = await getExistingUser();
-
-			if (existingUser) return existingUser;
-			const user = await createUser({
-				attributes: {
-					username: azureADUser.name,
-					email: azureADUser.email
-				}
-			});
-			return user;
-		};
-
-		const user = await getUser();
-		const session = await auth.createSession({
-			userId: user.userId,
-			attributes: {}
-		});
-
-		locals.auth.setSession(session);
-		return new Response(null, {
-			status: 302,
-			headers: {
-				Location: '/intranett'
+		const user = await createUser({
+			attributes: {
+				username: azureADUser.name,
+				email: azureADUser.email,
+				companyId: company.companyId,
 			}
 		});
+		return await createSessionAndRedirect(user, locals)
 	} catch (e) {
-		return new Response(`Kunne ikke logge deg inn [${e.message}]`, {
-			status: 500
-		});
+		throw error(500, {message: `Kunne ikke opprette bruker [${e.message}. <a style="color: white" href="/intranett">Gå tilbake</a>`});
 	}
 };
+
