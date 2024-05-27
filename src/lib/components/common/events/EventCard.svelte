@@ -39,12 +39,10 @@
         <svelte:fragment slot="footer">
             {#if event.registration}
                 {#if isPassed}
-                    Tiden har passert.
                 {:else}
                     <HtmlRender htmlText={event.registration} />
                 {/if}
             {:else}
-                Informasjon om påmelding finnes ikke.
             {/if}
         </svelte:fragment>
     </Modal>

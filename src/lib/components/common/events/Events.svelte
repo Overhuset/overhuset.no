@@ -30,14 +30,16 @@
         </Button>
     </ButtonGroup>
 
-    <ButtonGroup>
-        <Button
-                size="xl"
-                on:click={() => filterMode = "online"}
-                checked={filterMode === "online"}>
-            Online kurs ({online?.length || 0})
-        </Button>
-    </ButtonGroup>
+    {#if online?.length > 0}
+        <ButtonGroup>
+            <Button
+                    size="xl"
+                    on:click={() => filterMode = "online"}
+                    checked={filterMode === "online"}>
+                Online kurs ({online?.length || 0})
+            </Button>
+        </ButtonGroup>
+    {/if}
 </div>
 
 

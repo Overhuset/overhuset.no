@@ -104,8 +104,9 @@
 			<Badge large rounded color="dark">
 				<div class="flex gap-4 m-3">
 					<div class="min-w-20"> Sortering:</div>
-					<Radio bind:group={sort} value="title">Navn</Radio>
+					<Radio bind:group={sort} value="title">Tittel</Radio>
 					<Radio bind:group={sort} value="createdAt">Opprettet</Radio>
+					<Radio bind:group={sort} value="time">Tidspunkt</Radio>
 				</div>
 			</Badge>
 		{/key}
