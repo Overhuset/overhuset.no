@@ -9,3 +9,17 @@ node_modules
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vercel
+/.idea/dataSources.xml
+/.idea/jsLinters/eslint.xml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/overhuset.iml
+/.idea/vcs.xml
+# Default ignored files
+/.idea/shelf/
+/.idea/workspace.xml
+# Editor-based HTTP Client requests
+/.idea/httpRequests/
+# Datasource local storage ignored files
+/.idea/dataSources/
+/.idea/dataSources.local.xml
