@@ -49,6 +49,7 @@
 					{item.title}
 				{/if}
 			{/each}
+
 			{#if loggedIn}
 				<NavLi href={`/intranett/ledig`}>Ledige konsulenter</NavLi>
 				<NavLi class="cursor-pointer">
@@ -56,9 +57,11 @@
 				</NavLi>
 				<Dropdown class="w-44 z-20">
 					<DropdownItem href="/intranett/vedlikehold_kurs_og_seminarer">Arrangementer</DropdownItem>
-					<DropdownItem href="/intranett/vedlikehold_selskaper">Selskaper</DropdownItem>
-					<DropdownItem href="/intranett/vedlikehold_konstellasjoner">Konstellasjoner</DropdownItem>
-					<DropdownItem href="/intranett/vedlikehold_ledig">Ledige konsulenter</DropdownItem>
+					{#if partner}
+						<DropdownItem href="/intranett/vedlikehold_selskaper">Selskaper</DropdownItem>
+						<DropdownItem href="/intranett/vedlikehold_konstellasjoner">Konstellasjoner</DropdownItem>
+						<DropdownItem href="/intranett/vedlikehold_ledig">Ledige konsulenter</DropdownItem>
+					{/if}
 				</Dropdown>
 			{/if}
 		</NavUl>

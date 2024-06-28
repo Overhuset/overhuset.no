@@ -1,5 +1,5 @@
 import {createPool} from "@vercel/postgres";
-import type {Company, Event} from "$lib/types.js";
+import type {Company} from "$lib/types.js";
 import {getIsValidUuid} from "$lib/utils/uuidUtils";
 import {getNowForDB} from "$lib/utils/dateUtils";
 import {v4 as uuidv4} from "uuid";
