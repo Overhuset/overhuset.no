@@ -5,3 +5,9 @@ export const fetchAllConstellations = async (db:VercelPool) => {
 	const result = await db.query('SELECT * FROM constellation ORDER BY name ASC');
 	return result.rows.map(c => mapFromDbToConstellationObject(c));
 }
+
+export const fetchActiveConstellationsByCompany = async (db:VercelPool, companyId: string) => {
+ 	const result = await db.query(`SELECT * FROM constellation WHERE active = true AND companies LIKE '%${companyId}%' ORDER BY name ASC`);
+	return result.rows.map(c => mapFromDbToConstellationObject(c));
+}
+
