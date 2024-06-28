@@ -12,12 +12,17 @@
 		NavHamburger,
 		Button,
 		Dropdown,
-		DropdownItem
+		DropdownItem,
+		Avatar
 	} from 'flowbite-svelte';
-	import {ArrowRightOutline, ChevronDownOutline} from "flowbite-svelte-icons";
+	import {ChevronDownOutline} from "flowbite-svelte-icons";
 
 	let tree: TreeItem[] = [];
 	export let loggedIn: boolean = false;
+	export let partner: boolean = false;
+	export let admin: boolean = false;
+	export let companyName: string = "";
+	export let userName: string = "";
 
 	$: activeUrl = $page.url.pathname;
 
@@ -61,14 +66,31 @@
 		{#if loggedIn}
 			<NavUl {activeUrl} class="order-2">
 				<NavLi>
-					<form method="post" action="/intranett?/logout" use:enhance>
-						<Button type="submit" size="xs">
-							Logg ut <ArrowRightOutline />
-						</Button>
-					</form>
+					<div class="flex items-center space-x-4 rtl:space-x-reverse">
+						<Avatar size="sm"
+										data-name={userName}
+										dot={{ placement: 'top-right', color: loggedIn ? 'green' : 'grey' }} />
+						<div class="space-y-0 font-medium dark:text-white">
+							<div>{userName}</div>
+							<div class="text-sm text-gray-500 dark:text-gray-400">
+								{companyName} {#if admin} (Admin) {/if}
+							</div>
+						</div>
+					</div>
+					<Dropdown class="w-44 z-20">
+						<DropdownItem>
+							<form method="post" action="/intranett?/logout" use:enhance>
+								<Button type="submit" color="none" size="sm">
+									Logg ut
+								</Button>
+							</form>
+						</DropdownItem>
+					</Dropdown>
 				</NavLi>
 			</NavUl>
 		{/if}
+
+
 	</Navbar>
 {/key}
 

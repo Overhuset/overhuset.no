@@ -24,12 +24,18 @@
 </script>
 
 <Drawer>
-	<Sidebar loggedIn={data.isLoggedIn} />
+	<Sidebar loggedIn={data.loggedIn} />
 </Drawer>
 
 <AppShell>
 	<svelte:fragment slot="header">
-		<IntranettHeader loggedIn={data.isLoggedIn} />
+		<IntranettHeader
+			loggedIn={data.loggedIn}
+			admin={data.admin}
+			partner={data.partner}
+			companyName={data.companyName}
+			userName={data.userName}
+		/>
 	</svelte:fragment>
 	<slot />
 </AppShell>

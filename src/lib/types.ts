@@ -59,10 +59,15 @@ export type Constellation = {
 	urlRef?: string;
 }
 
-
 export type AuthUser = {
-	email?:  string;
-	admin: boolean;
+	id?: string;
+	name?: string;
+	email?: string;
+	image?: boolean;
+	username?: string;
+	createdAt?: Date;
+	admin?: boolean;
+	companyId?: string;
 }
 
 export type EmailDomain = {

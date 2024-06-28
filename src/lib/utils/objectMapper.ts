@@ -1,4 +1,4 @@
-import type {Company, Constellation, EmailDomain, Event, UserInvite} from "$lib/types";
+import type { AuthUser, Company, Constellation, EmailDomain, Event, UserInvite } from '$lib/types';
 
 export const mapFromDbToEventObject = (event: any) : Event => {
     return {
@@ -74,4 +74,16 @@ export const mapFromDbToUserInviteObject = (userInvite: any): UserInvite => {
     }
 }
 
+export const mapFromDbToAuthUserObject = (authUser: any): AuthUser => {
+    return {
+        id: authUser.id,
+        name: authUser.name,
+        email: authUser.email,
+        image: authUser.image,
+        username: authUser.username,
+        createdAt: authUser.createdAt,
+        admin: authUser.admin,
+        companyId: authUser.companyId
+    }
+}
 
