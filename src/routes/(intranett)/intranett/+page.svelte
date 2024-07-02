@@ -5,7 +5,7 @@
 	export let data: PageData;
 </script>
 
-<div class="prose prose-xl mx-auto p-4 md:py-20">
+<div class="prose prose-xl mx-auto p-4 md:py-20" style="max-width:140ch">
 	<PartnerHome
 		company={data.company}
 		constellationList={data.constellationList}
