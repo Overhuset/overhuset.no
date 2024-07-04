@@ -5,6 +5,15 @@ export const fetchAllEvents = async (db: VercelPool) => {
 	const result = await db.query('SELECT * FROM event ORDER by created_at DESC');
 	return result.rows.map(e => mapFromDbToEventObject(e));
 }
+
+export const fetchAllEventsOnCompany = async (db: VercelPool, companyId?: string) => {
+	if (companyId) {
+		const result = await db.query(`SELECT * FROM event WHERE company_id = '${companyId}' ORDER by created_at DESC`);
+		return result.rows.map(e => mapFromDbToEventObject(e));
+	}
+	return [];
+}
+
 export const fetchAllPublishedEvents = async (db: VercelPool) => {
 	const result = await db.query('SELECT * FROM event WHERE published = true ORDER by time DESC');
 	return result.rows.map(e => mapFromDbToEventObject(e));
