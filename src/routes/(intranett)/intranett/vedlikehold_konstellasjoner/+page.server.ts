@@ -1,6 +1,6 @@
 import { createPool } from '@vercel/postgres';
  import type {PageServerLoad} from "../../../../../.svelte-kit/types/src/routes/(intranett)/intranett/ledig/$types";
-import { fetchAuthUser } from '$lib/data-access/authUser';
+import { fetchAuthUser } from '$lib/data-access/user';
 import { fetchAllCompaniesExceptOverhuset } from '$lib/data-access/company';
 import { fetchAllConstellations } from '$lib/data-access/constellation';
 

@@ -1,6 +1,6 @@
 import type { LayoutServerLoad } from './$types';
 import { createPool } from '@vercel/postgres';
-import { fetchAuthUser } from '$lib/data-access/authUser';
+import { fetchAuthUser } from '$lib/data-access/user';
 import { fetchCompany } from '$lib/data-access/company';
 
 

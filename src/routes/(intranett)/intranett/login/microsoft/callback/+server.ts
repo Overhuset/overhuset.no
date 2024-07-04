@@ -5,9 +5,9 @@ import type {AzureADUser, GoogleUser} from "@lucia-auth/oauth/dist/providers";
 import {createPool} from "@vercel/postgres";
 import {
 	mapFromDbToEmailDomainObject,
-	mapFromDbToUserInviteObject
 } from "$lib/utils/objectMapper";
 import type {User} from "lucia";
+import { fetchUserInvitesByEmail } from '$lib/data-access/user';
 
 const fetchEmailDomains = async (domain: string) => {
 	const db = createPool();
@@ -15,11 +15,6 @@ const fetchEmailDomains = async (domain: string) => {
 	return result.rows.map(c => mapFromDbToEmailDomainObject(c));
 }
 
-const fetchUserInvites = async (email: string) => {
-	const db = createPool();
-	const result = await db.query(`SELECT * FROM user_invite where email = '${email}'`);
-	return result.rows.map(c => mapFromDbToUserInviteObject(c));
-}
 
 const verifyEmailAndGetCompany = async (azureADUser: AzureADUser) => {
 	const emailsignature = azureADUser.email?.match("(?<=@)[^.]+(?=\\.).*")[0];
@@ -32,7 +27,7 @@ const verifyEmailAndGetCompany = async (azureADUser: AzureADUser) => {
 		return emailDomains[0]
 	}
 
-	const userInvites = await fetchUserInvites(azureADUser.email)
+	const userInvites = await fetchUserInvitesByEmail(azureADUser.email)
 	if(userInvites.length > 0){
 		return userInvites[0]
 	}

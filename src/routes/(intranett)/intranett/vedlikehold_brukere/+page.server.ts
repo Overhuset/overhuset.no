@@ -1,5 +1,5 @@
 import {createPool} from "@vercel/postgres";
-import { fetchAllUserInvites, fetchAllAuthUsers, fetchAuthUser } from '$lib/data-access/authUser';
+import { fetchAllUserInvites, fetchAllAuthUsers, fetchAuthUser } from '$lib/data-access/user';
 
 
 export async function load({ locals }) {

@@ -37,7 +37,7 @@ export async function POST({ request }) {
                                  '${now}')`;
     const db = createPool();
     await db.query(sql);
-    return new Response(JSON.stringify({ message: "event created" }), { status: 200 });
+    return new Response(JSON.stringify({ message: "company created" }), { status: 200 });
 }
 
 export async function PUT({ request }) {

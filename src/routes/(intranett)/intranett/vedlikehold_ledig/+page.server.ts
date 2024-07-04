@@ -2,7 +2,7 @@ import type { PageServerLoad } from './$types';
 import { createPool } from '@vercel/postgres';
 import { error } from "@sveltejs/kit";
 import { put } from "@vercel/blob";
-import { fetchAuthUser } from '$lib/data-access/authUser';
+import { fetchAuthUser } from '$lib/data-access/user';
 import { fetchAllVacants } from '$lib/data-access/vacant';
 
 

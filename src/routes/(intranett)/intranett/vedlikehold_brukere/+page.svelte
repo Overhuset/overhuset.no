@@ -68,7 +68,7 @@
 							<div class="space-between">
 								<div class="flex-start">
 									<div>
-										<P style="margin-top:-0.5rem" lineHeight="0" size="xl" color="dark" weight="normal">* Ny bruker</P>
+										<P style="margin-top:-0.5rem" lineHeight="0" size="xl" color="dark" weight="normal">*NY*</P>
 										<P style="margin-top:-1.7rem; margin-bottom: -0.5rem" lineHeight="0" size="lg" color="dark" weight="thin">{invite.email}</P>
 									</div>
 									<Badge color="green">Invitert av {invite.createdBy} </Badge>

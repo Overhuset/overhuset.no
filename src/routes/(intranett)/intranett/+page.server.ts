@@ -2,7 +2,7 @@
 import { fail, type Actions, redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import { auth } from '$lib/server/lucia';
-import { fetchAuthUser } from '$lib/data-access/authUser';
+import { fetchAuthUser } from '$lib/data-access/user';
 import { createPool } from '@vercel/postgres';
 import { fetchCompany } from '$lib/data-access/company';
 import { fetchActiveConstellationsByCompany } from '$lib/data-access/constellation';

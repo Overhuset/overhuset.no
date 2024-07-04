@@ -7,7 +7,7 @@ import {
 	mapFromDbToEmailDomainObject,
 } from "$lib/utils/objectMapper";
 import type {User} from "lucia";
-import { fetchUserInvitesByEmail } from '$lib/data-access/authUser';
+import { fetchUserInvitesByEmail } from '$lib/data-access/user';
 
 const fetchEmailDomains = async (domain: string) => {
 	const db = createPool();

@@ -1,5 +1,5 @@
 import {createPool} from "@vercel/postgres";
-import { fetchAuthUser } from '$lib/data-access/authUser';
+import { fetchAuthUser } from '$lib/data-access/user';
 import { fetchAllCompanies } from '$lib/data-access/company';
 
 
