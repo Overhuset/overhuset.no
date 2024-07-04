@@ -57,6 +57,9 @@
 				</NavLi>
 				<Dropdown class="w-44 z-20">
 					<DropdownItem href="/intranett/vedlikehold_kurs_og_seminarer">Arrangementer</DropdownItem>
+					{#if admin}
+						<DropdownItem href="/intranett/vedlikehold_brukere">Brukere</DropdownItem>
+					{/if}
 					{#if partner}
 						<DropdownItem href="/intranett/vedlikehold_selskaper">Selskaper</DropdownItem>
 						<DropdownItem href="/intranett/vedlikehold_konstellasjoner">Konstellasjoner</DropdownItem>

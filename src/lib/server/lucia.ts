@@ -2,7 +2,6 @@
 import { lucia } from 'lucia';
 import { sveltekit } from 'lucia/middleware';
 import { dev } from '$app/environment';
-
 import { google, azureAD } from '@lucia-auth/oauth/providers';
 import { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, AZURE_CLIENT_ID, AZURE_CLIENT_SECRET, AZURE_TENANT, REDIRECT_URI } from '$env/static/private';
 import { pg } from '@lucia-auth/adapter-postgresql';

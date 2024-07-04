@@ -70,7 +70,7 @@ export const mapFromDbToUserInviteObject = (userInvite: any): UserInvite => {
         companyId: userInvite.company_id,
         email: userInvite.email,
         createdBy: userInvite.created_by,
-        createdAt: userInvite.created_at,
+        createdAt: userInvite.createdAt,
     }
 }
 
@@ -86,4 +86,3 @@ export const mapFromDbToAuthUserObject = (authUser: any): AuthUser => {
         companyId: authUser.companyId
     }
 }
-

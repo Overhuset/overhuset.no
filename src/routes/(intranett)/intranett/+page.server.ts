@@ -15,7 +15,13 @@ export const load: PageServerLoad = async ({ fetch,locals }) => {
 	const authUser = user?.userId ? await fetchAuthUser(db, user.userId) : undefined;
 	const company = await fetchCompany(db, authUser?.companyId);
  	const content = await post.text();
-	const constellationList = company ? await fetchActiveConstellationsByCompany(db, company?.id) : [];
+	const constellationList = await fetchActiveConstellationsByCompany(db, company?.id);
+  	console.log("partner: ", company?.partner);
+
+	if (!company?.partner) {
+		console.log("redirect");
+		//throw redirect(302, '/intranett');
+	}
 
 	return {
 		company,
