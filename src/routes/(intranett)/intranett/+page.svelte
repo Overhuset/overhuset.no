@@ -1,18 +1,17 @@
 <script lang="ts">
 	import SvelteMarkdown from 'svelte-markdown';
 	import type { PageData } from './$types';
-	import PartnerHome from '$lib/components/intranett/PartnerHome.svelte';
-	export let data: PageData;
+	import Constellations from '$lib/components/common/constellations/Constellations.svelte';
+ 	export let data: PageData;
 </script>
 
 <div class="prose prose-xl mx-auto p-4 md:py-20" style="max-width:140ch">
-	<PartnerHome
-		company={data.company}
-		constellationList={data.constellationList}
-	/>
-
-	<br/>
-	<br/>
-	<SvelteMarkdown source={data.content} />
-
+	{#if data?.company?.partner}
+		<SvelteMarkdown source={data.content} />
+	{:else}
+		<Constellations
+			company={data.company}
+			constellationList={data.constellationList}
+		/>
+	{/if}
 </div>
