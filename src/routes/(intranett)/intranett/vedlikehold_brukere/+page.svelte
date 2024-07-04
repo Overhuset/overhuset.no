@@ -13,6 +13,11 @@
 	import {PlusOutline} from "flowbite-svelte-icons";
 	import {sortUsers} from "./utils";
 	import { getDateFormat, getTimeFormat } from '$lib/utils/dateUtils';
+	import type { UserInvite } from '$lib/types';
+
+	const authUserApi = '/api/auth_user';
+	const api = '/api/user_invite';
+	const headers = {'content-type': 'application/json'};
 
 	export let data;
 
@@ -31,6 +36,55 @@
 	const handleNewInvite = async () => {
 		invalidateAll();
 		onToast("success", "ny invitasjon kan ikke sendes enda")
+	}
+
+	const handleNewUserInvite = async (email: string, companyId: string, createdBy: string) => {
+		const userInvite: UserInvite = { email, companyId, createdBy };
+		const body = JSON.stringify(userInvite);
+		const response = await fetch(api, {method: 'POST', body, headers});
+
+		if (response.status == 200) {
+			onToast("success", "Invitasjon opprettet");
+			sort = "createdAt";
+		} else {
+			onToast("error", "En feil oppstod ved opprett Invitasjon");
+		}
+
+		invalidateAll();
+	}
+
+	const handleDeleteInvite = async (id?: string) => {
+		if (confirm("Bekreft sletting") == true) {
+			if (id) {
+				const body = JSON.stringify(id);
+				const response = await fetch(api, {method: 'DELETE', body, headers});
+
+				if (response.status == 200) {
+					onToast("success", "invitasjon slettet");
+				} else {
+					onToast("error", "En feil oppstod ved sletting");
+				}
+
+				invalidateAll();
+			}
+		}
+	}
+
+	const handleDeleteAuthUser = async (id?: string) => {
+		if (confirm("Bekreft sletting") == true) {
+			if (id) {
+				const body = JSON.stringify(id);
+				const response = await fetch(authUserApi, {method: 'DELETE', body, headers});
+
+				if (response.status == 200) {
+					onToast("success", "invitasjon slettet");
+				} else {
+					onToast("error", "En feil oppstod ved sletting");
+				}
+
+				invalidateAll();
+			}
+		}
 	}
 
 </script>
@@ -74,9 +128,13 @@
 									<Badge color="green">Invitert av {invite.createdBy} </Badge>
 								</div>
 
-								<Badge rounded color="dark" style="margin-top: 0.4rem">
-									Invitert {getDateFormat(invite.createdAt)}, {getTimeFormat(invite.createdAt)}
-								</Badge>
+								<div class="flex-end">
+									<Badge rounded color="dark" style="margin-top: 0.4rem">
+										Invitert {getDateFormat(invite.createdAt)}, {getTimeFormat(invite.createdAt)}
+									</Badge>
+									<Button pill on:click={() => handleDeleteInvite(invite.id)}>Slett</Button>
+								</div>
+
 							</div>
 						</TableBodyCell>
 					</TableBodyRow>
@@ -94,9 +152,12 @@
 									 {#if authUser.admin} <Badge color="yellow">Admin</Badge> {/if}
 							  </div>
 
-								<Badge rounded color="dark" style="margin-top: 0.4rem">
-									Opprettet {getDateFormat(authUser.createdAt)}, {getTimeFormat(authUser.createdAt)}
-								</Badge>
+								<div class="flex-end">
+									<Badge rounded color="dark" style="margin-top: 0.4rem">
+										Opprettet {getDateFormat(authUser.createdAt)}, {getTimeFormat(authUser.createdAt)}
+									</Badge>
+									<Button pill on:click={() => handleDeleteAuthUser(authUser.id)}>Slett</Button>
+								</div>
 							</div>
 						</TableBodyCell>
 					</TableBodyRow>
@@ -127,6 +188,13 @@
   .flex-start {
       display: flex;
       justify-content: flex-start;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+  }
+  .flex-end {
+      display: flex;
+      justify-content: flex-end;
       align-items: center;
       flex-wrap: wrap;
       gap: 1rem;
