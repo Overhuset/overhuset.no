@@ -10,7 +10,7 @@
         {constellation?.name}
     </P>
 
-    {#if !constellation?.active}
+    {#if constellation?.active}
         <Badge color="green" rounded style="padding: 0.4rem 0.5rem;">
            Aktiv
         </Badge>

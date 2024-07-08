@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { Button, Card } from 'flowbite-svelte';
-	import ConstellationCardHeader from '$lib/components/common/constellations/ConstellationCardHeader.svelte';
-	import type { Constellation } from '$lib/types';
+ 	import type { Constellation } from '$lib/types';
 	import { ArrowRightOutline, FileCopyOutline } from 'flowbite-svelte-icons';
 	import { toasts } from 'svelte-toasts';
 	import SVGImageRender from '$lib/components/common/SVGImageRender.svelte';
+	import ConstellationCardHeader from './ConstellationCardHeader.svelte';
 
 	export let constellation: Constellation;
 
