@@ -6,7 +6,7 @@
 </script>
 
 <div class="header">
-    <P size="xl" color="" weight="medium">
+     <P lineHeight="0" size="2xl" color="dark" weight="medium" >
         {constellation?.name}
     </P>
 

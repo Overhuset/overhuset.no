@@ -4,8 +4,7 @@
  	import { onDestroy, onMount } from 'svelte';
 	import type { LayoutData } from './$types';
 	import { browser } from '$app/environment';
-	import { page } from '$app/stores';
-	import Header from './header/Header.svelte';
+	import Header from './components/header/Header.svelte';
 
 	initializeStores();
 

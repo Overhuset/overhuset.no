@@ -11,7 +11,7 @@ const load: PageServerLoad = async ({ locals }) => {
 	const user  = session?.user;
 	const authUser = user?.userId ? await fetchAuthUser(db, user.userId) : undefined;
 	const constellationList = await fetchAllConstellations(db);
-	const companyList = fetchAllCompaniesExceptOverhuset(db);
+	const companyList = await fetchAllCompaniesExceptOverhuset(db);
 	return { constellationList, companyList, authUser };
 }
 

@@ -5,7 +5,8 @@
 	import HtmlRender from '$lib/components/common/HtmlRender.svelte';
 
 	export let company;
-	export let constellationList;
+	export let companies;
+	export let constellations;
 </script>
 
 <div>
@@ -35,8 +36,8 @@
 	</P>
 
 	<div class="grid sm:grid-cols-1 md:grid-cols-2 gap-5">
-		{#each constellationList as constellation (constellation.id)}
-			<ConstellationCard constellation={constellation}/>
+		{#each constellations as constellation (constellation.id)}
+			<ConstellationCard constellation={constellation} companies={companies}/>
 		{/each}
 	</div>
 

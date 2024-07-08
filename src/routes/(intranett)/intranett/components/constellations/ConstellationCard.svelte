@@ -1,12 +1,13 @@
 <script lang="ts">
-	import { Button, Card } from 'flowbite-svelte';
- 	import type { Constellation } from '$lib/types';
+	import { Button, Card, P } from 'flowbite-svelte';
+	import type { Company, Constellation } from '$lib/types';
 	import { ArrowRightOutline, FileCopyOutline } from 'flowbite-svelte-icons';
 	import { toasts } from 'svelte-toasts';
 	import SVGImageRender from '$lib/components/common/SVGImageRender.svelte';
 	import ConstellationCardHeader from './ConstellationCardHeader.svelte';
 
 	export let constellation: Constellation;
+	export let companies: Company[];
 
 
 	const handleCopyToClipboard = (url: string) => {
@@ -32,6 +33,24 @@
 		<SVGImageRender svgString={constellation?.logo} styleClass="w-36" />
 	</div>
 
+	<div style="margin-top:-3.5rem">
+		<P lineHeight="0" size="2xl" color="dark" weight="thin" style="margin-bottom:0.5rem">
+			{constellation.description}
+		</P>
+	</div>
+
+	<div class="grid xs: grid-cols-2 sm:grid-cols-2 md:grid-cols-3 md:gap-1">
+		{#each companies as company}
+				{#if constellation?.companies?.includes(company?.id || "")}
+ 					<a href={`/konsulentselskap/${company?.nameShort?.toLowerCase()}`}
+						 class="flex justify-center items-center min-h-[90px] md:last:col-start-3 md:[&:nth-last-child(2)]:col-start-2">
+						<SVGImageRender svgString={company?.logo} styleClass="w-20" />
+					</a>
+				{/if}
+		{/each}
+	</div>
+
+	<br/>
 
 	<div class="rowDirection">
 		<Button class="w-fit" on:click={() => handleCopyToClipboard(`${location.protocol}//${window.location.hostname}/${constellation.urlRef}`)}>

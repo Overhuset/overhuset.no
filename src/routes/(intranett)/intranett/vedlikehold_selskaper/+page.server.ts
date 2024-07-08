@@ -8,6 +8,6 @@ export async function load({ locals }) {
 	const session = await locals.auth.validate();
 	const user  = session?.user;
 	const authUser = user?.userId ? await fetchAuthUser(db, user.userId) : undefined;
-	const companyList = fetchAllCompanies(db);
+	const companyList = await fetchAllCompanies(db);
 	return { companyList, authUser};
 }

@@ -1,5 +1,9 @@
 import type { VercelPool } from '@vercel/postgres';
 import { mapFromDbToCompanyObject } from '$lib/utils/objectMapper';
+import type { Constellation } from '$lib/types';
+import { overhusetId } from '$lib/utils/uuidUtils';
+
+
 
 export const fetchCompany = async (db: VercelPool, companyId?: string) => {
 	if (companyId) {
@@ -34,4 +38,14 @@ export const fetchAllActivePartnerCompanies = async (db: VercelPool) => {
 	return result.rows.map(c => mapFromDbToCompanyObject(c));
 }
 
+export const fetchCompaniesByConstellation = async (db: VercelPool, constellation?: Constellation) => {
+	if (constellation) {
+		const companyIds = (constellation.companies || "").split(";").concat(overhusetId);;
+		const companyIdsParam = companyIds.map(companyId => `'${companyId}'`);
+		const sql = `SELECT * FROM company WHERE id IN (${companyIdsParam}) ORDER BY NAME ASC`;
+		const result = await db.query(sql);
+		return result.rows.map(c => mapFromDbToCompanyObject(c));
+	}
+	return [];
+}
 

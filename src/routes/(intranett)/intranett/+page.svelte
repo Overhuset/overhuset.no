@@ -11,7 +11,8 @@
 	{:else}
 		<Constellations
 			company={data.company}
-			constellationList={data.constellationList}
+			companies={data.companies}
+			constellations={data.constellations}
 		/>
 	{/if}
 </div>

@@ -4,7 +4,7 @@ import type { PageServerLoad } from './$types';
 import { auth } from '$lib/server/lucia';
 import { fetchAuthUser } from '$lib/data-access/user';
 import { createPool } from '@vercel/postgres';
-import { fetchCompany } from '$lib/data-access/company';
+import { fetchAllCompaniesExceptOverhuset, fetchCompany } from '$lib/data-access/company';
 import { fetchActiveConstellationsByCompany } from '$lib/data-access/constellation';
 
 export const load: PageServerLoad = async ({ fetch,locals }) => {
@@ -15,7 +15,8 @@ export const load: PageServerLoad = async ({ fetch,locals }) => {
 	const authUser = user?.userId ? await fetchAuthUser(db, user.userId) : undefined;
 	const company = await fetchCompany(db, authUser?.companyId);
  	const content = await post.text();
-	const constellationList = await fetchActiveConstellationsByCompany(db, company?.id);
+	const constellations = await fetchActiveConstellationsByCompany(db, company?.id);
+	const companies =  await fetchAllCompaniesExceptOverhuset(db);
 
 	if (!company?.partner) {
 		console.log("redirect");
@@ -25,7 +26,8 @@ export const load: PageServerLoad = async ({ fetch,locals }) => {
 
 	return {
 		company,
-		constellationList,
+		companies,
+		constellations,
 		content
 	};
 };
