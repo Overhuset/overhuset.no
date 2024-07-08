@@ -3,6 +3,7 @@ import { fetchAllUserInvites, fetchAllAuthUsers, fetchAuthUser } from '$lib/data
 
 
 export async function load({ locals }) {
+
 	const db = createPool();
 	const session = await locals.auth.validate();
 	const user  = session?.user;
