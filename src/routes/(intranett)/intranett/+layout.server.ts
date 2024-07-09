@@ -3,7 +3,8 @@ import { createPool } from '@vercel/postgres';
 import { fetchAuthUser } from '$lib/data-access/user';
 import { fetchCompany } from '$lib/data-access/company';
 import { dev } from '$app/environment';
-import { getAdminLinkItems, getHeaderLinkItems, getSlugTreeItems } from './config/routes';
+import { getAdminLinkItems, getHeaderLinkItems, getSlugTreeItems } from '$lib/config/intranett/routes';
+
 
 
 export const load: LayoutServerLoad = async ({ locals }) => {

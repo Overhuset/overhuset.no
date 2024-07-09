@@ -12,7 +12,7 @@
 	import {ChevronDownOutline} from "flowbite-svelte-icons";
 	import type { LinkItem, SlugTreeItem } from '$lib/types';
 	import User from './User.svelte';
-	import { isLinkItem } from '../../config/routes';
+	import { isLinkItem } from '$lib/config/intranett/routes';
 
 	export let slugTreeItems: SlugTreeItem[] = [];
 	export let headerLinkItems: LinkItem[] = [];

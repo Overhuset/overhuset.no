@@ -54,11 +54,11 @@
 
 	<div class="rowDirection">
 		<Button class="w-fit" on:click={() => handleCopyToClipboard(`${location.protocol}//${window.location.hostname}/${constellation.urlRef}`)}>
-			<FileCopyOutline class="w-5 h-5 me-2" /> Kopier link
+			<FileCopyOutline class="w-5 h-5 me-2" /> Kopier link til detaljer
 		</Button>
 
 		<Button class="w-fit" href={`/${constellation.urlRef}`}>
-			Gå til detaljer <ArrowRightOutline class="w-6 h-6 ms-2 " />
+			Vis detaljer <ArrowRightOutline class="w-6 h-6 ms-2 " />
 		</Button>
 	</div>
 </Card>

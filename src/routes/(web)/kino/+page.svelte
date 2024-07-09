@@ -1,5 +1,5 @@
 <script>
-import Kino from '$lib/components/web/Kino.svelte';
+ import Kino from './Kino.svelte';
 </script>
 
 <Kino

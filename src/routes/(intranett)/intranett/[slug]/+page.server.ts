@@ -1,6 +1,6 @@
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
-import { getLinkItemBySlug } from '../config/routes';
+import { getLinkItemBySlug }  from '$lib/config/intranett/routes';
  const { MODE } = import.meta.env;
 
 const isProd = MODE === 'production';

@@ -3,7 +3,7 @@
 import Papa from 'papaparse';
 
 import type { Event } from '$lib/types';
-import { isEventInThePast, sortEvent, transformDates } from '$lib/transformEvents';
+import { isEventInThePast, sortEvent, transformDates } from '$lib/utils/transformEvents';
 
 export async function getEventsFromSheet(sheetId: string, sheetGid: string) {
 	const response = await fetch(

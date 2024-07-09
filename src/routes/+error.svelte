@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Footer from '$lib/components/Footer.svelte';
-	import Header from '$lib/components/Header.svelte';
 	import { initializeStores } from '@skeletonlabs/skeleton';
 	import '../app.css';
 	import { page } from '$app/stores';
+ 	import Header from '$lib/components/web/Header.svelte';
+	import Footer from '$lib/components/web/Footer.svelte';
 
 	initializeStores();
 	const isIntranett = $page.url.href.split('/').includes('intranett');
