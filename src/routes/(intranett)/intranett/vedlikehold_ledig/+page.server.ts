@@ -4,6 +4,7 @@ import { error } from "@sveltejs/kit";
 import { put } from "@vercel/blob";
 import { fetchAuthUser } from '$lib/data-access/user';
 import { fetchAllVacants } from '$lib/data-access/vacant';
+import { accessCheck } from '$lib/utils/accessController';
 
 
 const load: PageServerLoad = async ({ locals }) => {
@@ -13,6 +14,9 @@ const load: PageServerLoad = async ({ locals }) => {
 	const authUser = user?.userId ? await fetchAuthUser(db, user.userId) : undefined;
 	const vacantList = await fetchAllVacants(db);
 	const email = authUser?.email;
+
+	await accessCheck(db,  authUser, '/intranett/vedlikehold_ledig');
+
 	return { vacantList, user, email};
 };
 

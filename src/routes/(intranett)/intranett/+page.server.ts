@@ -18,12 +18,6 @@ export const load: PageServerLoad = async ({ fetch,locals }) => {
 	const constellations = await fetchActiveConstellationsByCompany(db, company?.id);
 	const companies =  await fetchAllCompaniesExceptOverhuset(db);
 
-	if (!company?.partner) {
-		console.log("redirect");
-		//throw redirect(302, '/intranett');
-	}
-
-
 	return {
 		company,
 		companies,

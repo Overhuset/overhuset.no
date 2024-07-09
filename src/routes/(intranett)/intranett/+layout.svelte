@@ -11,7 +11,6 @@
 
 	export let data: LayoutData;
 
- // 		<p>Current URL: {$page.url.pathname}</p>
 	onMount(() => {
 		document.body.setAttribute('data-theme', 'vintage');
 		document.body.setAttribute('class', 'dark');

@@ -7,7 +7,6 @@
 		NavUl,
 		NavHamburger,
 	} from 'flowbite-svelte';
-console.log("$page.url.pathname: ", $page.url.pathname);
 	$: activeUrl = $page.url.pathname;
 </script>
 
