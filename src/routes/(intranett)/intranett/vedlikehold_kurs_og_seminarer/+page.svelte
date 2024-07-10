@@ -115,6 +115,11 @@
 		<Tooltip type="light" placement="top" triggeredBy="[id='new']">Opprett nytt arrangement og fortsett redigering ved å velge det i listen nedenfor</Tooltip>
 	</div>
 
+	{#if data.eventList?.length === 0}
+		<P size="xl" color="dark" weight="light">
+			Ingen arrangementer funnet.
+		</P>
+	{/if}
 
 	{#key sort}
 		<Table hoverable={true}>

@@ -69,6 +69,7 @@ export type AuthUser = {
 	username?: string;
 	createdAt?: Date;
 	admin?: boolean;
+	active?: boolean;
 	companyId?: string;
 }
 

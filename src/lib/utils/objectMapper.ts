@@ -83,6 +83,7 @@ export const mapFromDbToAuthUserObject = (authUser: any): AuthUser => {
         username: authUser.username,
         createdAt: authUser.createdAt,
         admin: authUser.admin,
+        active: authUser.active,
         companyId: authUser.companyId
     }
 }

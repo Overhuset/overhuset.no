@@ -10,14 +10,14 @@
 		Table,
 		TableBody,
 		TableBodyCell,
-		TableBodyRow,
+		TableBodyRow, Toggle,
 		Tooltip
 	} from 'flowbite-svelte';
  	import { toasts, ToastContainer, FlatToast }  from "svelte-toasts";
 	import {PlusOutline} from "flowbite-svelte-icons";
 	import {sortUsers} from "./utils";
 	import { getDateFormat, getTimeFormat } from '$lib/utils/dateUtils';
-	import type { UserInvite } from '$lib/types';
+	import type { AuthUser, UserInvite } from '$lib/types';
 
 	const authUserApi = '/api/auth_user';
 	const api = '/api/user_invite';
@@ -43,10 +43,6 @@
 		});
 	}
 
-	const handleNewInvite = async () => {
-		invalidateAll();
-		onToast("success", "ny invitasjon kan ikke sendes enda")
-	}
 
 	const handleToggleNewInviteForm = () => {
 		if (newInvite) {
@@ -59,11 +55,6 @@
 	}
 
 	const handleNewUserInvite = async () => {
-		console.log("email: ", newInvite?.email );
-		console.log("createdBy: ", newInvite?.createdBy );
-		console.log("companyId: ", newInvite?.companyId );
-		console.log("handleNewUserInvite: ", newInvite );
-
 		const body = JSON.stringify(newInvite);
 		const response = await fetch(api, {method: 'POST', body, headers});
 
@@ -76,6 +67,38 @@
 
 		invalidateAll();
 	}
+
+	const handleAdminToggle = async (authUser: AuthUser) => {
+		if (authUser) {
+			const body = JSON.stringify({ ...authUser, admin: !authUser.admin });
+
+			console.log("body:", body ) ;
+			const response = await fetch(authUserApi, {method: 'PUT', body, headers});
+
+			if (response.status == 200) {
+				onToast("success", "Bruker endret");
+			} else {
+				onToast("error", "En feil oppstod ved endring av bruker");
+			}
+			invalidateAll();
+		}
+	};
+
+	const handleActiveToggle = async (authUser: AuthUser) => {
+		if (authUser) {
+			const body = JSON.stringify({ ...authUser, active: !authUser.active });
+
+			console.log("body:", body ) ;
+			const response = await fetch(authUserApi, {method: 'PUT', body, headers});
+
+			if (response.status == 200) {
+				onToast("success", "Bruker endret");
+			} else {
+				onToast("error", "En feil oppstod ved endring av bruker");
+			}
+			invalidateAll();
+		}
+	};
 
 	const handleDeleteInvite = async (id?: string) => {
 		if (confirm("Bekreft sletting") == true) {
@@ -93,21 +116,7 @@
 		}
 	}
 
-	const handleDeleteAuthUser = async (id?: string) => {
-		if (confirm("Bekreft sletting") == true) {
-			if (id) {
-				const body = JSON.stringify(id);
-				const response = await fetch(authUserApi, {method: 'DELETE', body, headers});
 
-				if (response.status == 200) {
-					onToast("success", "invitasjon slettet");
-				} else {
-					onToast("error", "En feil oppstod ved sletting");
-				}
-				invalidateAll();
-			}
-		}
-	}
 
 </script>
 
@@ -171,10 +180,10 @@
 								</div>
 
 								<div class="flex-end">
+									<Button outline pill on:click={() => handleDeleteInvite(invite.id)}>Slett invitasjon</Button>
 									<Badge rounded color="dark" style="margin-top: 0.4rem">
 										Invitert {getDateFormat(invite.createdAt)}, {getTimeFormat(invite.createdAt)}
 									</Badge>
-									<Button pill on:click={() => handleDeleteInvite(invite.id)}>Slett</Button>
 								</div>
 
 							</div>
@@ -195,10 +204,11 @@
 							  </div>
 
 								<div class="flex-end">
-									<Badge rounded color="dark" style="margin-top: 0.4rem">
+									<Toggle color="green" checked={!!authUser.active} disabled on:click={() => handleActiveToggle(authUser)}>Aktiv</Toggle>
+									<Toggle checked={authUser.admin} on:click={() => handleAdminToggle(authUser)}>Administrator</Toggle>
+ 									<Badge rounded color="dark" style="margin-top: 0.4rem">
 										Opprettet {getDateFormat(authUser.createdAt)}, {getTimeFormat(authUser.createdAt)}
 									</Badge>
-									<Button pill on:click={() => handleDeleteAuthUser(authUser.id)}>Slett</Button>
 								</div>
 							</div>
 						</TableBodyCell>
@@ -239,7 +249,7 @@
       justify-content: flex-end;
       align-items: center;
       flex-wrap: wrap;
-      gap: 1rem;
+      gap: 2rem;
   }
   .sort-buttons-container {
       width: 100%;

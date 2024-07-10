@@ -5,3 +5,7 @@ export const getIsValidUuid = (uuid?: string) => {
     return (uuid && uuid.length === uuidLength);
 }
 
+export const getIsValidAuthUserId = (uuid?: string) => {
+    const uuidLength = 15;
+    return (uuid && uuid.length === uuidLength);
+}
