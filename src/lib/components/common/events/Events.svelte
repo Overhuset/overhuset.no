@@ -11,10 +11,6 @@
     const online = ((data.eventList || []).filter(event => event.onlineCourse));
 
     let filterMode: "upcoming" | "historic" | "online" = upcoming.length === 0 ? "historic" : "upcoming";
-
-    let out =  ((filterMode === "upcoming" ? upcoming : (filterMode === "online" ? online : historic)))  ;
-
-
 </script>
 
 <div class="container">
