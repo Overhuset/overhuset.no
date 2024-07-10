@@ -1,7 +1,7 @@
 <script lang="ts">
-    import {Button, ButtonGroup} from "flowbite-svelte";
+    import { Button, ButtonGroup, P } from 'flowbite-svelte';
     import EventCard from "$lib/components/common/events/EventCard.svelte";
-    import {getIsPassed} from "$lib/utils/dateUtils.ts";
+    import { getIsPassed } from '$lib/utils/dateUtils';
 
     export let data;
 
@@ -11,6 +11,10 @@
     const online = ((data.eventList || []).filter(event => event.onlineCourse));
 
     let filterMode: "upcoming" | "historic" | "online" = upcoming.length === 0 ? "historic" : "upcoming";
+
+    let out =  ((filterMode === "upcoming" ? upcoming : (filterMode === "online" ? online : historic)))  ;
+
+
 </script>
 
 <div class="container">
@@ -42,17 +46,21 @@
     {/if}
 </div>
 
-
 <br/>
 <br/>
 
 <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-5">
-    {#each (
-        (filterMode === "upcoming" ? upcoming :
-            (filterMode === "online" ? online :
-                historic))) as event (event.id)}
+    {#if (filterMode === "upcoming" ? upcoming : (filterMode === "online" ? online : historic)).length === 0 }
+        <P size="xl" color="dark" weight="light">
+            Ingen arrangementer funnet.
+        </P>
+    {/if}
+
+    {#each ((filterMode === "upcoming" ? upcoming : (filterMode === "online" ? online : historic))) as event (event.id)}
         <EventCard event={event} companies={companies}/>
     {/each}
+
+
 </div>
 
 <style>
