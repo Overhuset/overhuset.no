@@ -6,12 +6,11 @@
 		Button,
 		Input,
 		P,
-		Radio,
+		Radio, Select,
 		Table,
 		TableBody,
 		TableBodyCell,
 		TableBodyRow,
-		Textarea,
 		Tooltip
 	} from 'flowbite-svelte';
  	import { toasts, ToastContainer, FlatToast }  from "svelte-toasts";
@@ -20,17 +19,19 @@
 	import { getDateFormat, getTimeFormat } from '$lib/utils/dateUtils';
 	import type { UserInvite } from '$lib/types';
 
-	let open = false
 	const authUserApi = '/api/auth_user';
 	const api = '/api/user_invite';
 	const headers = {'content-type': 'application/json'};
 
 	export let data;
 
+	let newInvite: UserInvite | undefined = undefined;
 	let sort:"name" | "createdAt" = 'name';
-	let newInvite = {
 
-	};
+	const companies = data.companyList;
+
+	// @ts-ignore
+	const companiesOptions: {value: string, name: string}[] = companies.map(company => ({ value: company.id || "", name: company.nameShort || ""}));
 
 	const onToast = (type: "success" | "info" | "error", message: string) => {
 		toasts.add({
@@ -47,17 +48,23 @@
 		onToast("success", "ny invitasjon kan ikke sendes enda")
 	}
 
-	const handleToggleNewForm = () => {
-		if (open) {
-			open = false;
+	const handleToggleNewInviteForm = () => {
+		if (newInvite) {
+			newInvite = undefined;
 		} else {
-			open = true;
+			newInvite = {
+				createdBy: data.authUser?.email
+			};
 		}
 	}
 
-	const handleNewUserInvite = async (email: string, companyId: string, createdBy: string) => {
-		const userInvite: UserInvite = { email, companyId, createdBy };
-		const body = JSON.stringify(userInvite);
+	const handleNewUserInvite = async () => {
+		console.log("email: ", newInvite?.email );
+		console.log("createdBy: ", newInvite?.createdBy );
+		console.log("companyId: ", newInvite?.companyId );
+		console.log("handleNewUserInvite: ", newInvite );
+
+		const body = JSON.stringify(newInvite);
 		const response = await fetch(api, {method: 'POST', body, headers});
 
 		if (response.status == 200) {
@@ -110,7 +117,7 @@
 		<P size="3xl" color="dark">Brukere</P>
 	</div>
 
-	<div class="buttons-container">
+	<div class="sort-buttons-container">
 		{#key sort}
 			<Badge large rounded color="dark">
 				<div class="flex gap-4 m-3">
@@ -122,30 +129,31 @@
 		{/key}
 
 		{#if data.authUser?.admin}
-			<Button pill={true} id="new" on:click={handleToggleNewForm} class="!p-2"><PlusOutline class="w-8 h-8" /></Button>
-			<Tooltip type="light" placement="top" triggeredBy="[id='new']">Opprett invitasjon</Tooltip>
+			<Button pill={true} id="new" on:click={handleToggleNewInviteForm} class="!p-2">
+				<PlusOutline class="w-8 h-8" />
+			</Button>
+			<Tooltip type="light" placement="top" triggeredBy="[id='new']">Ny invitasjon</Tooltip>
 		{/if}
 	</div>
 
-	{#key open}
-		<div use:collapse={{open}}>
 
-				<h3>Send invitasjon</h3>
-
+		<div use:collapse={{open: !!newInvite}}>
+			{#if newInvite}
+				<h3>Ny invitasjon</h3>
 				<form on:submit|preventDefault={handleNewUserInvite}>
-					<label for="name" color="dark">Navn *</label>
-					<Input clor="base" name="name" id="name" type="text" bind:value={newInvite.email}/>
-					<label for="from">Ledig fra *</label>
-					<Input name="from" id="from" type="date" bind:value={newInvite.companyId}/>
+					<label for="name" color="dark">E-post *</label>
+					<Input clor="base" name="email" id="email" type="email" bind:value={newInvite.email}/>
+					<label for="from">Selskap *</label>
+					<Select placeholder="Ikke valgt" items={companiesOptions} bind:value={newInvite.companyId} />
 
 					<div class="buttons-container">
-						<Button color="primary" on:click={handleToggleNewForm}>Avbryt</Button>
-						<Button type="submit" color="primary" disabled={false}>Registrer konsulent</Button>
+						<Button color="primary" on:click={handleToggleNewInviteForm}>Avbryt</Button>
+						<Button type="submit" color="primary" disabled={false}>Inviter</Button>
 					</div>
 				</form>
-
+			{/if}
 		</div>
-	{/key}
+
 
 	{#key sort}
 		<Table hoverable={true}>
@@ -156,7 +164,7 @@
 							<div class="space-between">
 								<div class="flex-start">
 									<div>
-										<P style="margin-top:-0.5rem" lineHeight="0" size="xl" color="dark" weight="normal">*NY*</P>
+										<P style="margin-top:-0.5rem" lineHeight="0" size="xl" color="dark" weight="normal">*INVITASJON*</P>
 										<P style="margin-top:-1.7rem; margin-bottom: -0.5rem" lineHeight="0" size="lg" color="dark" weight="thin">{invite.email}</P>
 									</div>
 									<Badge color="green">Invitert av {invite.createdBy} </Badge>
@@ -233,12 +241,21 @@
       flex-wrap: wrap;
       gap: 1rem;
   }
-  .buttons-container {
+  .sort-buttons-container {
       width: 100%;
       display: flex;
       justify-content: space-between;
       margin-bottom: 1.5rem;
       gap:1rem;
   }
+	.buttons-container {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 1.5rem;
+      margin-top: 1.5rem;
+      gap:1rem;
+  }
+
 </style>
 

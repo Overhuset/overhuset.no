@@ -70,7 +70,7 @@ export const mapFromDbToUserInviteObject = (userInvite: any): UserInvite => {
         companyId: userInvite.company_id,
         email: userInvite.email,
         createdBy: userInvite.created_by,
-        createdAt: userInvite.createdAt,
+        createdAt: userInvite.created_at,
     }
 }
 

@@ -24,7 +24,7 @@ export const fetchAllUserInvites = async (db: VercelPool)=> {
 
 export const fetchUserInvitesByEmail = async (db: VercelPool, email?: string)=> {
 	if (email) {
-		const result = await db.query(`SELECT * FROM user_invite where email = '${email}'`);
+		const result = await db.query(`SELECT * FROM user_invite WHERE email = '${email}'`);
 		return result.rows.map(ui => mapFromDbToUserInviteObject(ui));
 	}
 	return [];

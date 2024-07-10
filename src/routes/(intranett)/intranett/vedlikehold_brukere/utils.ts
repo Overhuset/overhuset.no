@@ -1,6 +1,6 @@
-import type { AuthUser, Constellation } from '$lib/types';
+import type { AuthUser } from '$lib/types';
 
-export const sortUsers = (authUsers: AuthUser[], by: "name" | "createdAt" ):Constellation[] => {
+export const sortUsers = (authUsers: AuthUser[], by: "name" | "createdAt" ):AuthUser[] => {
     switch (by) {
         case "name": {
             authUsers.sort((a, b) => (a?.username || "").toLowerCase() < (b?.username || "").toLowerCase() ? -1 : 1);
