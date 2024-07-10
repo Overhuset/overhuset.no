@@ -45,6 +45,7 @@
 			onlineStreaming: false,
 			published: false,
 			createdBy: data.authUser?.email,
+			companyId: data.authUser?.companyId
 		});
 
 		const response = await fetch(api, {method: 'POST', body, headers});
@@ -132,6 +133,7 @@
 										event={event}
 										companies={data.companyList}
 										authUser={data.authUser}
+										company={data.company}
 										onChange={handleChangeEvent}
 										onDelete={handleDeleteEvent}
 										onRevert={handleRevertEvent}

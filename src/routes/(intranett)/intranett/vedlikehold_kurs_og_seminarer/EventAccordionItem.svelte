@@ -15,6 +15,7 @@
     export let event: Event;
     export let companies: Company[];
     export let authUser: AuthUser | undefined;
+    export let company: Company | undefined;
     export let onChange: (eventChanged: Event) => void;
     export let onDelete: (id: string) => void;
     export let onRevert: () => void;
@@ -130,6 +131,7 @@
                     placeholder="Ikke valgt"
                     items={companiesOptions}
                     bind:value={eventToChange.companyId}
+                    disabled={!company?.partner}
                     style="min-width: 25rem"
                 />
             </Label>
