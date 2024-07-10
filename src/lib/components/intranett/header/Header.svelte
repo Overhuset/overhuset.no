@@ -29,7 +29,7 @@
 
 {#key activeUrl}
 	<Navbar style="background-color: rgb(38, 33, 29);">
-		<NavBrand href="/">
+		<NavBrand href="/intranett">
 			<img src="/companies/overhuset_logo_white.svg" class="me-3 h-6 sm:h-9" alt="Overhuset Logo"/>
 			<span class="self-center whitespace-nowrap text-sm font-normal dark:text-white">Intranett</span>
 		</NavBrand>

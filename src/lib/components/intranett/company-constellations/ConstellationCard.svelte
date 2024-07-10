@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Button, Card, P } from 'flowbite-svelte';
+	import { Button, Card, P, Popover } from 'flowbite-svelte';
 	import type { Company, Constellation } from '$lib/types';
 	import { ArrowRightOutline, FileCopyOutline } from 'flowbite-svelte-icons';
 	import { toasts } from 'svelte-toasts';
@@ -12,7 +12,7 @@
 
 	const handleCopyToClipboard = (url: string) => {
 		navigator.clipboard?.writeText(url);
-		onToast("success", `${url} - kopiert til clipboard`)
+		onToast("success", `${url} - Lenke kopiert.`)
 	}
 
 	const onToast = (type: "success" | "info" | "error", message: string) => {
@@ -42,9 +42,11 @@
 	<div class="grid xs: grid-cols-2 sm:grid-cols-2 md:grid-cols-3 md:gap-1">
 		{#each companies as company}
 				{#if constellation?.companies?.includes(company?.id || "")}
- 					<a href={`/konsulentselskap/${company?.nameShort?.toLowerCase()}`}
+ 					<a id={`${company?.nameShort}`}
+						 href={`/konsulentselskap/${company?.nameShort?.toLowerCase()}`}
 						 class="flex justify-center items-center min-h-[90px] md:last:col-start-3 md:[&:nth-last-child(2)]:col-start-2">
 						<SVGImageRender svgString={company?.logo} styleClass="w-20" />
+						<Popover class="w-64 text-sm font-normal " triggeredBy={`#${company?.nameShort}`}>Gå til offentlig presentasjon av selskap</Popover>
 					</a>
 				{/if}
 		{/each}
@@ -53,12 +55,12 @@
 	<br/>
 
 	<div class="rowDirection">
-		<Button class="w-fit" on:click={() => handleCopyToClipboard(`${location.protocol}//${window.location.hostname}/${constellation.urlRef}`)}>
-			<FileCopyOutline class="w-5 h-5 me-2" /> Kopier link til detaljer
+		<Button class="w-fit" href={`/${constellation.urlRef}`}>
+			Gå til offentlig konstellasjon-side <ArrowRightOutline class="w-6 h-6 ms-2 " />
 		</Button>
 
-		<Button class="w-fit" href={`/${constellation.urlRef}`}>
-			Vis detaljer <ArrowRightOutline class="w-6 h-6 ms-2 " />
+		<Button class="w-fit" on:click={() => handleCopyToClipboard(`${location.protocol}//${window.location.hostname}/${constellation.urlRef}`)}>
+			<FileCopyOutline class="w-5 h-5 me-2" /> Kopier lenke
 		</Button>
 	</div>
 </Card>
