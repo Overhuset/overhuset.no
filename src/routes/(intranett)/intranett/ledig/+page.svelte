@@ -46,17 +46,5 @@
 		width: 100%;
 		max-width: 70rem;
 	}
-	.list {
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-		gap: 0.4rem;
-	}
-	.buttons-container {
-		width: 100%;
-		display: flex;
-		justify-content: flex-end;
-		gap: 1rem;
-	}
 </style>
 

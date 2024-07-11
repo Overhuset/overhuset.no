@@ -1,4 +1,4 @@
-import { transformDate } from '$lib/transformEvents';
+import { transformDate } from '$lib/utils/transformEvents';
 import type { Event } from '$lib/types';
 import { describe, expect, it } from 'bun:test';
 

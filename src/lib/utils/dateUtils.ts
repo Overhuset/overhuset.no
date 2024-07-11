@@ -29,8 +29,6 @@ export const getDateFormat = (date?: string | Date) => {
 
 export const getTimeFormat = (date?: string | Date) => {
     if (date) {
-
-
         const {hours, minutes} = {...getDateValues(date)};
         return [hours, minutes, ].join(':');
     }

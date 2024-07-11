@@ -126,6 +126,8 @@ bun install
 
 ```bash
 bun dev
+// in later versions of bun, .env file might not be read, unless specified
+bun --env-file=.env dev
 ```
 
 The app should now be running on `http://localhost:5173`.

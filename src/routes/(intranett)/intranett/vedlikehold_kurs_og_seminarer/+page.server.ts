@@ -1,31 +1,20 @@
-import type { AuthUser } from "$lib/types";
-import {createPool} from "@vercel/postgres";
-import {mapFromDbToCompanyObject, mapFromDbToEventObject} from "$lib/utils/objectMapper";
+import { createPool } from '@vercel/postgres';
+import { fetchAllCompanies, fetchCompany } from '$lib/data-access/company';
+import { fetchAuthUser } from '$lib/data-access/user';
+import { fetchAllEvents, fetchAllEventsOnCompany } from '$lib/data-access/event';
+import { accessCheck } from '$lib/utils/accessController';
 
-const fetchAuthUser = async (id: string) => {
-	const db = createPool();
-	const result = await db.query(`SELECT email, admin FROM auth_user WHERE id = '${id}'`);
-	const user: AuthUser[] = result.rows.map(u => ({email: u.email, admin: !!u.admin}));
-	return user[0];
-}
-
-const fetchAllEvents = async () => {
-	const db = createPool();
-	const result = await db.query('SELECT * FROM event ORDER by created_at DESC');
-	return result.rows.map(e => mapFromDbToEventObject(e));
-}
-
-const fetchAllCompanies = async () => {
-	const db = createPool();
-	const result = await db.query('SELECT * FROM company ORDER BY created_at ASC');
-	return result.rows.map(c => mapFromDbToCompanyObject(c));
-}
 
 export async function load({ locals }) {
+	const db = createPool();
 	const session = await locals.auth.validate();
 	const user  = session?.user;
-	const authUser = user?.userId ? await fetchAuthUser(user.userId) : undefined;
-	const eventList = await fetchAllEvents();
-	const companyList = fetchAllCompanies();
-	return { eventList, companyList, authUser};
+ 	const authUser = user?.userId ? await fetchAuthUser(db, user.userId) : undefined;
+	const company = await fetchCompany(db, authUser?.companyId);
+	const eventList = authUser?.admin ? await fetchAllEvents(db) : await fetchAllEventsOnCompany(db, authUser?.companyId);
+	const companyList = await fetchAllCompanies(db);
+
+	await accessCheck(db,  authUser, '/intranett/vedlikehold_kurs_og_seminarer');
+
+	return { eventList, companyList, authUser, company};
 }

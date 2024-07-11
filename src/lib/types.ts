@@ -1,3 +1,5 @@
+// data types
+
 export type Event = {
 	id?: string,
 	title?: string;
@@ -59,10 +61,16 @@ export type Constellation = {
 	urlRef?: string;
 }
 
-
 export type AuthUser = {
-	email?:  string;
-	admin: boolean;
+	id?: string;
+	name?: string;
+	email?: string;
+	image?: boolean;
+	username?: string;
+	createdAt?: Date;
+	admin?: boolean;
+	active?: boolean;
+	companyId?: string;
 }
 
 export type EmailDomain = {
@@ -80,3 +88,28 @@ export type UserInvite = {
 	createdBy?: string;
 	createdAt?: Date;
 }
+
+
+// helper types
+
+export type LinkItem = {
+	title: string;
+	href: string;
+	access: ("partner" | "admin")[];
+};
+
+export type SlugLinkItem = {
+	title: string;
+	markdown: string;
+	slug: string;
+	status: 'draft' | 'published';
+	access: ("partner" | "admin")[];
+};
+
+export type SlugGroupItem = {
+	title: string;
+	children: SlugTreeItem[];
+	access: ("partner" | "admin")[];
+};
+
+export type SlugTreeItem = SlugLinkItem | SlugGroupItem;

@@ -1,37 +1,23 @@
 import type { PageServerLoad } from './$types';
-import {createPool} from "@vercel/postgres";
+import { createPool } from '@vercel/postgres';
 import { error } from "@sveltejs/kit";
 import { put } from "@vercel/blob";
-
-const fetchEmail = async (id: string) => {
-	const db = createPool();
-	const result = await db.query(`SELECT email FROM auth_user WHERE id = '${id}'`);
-	const email = result.rows.map(au => au.email);
-	return email[0];
-}
-
-
-const fetchAllVacants = async () => {
-	const db = createPool();
-	const result = await db.query('SELECT * FROM vacant_consultant ORDER by vacant_from ASC');
-	return result.rows.map(v => ({
-		id: v.id,
-		name: v.name,
-		email: v.email,
-		vacantFrom: v.vacant_from,
-		comment: v.comment,
-		createdBy: v.created_by,
-		createdAt: v.created_by,
-		cv: v.cv
-	}));
-}
+import { fetchAuthUser } from '$lib/data-access/user';
+import { fetchAllVacants } from '$lib/data-access/vacant';
+import { accessCheck } from '$lib/utils/accessController';
+import { fetchCompany } from '$lib/data-access/company';
 
 
 const load: PageServerLoad = async ({ locals }) => {
+	const db = createPool();
 	const session = await locals.auth.validate();
 	const user  = session?.user;
-	const email = user?.userId ? await fetchEmail(user?.userId) : undefined;
-	const vacantList = await fetchAllVacants();
+	const authUser = user?.userId ? await fetchAuthUser(db, user.userId) : undefined;
+	const vacantList = await fetchAllVacants(db);
+	const email = authUser?.email;
+
+	await accessCheck(db,  authUser, '/intranett/vedlikehold_ledig');
+
 	return { vacantList, user, email};
 };
 

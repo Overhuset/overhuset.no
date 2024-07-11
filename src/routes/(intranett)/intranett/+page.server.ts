@@ -2,15 +2,31 @@
 import { fail, type Actions, redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import { auth } from '$lib/server/lucia';
+import { fetchAuthUser } from '$lib/data-access/user';
+import { createPool } from '@vercel/postgres';
+import { fetchAllCompaniesExceptOverhuset, fetchCompany } from '$lib/data-access/company';
+import { fetchActiveConstellationsByCompany } from '$lib/data-access/constellation';
 
-export const load: PageServerLoad = async ({ fetch }) => {
+export const load: PageServerLoad = async ({ fetch,locals }) => {
+	const db = createPool();
+	const session = await locals.auth.validate();
 	const post = await fetch(`/intranett-articles/articles/index.md`);
-	const content = await post.text();
+	const user  = session?.user;
+	const authUser = user?.userId ? await fetchAuthUser(db, user.userId) : undefined;
+	const company = await fetchCompany(db, authUser?.companyId);
+ 	const content = await post.text();
+	const constellations = await fetchActiveConstellationsByCompany(db, company?.id);
+	const companies =  await fetchAllCompaniesExceptOverhuset(db);
 
 	return {
+		company,
+		companies,
+		constellations,
 		content
 	};
 };
+
+
 
 export const actions: Actions = {
 	logout: async ({ locals }) => {

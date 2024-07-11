@@ -1,6 +1,6 @@
 <script>
-	import CompanyList from '$lib/components/CompanyList.svelte';
 	import { MetaTags } from 'svelte-meta-tags';
+	import CompanyList from '$lib/components/web/CompanyList.svelte';
 
 	export let data;
 </script>
