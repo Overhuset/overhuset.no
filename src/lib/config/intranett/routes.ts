@@ -17,6 +17,7 @@ export function getSlugTreeItems(isProd: boolean, isAdmin: boolean, isPartner: b
 	return items.filter(item =>
 		isAdmin ||
 		item.access.length === 0 ||
+		item.access.includes("all") ||
 		(isPartner && item.access.includes("partner"))
 	);
 }
@@ -25,6 +26,7 @@ export function getHeaderLinkItems (isAdmin: boolean, isPartner: boolean): LinkI
 	return headerLinkItems.filter(item =>
 		isAdmin ||
 		item.access.length === 0 ||
+		item.access.includes("all") ||
 		(isPartner && item.access.includes("partner"))
 	);
 }
@@ -33,6 +35,7 @@ export function getAdminLinkItems (isAdmin: boolean, isPartner: boolean): LinkIt
 	return adminItems.filter(item =>
 		isAdmin ||
 		item.access.length === 0 ||
+		item.access.includes("all") ||
 		(isPartner && item.access.includes("partner"))
 	);
 }
@@ -82,7 +85,7 @@ const adminItems: LinkItem[] = [
 	{
 		title: 'Arrangementer',
 		href: '/intranett/vedlikehold_kurs_og_seminarer',
-		access: []
+		access: ['all']
 	},
 	{
 		title: 'Brukere',
@@ -112,7 +115,7 @@ const slugItems: SlugTreeItem[] = [
 		slug: '',
 		markdown: 'index.html',
 		status: 'draft',
-		access: []
+		access: ['all']
 	},
 	{
 		title: 'Kvalitetssystem',
@@ -133,7 +136,7 @@ const slugItems: SlugTreeItem[] = [
 		slug: 'vare-kunder',
 		markdown: 'vare-kunder.md',
 		status: 'draft',
-		access: []
+		access: ['all']
 	},
 	{
 		title: 'Retningslinjer',

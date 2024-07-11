@@ -95,7 +95,7 @@ export type UserInvite = {
 export type LinkItem = {
 	title: string;
 	href: string;
-	access: ("partner" | "admin")[];
+	access: ("partner" | "admin" | "all")[];
 };
 
 export type SlugLinkItem = {
@@ -103,13 +103,13 @@ export type SlugLinkItem = {
 	markdown: string;
 	slug: string;
 	status: 'draft' | 'published';
-	access: ("partner" | "admin")[];
+	access: ("partner" | "admin" | "all")[];
 };
 
 export type SlugGroupItem = {
 	title: string;
 	children: SlugTreeItem[];
-	access: ("partner" | "admin")[];
+	access: ("partner" | "admin" | "all")[];
 };
 
 export type SlugTreeItem = SlugLinkItem | SlugGroupItem;
