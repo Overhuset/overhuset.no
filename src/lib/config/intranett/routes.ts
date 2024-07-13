@@ -114,7 +114,7 @@ const slugItems: SlugTreeItem[] = [
 		title: 'Hjem',
 		slug: '',
 		markdown: 'index.html',
-		status: 'draft',
+		status: 'published',
 		access: ['all']
 	},
 	{
@@ -135,7 +135,7 @@ const slugItems: SlugTreeItem[] = [
 		title: 'Våre kunder',
 		slug: 'vare-kunder',
 		markdown: 'vare-kunder.md',
-		status: 'draft',
+		status: 'published',
 		access: ['all']
 	},
 	{
