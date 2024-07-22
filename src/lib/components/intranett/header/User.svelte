@@ -7,7 +7,7 @@
 		Button,
 		Dropdown,
 		DropdownItem,
-		Avatar
+		Avatar, Badge
 	} from 'flowbite-svelte';
 
 	export let loggedIn: boolean = false;
@@ -29,9 +29,9 @@
 										data-name={userName}
 										dot={{ placement: 'top-right', color: loggedIn ? 'green' : 'grey' }} />
 						<div class="space-y-0 font-medium dark:text-white">
-							<div>{userName}</div>
+							<div>{userName} {#if admin} <Badge color="yellow">Admin</Badge> {/if} </div>
 							<div class="text-sm text-gray-500 dark:text-gray-400">
-								{companyName} {#if admin} (Admin) {/if}
+								{companyName}
 							</div>
 						</div>
 					</div>
