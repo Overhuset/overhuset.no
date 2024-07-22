@@ -6,6 +6,7 @@ import { fetchAuthUser } from '$lib/data-access/user';
 import { createPool } from '@vercel/postgres';
 import { fetchAllCompaniesExceptOverhuset, fetchCompany } from '$lib/data-access/company';
 import { fetchActiveConstellationsByCompany } from '$lib/data-access/constellation';
+import { accessCheck } from '$lib/utils/accessController';
 
 export const load: PageServerLoad = async ({ fetch,locals }) => {
 	const db = createPool();
@@ -17,6 +18,8 @@ export const load: PageServerLoad = async ({ fetch,locals }) => {
  	const content = await post.text();
 	const constellations = await fetchActiveConstellationsByCompany(db, company?.id);
 	const companies =  await fetchAllCompaniesExceptOverhuset(db);
+
+	await accessCheck(db,  authUser);
 
 	return {
 		company,

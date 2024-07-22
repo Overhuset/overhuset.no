@@ -21,6 +21,7 @@ export const load: PageServerLoad = async ({ fetch, params }) => {
 			message: 'Vi fant ikke denne siden.'
 		});
 	}
+
 	const content = await post.text();
 
 	return {
