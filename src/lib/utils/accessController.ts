@@ -13,21 +13,18 @@ import { fetchCompany } from '$lib/data-access/company';
  * @param path
  */
 export const accessCheck = async (db: VercelPool, authUser: AuthUser | undefined, path?: string) => {
-
 	  if (!authUser) {
-		  throw error(403, { message: 'Vi fant ikke denne siden.' });
+			throw error(403, { message: 'Du har ikke tilgang til denne siden.' });
 	  }
 
 		if (path) {
 			const company = authUser ? await fetchCompany(db, authUser?.companyId) : undefined;
-			const isPartner = company?.partner || false;
-			const isAdmin = authUser?.admin || false;
-			const adminLinkItems = getAdminLinkItems(isAdmin, isPartner);
-			const headerLinkItems = getHeaderLinkItems(isAdmin, isPartner);
+			const adminLinkItems = getAdminLinkItems(authUser, company);
+			const headerLinkItems = getHeaderLinkItems(authUser, company);
 			const foundPath = (adminLinkItems.concat(headerLinkItems)).find(linkItem => linkItem.href === path);
 
 			if (!foundPath) {
-				throw error(404, { message: 'Vi fant ikke denne siden.' });
+				throw error(404, { message: 'Denne siden finnes ikke.' });
 			}
 		}
 

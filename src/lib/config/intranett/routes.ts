@@ -1,6 +1,6 @@
 
 // ****** Assert Types for each item ******
-import type { LinkItem, SlugGroupItem, SlugLinkItem, SlugTreeItem } from '$lib/types';
+import type { AuthUser, Company, LinkItem, SlugGroupItem, SlugLinkItem, SlugTreeItem } from '$lib/types';
 
 export function isLinkItem(node: SlugTreeItem): node is SlugLinkItem {
 	return 'slug' in node && 'markdown' in node && 'status' in node;
@@ -10,7 +10,12 @@ export function isGroupItem(node: SlugTreeItem): node is SlugGroupItem {
 	return 'children' in node;
 }
 
- export function getSlugTreeItems(isAdmin: boolean, isPartner: boolean): SlugTreeItem[] {
+ export function getSlugTreeItems(authUser?: AuthUser, company?: Company): SlugTreeItem[] {
+	if (!authUser || !company) return [];
+
+	const isPartner = company?.partner || false;
+  const isAdmin = authUser?.admin || false;
+
 	return slugItems.filter(item =>
 		isAdmin ||
 		item.access.length === 0 ||
@@ -19,7 +24,12 @@ export function isGroupItem(node: SlugTreeItem): node is SlugGroupItem {
 	);
 }
 
-export function getHeaderLinkItems (isAdmin: boolean, isPartner: boolean): LinkItem[] {
+export function getHeaderLinkItems (authUser?: AuthUser, company?: Company): LinkItem[] {
+	if (!authUser || !company) return [];
+
+	const isPartner = company?.partner || false;
+	const isAdmin = authUser?.admin || false;
+
 	return headerLinkItems.filter(item =>
 		isAdmin ||
 		item.access.length === 0 ||
@@ -28,7 +38,12 @@ export function getHeaderLinkItems (isAdmin: boolean, isPartner: boolean): LinkI
 	);
 }
 
-export function getAdminLinkItems (isAdmin: boolean, isPartner: boolean): LinkItem[] {
+export function getAdminLinkItems (authUser?: AuthUser, company?: Company): LinkItem[] {
+	if (!authUser || !company) return [];
+
+	const isPartner = company?.partner || false;
+	const isAdmin = authUser?.admin || false;
+
 	return adminLinkItems.filter(item =>
 		isAdmin ||
 		item.access.length === 0 ||

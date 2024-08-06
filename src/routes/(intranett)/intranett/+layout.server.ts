@@ -10,11 +10,9 @@ export const load: LayoutServerLoad = async ({ locals }) => {
 	const session = await locals.auth.validate();
 	const authUser = await fetchAuthUser(db, session?.user?.userId);
 	const company = await fetchCompany(db, authUser?.companyId);
-  const isPartner = company?.partner || false;
-	const isAdmin = authUser?.admin || false;
-	const slugTreeItems =  getSlugTreeItems(isAdmin, isPartner);
-	const headerLinkItems = getHeaderLinkItems(isAdmin, isPartner);
-	const adminLinkItems = getAdminLinkItems(isAdmin, isPartner);
+	const slugTreeItems =  getSlugTreeItems(authUser, company);
+	const headerLinkItems = getHeaderLinkItems(authUser, company);
+	const adminLinkItems = getAdminLinkItems(authUser, company);
 
 	return {
 		loggedIn: !!session?.sessionId,
