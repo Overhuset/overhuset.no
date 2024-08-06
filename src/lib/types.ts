@@ -99,7 +99,6 @@ export type LinkItem = {
 };
 
 export type SlugLinkItem = {
-	title: string;
 	markdown: string;
 	slug: string;
 	status: 'draft' | 'published';
@@ -107,7 +106,6 @@ export type SlugLinkItem = {
 };
 
 export type SlugGroupItem = {
-	title: string;
 	children: SlugTreeItem[];
 	access: ("partner" | "admin" | "all")[];
 };

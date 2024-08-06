@@ -1,14 +1,12 @@
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import { getLinkItemBySlug }  from '$lib/config/intranett/routes';
- const { MODE } = import.meta.env;
 
-const isProd = MODE === 'production';
 
 export const load: PageServerLoad = async ({ fetch, params }) => {
-	const item = getLinkItemBySlug(params.slug, isProd);
+	const item = getLinkItemBySlug(params.slug);
 
-	if (!item || (isProd && item.status !== 'published')) {
+	if (!item) {
 		throw error(404, {
 			message: 'Vi fant ikke denne siden.'
 		});
