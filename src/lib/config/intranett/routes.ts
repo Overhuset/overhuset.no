@@ -10,11 +10,8 @@ export function isGroupItem(node: SlugTreeItem): node is SlugGroupItem {
 	return 'children' in node;
 }
 
-// If we're in production, we only want a tree with "published" nodes/articles.
-// If we're in another environment, we can retrieve everything.
-export function getSlugTreeItems(isProd: boolean, isAdmin: boolean, isPartner: boolean): SlugTreeItem[] {
-	const items = isProd ? filterOutDrafts(slugItems) : slugItems;
-	return items.filter(item =>
+ export function getSlugTreeItems(isAdmin: boolean, isPartner: boolean): SlugTreeItem[] {
+	return slugItems.filter(item =>
 		isAdmin ||
 		item.access.length === 0 ||
 		item.access.includes("all") ||
@@ -40,37 +37,28 @@ export function getAdminLinkItems (isAdmin: boolean, isPartner: boolean): LinkIt
 	);
 }
 
-function filterOutDrafts(nodes: SlugTreeItem[]): SlugTreeItem[] {
-	return nodes.flatMap((node): SlugTreeItem[] => {
-		if (isLinkItem(node)) {
-			return [node];
-		} else if (isGroupItem(node)) {
-			const filteredChildren = filterOutDrafts(node.children);
-			return filteredChildren.length > 0 ? [{ ...node, children: filteredChildren }] : [];
-		}
-		return [];
-	});
-}
 
-function findLinkItemBySlug(nodes: SlugTreeItem[], slug: string): SlugLinkItem | null {
-	for (const node of nodes) {
-		if (isLinkItem(node)) {
-			if (node.slug === slug) {
-				return node;
-			}
-		} else if (isGroupItem(node)) {
-			const found = findLinkItemBySlug(node.children, slug);
-			if (found) {
-				return found;
-			}
-		}
-	}
-	return null;
-}
 
 export function getLinkItemBySlug(slug: string): SlugLinkItem | null {
+	function findLinkItemBySlug(nodes: SlugTreeItem[], slug: string): SlugLinkItem | null {
+		for (const node of nodes) {
+			if (isLinkItem(node)) {
+				if (node.slug === slug) {
+					return node;
+				}
+			} else if (isGroupItem(node)) {
+				const found = findLinkItemBySlug(node.children, slug);
+				if (found) {
+					return found;
+				}
+			}
+		}
+		return null;
+	}
+
  	return findLinkItemBySlug(slugItems, slug);
 }
+
 
 const headerLinkItems: LinkItem[] = [
 	{
