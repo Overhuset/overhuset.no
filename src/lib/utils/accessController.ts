@@ -13,6 +13,7 @@ import { fetchCompany } from '$lib/data-access/company';
  * @param path
  */
 export const accessCheck = async (db: VercelPool, authUser: AuthUser | undefined, path?: string) => {
+
 	  if (!authUser) {
 			throw error(403, { message: 'Du har ikke tilgang til denne siden.' });
 	  }

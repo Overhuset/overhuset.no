@@ -1,4 +1,3 @@
-// src/routes/blog/[...slug].ts
 import { fail, type Actions, redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import { auth } from '$lib/server/lucia';
@@ -19,7 +18,7 @@ export const load: PageServerLoad = async ({ fetch,locals }) => {
 	const constellations = await fetchActiveConstellationsByCompany(db, company?.id);
 	const companies =  await fetchAllCompaniesExceptOverhuset(db);
 
-	await accessCheck(db,  authUser);
+	await accessCheck(db, authUser);
 
 	return {
 		company,

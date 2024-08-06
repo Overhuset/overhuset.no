@@ -7,19 +7,18 @@
 
 	initializeStores();
 	const isIntranett = $page.url.href.split('/').includes('intranett');
-	const isWeb = !isIntranett;
 </script>
 
-{#if isWeb}
-	<Header />
-	<div class="w-full flex flex-col gap-8 items-center my-auto">
-		<h1 class="h1 font-bold text-5xl">{$page.status}</h1>
-		<p class="text-3xl">{$page.error?.message}</p>
-		<p class="text-xl">
-			<a class="text-xl underline" href="/">Gå til Hjem</a>
-		</p>
-	</div>
-	<Footer />
-{:else if isIntranett}
+{#if isIntranett}
 	<slot />
+{:else}
+	<Header />
+		<div class="w-full flex flex-col gap-8 items-center my-auto">
+			<h1 class="h1 font-bold text-5xl">{$page.status}</h1>
+			<p class="text-3xl">{$page.error?.message}</p>
+			<p class="text-xl">
+				<a class="text-xl underline" href="/">Gå til Hjem</a>
+			</p>
+		</div>
+	<Footer />
 {/if}

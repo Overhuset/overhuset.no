@@ -8,9 +8,7 @@ export const load: PageServerLoad = async ({ fetch, params }) => {
 	const post = await fetch(`/intranett-articles/articles/${item?.markdown}`);
 
 	if (post.status === 404) {
-		throw error(404, {
-			message: 'Vi fant ikke denne siden.'
-		});
+		throw error(404, { message: 'Vi fant ikke denne siden.' });
 	}
 
 	const content = await post.text();
