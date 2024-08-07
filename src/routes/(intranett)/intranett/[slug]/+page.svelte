@@ -5,6 +5,6 @@
 	export let data: PageData;
 </script>
 
-<div class="prose mx-auto py-4 md:py-20 px-4">
+<div class="prose prose-xl mx-auto p-4 md:py-20" style="max-width:140ch">
 	<SvelteMarkdown source={data.content} />
 </div>

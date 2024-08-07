@@ -1,6 +1,6 @@
 
 // ****** Assert Types for each item ******
-import type { LinkItem, SlugGroupItem, SlugLinkItem, SlugTreeItem } from '$lib/types';
+import type { AuthUser, Company, LinkItem, SlugGroupItem, SlugLinkItem, SlugTreeItem } from '$lib/types';
 
 export function isLinkItem(node: SlugTreeItem): node is SlugLinkItem {
 	return 'slug' in node && 'markdown' in node && 'status' in node;
@@ -10,11 +10,13 @@ export function isGroupItem(node: SlugTreeItem): node is SlugGroupItem {
 	return 'children' in node;
 }
 
-// If we're in production, we only want a tree with "published" nodes/articles.
-// If we're in another environment, we can retrieve everything.
-export function getSlugTreeItems(isProd: boolean, isAdmin: boolean, isPartner: boolean): SlugTreeItem[] {
-	const items = isProd ? filterOutDrafts(slugItems) : slugItems;
-	return items.filter(item =>
+ export function getSlugTreeItems(authUser?: AuthUser, company?: Company): SlugTreeItem[] {
+	if (!authUser || !company) return [];
+
+	const isPartner = company?.partner || false;
+  const isAdmin = authUser?.admin || false;
+
+	return slugItems.filter(item =>
 		isAdmin ||
 		item.access.length === 0 ||
 		item.access.includes("all") ||
@@ -22,7 +24,12 @@ export function getSlugTreeItems(isProd: boolean, isAdmin: boolean, isPartner: b
 	);
 }
 
-export function getHeaderLinkItems (isAdmin: boolean, isPartner: boolean): LinkItem[] {
+export function getHeaderLinkItems (authUser?: AuthUser, company?: Company): LinkItem[] {
+	if (!authUser || !company) return [];
+
+	const isPartner = company?.partner || false;
+	const isAdmin = authUser?.admin || false;
+
 	return headerLinkItems.filter(item =>
 		isAdmin ||
 		item.access.length === 0 ||
@@ -31,8 +38,13 @@ export function getHeaderLinkItems (isAdmin: boolean, isPartner: boolean): LinkI
 	);
 }
 
-export function getAdminLinkItems (isAdmin: boolean, isPartner: boolean): LinkItem[] {
-	return adminItems.filter(item =>
+export function getAdminLinkItems (authUser?: AuthUser, company?: Company): LinkItem[] {
+	if (!authUser || !company) return [];
+
+	const isPartner = company?.partner || false;
+	const isAdmin = authUser?.admin || false;
+
+	return adminLinkItems.filter(item =>
 		isAdmin ||
 		item.access.length === 0 ||
 		item.access.includes("all") ||
@@ -40,40 +52,45 @@ export function getAdminLinkItems (isAdmin: boolean, isPartner: boolean): LinkIt
 	);
 }
 
-function filterOutDrafts(nodes: SlugTreeItem[]): SlugTreeItem[] {
-	return nodes.flatMap((node): SlugTreeItem[] => {
-		if (isLinkItem(node)) {
-			return node.status !== 'draft' ? [node] : [];
-		} else if (isGroupItem(node)) {
-			const filteredChildren = filterOutDrafts(node.children);
-			return filteredChildren.length > 0 ? [{ ...node, children: filteredChildren }] : [];
-		}
-		return [];
-	});
-}
 
-function findLinkItemBySlug(nodes: SlugTreeItem[], slug: string): SlugLinkItem | null {
-	for (const node of nodes) {
-		if (isLinkItem(node)) {
-			if (node.slug === slug) {
-				return node;
-			}
-		} else if (isGroupItem(node)) {
-			const found = findLinkItemBySlug(node.children, slug);
-			if (found) {
-				return found;
+
+export function getLinkItemBySlug(slug: string): SlugLinkItem | null {
+	function findLinkItemBySlug(nodes: SlugTreeItem[], slug: string): SlugLinkItem | null {
+		for (const node of nodes) {
+			if (isLinkItem(node)) {
+				if (node.slug === slug) {
+					return node;
+				}
+			} else if (isGroupItem(node)) {
+				const found = findLinkItemBySlug(node.children, slug);
+				if (found) {
+					return found;
+				}
 			}
 		}
+		return null;
 	}
-	return null;
+
+ 	return findLinkItemBySlug(slugItems, slug);
 }
 
-export function getLinkItemBySlug(slug: string, isProd: boolean): SlugLinkItem | null {
-	const filteredTree = isProd ? filterOutDrafts(slugItems) : slugItems;
-	return findLinkItemBySlug(filteredTree, slug);
-}
 
 const headerLinkItems: LinkItem[] = [
+	{
+		title: 'Kvalitetssystem',
+		href: '/intranett/kvalitetssystem',
+		access: ['admin', 'partner']
+	},
+	{
+		title: 'Rammeavtaler',
+		href: '/intranett/rammeavtaler',
+ 		access: ['admin', 'partner']
+	},
+	{
+		title: 'Retningslinjer',
+ 		href: '/intranett/retningslinjer',
+ 		access: ['admin', 'partner']
+	},
 	{
 		title: 'Ledige konsulenter',
 		href: '/intranett/ledig',
@@ -81,7 +98,7 @@ const headerLinkItems: LinkItem[] = [
 	},
 ];
 
-const adminItems: LinkItem[] = [
+const adminLinkItems: LinkItem[] = [
 	{
 		title: 'Arrangementer',
 		href: '/intranett/vedlikehold_kurs_og_seminarer',
@@ -111,35 +128,24 @@ const adminItems: LinkItem[] = [
 
 const slugItems: SlugTreeItem[] = [
 	{
-		title: 'Hjem',
 		slug: '',
 		markdown: 'index.html',
-		status: 'draft',
+		status: 'published',
 		access: ['all']
 	},
 	{
-		title: 'Kvalitetssystem',
 		slug: 'kvalitetssystem',
 		markdown: 'kvalitetssystem.md',
 		status: 'published',
 		access: ['admin', 'partner']
 	},
 	{
-		title: 'Rammeavtaler',
 		slug: 'rammeavtaler',
 		markdown: 'rammeavtaler.md',
 		status: 'published',
 		access: ['admin', 'partner']
 	},
 	{
-		title: 'Våre kunder',
-		slug: 'vare-kunder',
-		markdown: 'vare-kunder.md',
-		status: 'draft',
-		access: ['all']
-	},
-	{
-		title: 'Retningslinjer',
 		slug: 'retningslinjer',
 		markdown: 'retningslinjer.md',
 		status: 'published',

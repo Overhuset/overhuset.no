@@ -37,14 +37,6 @@
 		<NavHamburger />
 
 		<NavUl {activeUrl} class="order-1">
-			{#each slugTreeItems as item}
-				{#if isLinkItem(item)}
-					<NavLi href={`/intranett/${item.slug}`}>{item.title}</NavLi>
-				{:else}
-					{item.title}
-				{/if}
-			{/each}
-
 			{#each headerLinkItems as item}
 				<NavLi href={item.href}>{item.title}</NavLi>
 			{/each}
@@ -59,7 +51,6 @@
 					{/each}
 				</Dropdown>
 			{/if}
-
 		</NavUl>
 
 		<User

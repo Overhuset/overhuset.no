@@ -5,7 +5,6 @@ import { put } from "@vercel/blob";
 import { fetchAuthUser } from '$lib/data-access/user';
 import { fetchAllVacants } from '$lib/data-access/vacant';
 import { accessCheck } from '$lib/utils/accessController';
-import { fetchCompany } from '$lib/data-access/company';
 
 
 const load: PageServerLoad = async ({ locals }) => {

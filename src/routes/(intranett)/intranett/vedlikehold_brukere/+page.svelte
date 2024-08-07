@@ -204,7 +204,7 @@
 							  </div>
 
 								<div class="flex-end">
-									<Toggle color="green" checked={!!authUser.active} disabled on:click={() => handleActiveToggle(authUser)}>Aktiv</Toggle>
+									<Toggle color="green" checked={!!authUser.active} on:click={() => handleActiveToggle(authUser)}>Aktiv</Toggle>
 									<Toggle checked={authUser.admin} on:click={() => handleAdminToggle(authUser)}>Administrator</Toggle>
  									<Badge rounded color="dark" style="margin-top: 0.4rem">
 										Opprettet {getDateFormat(authUser.createdAt)}, {getTimeFormat(authUser.createdAt)}

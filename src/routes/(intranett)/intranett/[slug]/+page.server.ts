@@ -1,29 +1,26 @@
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import { getLinkItemBySlug }  from '$lib/config/intranett/routes';
- const { MODE } = import.meta.env;
+import { accessCheck } from '$lib/utils/accessController';
+import { createPool } from '@vercel/postgres';
+import { fetchAuthUser } from '$lib/data-access/user';
 
-const isProd = MODE === 'production';
 
-export const load: PageServerLoad = async ({ fetch, params }) => {
-	const item = getLinkItemBySlug(params.slug, isProd);
+export const load: PageServerLoad = async ({ fetch, params,locals }) => {
+	const db = createPool();
+	const session = await locals.auth.validate();
+	const user  = session?.user;
+	const authUser = user?.userId ? await fetchAuthUser(db, user.userId) : undefined;
 
-	if (!item || (isProd && item.status !== 'published')) {
-		throw error(404, {
-			message: 'Vi fant ikke denne siden.'
-		});
-	}
+	await accessCheck(db,  authUser, `/intranett/${params.slug}`);
 
-	const post = await fetch(`/intranett-articles/articles/${item.markdown}`);
+	const item = getLinkItemBySlug(params.slug);
+	const post = await fetch(`/intranett-articles/articles/${item?.markdown}`);
 
 	if (post.status === 404) {
-		throw error(404, {
-			message: 'Vi fant ikke denne siden.'
-		});
+		throw error(404, { message: 'Vi fant ikke denne siden.' });
 	}
-	const content = await post.text();
 
-	return {
-		content
-	};
+	const content = await post.text();
+	return { content };
 };

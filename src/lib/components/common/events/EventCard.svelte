@@ -38,11 +38,9 @@
 
         <svelte:fragment slot="footer">
             {#if event.registration}
-                {#if isPassed}
-                {:else}
+                {#if !isPassed}
                     <HtmlRender htmlText={event.registration} />
                 {/if}
-            {:else}
             {/if}
         </svelte:fragment>
     </Modal>
