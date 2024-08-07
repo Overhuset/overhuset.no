@@ -17,7 +17,7 @@
 			<h1 class="h1 font-bold text-5xl">{$page.status}</h1>
 			<p class="text-3xl">{$page.error?.message}</p>
 			<p class="text-xl">
-				<a class="text-xl underline" href="/">Gå til Hjem</a>
+				<a class="text-xl underline" href="/">Gå Hjem</a>
 			</p>
 		</div>
 	<Footer />
