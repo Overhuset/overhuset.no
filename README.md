@@ -49,7 +49,7 @@ This is a paragraph
 ```
 
 3. In order to add it the navigation tree, edit the file
-   `/src/lib/config/intranettTree.ts`. Add an object to the array at the desired
+   `/src/lib/config/routes.ts`. Add an object to the array at the desired
    position that matches the type, set status to `draft` to ensure it doesn't
    appear in the menu yet. Example:
 
