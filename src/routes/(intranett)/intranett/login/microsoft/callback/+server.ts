@@ -1,7 +1,7 @@
 // routes/login/microsoft/callback/+server.ts
 import { auth, azureADAuth } from '$lib/server/lucia.js';
 import {error, type RequestHandler} from '@sveltejs/kit';
-import type {AzureADUser, GoogleUser} from "@lucia-auth/oauth/dist/providers";
+import type {AzureADUser} from "@lucia-auth/oauth/dist/providers";
 import {createPool} from "@vercel/postgres";
 import {
 	mapFromDbToEmailDomainObject,
@@ -15,6 +15,10 @@ const fetchEmailDomains = async (domain: string) => {
 	return result.rows.map(c => mapFromDbToEmailDomainObject(c));
 }
 
+const fetchUserInvitesByMail = async (email?: string) => {
+	const db = createPool();
+	return await fetchUserInvitesByEmail(db, email);
+}
 
 const verifyEmailAndGetCompany = async (azureADUser: AzureADUser) => {
 	const emailsignature = azureADUser.email?.match("(?<=@)[^.]+(?=\\.).*")[0];
@@ -27,7 +31,7 @@ const verifyEmailAndGetCompany = async (azureADUser: AzureADUser) => {
 		return emailDomains[0]
 	}
 
-	const userInvites = await fetchUserInvitesByEmail(azureADUser.email)
+	const userInvites = await fetchUserInvitesByMail(azureADUser.email)
 	if(userInvites.length > 0){
 		return userInvites[0]
 	}
