@@ -12,7 +12,7 @@
 	import {ChevronDownOutline} from "flowbite-svelte-icons";
 	import type { LinkItem, SlugTreeItem } from '$lib/types';
 	import User from './User.svelte';
-	import { isLinkItem } from '$lib/config/intranett/routes';
+	import { isLinkItem, isGroupItem } from '$lib/config/intranett/routes'; // Legger til isGroupItem
 
 	export let slugTreeItems: SlugTreeItem[] = [];
 	export let headerLinkItems: LinkItem[] = [];
@@ -23,8 +23,6 @@
 	export let userName: string = "";
 
 	$: activeUrl = $page.url.pathname;
-
-
 </script>
 
 {#key activeUrl}
@@ -38,7 +36,18 @@
 
 		<NavUl {activeUrl} class="order-1">
 			{#each headerLinkItems as item}
-				<NavLi href={item.href}>{item.title}</NavLi>
+				{#if isGroupItem(item)} <!-- Sjekker om elementet har underkategorier -->
+					<NavLi class="cursor-pointer">
+						{item.title}<ChevronDownOutline class="w-3 h-3 ms-2 text-primary-800 dark:text-white inline" />
+					</NavLi>
+					<Dropdown class="w-44 z-20">
+						{#each item.children as child}
+							<DropdownItem href={child.href}>{child.title}</DropdownItem>
+						{/each}
+					</Dropdown>
+				{:else}
+					<NavLi href={item.href}>{item.title}</NavLi>
+				{/if}
 			{/each}
 
 			{#if loggedIn}
@@ -59,7 +68,5 @@
 			companyName={companyName}
 			userName={userName}
 		/>
-
 	</Navbar>
 {/key}
-
