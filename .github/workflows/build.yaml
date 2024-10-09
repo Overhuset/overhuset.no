@@ -43,13 +43,17 @@ jobs:
           ls -la .vercel
 
       # Pull Vercel environment information (debug added)
-      - name: Vercel Pull
-        run: vercel pull --yes --environment=production --org-id=${{ secrets.VERCEL_ORG_ID }} --project-id=${{ secrets.VERCEL_PROJECT_ID }} --token=${{ secrets.VERCEL_TOKEN }} || exit 1
+      #- name: Vercel Pull
+      #  run: vercel pull --yes --environment=production --org-id=${{ secrets.VERCEL_ORG_ID }} --project-id=${{ secrets.VERCEL_PROJECT_ID }} --token=${{ secrets.VERCEL_TOKEN }} || exit 1
 
       # Build the project
       - name: Build Project Artifacts
         run: npm run build # Assuming there's a "build" script in package.json
 
       # Deploy to Vercel
-      - name: Deploy Project Artifacts to Vercel
-        run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
+      #- name: Deploy Project Artifacts to Vercel
+      #  run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Deploy to Vercel
+        run: vercel --prod --token=${{ secrets.VERCEL_TOKEN }}
+
