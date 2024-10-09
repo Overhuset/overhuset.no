@@ -137,7 +137,16 @@ const slugItems: SlugTreeItem[] = [
 		slug: 'kvalitetssystem',
 		markdown: 'kvalitetssystem.md',
 		status: 'published',
-		access: ['admin', 'partner']
+		access: ['admin', 'partner'],
+		children: [
+			{
+				slug: 'informasjon_for_KAM',
+				markdown: 'informasjon_KAM.md',
+				status: 'published',
+				access: ['admin', 'partner'],
+				title: 'Informasjon for KAM'
+			}
+		]
 	},
 	{
 		slug: 'rammeavtaler',
