@@ -83,7 +83,7 @@ const headerLinkItems: LinkItem[] = [
     children: [
       {
         title: 'Informasjon for KAM',
-        href: '/intranett/kvalitetssystem/informasjon-for-KAM',
+        href: '/intranett/kvalitetssystem/informasjon_for_KAM',
         access: ['admin', 'partner']
       }
     ]
