@@ -43,10 +43,8 @@ jobs:
           ls -la .vercel
 
       # Pull Vercel environment information (debug added)
-      - name: Pull Vercel Environment Information
-        run: |
-          vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }} || exit 1
-          ls -la .vercel # Check the contents of the .vercel directory after pulling
+      - name: Vercel Pull
+        run: vercel pull --yes --environment=production --org-id=${{ secrets.VERCEL_ORG_ID }} --project-id=${{ secrets.VERCEL_PROJECT_ID }} --token=${{ secrets.VERCEL_TOKEN }} || exit 1
 
       # Build the project
       - name: Build Project Artifacts
