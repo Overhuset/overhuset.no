@@ -17,15 +17,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      # Installer bun manuelt
-      - name: Install Bun
-        run: |
-          curl https://bun.sh/install | bash
-          export BUN_INSTALL="$HOME/.bun"
-          export PATH="$BUN_INSTALL/bin:$PATH"
+      # Install dependencies with npm
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18' # You can adjust the node version as needed
 
       - name: Install packages
-        run: bun install
+        run: npm install
 
       - name: Install Vercel CLI
         run: npm install -g vercel@latest
@@ -34,7 +33,7 @@ jobs:
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Build Project Artifacts
-        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
+        run: npm run build # Assuming your project has a `build` script in package.json
 
       - name: Deploy Project Artifacts to Vercel
         run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
