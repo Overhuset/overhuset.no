@@ -76,27 +76,35 @@ export function getLinkItemBySlug(slug: string): SlugLinkItem | null {
 
 
 const headerLinkItems: LinkItem[] = [
-	{
-		title: 'Kvalitetssystem',
-		href: '/intranett/kvalitetssystem',
-		access: ['admin', 'partner']
-	},
-	{
-		title: 'Rammeavtaler',
-		href: '/intranett/rammeavtaler',
- 		access: ['admin', 'partner']
-	},
-	{
-		title: 'Retningslinjer',
- 		href: '/intranett/retningslinjer',
- 		access: ['admin', 'partner']
-	},
-	{
-		title: 'Ledige konsulenter',
-		href: '/intranett/ledig',
-		access: ['admin', 'partner']
-	},
+  {
+    title: 'Kvalitetssystem',
+    href: '/intranett/kvalitetssystem',
+    access: ['admin', 'partner'],
+    children: [
+      {
+        title: 'Informasjon for KAM',
+        href: '/intranett/kvalitetssystem/informasjon-for-KAM',
+        access: ['admin', 'partner']
+      }
+    ]
+  },
+  {
+    title: 'Rammeavtaler',
+    href: '/intranett/rammeavtaler',
+    access: ['admin', 'partner']
+  },
+  {
+    title: 'Retningslinjer',
+    href: '/intranett/retningslinjer',
+    access: ['admin', 'partner']
+  },
+  {
+    title: 'Ledige konsulenter',
+    href: '/intranett/ledig',
+    access: ['admin', 'partner']
+  },
 ];
+
 
 const adminLinkItems: LinkItem[] = [
 	{
