@@ -17,23 +17,41 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      # Install dependencies with npm
+      # Install Node.js
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18' # You can adjust the node version as needed
+          node-version: '18' # Adjust if needed
 
-      - name: Install packages
+      - name: Install npm packages
         run: npm install
 
       - name: Install Vercel CLI
         run: npm install -g vercel@latest
 
+      # Debug: List project files to verify structure
+      - name: List project files
+        run: ls -la
+
+      # Ensure the .vercel directory exists locally before pulling the environment info
+      - name: Check for .vercel directory
+        run: |
+          if [ ! -d ".vercel" ]; then
+            echo ".vercel directory does not exist, creating it..."
+            mkdir .vercel
+          fi
+          ls -la .vercel
+
+      # Pull Vercel environment information (debug added)
       - name: Pull Vercel Environment Information
-        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+        run: |
+          vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }} || exit 1
+          ls -la .vercel # Check the contents of the .vercel directory after pulling
 
+      # Build the project
       - name: Build Project Artifacts
-        run: npm run build # Assuming your project has a `build` script in package.json
+        run: npm run build # Assuming there's a "build" script in package.json
 
+      # Deploy to Vercel
       - name: Deploy Project Artifacts to Vercel
         run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
