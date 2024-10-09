@@ -10,3 +10,4 @@ Når konsulenter avslutter oppdrag skal både konsulent og kunde gi en tilbakeme
 Link til kunde ang. avslutning av oppdrag [her](https://no.surveymonkey.com/r/RMFJFDL)
 Link til konsulent ang. avslutning av oppdrag [her](https://no.surveymonkey.com/r/6BJVGZB)
 
+Det skal gjennomføres årlige kundetilfredshets og konsulenttilfredshetsundersøkelser. 
