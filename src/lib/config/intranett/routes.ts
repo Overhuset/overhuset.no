@@ -6,6 +6,7 @@ export function isLinkItem(node: SlugTreeItem): node is SlugLinkItem {
 	return 'slug' in node && 'markdown' in node && 'status' in node;
 }
 
+
 export function isGroupItem(node: SlugTreeItem): node is SlugGroupItem {
 	return 'children' in node;
 }
