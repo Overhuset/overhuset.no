@@ -33,7 +33,7 @@ export const load: PageServerLoad = async ({ params, locals }) => {
   }
 
   // Definer stien til markdown-filen for innholdet
-  const filePath = path.resolve(`src/lib/content/articles/${item.markdown}`);
+  const filePath = path.resolve(`static/intranett-articles/articles/${item.markdown}`);
 
   console.log('File path:', filePath);
 
