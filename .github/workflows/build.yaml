@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      VERCEL_ORG_NAME: ${{ secrets.VERCEL_ORG_NAME }}
+      VERCEL_PROJECT_NAME: ${{ secrets.VERCEL_PROJECT_NAME }}
 
     steps:
       - name: Checkout code
@@ -31,11 +31,12 @@ jobs:
       - name: Verify Environment Variables
         run: |
           if [ -z "$VERCEL_TOKEN" ]; then echo "VERCEL_TOKEN is not set"; else echo "VERCEL_TOKEN is set"; fi
-          if [ -z "$VERCEL_ORG_ID" ]; then echo "VERCEL_ORG_ID is not set"; else echo "VERCEL_ORG_ID is set"; fi
-          if [ -z "$VERCEL_PROJECT_ID" ]; then echo "VERCEL_PROJECT_ID is not set"; else echo "VERCEL_PROJECT_ID is set"; fi
+          if [ -z "$VERCEL_ORG_NAME" ]; then echo "VERCEL_ORG_NAME is not set"; else echo "VERCEL_ORG_NAME is set"; fi
+          if [ -z "$VERCEL_PROJECT_NAME" ]; then echo "VERCEL_PROJECT_NAME is not set"; else echo "VERCEL_PROJECT_NAME is set"; fi
+
 
       - name: Link Vercel Project
-        run: vercel link --token $VERCEL_TOKEN --org-id $VERCEL_ORG_ID --project-id $VERCEL_PROJECT_ID
+        run: vercel link --token $VERCEL_TOKEN --scope $VERCEL_ORG_NAME --project $VERCEL_PROJECT_NAME
 
       - name: Pull Vercel Environment Variables
         run: vercel env pull .env -y --token $VERCEL_TOKEN
