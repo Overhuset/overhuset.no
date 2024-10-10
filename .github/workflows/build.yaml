@@ -9,9 +9,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
       VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
 
     steps:
       - name: Checkout code
@@ -28,11 +28,20 @@ jobs:
       - name: Install Vercel CLI
         run: npm install -g vercel@latest
 
+      - name: Verify Environment Variables
+        run: |
+          if [ -z "$VERCEL_TOKEN" ]; then echo "VERCEL_TOKEN is not set"; else echo "VERCEL_TOKEN is set"; fi
+          if [ -z "$VERCEL_ORG_ID" ]; then echo "VERCEL_ORG_ID is not set"; else echo "VERCEL_ORG_ID is set"; fi
+          if [ -z "$VERCEL_PROJECT_ID" ]; then echo "VERCEL_PROJECT_ID is not set"; else echo "VERCEL_PROJECT_ID is set"; fi
+
+      - name: Link Vercel Project
+        run: vercel link --token $VERCEL_TOKEN --org-id $VERCEL_ORG_ID --project-id $VERCEL_PROJECT_ID
+
       - name: Pull Vercel Environment Variables
-        run: vercel env pull .env -y --token $VERCEL_TOKEN --scope $VERCEL_ORG_ID --project $VERCEL_PROJECT_ID
+        run: vercel env pull .env -y --token $VERCEL_TOKEN
 
       - name: Build project
         run: npm run build
 
       - name: Deploy to Vercel
-        run: vercel --prod --token $VERCEL_TOKEN --scope $VERCEL_ORG_ID --project $VERCEL_PROJECT_ID
+        run: vercel --prod --token $VERCEL_TOKEN
