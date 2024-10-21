@@ -6,6 +6,7 @@ export function isLinkItem(node: SlugTreeItem): node is SlugLinkItem {
 	return 'slug' in node && 'markdown' in node && 'status' in node;
 }
 
+
 export function isGroupItem(node: SlugTreeItem): node is SlugGroupItem {
 	return 'children' in node;
 }
@@ -76,9 +77,14 @@ export function getLinkItemBySlug(slug: string): SlugLinkItem | null {
 
 
 const headerLinkItems: LinkItem[] = [
+  {
+    title: 'Kvalitetssystem',
+    href: '/intranett/kvalitetssystem',
+    access: ['admin', 'partner']
+	},
 	{
-		title: 'Kvalitetssystem',
-		href: '/intranett/kvalitetssystem',
+		title: 'Informasjon til KAM',
+		href: '/intranett/informasjon_KAM',
 		access: ['admin', 'partner']
 	},
 	{
@@ -97,6 +103,7 @@ const headerLinkItems: LinkItem[] = [
 		access: ['admin', 'partner']
 	},
 ];
+
 
 const adminLinkItems: LinkItem[] = [
 	{
@@ -136,6 +143,12 @@ const slugItems: SlugTreeItem[] = [
 	{
 		slug: 'kvalitetssystem',
 		markdown: 'kvalitetssystem.md',
+		status: 'published',
+		access: ['admin', 'partner']
+	},
+	{
+		slug: 'informasjon_KAM',
+		markdown: 'informasjon_KAM.md',
 		status: 'published',
 		access: ['admin', 'partner']
 	},
