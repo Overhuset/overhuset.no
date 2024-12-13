@@ -18,7 +18,7 @@ prosjekter – i full bredde, på høyeste nivå.'
 	<h2
 		class="text-3xl md:text-4xl lg:text-6xl font-bold text-center text-stone-600 md:w-1/2 font-source md:px-16"
 	>
-		360 AV DE RÅESTE IT-KONSULENTENE I MARKEDET UNDER SAMME TAK
+		400 AV DE RÅESTE IT-KONSULENTENE I MARKEDET UNDER SAMME TAK
 	</h2>
 </section>
 
@@ -47,7 +47,7 @@ prosjekter – i full bredde, på høyeste nivå.'
 
 <section class="page-section flex-col max-w-6xl gap-24">
 	<p class="max-w-5xl text-2xl font-light">
-		Overhuset består av Norges elleve ledende konsulentselskaper, som samarbeider om større IT-
+		Overhuset består av Norges tolv ledende konsulentselskaper, som samarbeider om større IT-
 		utviklingsprosjekter i offentlig og privat sektor. Hvert selskap er spesialisert innenfor sine
 		fagfelt, og er nøye satt sammen for å berike og komplettere hverandre på best mulig vis.
 		Sammen utgjør vi bransjens mest fremoverlente og kompetente fagmiljø.
