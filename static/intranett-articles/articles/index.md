@@ -7,7 +7,7 @@ Selskapene i Overhuset er:
 
 | Overhuset-selskaper | AU-Representant |
 |---------------------|----------------|
-| Arktekk             | Morte Andersen-Gott |
+| Arktekk             | Mette Rosenvinge Kolderup |
 | Boitano             | Ove Suhr       |
 | Edisys              | Rolf Lysfjord  |
 | Fink                | Thomas Halmø   |
@@ -17,6 +17,7 @@ Selskapene i Overhuset er:
 | Sannsyn             | Øyvin Spørck   |
 | Scelto              | Tor Eric Sandvik |
 | Uptime              | Ole Kristian Villabø |
+| Vivende             | Steinar Koffeld |
 | Zenior              | Kristtoffer Moum |
 
 ## Rammeavtaler
