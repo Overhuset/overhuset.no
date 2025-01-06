@@ -34,6 +34,9 @@ jobs:
           if [ -z "$VERCEL_ORG_NAME" ]; then echo "VERCEL_ORG_NAME is not set"; else echo "VERCEL_ORG_NAME is set"; fi
           if [ -z "$VERCEL_PROJECT_NAME" ]; then echo "VERCEL_PROJECT_NAME is not set"; else echo "VERCEL_PROJECT_NAME is set"; fi
 
+      - name: Remove .vercel directory if exists
+        run: |
+          if [ -d ".vercel" ]; then rm -rf .vercel; fi
 
       - name: Link Vercel Project
         run: vercel link --yes --token $VERCEL_TOKEN --scope $VERCEL_ORG_NAME --project $VERCEL_PROJECT_NAME
